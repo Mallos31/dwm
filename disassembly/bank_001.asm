@@ -3439,7 +3439,7 @@ Call_001_5254:
 
 
 Call_001_5277:
-    ld a, [wGameState]
+    ld a, [$c8eb]
     bit 2, a
     jr z, jr_001_5287
 

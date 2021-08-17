@@ -4,7 +4,7 @@
 ; https://github.com/mattcurrie/mgbdis
 
 SECTION "ROM Bank $043", ROMX[$4000], BANK[$43]
-
+;TEXT BANK
     ld b, e
     daa
     ld b, c

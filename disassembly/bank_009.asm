@@ -858,11 +858,13 @@ Call_009_442f:
 
     ld a, [$c90c]
     and $0f
+    
     push af
     ld a, [$c90c]
     inc a
     ld [$c90c], a
     pop af
+    
     ld a, c
     ret nz
 
@@ -3056,28 +3058,28 @@ jr_009_51e0:
 
 
 Call_009_51e5:
-    ld hl, $c0d8
+    ld hl, $c0d8	;pointer to temp inventory storage loaded into hl
     call Call_009_51f0
     ld a, c
-    ld [$c8e9], a
+    ld [$c8e9], a	;number of individual item ids the bank should display
     ret
 
 
-Call_009_51f0:
-    ld b, $28
+Call_009_51f0:		;find how many inv slots are full
+    ld b, $28		;load number of inv slots into counter at reg b
 
 Call_009_51f2:
-    ld c, $00
+    ld c, $00		
 
 jr_009_51f4:
-    ld a, [hl+]
-    cp $00
-    ret z
+    ld a, [hl+]		;loads contents of current inventory slot into reg a and increments to next one
+    cp $00		;compares ID to 0
+    ret z		;returns if a zero is found (currently unknown what writes 00 to inventory slots.)
 
-    cp $ff
-    ret z
+    cp $ff		;compares item id to FF (empty slot) 
+    ret z		;return once an empty slot is reached. 
 
-    inc c
+    inc c		;if neither happens, increment c 
     dec b
     jr nz, jr_009_51f4
 

@@ -5625,7 +5625,7 @@ jr_004_5c68:
     ld [$da08], a
 
 jr_004_5db9:
-    ld a, [$d9ce]
+    ld a, [$d9ce]  ;
     ld b, a
     add a
     add b
@@ -6009,7 +6009,7 @@ jr_004_5ff3:
 
 
 jr_004_6000:
-    ld [hl], c
+    ld [hl], c  ;loads item into empty inventory slot from treasure chest [MAY BE MORE]
     ret
 
 

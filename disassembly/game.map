@@ -28445,11 +28445,19 @@ ROMX bank #127:
     SLACK: $0000 bytes
 
 WRAM0 bank #0:
-  SECTION: $c000-$cffe ($0fff bytes) ["WRAM Bank0"]
+  SECTION: $c000-$cfff ($1000 bytes) ["WRAM Bank0"]
            $c000 = wRamStart
+           $c8da = wMenu_selection
+           $c8db = wOPTN_and_Item_selection
+           $c8dc = wPLAN_selection
+           $c8dd = wRamUnk1
            $c8eb = wGameState
-           $c8ec = wRamRest
-    SLACK: $0001 byte
+           $c8ec = wRamUnk2
+           $c90d = wCursorBlinkTimer
+           $c90e = wRamUnk3
+           $ca4d = wCurrGold
+           $ca50 = wRamRest
+    SLACK: $0000 bytes
 
 HRAM bank #0:
   SECTION: $ff80-$fffe ($007f bytes) ["HRAM"]
@@ -28463,5 +28471,5 @@ HRAM bank #0:
 USED:
     ROM0: $4000 bytes in 1 bank
     ROMX: $1fc000 bytes in 127 banks
-    WRAM0: $0fff bytes in 1 bank
+    WRAM0: $1000 bytes in 1 bank
     HRAM: $007f bytes in 1 bank

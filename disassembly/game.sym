@@ -27934,8 +27934,16 @@
 7d:7f7f Call_07d_7f7f
 7d:7fff Jump_07d_7fff
 00:c000 wRamStart
+00:c8da wMenu_selection
+00:c8db wOPTN_and_Item_selection
+00:c8dc wPLAN_selection
+00:c8dd wRamUnk1
 00:c8eb wGameState
-00:c8ec wRamRest
+00:c8ec wRamUnk2
+00:c90d wCursorBlinkTimer
+00:c90e wRamUnk3
+00:ca4d wCurrGold
+00:ca50 wRamRest
 00:ff80 hRamStart
 00:ff92 hPlayer_xpos
 00:ff93 hUnk1

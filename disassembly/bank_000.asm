@@ -3360,7 +3360,7 @@ jr_000_0e58:
     inc e
     ld a, [hl+]
     add c
-    ld [de], a
+    ld [de], a		;update sprite ID
     inc e
     ldh a, [$ca]
     xor [hl]
@@ -4436,11 +4436,11 @@ Call_000_12c7:
     ld d, a
 
 jr_000_12c8:
-    ld [hl], d
-    inc hl
-    dec bc
-    ld a, b
-    or c
+    ld [hl], d 		;so far: breaks here when point set on inventory slot while opening ITEM option in bank. May just be for clearing or settings blocks of data to a single value. 
+    inc hl		;increment to next inv slot
+    dec bc		;decrease counter, which is probably the number of total available inv slots.
+    ld a, b		;load b into a to prepare for...
+    or c 		;checking to see if the counter is 0
 
 Call_000_12cd:
     jr nz, jr_000_12c8
@@ -6778,22 +6778,22 @@ jr_000_1db6:
 
 
 Call_000_1dbe:
-    ld b, $00
-    ld h, b
-    ld l, b
-    call Call_000_1dc5
+    ld b, $00		;set b to 0
+    ld h, b		;set h to 0
+    ld l, b		;set l to 0
+    call Call_000_1dc5	;put 1dc5 on the stack and then go to 1dc5
 
 Call_000_1dc5:
-    rrca
-    jr nc, jr_000_1dc9
+    rrca		;rotate a right one and put bit 0 into the carry flag
+    jr nc, jr_000_1dc9	;if bit 0 wasn't 1, skip the next instruction
 
-    add hl, bc
+    add hl, bc		;if it was, load bc into hl
 
 jr_000_1dc9:
-    sla c
-    rl b
-    rrca
-    jr nc, jr_000_1dd1
+    sla c		;double c. Put MSB into carry
+    rl b		;double b. Do nothing with carry
+    rrca		;rotate a right one and put bit 0 into the carry flag
+    jr nc, jr_000_1dd1  ;if bit 0 wasn't 1 skip to the next instruction
 
     add hl, bc
 
