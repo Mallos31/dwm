@@ -1917,7 +1917,7 @@ Call_056_490f:
     ld a, $80
     call Call_056_4a0a
     xor a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     xor a
     ldh [rVBK], a
     call Call_056_4996

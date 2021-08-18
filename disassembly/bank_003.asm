@@ -56,7 +56,7 @@ jr_003_4020:
     cp $f2
     jr nz, jr_003_4049
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $7f
     cp $02
     jr z, jr_003_405e
@@ -67,7 +67,7 @@ jr_003_4049:
     cp $f3
     jr nz, jr_003_4056
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $7f
     cp $03
     jr z, jr_003_405e
@@ -112,7 +112,7 @@ jr_003_4071:
     cp $f0
     jr nz, jr_003_40a2
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     cp $02
     jr z, jr_003_40b8
 
@@ -125,7 +125,7 @@ jr_003_40a2:
     cp $f1
     jr nz, jr_003_40b5
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     cp $03
     jr z, jr_003_40b8
 
@@ -9495,7 +9495,7 @@ Call_003_6ef2:
 
     ld hl, $010b
     rst $10
-    ld hl, $c8eb
+    ld hl, wGameState
     set 6, [hl]
     xor a
     ld [$c905], a

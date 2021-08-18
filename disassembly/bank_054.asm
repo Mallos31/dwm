@@ -4437,11 +4437,11 @@ jr_054_53a6:
 
     xor a
     ld [$db53], a
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     add a
     add a
     ld b, a
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $7f
     add b
     ld a, a

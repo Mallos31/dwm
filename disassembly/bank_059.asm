@@ -30,7 +30,7 @@ SECTION "ROM Bank $059", ROMX[$4000], BANK[$59]
     ld bc, $0028
     call Call_000_12c7
     xor a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     call Call_000_12c7
     xor a
@@ -164,19 +164,19 @@ jr_059_4104:
 
 
 jr_059_4130:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     xor $01
-    ld [$c8da], a
+    ld [wMenu_selection], a
     call Call_059_432d
     ret
 
 
 jr_059_413c:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     set 7, a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     call Call_059_432d
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $01
     add $03
     ld [$c0d8], a
@@ -288,9 +288,9 @@ jr_059_41db:
 
 
 jr_059_41fa:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     res 7, a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     call Call_059_432d
     xor a
     ld [$c0d8], a
@@ -318,7 +318,7 @@ jr_059_41fa:
 
 
 jr_059_422a:
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     or a
     jr nz, jr_059_4232
 
@@ -326,13 +326,13 @@ jr_059_422a:
 
 jr_059_4232:
     dec a
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
     call Call_059_42ec
     ret
 
 
 jr_059_423a:
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     inc a
     cp $d7
     jr c, jr_059_4243
@@ -340,7 +340,7 @@ jr_059_423a:
     xor a
 
 jr_059_4243:
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
     call Call_059_42ec
     ret
 
@@ -352,9 +352,9 @@ jr_059_424a:
 
 
 jr_059_4250:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     res 7, a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     call Call_059_432d
     xor a
     ld [$c0d8], a
@@ -420,7 +420,7 @@ Call_059_4276:
 
 
 Call_059_42c0:
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     ld l, a
     ld [$c0e0], a
     ld h, $00
@@ -437,7 +437,7 @@ Call_059_42c0:
     ld h, $80
     ld l, $00
     call Call_000_1577
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     ld [$c823], a
     ld a, $05
     ld [$c822], a
@@ -461,7 +461,7 @@ Call_059_42ec:
     ld a, [$c0ea]
     add $f0
     ld [hl+], a
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     ld l, a
     ld h, $00
     call $5ba7
@@ -484,7 +484,7 @@ Call_059_432d:
     ld hl, $c500
     ld de, $457f
     call Call_059_5cd2
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld hl, $458b
     and $01
     add a
@@ -502,7 +502,7 @@ Call_059_432d:
     ld a, h
     adc $c5
     ld h, a
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     bit 7, a
     jr nz, jr_059_435b
 
@@ -1474,7 +1474,7 @@ jr_059_453f:
     ld bc, $0008
     call Call_000_12c7
     xor a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     call Call_000_12c7
     xor a
@@ -1611,9 +1611,9 @@ jr_059_4933:
     ld [$c8e1], a
     ld hl, $c8df
     inc [hl]
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     set 7, a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, $02
     ld [$d9f6], a
     xor a
@@ -1631,9 +1631,9 @@ jr_059_495a:
     ld [$c8e1], a
     ld hl, $c8df
     inc [hl]
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     xor $01
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, $02
     ld [$d9f6], a
     xor a
@@ -1649,9 +1649,9 @@ jr_059_497b:
     ld [$c8e1], a
     ld hl, $c8df
     inc [hl]
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     xor $02
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, $02
     ld [$d9f6], a
     xor a
@@ -1700,7 +1700,7 @@ Jump_059_499c:
     ret
 
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $03
     ld [$c823], a
     ld a, $02
@@ -1715,7 +1715,7 @@ Jump_059_499c:
     or a
     ret nz
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     res 7, a
     cp $01
     jr z, jr_059_4a1e
@@ -1723,7 +1723,7 @@ Jump_059_499c:
     cp $03
     jr z, jr_059_4a59
 
-    ld [$c8da], a
+    ld [wMenu_selection], a
     xor a
     ld [$c0d8], a
     ld [$c0d9], a
@@ -1772,7 +1772,7 @@ jr_059_4a3f:
 
 
 jr_059_4a59:
-    ld [$c8da], a
+    ld [wMenu_selection], a
     xor a
     ld [$c8e1], a
     ld a, $04
@@ -1823,9 +1823,9 @@ jr_059_4aa0:
     ld [$c8e1], a
     ld hl, $c8df
     inc [hl]
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     set 7, a
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     ld a, $02
     ld [$d9f6], a
     xor a
@@ -1843,7 +1843,7 @@ jr_059_4ac7:
     ld [$c8e1], a
     ld hl, $c8df
     inc [hl]
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     or a
     jr z, jr_059_4adc
 
@@ -1854,7 +1854,7 @@ jr_059_4adc:
     ld a, $03
 
 jr_059_4ade:
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     ld a, $02
     ld [$d9f6], a
     xor a
@@ -1870,7 +1870,7 @@ Jump_059_4aee:
     ld [$c8e1], a
     ld hl, $c8df
     inc [hl]
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     cp $03
     jr z, jr_059_4b04
 
@@ -1881,7 +1881,7 @@ jr_059_4b04:
     xor a
 
 jr_059_4b05:
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     ld a, $02
     ld [$d9f6], a
     xor a
@@ -1919,13 +1919,13 @@ Jump_059_4b15:
 
 
 jr_059_4b4a:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     res 7, a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     xor a
     ld [$c0d8], a
     ld [$c0d9], a
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     ld [$d9f6], a
     ld [$d9f5], a
     ld [$d9f4], a
@@ -1942,7 +1942,7 @@ jr_059_4b4a:
     ld c, e
     adc d
     ld c, e
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $03
     add $04
     ld [$c823], a
@@ -1958,13 +1958,13 @@ jr_059_4b4a:
     or a
     ret nz
 
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $03
     cp $03
     jr z, jr_059_4bb6
 
     res 7, a
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     ld a, $02
     ld [$c0d8], a
     xor a
@@ -2209,9 +2209,9 @@ jr_059_4d26:
 
 
 jr_059_4d47:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     res 7, a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     xor a
     ld [$c8e0], a
     xor a
@@ -2471,7 +2471,7 @@ Call_059_4ec6:
     ld de, $608f
     ld hl, $c500
     call Call_059_5cd2
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $0f
     ld hl, $52d0
     call Call_059_5bf1
@@ -2485,7 +2485,7 @@ Call_059_4ec6:
     ld [$c8dd], a
     ld a, h
     ld [$c8de], a
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     bit 7, a
     jr z, jr_059_4f1b
 
@@ -2519,7 +2519,7 @@ jr_059_4f1b:
     ld de, $611d
     ld hl, $c500
     call Call_059_5cd2
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $0f
     ld hl, $52d8
     call Call_059_5bf1
@@ -2533,7 +2533,7 @@ jr_059_4f1b:
     ld [$c8dd], a
     ld a, h
     ld [$c8de], a
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     bit 7, a
     jr z, jr_059_4f72
 

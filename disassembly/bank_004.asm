@@ -302,13 +302,13 @@ Call_004_4126:
     ld [bc], a
     ld [bc], a
     ld [bc], a
-    ld a, [$c8eb]
+    ld a, [wGameState]
     res 0, a
     res 2, a
     or a
     ret nz
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 0, a
     jr z, jr_004_417f
 
@@ -4790,7 +4790,7 @@ jr_004_5700:
     ld [$c8f0], a
     ld a, b
     ld [$c8f1], a
-    ld hl, $c8eb
+    ld hl, wGameState
     set 4, [hl]
     xor a
     ld [$c905], a
@@ -4819,7 +4819,7 @@ jr_004_5700:
     ld [$da04], a
     xor a
     ld [$da02], a
-    ld hl, $c8eb
+    ld hl, wGameState
     set 6, [hl]
     xor a
     ld [$c905], a
@@ -4828,7 +4828,7 @@ jr_004_5700:
     ret
 
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 0, a
     ret z
 
@@ -4837,7 +4837,7 @@ jr_004_5700:
     ret
 
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 0, a
     ret nz
 
@@ -4846,7 +4846,7 @@ jr_004_5700:
     ld [$c917], a
     ld a, h
     ld [$c918], a
-    ld hl, $c8eb
+    ld hl, wGameState
     set 0, [hl]
     xor a
     ld [$c915], a
@@ -5132,7 +5132,7 @@ jr_004_59b9:
     inc [hl]
     xor a
     ld [$d8d7], a
-    ld hl, $c8eb
+    ld hl, wGameState
     res 0, [hl]
     xor a
     ld [$c825], a
@@ -6675,7 +6675,7 @@ jr_004_63a3:
     ld [$da04], a
     ld a, $00
     ld [$da02], a
-    ld hl, $c8eb
+    ld hl, wGameState
     set 6, [hl]
     xor a
     ld [$c905], a
@@ -6815,7 +6815,7 @@ jr_004_648f:
     ld [$cac0], a
     ld hl, $1604
     rst $10
-    ld hl, $c8eb
+    ld hl, wGameState
     res 4, [hl]
     res 0, [hl]
     xor a
@@ -6970,13 +6970,13 @@ jr_004_6599:
     ld [$c972], a
     ld a, $01
     ld [$c96c], a
-    ld hl, $c8eb
+    ld hl, wGameState
     set 5, [hl]
     xor a
     ld [$c905], a
     xor a
     ld [$d8d7], a
-    ld hl, $c8eb
+    ld hl, wGameState
     res 0, [hl]
     xor a
     ld [$c825], a
@@ -7162,7 +7162,7 @@ jr_004_668d:
     inc [hl]
     xor a
     ld [$d8d7], a
-    ld hl, $c8eb
+    ld hl, wGameState
     res 0, [hl]
     xor a
     ld [$c825], a
@@ -7202,7 +7202,7 @@ jr_004_668d:
     ld [$d8d9], a
     ld a, b
     ld [$d8da], a
-    ld hl, $c8eb
+    ld hl, wGameState
     set 0, [hl]
     ret
 
@@ -7422,7 +7422,7 @@ Jump_004_6838:
     inc [hl]
     xor a
     ld [$d8d7], a
-    ld hl, $c8eb
+    ld hl, wGameState
     res 0, [hl]
     xor a
     ld [$c825], a
@@ -7570,7 +7570,7 @@ jr_004_69cd:
     pop hl
     ld a, $02
     ld [$da02], a
-    ld hl, $c8eb
+    ld hl, wGameState
     set 6, [hl]
     xor a
     ld [$c905], a
@@ -7767,11 +7767,11 @@ jr_004_6b0e:
     jp Jump_004_55f5
 
 
-    ld a, [$ca4b]
+    ld a, [wCurrGoldLo]
     ld l, a
-    ld a, [$ca4c]
+    ld a, [wCurrGoldMid]
     ld h, a
-    ld a, [$ca4d]
+    ld a, [wCurrGoldHi]
     ld e, a
     ld a, $0a
     call Call_000_1e1e
@@ -7857,13 +7857,13 @@ jr_004_6bb9:
     ld [$c96d], a
     ld a, $80
     ld [$c96e], a
-    ld hl, $c8eb
+    ld hl, wGameState
     set 5, [hl]
     xor a
     ld [$c905], a
     xor a
     ld [$d8d7], a
-    ld hl, $c8eb
+    ld hl, wGameState
     res 0, [hl]
     xor a
     ld [$c825], a
@@ -8101,7 +8101,7 @@ Call_004_6d4a:
     ld [$da04], a
     xor a
     ld [$da02], a
-    ld hl, $c8eb
+    ld hl, wGameState
     set 6, [hl]
     xor a
     ld [$c905], a
@@ -8110,7 +8110,7 @@ Call_004_6d4a:
     ret
 
 
-    ld hl, $c8eb
+    ld hl, wGameState
     set 6, [hl]
     xor a
     ld [$c905], a
@@ -8502,11 +8502,11 @@ jr_004_6f82:
     inc a
     ld c, $0a
     call Call_000_1dbe
-    ld a, [$ca4b]
+    ld a, [wCurrGoldLo]
     sub l
-    ld a, [$ca4c]
+    ld a, [wCurrGoldMid]
     sbc h
-    ld a, [$ca4d]
+    ld a, [wCurrGoldHi]
     sbc $00
     jr nc, jr_004_7030
 

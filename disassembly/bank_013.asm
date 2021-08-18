@@ -11279,7 +11279,7 @@ jr_013_7381:
     call Call_013_774f
     ld hl, $ffbb
     call Call_013_774f
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -11304,7 +11304,7 @@ jr_013_7381:
     ld a, l
     ld [$c90b], a
     ld a, h
-    ld [$c90c], a
+    ld [wCursorBlinkTimer], a
     ld hl, $8e60
     ld b, $10
 
@@ -11335,7 +11335,7 @@ jr_013_73cb:
     ld [hl], h
     rst $10
     ld [hl], l
-    ld hl, $c8eb
+    ld hl, wGameState
     res 6, [hl]
     xor a
     ld [$c905], a
@@ -12014,11 +12014,11 @@ Call_013_776b:
     ld a, [$c90b]
     add l
     ld l, a
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     adc h
     and $03
     ld h, a
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     and $fc
     or h
     ld h, a

@@ -16,7 +16,7 @@ SECTION "ROM Bank $018", ROMX[$4000], BANK[$18]
     adc l
     ld d, [hl]
     xor a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     call Call_000_12c7
     xor a
@@ -735,15 +735,15 @@ jr_018_4368:
     ld hl, $c8d2
     inc [hl]
     ld a, $0c
-    ld [$c8da], a
+    ld [wMenu_selection], a
 
 jr_018_4378:
     ret
 
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     dec a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ret nz
 
     ld a, $00
@@ -753,13 +753,13 @@ jr_018_4378:
     ld hl, $c8d2
     inc [hl]
     ld a, $0c
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ret
 
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     dec a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ret nz
 
     ld a, $01
@@ -769,13 +769,13 @@ jr_018_4378:
     ld hl, $c8d2
     inc [hl]
     ld a, $0c
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ret
 
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     dec a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ret nz
 
     ld a, $02
@@ -785,13 +785,13 @@ jr_018_4378:
     ld hl, $c8d2
     inc [hl]
     ld a, $0c
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ret
 
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     dec a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ret nz
 
     ld a, $03
@@ -801,9 +801,9 @@ jr_018_4378:
     ld hl, $c8d2
     inc [hl]
     ld a, $20
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, $00
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     call Call_018_42d1
     cp $ff
     jr z, jr_018_43ff
@@ -823,13 +823,13 @@ jr_018_43ff:
     ret
 
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     dec a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ret nz
 
     ld hl, $98c0
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     add l
     ld l, a
     ld a, $00
@@ -837,7 +837,7 @@ jr_018_43ff:
     ld h, a
     call Call_018_4455
     ld hl, $98d3
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     ld b, a
     ld a, l
     sub b
@@ -847,21 +847,21 @@ jr_018_43ff:
     ld h, a
     call Call_018_4455
     ld a, $04
-    ld [$c8da], a
-    ld a, [$c8db]
+    ld [wMenu_selection], a
+    ld a, [wOPTN_and_Item_selection]
     inc a
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     cp $0a
     ret nz
 
     ld hl, $c8d2
     inc [hl]
     ld a, $b0
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, $c0
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     ld a, $f8
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
     ld a, $1e
     ld [$c8dd], a
     ret
@@ -892,15 +892,15 @@ jr_018_4457:
 
     ld a, $01
     ld [$c8dd], a
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     dec a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     call Call_018_4dfc
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     dec a
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     call Call_018_4e2c
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     cp $60
     ret nz
 
@@ -913,11 +913,11 @@ jr_018_4457:
 
 Jump_018_449a:
 jr_018_449a:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     call Call_018_4dfc
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     call Call_018_4e2c
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     call Call_018_4e00
     ret
 
@@ -929,15 +929,15 @@ jr_018_449a:
 
     ld a, $01
     ld [$c8dd], a
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     call Call_018_4dfc
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     call Call_018_4e00
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     dec a
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     call Call_018_4e2c
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     cp $50
     ret nz
 
@@ -955,15 +955,15 @@ jr_018_449a:
 
     ld a, $01
     ld [$c8dd], a
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     call Call_018_4dfc
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     call Call_018_4e2c
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     inc a
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
     call Call_018_4e00
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     cp $40
     ret nz
 
@@ -988,17 +988,17 @@ jr_018_449a:
 jr_018_4525:
     ld a, $01
     ld [$c8dd], a
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     call Call_018_4dfc
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     dec a
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
     call Call_018_4dfc
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     dec a
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     call Call_018_4e2c
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     cp $fe
     ret nz
 
@@ -1027,11 +1027,11 @@ jr_018_4574:
 
 
 jr_018_4578:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     call Call_018_4dfc
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     call Call_018_4e2c
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     call Call_018_4dfc
     ret
 
@@ -2107,7 +2107,7 @@ jr_018_4bb7:
     xor a
     ld [$c906], a
     xor a
-    ld [$c8eb], a
+    ld [wGameState], a
     ld hl, $0701
     rst $10
     ld a, [$c906]
@@ -2397,7 +2397,7 @@ Call_018_4dda:
     cp $18
     ret z
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     call Call_018_4dfc
     ret
 

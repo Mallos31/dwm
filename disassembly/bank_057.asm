@@ -8814,7 +8814,7 @@ jr_057_6ec1:
     or a
     jr nz, jr_057_6ecc
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     jr jr_057_6edb
 
 jr_057_6ecc:
@@ -9264,7 +9264,7 @@ jr_057_713b:
     jr jr_057_7143
 
 jr_057_7140:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
 
 jr_057_7143:
     cp $81
@@ -9331,7 +9331,7 @@ Call_057_719b:
     cp $04
     jr nc, jr_057_71a8
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     cp $81
     ret z
 
@@ -9389,7 +9389,7 @@ jr_057_71e8:
     or a
     jr nz, jr_057_71f3
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     jr jr_057_7202
 
 jr_057_71f3:

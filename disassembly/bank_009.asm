@@ -49,7 +49,7 @@ SECTION "ROM Bank $009", ROMX[$4000], BANK[$9]
     ret
 
 
-    ld hl, $c8eb
+    ld hl, wGameState
     res 4, [hl]
     xor a
     ld [$c905], a
@@ -499,13 +499,13 @@ Call_009_4256:
     jr jr_009_42b3
 
 jr_009_428c:
-    ld a, [$c846]
-    bit 4, a
-    jr z, jr_009_42cf
+    ld a, [$c846]	;load game state into a
+    bit 4, a		;check bit 4 (shop) of game state
+    jr z, jr_009_42cf	;if zero, jump
 
-    ld a, [$df0d]
-    inc a
-    and $01
+    ld a, [$df0d]	;df0d = the current page in the shop, but changing it does not update the page number on screen. 
+    inc a		;inc a to open the message window
+    and $01		;and a with 01 to make sure it's the only bit set
     ld [$df0d], a
     inc hl
     ld a, [hl]
@@ -584,56 +584,56 @@ jr_009_42cf:
 
 Call_009_42f1:
 jr_009_42f1:
-    res 7, [hl]
-    ld a, [$c847]
-    bit 6, a
-    jr z, jr_009_4303
+    res 7, [hl]		; set contents of bit 7 of hl ($c8da) to 0
+    ld a, [$c847]	; load the contents of $c847 (current button) into register a
+    bit 6, a		; check to see if bit 6 (up) is pressed
+    jr z, jr_009_4303	; if the last math op resulted in 0 jump to 4303
 
-    ld a, [hl]
-    dec a
-    cp b
-    jr c, jr_009_4311
+    ld a, [hl]		; load the contents of hl ($c8da) into a
+    dec a		; subtract 1 from the contents of a
+    cp b		; Compare the contents of b ($03) to a
+    jr c, jr_009_4311	; if cary flag is set jump to 4311
 
-    dec b
-    ld a, b
-    jr jr_009_4311
+    dec b		; subtract 1 from the contents of b
+    ld a, b		; load the contents of b ($02) into a 
+    jr jr_009_4311	; jump to 4311
 
 jr_009_4303:
-    ld a, [$c847]
-    bit 7, a
-    jr z, jr_009_431a
+    ld a, [$c847]	; load currently pressed button into a
+    bit 7, a		; checking to see if bit 7 (down) is pressed
+    jr z, jr_009_431a	; if the last math op resulted in 0 jump to 431a
 
-    ld a, [hl]
-    inc a
-    cp b
-    jr c, jr_009_4311
+    ld a, [hl]  ; load the contents of hl ($c8da current menue option) into a
+    inc a   ; add 1 to the contents of a ($c8da current menue option)
+    cp b    ; compare a and b
+    jr c, jr_009_4311   ; if cary flag is set jump to 4311
 
-    ld a, $00
+    ld a, $00   ; load $00 into a
 
 jr_009_4311:
-    ld [hl], a
+    ld [hl], a  ; load next menue option (a) into curent menue option (hl)
 
 jr_009_4312:
-    xor a
-    ld [$c90c], a
-    push hl
+    xor a   ; set the contents of a to 0
+    ld [$c90c], a   ; load the contents of a (0) into $c90c (reset cursor blink timer)
+    push hl     ; incomplete function
     push de
     pop de
-    pop hl
+    pop hl  ; end of incomplete function
 
 jr_009_431a:
-    ld a, [$c846]
-    bit 0, a
-    jr z, jr_009_4323
+    ld a, [$c846]   ; load the contents of $c846 (currently pressed button) into a
+    bit 0, a    ; checking to see if bit 0 (a button) is pressed
+    jr z, jr_009_4323   ; if the last math op resulted in 0 jump to 4323
 
-    set 7, [hl]
+    set 7, [hl]     ; sets bit 7 of hl (current menue option) to 1
 
 jr_009_4323:
-    ld a, [hl]
+    ld a, [hl]  ; load the contents of hl (c8da current menue option) to a
     call Call_009_442f
     ret
 
-
+;FUNCTION UNCALLED (checks for pushing left and right)
     res 7, [hl]
     ld a, [$c847]
     bit 5, a
@@ -670,7 +670,7 @@ Call_009_434a:
     jr z, jr_009_4360
 
     ld a, $10
-    ld [$c90c], a
+    ld [wCursorBlinkTimer], a
     call Call_009_43b7
     jr jr_009_4394
 
@@ -680,7 +680,7 @@ jr_009_4360:
     jr z, jr_009_4371
 
     ld a, $10
-    ld [$c90c], a
+    ld [wCursorBlinkTimer], a
     call Call_009_43fe
     jr jr_009_4394
 
@@ -713,7 +713,7 @@ jr_009_4381:
 jr_009_438f:
     ld [hl], a
     xor a
-    ld [$c90c], a
+    ld [wCursorBlinkTimer], a
 
 jr_009_4394:
     push hl
@@ -843,34 +843,31 @@ jr_009_4425:
     call Call_009_43e9
     pop de
     ret
-
-
+    
 Call_009_442a:
     xor a
     ld [$c90c], a
-    ret
+    ret 
 
 
 Call_009_442f:
-    ld c, a
-    bit 7, a
-    jr nz, jr_009_4444
+    ld c, a     ; load the contents of a (current menue option) into c
+    bit 7, a    ; check to see if bit 7 (down is pressed)
+    jr nz, jr_009_4444  ; if the last math op resaulted in 0 jump to 4444
 
-    ld a, [$c90c]
-    and $0f
-    
-    push af
-    ld a, [$c90c]
-    inc a
-    ld [$c90c], a
-    pop af
-    
-    ld a, c
-    ret nz
+    ld a, [$c90c]   ; load c90c (blinker timer) into a
+    and $0f     ; put lower nybble of timer into a
+    push af     ; coppy contents of af onto stack
+    ld a, [$c90c]   ; load c90c (blinker timer) into a
+    inc a   ; add 1 to the contents of a (blinker timer)
+    ld [$c90c], a   ; load a into c90c (blinker timer)
+    pop af  ; remove contents of af from stack and put them into af
+    ld a, c     ; load the contents of c (c8da current menue option) into a
+    ret nz  ; return if last resault was not 0
 
 jr_009_4444:
-    ld c, a
-    ld b, $00
+    ld c, a     ; load the contents of a (current menue option) into c
+    ld b, $00   ; load $00 into b
 
 jr_009_4447:
     ld a, [de]
@@ -902,7 +899,7 @@ jr_009_4447:
     bit 7, c
     jr nz, jr_009_4477
 
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     bit 4, a
     ld a, $e0
     jr nz, jr_009_4477
@@ -1087,7 +1084,7 @@ Call_009_4530:
     bit 7, c
     jr nz, jr_009_455b
 
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     bit 4, a
     ld a, $e0
     jr nz, jr_009_455b
@@ -1125,12 +1122,12 @@ Call_009_456d:
     bit 7, c
     jr nz, jr_009_4590
 
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     and $0f
     push af
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     inc a
-    ld [$c90c], a
+    ld [wCursorBlinkTimer], a
     pop af
     ld a, c
     ret nz
@@ -1165,7 +1162,7 @@ jr_009_4593:
     ld a, $e0
     jr nz, jr_009_45bd
 
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     bit 4, a
     ld a, $e0
     jr nz, jr_009_45bd
@@ -1230,7 +1227,7 @@ Call_009_45e5:
     call Call_009_403d
     ld hl, $ffbb
     call Call_009_403d
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -1281,24 +1278,24 @@ Call_009_465a:
     call Call_009_40c9
     ld de, $2e07
     call Call_009_40c9
-    ld a, [$ca4b]
+    ld a, [wCurrGoldLo]
     ldh [$d5], a
-    ld a, [$ca4c]
+    ld a, [wCurrGoldMid]
     ldh [$d6], a
-    ld a, [$ca4d]
+    ld a, [wCurrGoldHi]
     ldh [$d7], a
     ld hl, $002e
     call Call_009_406d
     call Call_000_1fb9
     call Call_009_442a
     ld de, $46df
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     call Call_009_4530
     ret
 
 
     ld de, $46df
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld b, $03
     call Call_009_42f1
     ld a, [$c846]
@@ -1322,9 +1319,9 @@ jr_009_46ad:
     inc [hl]
     xor a
     ld [$c906], a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     set 7, [hl]
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     ld bc, $0007
     ld a, $00
     call Call_000_12c7
@@ -1344,7 +1341,7 @@ jr_009_46de:
     nop
     rst $38
     rst $38
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     rst $00
     rlca
     ld b, a
@@ -1356,7 +1353,7 @@ jr_009_46de:
     ld de, $2e07
     call Call_009_40c9
     call Call_009_40fa
-    ld hl, $c8eb
+    ld hl, wGameState
     res 4, [hl]
     xor a
     ld [$c905], a
@@ -1706,7 +1703,7 @@ jr_009_48eb:
     ld hl, $0005
     call Call_009_45e5
     ld a, $01
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
     ld hl, $c906
     inc [hl]
     ret
@@ -1738,7 +1735,7 @@ Call_009_4915:
     call Call_009_40c9
     call Call_009_442a
     ld de, $498d
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $02
     ld a, [hl]
     call Call_009_456d
@@ -1747,7 +1744,7 @@ Call_009_4915:
 
 
     ld de, $498d
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $02
     ld c, $14
     call Call_009_434a
@@ -1906,13 +1903,13 @@ jr_009_4a63:
     ld hl, $0305
     rst $10
     ld hl, $c8e4
-    ld a, [$ca4b]
+    ld a, [wCurrGoldLo]
     sub [hl]
     inc hl
-    ld a, [$ca4c]
+    ld a, [wCurrGoldMid]
     sbc [hl]
     inc hl
-    ld a, [$ca4d]
+    ld a, [wCurrGoldHi]
     sbc [hl]
     ld hl, $0007
     jr c, jr_009_4ac2
@@ -1963,7 +1960,7 @@ jr_009_4ac2:
     or a
     ret nz
 
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     ld bc, $0007
     ld a, $00
     call Call_000_12c7
@@ -2332,7 +2329,7 @@ jr_009_4cdc:
     ld hl, $000c
     call Call_009_45e5
     ld a, $01
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
     ld hl, $c906
     inc [hl]
     ret
@@ -2390,7 +2387,7 @@ Call_009_4d06:
     call Call_000_2082
     call Call_009_442a
     ld de, $4db5
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $02
     ld a, [hl]
     call Call_009_456d
@@ -2408,7 +2405,7 @@ Call_009_4d06:
     ld h, a
     ld c, [hl]
     ld b, $02
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     call Call_009_434a
     ld a, [$c846]
     bit 1, a
@@ -2546,15 +2543,15 @@ jr_009_4e6c:
     rst $38
     rst $38
     ld hl, $c8e4
-    ld a, [$ca4b]
+    ld a, [wCurrGoldLo]
     add [hl]
     ld e, a
     inc hl
-    ld a, [$ca4c]
+    ld a, [wCurrGoldMid]
     adc [hl]
     ld d, a
     inc hl
-    ld a, [$ca4d]
+    ld a, [wCurrGoldHi]
     adc [hl]
     ld c, a
     ld a, e
@@ -2597,7 +2594,7 @@ jr_009_4eb4:
     or a
     ret nz
 
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     ld bc, $0007
     ld a, $00
     call Call_000_12c7
@@ -2647,7 +2644,7 @@ jr_009_4eb4:
     call Call_009_403d
     ld hl, $ffbb
     call Call_009_403d
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -2709,18 +2706,18 @@ Call_009_4f69:
     call Call_009_40c9
     ld de, $2e07
     call Call_009_40c9
-    ld a, [$ca4b]
+    ld a, [wCurrGoldLo]
     ldh [$d5], a
-    ld a, [$ca4c]
+    ld a, [wCurrGoldMid]
     ldh [$d6], a
-    ld a, [$ca4d]
+    ld a, [wCurrGoldHi]
     ldh [$d7], a
     ld hl, $002e
     call Call_009_406d
     call Call_000_1fb9
     call Call_009_442a
     ld de, $501b
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     call Call_009_4530
     ret
 
@@ -2730,7 +2727,7 @@ Call_009_4f69:
     ret nz
 
     ld de, $501b
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld b, $03
     call Call_009_42f1
     ld a, [$c846]
@@ -2754,7 +2751,7 @@ jr_009_4fdc:
 
     ld a, $59
     call Call_000_1b2c
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     cp $82
     jp z, Jump_009_5104
 
@@ -2762,14 +2759,14 @@ jr_009_4fdc:
     inc [hl]
     xor a
     ld [$c906], a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     set 7, [hl]
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     ld bc, $0007
     ld a, $00
     call Call_000_12c7
     ld hl, $0003
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $7f
     jr z, jr_009_5015
 
@@ -2815,18 +2812,18 @@ Call_009_5049:
     call Call_009_40c9
     ld de, $2e07
     call Call_009_40c9
-    ld a, [$ca4b]
+    ld a, [wCurrGoldLo]
     ldh [$d5], a
-    ld a, [$ca4c]
+    ld a, [wCurrGoldMid]
     ldh [$d6], a
-    ld a, [$ca4d]
+    ld a, [wCurrGoldHi]
     ldh [$d7], a
     ld hl, $002e
     call Call_009_406d
     call Call_000_1fb9
     call Call_009_442a
     ld de, $50b0
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     call Call_009_4530
     ret
 
@@ -2836,7 +2833,7 @@ Call_009_5049:
     ret nz
 
     ld de, $50b0
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     ld b, $03
     call Call_009_42f1
     ld a, [$c846]
@@ -2872,9 +2869,9 @@ jr_009_50b8:
     inc [hl]
     xor a
     ld [$c906], a
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     set 7, [hl]
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld bc, $0006
     ld a, $00
     call Call_000_12c7
@@ -2887,7 +2884,7 @@ jr_009_50e7:
     ret
 
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     rst $00
     ldh a, [$50]
     ld a, [$fa50]
@@ -2901,7 +2898,7 @@ jr_009_50e7:
     ld d, e
     inc b
     ld d, c
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     rst $00
     add hl, de
     ld d, l
@@ -2915,7 +2912,7 @@ Jump_009_5104:
     ld de, $2e07
     call Call_009_40c9
     call Call_009_40fa
-    ld hl, $c8eb
+    ld hl, wGameState
     res 4, [hl]
     xor a
     ld [$c905], a
@@ -3312,7 +3309,7 @@ jr_009_5375:
     or a
     ret nz
 
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld bc, $0006
     ld a, $00
     call Call_000_12c7
@@ -3349,7 +3346,7 @@ jr_009_5375:
     ld hl, $000a
     call Call_009_45e5
     ld a, $02
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
     ld a, $00
     ld [$c8df], a
     ld a, $00
@@ -3396,7 +3393,7 @@ Call_009_53e9:
     call Call_000_1fa5
     call Call_009_442a
     ld de, $548f
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $02
     ld a, [hl]
     call Call_009_5a67
@@ -3405,7 +3402,7 @@ Call_009_53e9:
 
 
     ld de, $548f
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $03
     call Call_009_590c
     ld a, [$c846]
@@ -3463,13 +3460,13 @@ jr_009_548e:
     rst $38
     rst $38
     ld hl, $c8df
-    ld a, [$ca4b]
+    ld a, [wCurrGoldLo]
     sub [hl]
     inc hl
-    ld a, [$ca4c]
+    ld a, [wCurrGoldMid]
     sbc [hl]
     inc hl
-    ld a, [$ca4d]
+    ld a, [wCurrGoldHi]
     sbc [hl]
     ld hl, $000b
     jr c, jr_009_54f7
@@ -3890,7 +3887,7 @@ jr_009_5753:
     or a
     ret nz
 
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld bc, $0006
     ld a, $00
     call Call_000_12c7
@@ -3944,7 +3941,7 @@ jr_009_57b0:
     ld hl, $0016
     call Call_009_45e5
     ld a, $02
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
     ld a, $00
     ld [$c8df], a
     ld a, $00
@@ -3991,7 +3988,7 @@ Call_009_57dc:
     call Call_000_1fa5
     call Call_009_442a
     ld de, $5882
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $02
     ld a, [hl]
     call Call_009_5a67
@@ -4000,7 +3997,7 @@ Call_009_57dc:
 
 
     ld de, $5882
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $03
     call Call_009_590c
     ld a, [$c846]
@@ -4070,15 +4067,15 @@ jr_009_5881:
     jr c, jr_009_58ea
 
     ld hl, $c8df
-    ld a, [$ca4b]
+    ld a, [wCurrGoldLo]
     add [hl]
     ld e, a
     inc hl
-    ld a, [$ca4c]
+    ld a, [wCurrGoldMid]
     adc [hl]
     ld d, a
     inc hl
-    ld a, [$ca4d]
+    ld a, [wCurrGoldHi]
     adc [hl]
     ld c, a
     ld a, e
@@ -4136,7 +4133,7 @@ Call_009_590c:
     jr z, jr_009_5920
 
     ld a, $10
-    ld [$c90c], a
+    ld [wCursorBlinkTimer], a
     call Call_009_5965
     jr jr_009_5954
 
@@ -4146,7 +4143,7 @@ jr_009_5920:
     jr z, jr_009_5931
 
     ld a, $10
-    ld [$c90c], a
+    ld [wCursorBlinkTimer], a
     call Call_009_5a30
     jr jr_009_5954
 
@@ -4179,7 +4176,7 @@ jr_009_5941:
 jr_009_594f:
     ld [hl], a
     xor a
-    ld [$c90c], a
+    ld [wCursorBlinkTimer], a
 
 jr_009_5954:
     push hl
@@ -4356,12 +4353,12 @@ Call_009_5a67:
     bit 7, c
     jr nz, jr_009_5a95
 
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     and $0f
     push af
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     inc a
-    ld [$c90c], a
+    ld [wCursorBlinkTimer], a
     pop af
     ld a, c
     ret nz
@@ -4396,7 +4393,7 @@ jr_009_5a98:
     ld a, $e0
     jr nz, jr_009_5ac2
 
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     bit 4, a
     ld a, $e0
     jr nz, jr_009_5ac2
@@ -4555,7 +4552,7 @@ jr_009_5b5e:
     call Call_009_403d
     ld hl, $ffbb
     call Call_009_403d
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -4599,7 +4596,7 @@ jr_009_5b5e:
     inc [hl]
     xor a
     ld [$c906], a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -4626,7 +4623,7 @@ jr_009_5b5e:
     ld de, $2e07
     call Call_009_40c9
     call Call_009_40fa
-    ld hl, $c8eb
+    ld hl, wGameState
     res 4, [hl]
     xor a
     ld [$c905], a
@@ -4700,11 +4697,11 @@ Call_009_5c53:
     ld de, $6f1f
     call Call_009_40c9
     call Call_009_5ce0
-    ld a, [$ca4b]
+    ld a, [wCurrGoldLo]
     ldh [$d5], a
-    ld a, [$ca4c]
+    ld a, [wCurrGoldMid]
     ldh [$d6], a
-    ld a, [$ca4d]
+    ld a, [wCurrGoldHi]
     ldh [$d7], a
     ld hl, $002e
     call Call_009_406d
@@ -4918,13 +4915,13 @@ jr_009_5da1:
     ld a, $00
     adc h
     ld h, a
-    ld a, [$ca4b]
+    ld a, [wCurrGoldLo]
     sub [hl]
     inc hl
-    ld a, [$ca4c]
+    ld a, [wCurrGoldMid]
     sbc [hl]
     inc hl
-    ld a, [$ca4d]
+    ld a, [wCurrGoldHi]
     sbc $00
     jr nc, jr_009_5de1
 
@@ -5089,7 +5086,7 @@ jr_009_5ea0:
     call Call_009_403d
     ld hl, $ffbb
     call Call_009_403d
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -5152,7 +5149,7 @@ Call_009_5f38:
 
 Call_009_5f4d:
     ld de, $c0d8
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     add a
     add a
     add a
@@ -5171,7 +5168,7 @@ Call_009_5f4d:
     call Call_009_5fa2
     call Call_009_5fa2
     ld de, $c0d8
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     add a
     add a
     add a
@@ -5409,7 +5406,7 @@ jr_009_6072:
 
 jr_009_60ae:
     ld de, $60f2
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld c, $01
     ld a, [$c8e9]
     cp $09
@@ -5419,11 +5416,11 @@ jr_009_60ae:
 
 jr_009_60bf:
     ld b, $01
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     push af
     call Call_009_4256
     pop af
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     cp [hl]
     jr z, jr_009_60d2
 
@@ -5473,7 +5470,7 @@ jr_009_60f1:
     rst $10
     xor a
     ld [$c8ec], a
-    ld hl, $c8eb
+    ld hl, wGameState
     res 4, [hl]
     xor a
     ld [$c905], a
@@ -5560,7 +5557,7 @@ jr_009_6155:
     ld a, $9f
     call Call_000_12c7
     call Call_009_621f
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -5746,7 +5743,7 @@ jr_009_62e0:
     ld de, $7ca5
     call Call_009_40c9
     ld de, $7ccb
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     or a
     jr nz, jr_009_62f2
 
@@ -5763,30 +5760,30 @@ jr_009_62f2:
     bit 5, a
     jr z, jr_009_6332
 
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     cp $03
     jr c, jr_009_631e
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     dec a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     cp $11
     jp c, Jump_009_63f5
 
     ld a, $0d
-    ld [$c8da], a
+    ld [wMenu_selection], a
     jp Jump_009_63f5
 
 
 jr_009_631e:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     dec a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     cp $11
     jp c, Jump_009_63f5
 
     ld a, $10
-    ld [$c8da], a
+    ld [wMenu_selection], a
     jp Jump_009_63f5
 
 
@@ -5795,14 +5792,14 @@ jr_009_6332:
     bit 4, a
     jr z, jr_009_634d
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     inc a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     cp $11
     jp c, Jump_009_63f5
 
     ld a, $00
-    ld [$c8da], a
+    ld [wMenu_selection], a
     jp Jump_009_63f5
 
 
@@ -5811,46 +5808,46 @@ jr_009_634d:
     bit 6, a
     jr z, jr_009_639d
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     cp $06
     jr c, jr_009_638b
 
     cp $0d
     jp nc, Jump_009_6374
 
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     dec a
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     cp $05
     jp c, Jump_009_63f5
 
     ld a, $03
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     jp Jump_009_63f5
 
 
 Jump_009_6374:
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     dec a
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     cp $05
     jr c, jr_009_63f5
 
     ld a, $04
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     ld a, $0d
-    ld [$c8da], a
+    ld [wMenu_selection], a
     jr jr_009_63f5
 
 jr_009_638b:
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     dec a
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     cp $05
     jr c, jr_009_63f5
 
     ld a, $04
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     jr jr_009_63f5
 
 jr_009_639d:
@@ -5858,72 +5855,72 @@ jr_009_639d:
     bit 7, a
     jp z, Jump_009_6460
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     cp $06
     jr c, jr_009_63e3
 
     cp $0d
     jr nc, jr_009_63c2
 
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     inc a
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     cp $04
     jr c, jr_009_63f5
 
     ld a, $00
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     jr jr_009_63f5
 
 jr_009_63c2:
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     cp $02
     jr c, jr_009_63e3
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld a, $0d
-    ld [$c8da], a
-    ld a, [$c8db]
+    ld [wMenu_selection], a
+    ld a, [wOPTN_and_Item_selection]
     inc a
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     cp $05
     jr c, jr_009_63f5
 
     ld a, $00
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     jr jr_009_63f5
 
 jr_009_63e3:
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     inc a
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     cp $05
     jr c, jr_009_63f5
 
     ld a, $00
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     jr jr_009_63f5
 
 Jump_009_63f5:
 jr_009_63f5:
     xor a
-    ld [$c90c], a
-    ld a, [$c8db]
+    ld [wCursorBlinkTimer], a
+    ld a, [wOPTN_and_Item_selection]
     ld c, $11
     call Call_000_1dbe
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     add l
     cp $4a
     jr nz, jr_009_641c
 
     ld a, $06
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, [$c847]
     bit 4, a
     jr z, jr_009_6460
 
     ld a, $0d
-    ld [$c8da], a
+    ld [wMenu_selection], a
     jr jr_009_6460
 
 jr_009_641c:
@@ -5931,13 +5928,13 @@ jr_009_641c:
     jr nz, jr_009_6433
 
     ld a, $0d
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, [$c847]
     bit 5, a
     jr z, jr_009_6460
 
     ld a, $05
-    ld [$c8da], a
+    ld [wMenu_selection], a
     jr jr_009_6460
 
 jr_009_6433:
@@ -5963,13 +5960,13 @@ jr_009_6433:
 
 jr_009_644d:
     ld a, $0a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, [$c847]
     bit 4, a
     jr z, jr_009_6460
 
     ld a, $00
-    ld [$c8da], a
+    ld [wMenu_selection], a
     jr jr_009_6460
 
 Jump_009_6460:
@@ -6024,10 +6021,10 @@ jr_009_64a9:
     bit 0, a
     jp z, Jump_009_65f3
 
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     ld c, $11
     call Call_000_1dbe
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     add l
     cp $51
     jr nz, jr_009_64c8
@@ -6144,9 +6141,9 @@ jr_009_6525:
     jr nz, jr_009_655a
 
     ld a, $0d
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, $04
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     ld a, [hl]
     cp $8d
     jr z, jr_009_6568
@@ -6244,10 +6241,10 @@ jr_009_65b2:
     adc h
     ld h, a
     push hl
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     ld c, $11
     call Call_000_1dbe
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     add l
     ld b, a
     ld a, $05
@@ -6261,9 +6258,9 @@ jr_009_65b2:
     jr nz, jr_009_6606
 
     ld a, $0d
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, $04
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     jr jr_009_6606
 
 Jump_009_65f3:
@@ -6272,9 +6269,9 @@ Jump_009_65f3:
     jr z, jr_009_6606
 
     ld a, $0d
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, $04
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     jr jr_009_6606
 
 Jump_009_6606:
@@ -6385,7 +6382,7 @@ jr_009_6606:
     rst $38
     rst $38
     xor a
-    ld [$c90c], a
+    ld [wCursorBlinkTimer], a
     call Call_009_69f6
     ld a, [$c0c8]
     cp $9f
@@ -6587,7 +6584,7 @@ jr_009_67fa:
     jr nz, jr_009_67fa
 
 jr_009_6804:
-    ld hl, $c8eb
+    ld hl, wGameState
     bit 7, [hl]
     jr nz, jr_009_6812
 
@@ -6639,7 +6636,7 @@ jr_009_6832:
     call Call_000_1577
 
 jr_009_687a:
-    ld hl, $c8eb
+    ld hl, wGameState
     bit 7, [hl]
     jr nz, jr_009_6888
 
@@ -6650,7 +6647,7 @@ jr_009_687a:
 
 
 jr_009_6888:
-    ld hl, $c8eb
+    ld hl, wGameState
     res 7, [hl]
     ret
 
@@ -6985,22 +6982,22 @@ jr_009_69f5:
     rst $38
 
 Call_009_69f6:
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     ld c, $11
     call Call_000_1dbe
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     add l
     ld de, $6607
     ld c, a
     bit 7, a
     jr nz, jr_009_6a1a
 
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     and $0f
     push af
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     inc a
-    ld [$c90c], a
+    ld [wCursorBlinkTimer], a
     pop af
     ld a, c
     ret nz
@@ -7039,7 +7036,7 @@ Jump_009_6a1d:
     bit 7, c
     jr nz, jr_009_6a4d
 
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     bit 4, a
     ld a, $e0
     jr nz, jr_009_6a4d

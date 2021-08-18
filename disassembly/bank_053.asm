@@ -2515,7 +2515,7 @@ Call_053_4e01:
     or a
     jr nz, jr_053_4e21
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     jr jr_053_4e30
 
 jr_053_4e21:

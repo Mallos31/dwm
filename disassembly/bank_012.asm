@@ -594,7 +594,7 @@ jr_012_42ea:
 
 jr_012_42eb:
     xor a
-    ld [$c90c], a
+    ld [wCursorBlinkTimer], a
     push hl
     push de
     pop de
@@ -642,7 +642,7 @@ jr_012_4313:
 
 Call_012_4323:
     xor a
-    ld [$c90c], a
+    ld [wCursorBlinkTimer], a
     ret
 
 
@@ -651,12 +651,12 @@ Call_012_4328:
     bit 7, a
     jr nz, jr_012_433d
 
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     and $0f
     push af
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     inc a
-    ld [$c90c], a
+    ld [wCursorBlinkTimer], a
     pop af
     ld a, c
     ret nz
@@ -695,7 +695,7 @@ jr_012_4340:
     bit 7, c
     jr nz, jr_012_4370
 
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     bit 4, a
     ld a, $e0
     jr nz, jr_012_4370
@@ -830,7 +830,7 @@ Call_012_43e2:
     bit 7, c
     jr nz, jr_012_440d
 
-    ld a, [$c90c]
+    ld a, [wCursorBlinkTimer]
     bit 4, a
     ld a, $e0
     jr nz, jr_012_440d
@@ -881,7 +881,7 @@ Call_012_441f:
     call Call_012_4028
     ld hl, $ffbb
     call Call_012_4028
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -956,13 +956,13 @@ Call_012_44cb:
     call Call_012_40b4
     call Call_012_4323
     ld de, $4532
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     call Call_012_43e2
     ret
 
 
     ld de, $4532
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld b, $06
     call Call_012_42ca
     ld a, [$c846]
@@ -986,9 +986,9 @@ jr_012_4500:
     inc [hl]
     xor a
     ld [$c906], a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     set 7, [hl]
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     ld bc, $0007
     ld a, $00
     call Call_000_12c7
@@ -1010,7 +1010,7 @@ jr_012_4531:
     nop
     ld hl, $6101
     ld bc, $ffff
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     rst $00
     adc b
     ld b, l
@@ -1036,7 +1036,7 @@ jr_012_4531:
     call Call_012_457f
     ld a, $80
     ldh [$d3], a
-    ld hl, $c8eb
+    ld hl, wGameState
     res 4, [hl]
     xor a
     ld [$c905], a
@@ -1175,7 +1175,7 @@ Call_012_4621:
     call Call_012_46fd
     call Call_012_4323
     ld de, $47af
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     call Call_012_43e2
     ret
 
@@ -1226,7 +1226,7 @@ jr_012_4672:
 
 
 Call_012_4682:
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $7f
     ld hl, $ca8e
     add l
@@ -1293,7 +1293,7 @@ Call_012_4691:
 
 
 Call_012_46fd:
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $7f
     ld hl, $ca8e
     add l
@@ -1345,14 +1345,14 @@ jr_012_473e:
     ret nz
 
     ld de, $47af
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     ld a, [$ca8d]
     ld b, a
     ld a, [hl]
     push af
     call Call_012_42ca
     pop af
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     cp [hl]
     jr z, jr_012_4772
 
@@ -1388,7 +1388,7 @@ jr_012_4799:
     ld a, $59
     call Call_000_1b2c
     xor a
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
     ld hl, $c906
     inc [hl]
 
@@ -1429,13 +1429,13 @@ Call_012_47d7:
     call Call_012_40b4
     call Call_012_4323
     ld de, $483b
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     call Call_012_43e2
     ret
 
 
     ld de, $483b
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $02
     call Call_012_42ca
     ld a, [$c846]
@@ -1459,7 +1459,7 @@ jr_012_4813:
 
     ld a, $59
     call Call_000_1b2c
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     cp $81
     jr z, jr_012_4836
 
@@ -1482,7 +1482,7 @@ jr_012_483a:
 
     ld hl, $6101
     ld bc, $ffff
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $7f
     ld hl, $ca8e
     add l
@@ -1525,7 +1525,7 @@ jr_012_483a:
     ld [$c930], a
     ld a, h
     ld [$c931], a
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $7f
     ld [$c932], a
     ld a, [$ca8d]
@@ -1537,12 +1537,12 @@ jr_012_483a:
     ret
 
 
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $80
     ld b, a
     ld a, [$c934]
     or b
-    ld [$c8db], a
+    ld [wOPTN_and_Item_selection], a
     ld de, $2e10
     ld hl, $8800
     call Call_000_1577
@@ -1794,7 +1794,7 @@ jr_012_4a79:
     ld hl, $c906
     inc [hl]
     xor a
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
 
 Jump_012_4a8e:
 jr_012_4a8e:
@@ -1826,13 +1826,13 @@ Call_012_4aaf:
     call Call_012_40b4
     call Call_012_4323
     ld de, $4b18
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     call Call_012_43e2
     ret
 
 
     ld de, $4b18
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $02
     call Call_012_42ca
     ld a, [$c846]
@@ -1858,7 +1858,7 @@ jr_012_4af1:
 
     ld a, $59
     call Call_000_1b2c
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     cp $81
     jr z, jr_012_4b13
 
@@ -2394,13 +2394,13 @@ Call_012_4e52:
     call Call_012_40b4
     call Call_012_4323
     ld de, $4eb6
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     call Call_012_43e2
     ret
 
 
     ld de, $4eb6
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $02
     call Call_012_42ca
     ld a, [$c846]
@@ -2424,7 +2424,7 @@ jr_012_4e8e:
 
     ld a, $59
     call Call_000_1b2c
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     cp $81
     jr z, jr_012_4eb1
 
@@ -2761,7 +2761,7 @@ jr_012_510a:
     ld hl, $c906
     inc [hl]
     xor a
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
 
 Jump_012_511f:
 jr_012_511f:
@@ -2793,13 +2793,13 @@ Call_012_5140:
     call Call_012_40b4
     call Call_012_4323
     ld de, $51a5
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     call Call_012_43e2
     ret
 
 
     ld de, $51a5
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $02
     call Call_012_42ca
     ld a, [$c846]
@@ -2823,7 +2823,7 @@ jr_012_517e:
 
     ld a, $59
     call Call_000_1b2c
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     cp $81
     jr z, jr_012_51a0
 
@@ -3099,7 +3099,7 @@ jr_012_5383:
     ld hl, $c906
     inc [hl]
     xor a
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
 
 Jump_012_5398:
 jr_012_5398:
@@ -3138,13 +3138,13 @@ Call_012_53c1:
     call Call_012_40b4
     call Call_012_4323
     ld de, $5427
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     call Call_012_43e2
     ret
 
 
     ld de, $5427
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $02
     call Call_012_42ca
     ld a, [$c846]
@@ -3168,7 +3168,7 @@ jr_012_53ff:
 
     ld a, $59
     call Call_000_1b2c
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     cp $81
     jr z, jr_012_5421
 
@@ -3294,7 +3294,7 @@ Call_012_54e5:
     call Call_012_5504
     call Call_012_4323
     ld de, $564a
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     call Call_012_43e2
     call Call_012_40e5
     ret
@@ -3498,7 +3498,7 @@ jr_012_55f5:
 
 
     ld de, $564a
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     ld b, $02
     call Call_012_42ca
     ld a, [$c846]
@@ -3580,7 +3580,7 @@ jr_012_5677:
     ld a, d
     adc $00
     ld d, a
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     ld l, a
     ld a, [de]
@@ -3632,7 +3632,7 @@ jr_012_56bb:
     adc $00
     ld d, a
     push hl
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     ld l, a
     ld a, [de]
@@ -3682,10 +3682,10 @@ Call_012_56fd:
     call Call_012_5504
     call Call_012_4323
     ld de, $564a
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     call Call_012_43e2
     ld de, $77cd
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     jr nz, jr_012_572e
 
@@ -3698,7 +3698,7 @@ jr_012_572e:
     call Call_012_40b4
     call Call_012_4323
     ld de, $5913
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     jr z, jr_012_5741
 
@@ -3724,7 +3724,7 @@ Call_012_5751:
     ld a, $00
     adc d
     ld d, a
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     jr nz, jr_012_5776
 
@@ -3919,7 +3919,7 @@ jr_012_5868:
     ret nz
 
     ld de, $5913
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     jr z, jr_012_5892
 
@@ -3941,7 +3941,7 @@ jr_012_5892:
     cp [hl]
     jr z, jr_012_58ba
 
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     jr nz, jr_012_58ba
 
@@ -3956,7 +3956,7 @@ jr_012_58ba:
     jr z, jr_012_58d4
 
     call Call_012_5751
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     jr nz, jr_012_58d4
 
@@ -4149,13 +4149,13 @@ Call_012_5a07:
     call Call_012_5504
     call Call_012_4323
     ld de, $5a8e
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     call Call_012_43e2
     ret
 
 
     ld de, $5a8e
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     ld b, $02
     call Call_012_42ca
     ld a, [$c846]
@@ -4198,7 +4198,7 @@ jr_012_5a74:
 Call_012_5a75:
     ld a, $02
     ld [$c822], a
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     add $33
     ld [$c823], a
@@ -4254,7 +4254,7 @@ jr_012_5abb:
     ld a, d
     adc $00
     ld d, a
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     ld l, a
     ld a, [de]
@@ -4309,7 +4309,7 @@ jr_012_5b03:
     adc $00
     ld d, a
     push hl
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     ld l, a
     ld a, [de]
@@ -4360,10 +4360,10 @@ Call_012_5b4f:
     call Call_012_5504
     call Call_012_4323
     ld de, $5a8e
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     call Call_012_43e2
     ld de, $77cd
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     jr nz, jr_012_5b7d
 
@@ -4376,7 +4376,7 @@ jr_012_5b7d:
     call Call_012_40b4
     call Call_012_4323
     ld de, $5c30
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     jr z, jr_012_5b90
 
@@ -4396,7 +4396,7 @@ jr_012_5b90:
     ret nz
 
     ld de, $5c30
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     jr z, jr_012_5baf
 
@@ -4418,7 +4418,7 @@ jr_012_5baf:
     cp [hl]
     jr z, jr_012_5bd7
 
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     jr nz, jr_012_5bd7
 
@@ -4433,7 +4433,7 @@ jr_012_5bd7:
     jr z, jr_012_5bf1
 
     call Call_012_5751
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     jr nz, jr_012_5bf1
 
@@ -4518,7 +4518,7 @@ jr_012_5c45:
 
 Call_012_5c68:
     ld de, $7b42
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     and $01
     jr z, jr_012_5c75
 
@@ -4817,7 +4817,7 @@ Call_012_5e65:
     call Call_012_40b4
     call Call_012_4323
     ld de, $5ecc
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     call Call_012_43e2
     call Call_012_40e5
     ret
@@ -4980,10 +4980,10 @@ jr_012_5f68:
 
     ld hl, $0105
     rst $10
-    ld a, [$c8eb]
+    ld a, [wGameState]
     push af
     xor a
-    ld [$c8eb], a
+    ld [wGameState], a
     ld a, [$c905]
     push af
     xor a
@@ -5006,7 +5006,7 @@ jr_012_5f68:
     pop af
     ld [$c905], a
     pop af
-    ld [$c8eb], a
+    ld [wGameState], a
     ld hl, $0001
     call Call_012_441f
     ld a, $01
@@ -5166,7 +5166,7 @@ Call_012_6052:
     call Call_012_4028
     ld hl, $ffbb
     call Call_012_4028
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -5218,7 +5218,7 @@ Call_012_6052:
     inc [hl]
     xor a
     ld [$c906], a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -5244,7 +5244,7 @@ Call_012_6052:
     rst $10
     xor a
     ld [$c8ec], a
-    ld hl, $c8eb
+    ld hl, wGameState
     res 4, [hl]
     xor a
     ld [$c905], a
@@ -5306,13 +5306,13 @@ Call_012_614e:
     ld de, $6226
     ld b, $05
     ld c, $0a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     call Call_012_43c0
     ret
 
 
 Call_012_616e:
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     ld b, a
     add a
     add a
@@ -5356,7 +5356,7 @@ Call_012_61a0:
 
 
     ld de, $6226
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld c, $0a
     ld b, $05
     ld a, [hl+]
@@ -5365,7 +5365,7 @@ Call_012_61a0:
     push af
     call Call_012_4241
     pop af
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     cp [hl]
     jr z, jr_012_61d9
 
@@ -5375,7 +5375,7 @@ Call_012_61a0:
 
 jr_012_61d9:
     pop af
-    ld hl, $c8da
+    ld hl, wMenu_selection
     cp [hl]
     jr z, jr_012_61e6
 
@@ -5444,13 +5444,13 @@ Call_012_6242:
     ld bc, $0020
     ld a, $ff
     call Call_000_12c7
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     ld b, a
     add a
     add a
     add b
     ld b, a
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $7f
     add b
     ld [$cac0], a
@@ -5652,7 +5652,7 @@ jr_012_6369:
     ld a, [$c8e2]
     and $7f
     add b
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
     ld hl, $c0d8
     add l
     ld l, a
@@ -5855,15 +5855,15 @@ jr_012_64da:
     cp $01
     jr z, jr_012_64fd
 
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     dec a
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
     cp c
     jr c, jr_012_64f1
 
     dec c
     ld a, c
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
 
 jr_012_64f1:
     call Call_012_6544
@@ -5884,14 +5884,14 @@ jr_012_6504:
     cp $01
     jr z, jr_012_6526
 
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     inc a
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
     cp c
     jr c, jr_012_651a
 
     xor a
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
 
 jr_012_651a:
     call Call_012_6544
@@ -5925,7 +5925,7 @@ jr_012_6543:
 
 
 Call_012_6544:
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     ld hl, $c0d8
     add l
     ld l, a
@@ -5958,7 +5958,7 @@ Call_012_6544:
     ret
 
 
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     ld hl, $c0d8
     add l
     ld l, a
@@ -5971,7 +5971,7 @@ Call_012_6544:
     call Call_012_63bd
     ld a, $07
     ld [$c906], a
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     ld b, a
     ld a, $05
     call Call_000_1dfb
@@ -6625,7 +6625,7 @@ jr_012_6835:
     call Call_012_4028
     ld a, $ff
     ld [$c8f4], a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -6670,7 +6670,7 @@ jr_012_6835:
     inc [hl]
     xor a
     ld [$c906], a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -6687,7 +6687,7 @@ jr_012_6835:
     ld de, $2e07
     call Call_012_40b4
     call Call_012_40e5
-    ld hl, $c8eb
+    ld hl, wGameState
     res 4, [hl]
     xor a
     ld [$c905], a
@@ -7396,7 +7396,7 @@ jr_012_6d0f:
     or a
     ret nz
 
-    ld hl, $c8eb
+    ld hl, wGameState
     res 4, [hl]
     xor a
     ld [$c905], a

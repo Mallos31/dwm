@@ -2187,7 +2187,7 @@ Call_055_4924:
     ld a, $00
     call Call_000_12c7
     xor a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     call Call_055_496c
     ld a, $00
     call Call_000_1ae1
@@ -2294,7 +2294,7 @@ Call_055_496c:
     ld b, $09
     call Call_055_4a47
     xor a
-    ld [$c8da], a
+    ld [wMenu_selection], a
     call Call_055_4d44
     ret
 
@@ -2595,7 +2595,7 @@ jr_055_4bdc:
     ld hl, $c88e
     inc [hl]
     xor a
-    ld [$c8eb], a
+    ld [wGameState], a
     xor a
     ld [$c8ea], a
     ret
@@ -2606,7 +2606,7 @@ jr_055_4c52:
     bit 6, a
     jr z, jr_055_4c5f
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     dec a
     jr jr_055_4c6a
 
@@ -2615,17 +2615,17 @@ jr_055_4c5f:
     bit 7, a
     jr z, jr_055_4c74
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     inc a
 
 jr_055_4c6a:
     and $03
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, $59
     call Call_000_1b2c
 
 jr_055_4c74:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld c, a
     ld b, $00
     ld hl, $c0a0
@@ -2681,7 +2681,7 @@ jr_055_4cbf:
     push de
     push hl
     push bc
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     add c
     cp $04
     jr nz, jr_055_4cda
@@ -2731,7 +2731,7 @@ jr_055_4cfa:
 
 
     ld hl, $9988
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld b, $01
     ld c, $00
     call Call_055_5326
@@ -2753,7 +2753,7 @@ jr_055_4d24:
     bit 6, a
     jr z, jr_055_4d31
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     dec a
     jr jr_055_4d3c
 
@@ -2762,16 +2762,16 @@ jr_055_4d31:
     bit 7, a
     jr z, jr_055_4da3
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     inc a
 
 jr_055_4d3c:
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, $59
     call Call_000_1b2c
 
 Call_055_4d44:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld l, a
     ld h, $00
     add hl, hl
@@ -2786,7 +2786,7 @@ Call_055_4d44:
     ld d, [hl]
     ld hl, $8800
     call Call_000_1577
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld [$c81e], a
     ld a, $04
     ld [$c81f], a
@@ -2799,7 +2799,7 @@ Call_055_4d44:
     rst $10
     ld hl, $1708
     rst $10
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld [$c823], a
     ld a, $05
     ld [$c822], a
@@ -2866,7 +2866,7 @@ Jump_055_4dba:
     ld hl, $c88e
     inc [hl]
     xor a
-    ld [$c8eb], a
+    ld [wGameState], a
     xor a
     ld [$d8d7], a
     ret
@@ -2877,7 +2877,7 @@ jr_055_4e0a:
     bit 6, a
     jr z, jr_055_4e17
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     dec a
     jr jr_055_4e22
 
@@ -2886,17 +2886,17 @@ jr_055_4e17:
     bit 7, a
     jr z, jr_055_4e2c
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     inc a
 
 jr_055_4e22:
     and $07
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, $59
     call Call_000_1b2c
 
 jr_055_4e2c:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld c, a
     ld b, $00
     ld hl, $c0a0
@@ -2927,7 +2927,7 @@ jr_055_4e4a:
 jr_055_4e53:
     ld a, $59
     call Call_000_1b2c
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld b, $02
     cp $00
     call z, Call_055_4ed3
@@ -2967,7 +2967,7 @@ jr_055_4e9d:
     push de
     push hl
     push bc
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     add c
     cp $08
     jr nz, jr_055_4ebb
@@ -3008,7 +3008,7 @@ jr_055_4ec3:
 Call_055_4ed3:
 Jump_055_4ed3:
     push af
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld hl, $c0a0
     add l
     ld l, a
@@ -3123,7 +3123,7 @@ Call_055_4f8f:
     and $08
     jr z, jr_055_4fd2
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     or a
     jr nz, jr_055_4fbe
 
@@ -3158,7 +3158,7 @@ jr_055_4fd2:
     bit 6, a
     jr z, jr_055_4fdf
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     dec a
     jr jr_055_4fea
 
@@ -3167,17 +3167,17 @@ jr_055_4fdf:
     bit 7, a
     jr z, jr_055_4ff4
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     inc a
 
 jr_055_4fea:
     and $01
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, $59
     call Call_000_1b2c
 
 jr_055_4ff4:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld c, a
     ld b, $00
     ld hl, $c0a0
@@ -3208,7 +3208,7 @@ jr_055_5012:
 jr_055_501b:
     ld a, $59
     call Call_000_1b2c
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld b, $20
     cp $00
     call z, Call_055_5098
@@ -3240,7 +3240,7 @@ jr_055_5050:
     push de
     push hl
     push bc
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     add c
     cp $02
     jr nz, jr_055_506b
@@ -3296,7 +3296,7 @@ jr_055_507c:
 
 Call_055_5098:
     push af
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld hl, $c0a0
     add l
     ld l, a
@@ -3466,7 +3466,7 @@ jr_055_5162:
     bit 6, a
     jr z, jr_055_516f
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     dec a
     jr jr_055_517a
 
@@ -3475,17 +3475,17 @@ jr_055_516f:
     bit 7, a
     jr z, jr_055_5184
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     inc a
 
 jr_055_517a:
     and $07
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, $59
     call Call_000_1b2c
 
 jr_055_5184:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld c, a
     ld b, $00
     ld hl, $c0a0
@@ -3516,7 +3516,7 @@ jr_055_51a2:
 jr_055_51ab:
     ld a, $59
     call Call_000_1b2c
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld b, $03
     cp $00
     call z, Call_055_5232
@@ -3559,7 +3559,7 @@ jr_055_51fc:
     push de
     push hl
     push bc
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     add c
     cp $08
     jr nz, jr_055_521a
@@ -3600,7 +3600,7 @@ jr_055_5222:
 Call_055_5232:
 Jump_055_5232:
     push af
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld hl, $c0a0
     add l
     ld l, a
@@ -3839,11 +3839,11 @@ jr_055_53a5:
     jr nz, jr_055_53a5
 
     ld a, $00
-    ld [$ca4b], a
+    ld [wCurrGoldLo], a
     ld a, $54
-    ld [$ca4c], a
+    ld [wCurrGoldMid], a
     ld a, $01
-    ld [$ca4d], a
+    ld [wCurrGoldHi], a
     ld a, $01
     ld [$ca51], a
     ld a, $02

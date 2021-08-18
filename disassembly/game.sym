@@ -27940,10 +27940,12 @@
 00:c8dd wRamUnk1
 00:c8eb wGameState
 00:c8ec wRamUnk2
-00:c90d wCursorBlinkTimer
-00:c90e wRamUnk3
-00:ca4d wCurrGold
-00:ca50 wRamRest
+00:c90c wCursorBlinkTimer
+00:c90d wRamUnk3
+00:ca4b wCurrGoldLo
+00:ca4c wCurrGoldMid
+00:ca4d wCurrGoldHi
+00:ca4e wRamRest
 00:ff80 hRamStart
 00:ff92 hPlayer_xpos
 00:ff93 hUnk1

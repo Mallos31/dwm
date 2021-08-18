@@ -1,0 +1,2 @@
+00:c8e9 = number of individual item ids the bank should display
+00:c0d8 = temporary storage for inventory during bank transaction

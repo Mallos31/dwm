@@ -1,0 +1,1 @@
+10C000 -10F72F = Text bank

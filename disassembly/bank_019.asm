@@ -651,7 +651,7 @@ Call_019_4357:
     call Call_019_4357
     ld hl, $ffbb
     call Call_019_4357
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -772,7 +772,7 @@ jr_019_442b:
     ld hl, $0b02
     rst $10
     call Call_000_25f1
-    ld hl, $c8eb
+    ld hl, wGameState
     res 3, [hl]
     xor a
     ld [$c905], a

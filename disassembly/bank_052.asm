@@ -9223,7 +9223,7 @@ jr_052_7286:
     xor a
     ld [$d9f0], a
     ld a, $80
-    ld [$c8da], a
+    ld [wMenu_selection], a
     ld a, $10
     ld [$db88], a
     ld hl, $580d

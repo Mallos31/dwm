@@ -61,7 +61,7 @@ Jump_000_000f:
 
 
 RST_10::
-    ld a, [$4000]
+    ld a, [$4000] 	;load current rom bank number into reg a
 
 Call_000_0013:
     push af
@@ -6956,7 +6956,7 @@ Jump_000_1e4a:
 Call_000_1e55:
     ld a, $0f
     ldh [$a9], a
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 2, a
     ret nz
 
@@ -8178,7 +8178,7 @@ Call_000_241a:
     ld c, e
     ld d, h
     ld e, l
-    ld hl, $ca4b
+    ld hl, wCurrGoldLo
 
 Call_000_2420:
     call Call_000_24c3
@@ -8191,7 +8191,7 @@ Call_000_2424:
     ld e, l
 
 Call_000_2427:
-    ld hl, $ca4b
+    ld hl, wCurrGoldLo
     call Call_000_2500
     ret
 

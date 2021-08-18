@@ -308,7 +308,7 @@ Call_001_421c:
     xor a
     ld [$c8ec], a
     xor a
-    ld [$c8eb], a
+    ld [wGameState], a
     xor a
     ld [$d8d7], a
     ld [$d8d8], a
@@ -362,11 +362,11 @@ jr_001_4291:
     ld a, $ff
     ld [$ca90], a
     ld a, $00
-    ld [$ca4b], a
+    ld [wCurrGoldLo], a
     ld a, $00
-    ld [$ca4c], a
+    ld [wCurrGoldMid], a
     ld a, $00
-    ld [$ca4d], a
+    ld [wCurrGoldHi], a
     ld hl, $ca51
     ld bc, $0014
     ld a, $ff
@@ -2530,11 +2530,11 @@ jr_001_4cc0:
     jr nz, jr_001_4cc0
 
     ld a, $00
-    ld [$ca4b], a
+    ld [wCurrGoldLo], a
     ld a, $54
-    ld [$ca4c], a
+    ld [wCurrGoldMid], a
     ld a, $01
-    ld [$ca4d], a
+    ld [wCurrGoldHi], a
     ld a, $01
     ld [$ca51], a
     ld a, $02
@@ -2828,7 +2828,7 @@ Call_001_4eaa:
     ld [$c89b], a
 
 jr_001_4ed2:
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 5, a
     jr nz, jr_001_4ef9
 
@@ -2861,7 +2861,7 @@ Call_001_4efa:
     or a
     ret nz
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 1, a
     ret nz
 
@@ -2939,7 +2939,7 @@ jr_001_4f5e:
     ld [$c91d], a
 
 jr_001_4f63:
-    ld hl, $c8eb
+    ld hl, wGameState
     set 2, [hl]
     xor a
     ld [$c91e], a
@@ -2950,7 +2950,7 @@ jr_001_4f6f:
 
 
 Call_001_4f70:
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 2, a
     jp nz, Jump_001_5253
 
@@ -3439,7 +3439,7 @@ Call_001_5254:
 
 
 Call_001_5277:
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 2, a
     jr z, jr_001_5287
 
@@ -3963,7 +3963,7 @@ jr_001_551a:
     or a
     ret nz
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 6, a
     ret nz
 
@@ -4141,7 +4141,7 @@ Call_001_55d7:
     ld [$c917], a
     ld a, h
     ld [$c918], a
-    ld hl, $c8eb
+    ld hl, wGameState
     set 0, [hl]
     xor a
     ld [$c915], a
@@ -4226,7 +4226,7 @@ jr_001_5690:
     or a
     ret nz
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 1, a
     ret nz
 
@@ -5051,15 +5051,15 @@ jr_001_5af8:
 
 jr_001_5b22:
     ld hl, $d791
-    ld a, [$ca4b]
+    ld a, [wCurrGoldLo]
     add [hl]
     ld e, a
     inc hl
-    ld a, [$ca4c]
+    ld a, [wCurrGoldMid]
     adc [hl]
     ld d, a
     inc hl
-    ld a, [$ca4d]
+    ld a, [wCurrGoldHi]
     adc $00
     ld c, a
     pop hl
@@ -5108,7 +5108,7 @@ jr_001_5b68:
     cp $ff
     jr nz, jr_001_5b87
 
-    ld hl, $c8eb
+    ld hl, wGameState
     set 0, [hl]
     xor a
     ld [$c915], a
@@ -5125,7 +5125,7 @@ jr_001_5b87:
     or a
     jr nz, jr_001_5bc3
 
-    ld hl, $c8eb
+    ld hl, wGameState
     set 0, [hl]
     xor a
     ld [$c915], a
@@ -5153,7 +5153,7 @@ jr_001_5b87:
 
 
 jr_001_5bc3:
-    ld hl, $c8eb
+    ld hl, wGameState
     set 0, [hl]
     xor a
     ld [$c915], a
@@ -5203,7 +5203,7 @@ Jump_001_5bfd:
     call Call_000_1b2c
 
 jr_001_5c09:
-    ld hl, $c8eb
+    ld hl, wGameState
     set 0, [hl]
     xor a
     ld [$c915], a
@@ -5230,7 +5230,7 @@ jr_001_5c09:
     call Call_000_1b2c
 
 jr_001_5c39:
-    ld hl, $c8eb
+    ld hl, wGameState
     set 0, [hl]
     xor a
     ld [$c915], a
@@ -5264,7 +5264,7 @@ jr_001_5c6f:
     or a
     ret nz
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 5, a
     ret nz
 
@@ -5440,7 +5440,7 @@ Call_001_5d6d:
     bit 1, a
     ret nz
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 2, a
     ret nz
 
@@ -5471,7 +5471,7 @@ jr_001_5d9c:
     or a
     ret nz
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 6, a
     ret nz
 
@@ -5563,7 +5563,7 @@ jr_001_5e23:
     or a
     ret nz
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 6, a
     ret nz
 
@@ -5697,7 +5697,7 @@ Call_001_5ea9:
     ld [$c917], a
     ld a, h
     ld [$c918], a
-    ld hl, $c8eb
+    ld hl, wGameState
     set 0, [hl]
     xor a
     ld [$c915], a
@@ -5714,7 +5714,7 @@ jr_001_5f01:
     ld [$c917], a
     ld a, h
     ld [$c918], a
-    ld hl, $c8eb
+    ld hl, wGameState
     set 0, [hl]
     xor a
     ld [$c915], a
@@ -5810,7 +5810,7 @@ Call_001_5f8b:
     or a
     ret nz
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 1, a
     ret nz
 
@@ -5862,7 +5862,7 @@ Call_001_5fc1:
     or a
     ret z
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 0, a
     jr nz, jr_001_5fdd
 
@@ -6148,7 +6148,7 @@ Call_001_60e7:
     or a
     ret nz
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 5, a
     ret nz
 

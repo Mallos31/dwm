@@ -50,19 +50,23 @@ wGameState::
   ds 1	;c8eb
   
 wRamUnk2::
-  ds $21
+  ds $20
 
 wCursorBlinkTimer::
   ds 1 ;c90c
   
 wRamUnk3::
-  ds $13F 
+  ds $13E 
   
 ;current gold held by Terry. In order Lo Mid Hi maxes out at 9F8601 which reversed is 01869F or 99,999 in decimal  
-wCurrGold::
-  ds 3 ;ca4b-ca4d  
+wCurrGoldLo::
+  ds 1 ;ca4b
 
+wCurrGoldMid::
+  ds 1 ;ca4c
 
+wCurrGoldHi::
+  ds 1 ;ca4d
   
 wRamRest::
   ds $5B0

@@ -31,8 +31,8 @@ SECTION "ROM Bank $00b", ROMX[$4000], BANK[$b]
 
     ld a, [$c96d]
     ld [$c968], a
-    ld a, [$c96e]
-    ld [$c969], a
+    ld a, [$c96e]	;Frz at 1 to make any map an overworld map when entering
+    ld [$c969], a	;c969 may be the overworld flag. 
 
 jr_00b_4027:
     ld hl, $1605
@@ -176,7 +176,7 @@ jr_00b_40c0:
     ldh [$b7], a
     ld a, h
     ldh [$b8], a
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 1, a
     jr nz, jr_00b_4134
 
@@ -893,7 +893,7 @@ Call_00b_4452:
     or a
     ret nz
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 0, a
     ret nz
 
@@ -1006,7 +1006,7 @@ jr_00b_4513:
     ld h, a
     jr jr_00b_44ec
 
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 0, a
     jp nz, Jump_00b_4674
 
@@ -1248,7 +1248,7 @@ jr_00b_465b:
     jr jr_00b_4674
 
 jr_00b_466b:
-    ld hl, $c8eb
+    ld hl, wGameState
     set 5, [hl]
     xor a
     ld [$c905], a
@@ -1312,7 +1312,7 @@ Jump_00b_46a7:
     ld a, $80
     ld [$c96e], a
     call Call_00b_46da
-    ld hl, $c8eb
+    ld hl, wGameState
     set 5, [hl]
     xor a
     ld [$c905], a

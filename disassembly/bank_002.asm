@@ -5175,7 +5175,7 @@ jr_002_5d75:
     ldh [$90], a
     xor a
     ld [$d8d7], a
-    ld hl, $c8eb
+    ld hl, wGameState
     res 0, [hl]
     ld hl, $cab9
     ld a, [$ca8d]

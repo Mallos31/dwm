@@ -13448,7 +13448,7 @@ Jump_014_7e8a:
 Jump_014_7e96:
     ld hl, $010b
     rst $10
-    ld hl, $c8eb
+    ld hl, wGameState
     set 6, [hl]
     xor a
     ld [$c905], a

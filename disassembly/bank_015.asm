@@ -20,7 +20,7 @@ SECTION "ROM Bank $015", ROMX[$4000], BANK[$15]
     ld a, h
     ld [$da7c], a
     xor a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     call Call_000_12c7
     xor a
@@ -128,7 +128,7 @@ SECTION "ROM Bank $015", ROMX[$4000], BANK[$15]
     ld hl, $8b00
     ld de, $1202
     call Call_000_098f
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -202,7 +202,7 @@ Jump_015_413e:
     ld hl, $8b00
     ld de, $1202
     call Call_000_098f
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -271,7 +271,7 @@ Jump_015_413e:
     ld hl, $8b00
     ld de, $1202
     call Call_000_098f
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -395,7 +395,7 @@ jr_015_4318:
 jr_015_432d:
     xor a
     ld [$c8df], a
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld [$c8e0], a
     call Call_015_60a2
     call Call_015_5dc0
@@ -421,11 +421,11 @@ jr_015_432d:
     ld b, $04
 
 jr_015_435f:
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld a, [$c8e0]
-    ld [$c8da], a
+    ld [wMenu_selection], a
     call Call_015_5f85
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     ld [$c8e0], a
     ld de, $43b6
     ld hl, $a002
@@ -436,7 +436,7 @@ jr_015_435f:
     ld de, $43c1
 
 jr_015_4380:
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $7f
     add e
     ld e, a
@@ -449,7 +449,7 @@ jr_015_4380:
     bit 0, a
     jp z, Jump_015_43b1
 
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $7f
     cp $02
     jr z, jr_015_43a9
@@ -485,7 +485,7 @@ Jump_015_43b1:
     db $f4
     ld a, [c]
     di
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $7f
     ld b, a
     ld hl, $a002
@@ -644,12 +644,12 @@ jr_015_44d7:
     ld [$c8ea], a
 
 jr_015_44e3:
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 4, a
     jr nz, jr_015_44ee
 
     xor a
-    ld [$c8eb], a
+    ld [wGameState], a
 
 jr_015_44ee:
     xor a
@@ -1161,13 +1161,13 @@ Call_015_47dd:
     ld b, $04
     ld a, [$c8d8]
     ld c, a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     call Call_015_6080
     ret
 
 
 Call_015_480b:
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     add a
     add a
     ld de, $c0d8
@@ -1232,11 +1232,11 @@ jr_015_4848:
 
 
 Call_015_4860:
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     add a
     add a
     ld b, a
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $7f
     add b
     ld hl, $c0d8
@@ -1305,11 +1305,11 @@ Call_015_4860:
 
 
 Call_015_48e5:
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     add a
     add a
     ld b, a
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $7f
     add b
     ld hl, $c0d8
@@ -1379,7 +1379,7 @@ jr_015_493a:
     ret z
 
     ld de, $4a03
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld a, [$c8d8]
     ld c, a
     ld b, $04
@@ -1390,7 +1390,7 @@ jr_015_493a:
     push af
     call Call_015_5efc
     pop af
-    ld hl, $c8da
+    ld hl, wMenu_selection
     cp [hl]
     jr z, jr_015_4976
 
@@ -1400,7 +1400,7 @@ jr_015_493a:
 
 jr_015_4976:
     pop af
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     cp [hl]
     jr z, jr_015_4989
 
@@ -1462,12 +1462,12 @@ jr_015_49d4:
     ld a, $59
     call Call_000_1b2c
     xor a
-    ld [$c8dc], a
-    ld a, [$c8db]
+    ld [wPLAN_selection], a
+    ld a, [wOPTN_and_Item_selection]
     add a
     add a
     ld b, a
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $7f
     add b
     ld hl, $c0d8
@@ -1517,7 +1517,7 @@ Call_015_4a27:
     call Call_015_5d8f
     call Call_015_5fe3
     ld de, $4af5
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     call Call_015_60a2
     ret
 
@@ -1526,7 +1526,7 @@ Call_015_4a27:
     ret z
 
     ld de, $4af5
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $02
     call Call_015_5f85
     ld a, [$c846]
@@ -1554,7 +1554,7 @@ jr_015_4a71:
 
     ld a, $59
     call Call_000_1b2c
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     cp $81
     jr z, jr_015_4a93
 
@@ -1645,7 +1645,7 @@ Call_015_4afb:
     xor a
     ld [$c906], a
     xor a
-    ld [$c8eb], a
+    ld [wGameState], a
     ld hl, $0701
     rst $10
     ld a, [$c906]
@@ -1747,8 +1747,8 @@ jr_015_4bb0:
     ld a, $01
     ld [$c8d2], a
     xor a
-    ld [$c8da], a
-    ld [$c8db], a
+    ld [wMenu_selection], a
+    ld [wOPTN_and_Item_selection], a
     jp Jump_015_4be2
 
 
@@ -1836,8 +1836,8 @@ jr_015_4c5c:
     call Call_015_480b
     call Call_015_47dd
     xor a
-    ld [$c8da], a
-    ld [$c8db], a
+    ld [wMenu_selection], a
+    ld [wOPTN_and_Item_selection], a
     ld hl, $c8d2
     inc [hl]
     jp Jump_015_4c8d
@@ -1989,13 +1989,13 @@ Call_015_4d45:
     ld b, $04
     ld a, [$c8d8]
     ld c, a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     call Call_015_6080
     ret
 
 
 Call_015_4d73:
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     add a
     add a
     ld de, $c0d8
@@ -2071,7 +2071,7 @@ jr_015_4db0:
     ret z
 
     ld de, $4e4d
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld a, [$c8d8]
     ld c, a
     ld b, $04
@@ -2082,7 +2082,7 @@ jr_015_4db0:
     push af
     call Call_015_5efc
     pop af
-    ld hl, $c8da
+    ld hl, wMenu_selection
     cp [hl]
     jr z, jr_015_4dfa
 
@@ -2092,7 +2092,7 @@ jr_015_4db0:
 
 jr_015_4dfa:
     pop af
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     cp [hl]
     jr z, jr_015_4e0d
 
@@ -2118,13 +2118,13 @@ jr_015_4e1b:
     ld a, $59
     call Call_000_1b2c
     xor a
-    ld [$c8dc], a
+    ld [wPLAN_selection], a
     ld [$c8dd], a
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     add a
     add a
     ld b, a
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $7f
     add b
     ld hl, $c0d8
@@ -2174,7 +2174,7 @@ Call_015_4e71:
     call Call_015_5d8f
     call Call_015_5fe3
     ld de, $4f0e
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     call Call_015_60a2
     ret
 
@@ -2183,7 +2183,7 @@ Call_015_4e71:
     ret z
 
     ld de, $4f0e
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $02
     call Call_015_5f85
     ld a, [$c846]
@@ -2211,7 +2211,7 @@ jr_015_4ebb:
 
     ld a, $59
     call Call_000_1b2c
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     cp $81
     jr z, jr_015_4edd
 
@@ -2310,7 +2310,7 @@ jr_015_4f57:
     xor a
     ld [$c906], a
     xor a
-    ld [$c8eb], a
+    ld [wGameState], a
     ld hl, $0701
     rst $10
     ld a, [$c906]
@@ -2531,7 +2531,7 @@ Jump_015_50da:
     xor a
     ld [$c906], a
     xor a
-    ld [$c8eb], a
+    ld [wGameState], a
     ld hl, $0701
     rst $10
     ld a, [$c906]
@@ -3247,13 +3247,13 @@ Call_015_5542:
     ld b, $04
     ld a, [$c8d8]
     ld c, a
-    ld hl, $c8da
+    ld hl, wMenu_selection
     call Call_015_6080
     ret
 
 
 Call_015_556a:
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     add a
     add a
     ld de, $c0d8
@@ -3329,7 +3329,7 @@ jr_015_55a7:
     ret z
 
     ld de, $564d
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld a, [$c8d8]
     ld c, a
     ld b, $04
@@ -3340,7 +3340,7 @@ jr_015_55a7:
     push af
     call Call_015_5efc
     pop af
-    ld hl, $c8da
+    ld hl, wMenu_selection
     cp [hl]
     jr z, jr_015_55f1
 
@@ -3350,7 +3350,7 @@ jr_015_55a7:
 
 jr_015_55f1:
     pop af
-    ld hl, $c8db
+    ld hl, wOPTN_and_Item_selection
     cp [hl]
     jr z, jr_015_5604
 
@@ -3380,12 +3380,12 @@ Jump_015_561e:
     ld a, $59
     call Call_000_1b2c
     xor a
-    ld [$c8dc], a
-    ld a, [$c8db]
+    ld [wPLAN_selection], a
+    ld a, [wOPTN_and_Item_selection]
     add a
     add a
     ld b, a
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $7f
     add b
     ld hl, $c0d8
@@ -3435,7 +3435,7 @@ Call_015_5671:
     call Call_015_5d8f
     call Call_015_5fe3
     ld de, $5729
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     call Call_015_60a2
     ret
 
@@ -3444,7 +3444,7 @@ Call_015_5671:
     ret z
 
     ld de, $5729
-    ld hl, $c8dc
+    ld hl, wPLAN_selection
     ld b, $02
     call Call_015_5f85
     ld a, [$c846]
@@ -3472,7 +3472,7 @@ jr_015_56bb:
 
     ld a, $59
     call Call_000_1b2c
-    ld a, [$c8dc]
+    ld a, [wPLAN_selection]
     cp $81
     jr z, jr_015_56dd
 
@@ -3539,7 +3539,7 @@ jr_015_5728:
     xor a
     ld [$c906], a
     xor a
-    ld [$c8eb], a
+    ld [wGameState], a
     ld hl, $0701
     rst $10
     ld a, [$c906]
@@ -3794,7 +3794,7 @@ Jump_015_58e0:
     xor a
     ld [$c906], a
     xor a
-    ld [$c8eb], a
+    ld [wGameState], a
     ld hl, $0701
     rst $10
     ld a, [$c906]
@@ -4083,11 +4083,11 @@ jr_015_5aa5:
     ld [$c86d], a
     ld a, $04
     call Call_000_1688
-    ld a, [$c8db]
+    ld a, [wOPTN_and_Item_selection]
     add a
     add a
     ld b, a
-    ld a, [$c8da]
+    ld a, [wMenu_selection]
     and $7f
     add b
     ld hl, $c0d8
@@ -4182,7 +4182,7 @@ jr_015_5b93:
     xor a
     ld [$d8d7], a
     xor a
-    ld [$c8eb], a
+    ld [wGameState], a
     ld a, $08
     ld [$c968], a
     ld [$c96a], a
@@ -4666,7 +4666,7 @@ jr_015_5e91:
     ret
 
 
-    ld hl, $c8da
+    ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
     call Call_000_12c7
@@ -4711,7 +4711,7 @@ jr_015_5e91:
     rst $10
     call Call_000_2518
     call Call_000_25f1
-    ld hl, $c8eb
+    ld hl, wGameState
     res 1, [hl]
     xor a
     ld [$c8d2], a
