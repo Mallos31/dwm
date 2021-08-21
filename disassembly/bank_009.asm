@@ -5,13 +5,13 @@
 
 SECTION "ROM Bank $009", ROMX[$4000], BANK[$9]
 
-    add hl, bc
-    dec b
-    ld b, b
+    db $09, $05, $40
+    
     jr nz, @+$63
 
     ld a, [$c8ef]
     rst $00
+    
     di
     ld b, l
     inc sp
@@ -5515,28 +5515,14 @@ jr_009_6149:
 jr_009_6155:
     ld a, [$c905]
     rst $00
-    ld [hl], h
-    ld h, c
-    ld a, l
-    ld h, c
-    ld l, d
-    ld h, d
-    db $fc
-    ld h, d
-    or e
-    ld h, [hl]
+
+    db $74, $61, $7d, $61, $6a, $62, $fc, $62, $b3, $66
+
     db $ed
     ld h, [hl]
-    ld [bc], a
-    ld h, a
-    ld l, e
-    ld h, a
-    adc a
-    ld h, a
-    ld l, a
-    ld h, c
-    db $dd
-    ld h, a
+
+    db $02, $67, $6b, $67, $8f, $67, $6f, $61, $dd, $67
+
     ld hl, $c905
     inc [hl]
     ret
@@ -6279,108 +6265,19 @@ jr_009_6606:
     ret
 
 
-    pop hl
-    nop
-    ld [c], a
-    nop
-    db $e3
-    nop
-    db $e4
-    nop
-    push hl
-    nop
-    and $00
-    rst $20
-    nop
-    add sp, $00
-    jp hl
-
-
-    nop
-    ld [$eb00], a
-    nop
-    db $ec
-    nop
-    db $ed
-    nop
-    rst $28
-    nop
-    ldh a, [rP1]
-    pop af
-    nop
-    ld a, [c]
-    nop
-    ld hl, $2201
-    ld bc, $0123
-    inc h
-    ld bc, $0125
-    ld h, $01
-    daa
-    ld bc, $0128
-    add hl, hl
-    ld bc, $012a
-    dec hl
-    ld bc, $012c
-    dec l
-    ld bc, $012f
-    jr nc, @+$03
-
-    ld sp, $3201
-    ld bc, $0161
-    ld h, d
-    ld bc, $0163
-    ld h, h
-    ld bc, $0165
-    ld h, [hl]
-    ld bc, $0167
-    ld l, b
-    ld bc, $0169
-    ld l, d
-    ld bc, $016b
-    ld l, h
-    ld bc, $016d
-    ld l, a
-    ld bc, $0170
-    ld [hl], c
-    ld bc, $0172
-    and c
-    ld bc, $01a2
-    and e
-    ld bc, $01a4
-    and l
-    ld bc, $01a6
-    and a
-    ld bc, $01a8
-    xor c
-    ld bc, $01aa
-    xor e
-    ld bc, $01ac
-    xor l
-    ld bc, $01af
-    or b
-    ld bc, $01b1
-    or d
-    ld bc, $01e1
-    ld [c], a
-    ld bc, $01e3
-    db $e4
-    ld bc, $01e5
-    and $01
-    rst $20
-    ld bc, $01e8
-    jp hl
-
-
-    ld bc, $01ea
-    db $eb
-    ld bc, $01ec
-    db $ed
-    ld bc, $01ef
-    ldh a, [rSB]
-    pop af
-    ld bc, $01f2
-    rst $38
-    rst $38
+    db $e1, $00, $e2, $00, $e3, $00, $e4, $00, $e5, $00, $e6, $00, $e7, $00, $e8, $00
+    db $e9, $00, $ea, $00, $eb, $00, $ec, $00, $ed, $00, $ef, $00, $f0, $00, $f1, $00
+    db $f2, $00, $21, $01, $22, $01, $23, $01, $24, $01, $25, $01, $26, $01, $27, $01
+    db $28, $01, $29, $01, $2a, $01, $2b, $01, $2c, $01, $2d, $01, $2f, $01, $30, $01
+    db $31, $01, $32, $01, $61, $01, $62, $01, $63, $01, $64, $01, $65, $01, $66, $01
+    db $67, $01, $68, $01, $69, $01, $6a, $01, $6b, $01, $6c, $01, $6d, $01, $6f, $01
+    db $70, $01, $71, $01, $72, $01, $a1, $01, $a2, $01, $a3, $01, $a4, $01, $a5, $01
+    db $a6, $01, $a7, $01, $a8, $01, $a9, $01, $aa, $01, $ab, $01, $ac, $01, $ad, $01
+    db $af, $01, $b0, $01, $b1, $01, $b2, $01, $e1, $01, $e2, $01, $e3, $01, $e4, $01
+    db $e5, $01, $e6, $01, $e7, $01, $e8, $01, $e9, $01, $ea, $01, $eb, $01, $ec, $01
+    db $ed, $01, $ef, $01, $f0, $01, $f1, $01, $f2, $01, $ff, $ff
+    
+    
     xor a
     ld [wCursorBlinkTimer], a
     call Call_009_69f6
@@ -6555,10 +6452,8 @@ jr_009_67d6:
     ret
 
 
-    cpl
-    ld bc, $016f
-    rst $38
-    rst $38
+    db $2f, $01, $6f, $01, $ff, $ff
+    
     ld a, [$c8f2]
     ld l, a
     ld a, [$c8f3]
@@ -6865,121 +6760,15 @@ jr_009_6982:
     ccf
     ret
 
-
-    inc [hl]
-    ld d, l
-    ld b, d
-    adc [hl]
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    inc [hl]
-    ld d, l
-    ld b, d
-    adc [hl]
-    dec l
-    sbc a
-    sbc a
-    sbc a
-    inc [hl]
-    ld d, l
-    inc [hl]
-    ld d, l
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    jr z, jr_009_69e2
-
-    ld d, l
-    dec l
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    ld b, e
-    ld d, l
-    dec l
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    jr z, jr_009_69f5
-
-    dec l
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    ld sp, $2b36
-    jr nc, jr_009_6959
-
-    sbc a
-    sbc a
-    sbc a
-    ld l, b
-    ld l, l
-    ld h, d
-    ld h, a
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    ld h, $55
-    dec l
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    ld a, [hl+]
-    ld d, l
-    inc sp
-    ld b, e
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    ld h, d
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    ld h, d
-    ld h, d
-    sbc a
-    sbc a
-    sbc a
-
-jr_009_69e2:
-    sbc a
-    sbc a
-    sbc a
-    ld h, d
-    ld h, d
-    ld h, d
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-    ld h, d
-    ld h, d
-    ld h, d
-    ld h, d
-    sbc a
-    sbc a
-    sbc a
-    sbc a
-
-jr_009_69f5:
-    rst $38
+    db $34, $55, $42, $8e, $9f, $9f, $9f, $9f, $34, $55, $42, $8e, $2d, $9f, $9f, $9f
+    db $34, $55, $34, $55, $9f, $9f, $9f, $9f, $28, $43, $55, $2d, $9f, $9f, $9f, $9f
+    db $43, $55, $2d, $9f, $9f, $9f, $9f, $9f, $28, $46, $2d, $9f, $9f, $9f, $9f, $9f
+    db $31, $36, $2b, $30, $9f, $9f, $9f, $9f, $68, $6d, $62, $67, $9f, $9f, $9f, $9f
+    db $26, $55, $2d, $9f, $9f, $9f, $9f, $9f, $2a, $55, $33, $43, $9f, $9f, $9f, $9f
+    db $62, $9f, $9f, $9f, $9f, $9f, $9f, $9f, $62, $62, $9f, $9f, $9f, $9f, $9f, $9f
+    db $62, $62, $62, $9f, $9f, $9f, $9f, $9f, $62, $62, $62, $62, $9f, $9f, $9f, $9f
+    db $ff
+    
 
 Call_009_69f6:
     ld a, [wOPTN_and_Item_selection]
