@@ -20424,9 +20424,7 @@ ROMX bank #78:
 
 ROMX bank #79:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $04f"]
-           $4106 = jr_04f_4106
            $413a = jr_04f_413a
-           $42ff = Jump_04f_42ff
            $5246 = Call_04f_5246
            $526f = jr_04f_526f
            $5285 = jr_04f_5285
@@ -20443,7 +20441,6 @@ ROMX bank #79:
            $5ce2 = jr_04f_5ce2
            $5d05 = jr_04f_5d05
            $5d47 = jr_04f_5d47
-           $5ebd = jr_04f_5ebd
            $6552 = jr_04f_6552
            $6916 = jr_04f_6916
            $696c = jr_04f_696c
@@ -23141,43 +23138,6 @@ ROMX bank #86:
            $4da3 = jr_056_4da3
            $4db5 = jr_056_4db5
            $4dba = Call_056_4dba
-           $4e68 = jr_056_4e68
-           $4e78 = jr_056_4e78
-           $4e7e = jr_056_4e7e
-           $4e93 = jr_056_4e93
-           $4e9c = jr_056_4e9c
-           $4e9e = jr_056_4e9e
-           $4ead = jr_056_4ead
-           $4eaf = jr_056_4eaf
-           $4eb1 = jr_056_4eb1
-           $4eb5 = jr_056_4eb5
-           $4eb6 = jr_056_4eb6
-           $4ec3 = jr_056_4ec3
-           $4ec4 = jr_056_4ec4
-           $4ed3 = jr_056_4ed3
-           $4ed7 = jr_056_4ed7
-           $4edb = jr_056_4edb
-           $4eee = jr_056_4eee
-           $4ef4 = jr_056_4ef4
-           $4efd = jr_056_4efd
-           $4f09 = jr_056_4f09
-           $4f0e = jr_056_4f0e
-           $4f2b = jr_056_4f2b
-           $4f2e = jr_056_4f2e
-           $4f33 = jr_056_4f33
-           $4f34 = jr_056_4f34
-           $4f40 = jr_056_4f40
-           $4f43 = jr_056_4f43
-           $4f4e = jr_056_4f4e
-           $4f59 = jr_056_4f59
-           $4f64 = jr_056_4f64
-           $4f6f = jr_056_4f6f
-           $4f7a = jr_056_4f7a
-           $4f85 = jr_056_4f85
-           $4f90 = jr_056_4f90
-           $4f9b = jr_056_4f9b
-           $4fa6 = jr_056_4fa6
-           $4fc8 = jr_056_4fc8
            $5005 = jr_056_5005
            $5007 = jr_056_5007
            $5009 = jr_056_5009

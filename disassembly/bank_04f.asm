@@ -1,13 +1,12 @@
-; Disassembly of "baserom.gbc"
+; Disassembly of "game.gbc"
 ; This file was created with:
 ; mgbdis v1.5 - Game Boy ROM disassembler by Matt Currie and contributors.
 ; https://github.com/mattcurrie/mgbdis
 
 SECTION "ROM Bank $04f", ROMX[$4000], BANK[$4f]
 
-    ld c, a
-    ld b, [hl]
-    ld d, d
+    db $4f, $46, $52
+
     ld c, l
     ld d, d
     ld d, h
@@ -21,162 +20,9 @@ SECTION "ROM Bank $04f", ROMX[$4000], BANK[$4f]
     nop
     nop
     nop
-    rst $38
-    ld a, h
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    db $10
-    rst $38
-    jr nc, @+$01
 
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    ld a, h
-    rst $38
-    add d
-    rst $38
-    ld [bc], a
-    rst $38
-    inc c
-    rst $38
-    jr nc, @+$01
+    INCBIN "gfx/image_04f_4010.2bpp"
 
-    ld b, b
-    rst $38
-    cp $ff
-    nop
-    rst $38
-    ld a, h
-    rst $38
-    add d
-    rst $38
-    ld [bc], a
-    rst $38
-    inc a
-    rst $38
-    ld [bc], a
-    rst $38
-    add d
-    rst $38
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    inc c
-    rst $38
-    inc d
-    rst $38
-    inc h
-    rst $38
-    ld b, h
-    rst $38
-    add h
-    rst $38
-    cp $ff
-    inc b
-    rst $38
-    nop
-    rst $38
-    db $fc
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    db $fc
-    rst $38
-    ld [bc], a
-    rst $38
-    add d
-    rst $38
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    ld a, h
-    rst $38
-    add d
-    rst $38
-    add b
-    rst $38
-    db $fc
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    ld a, [hl]
-    rst $38
-    add d
-    rst $38
-    ld [bc], a
-    rst $38
-    inc b
-    rst $38
-    inc b
-    rst $38
-    ld [$08ff], sp
-    rst $38
-    nop
-    rst $38
-    ld a, h
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    ld a, h
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    ld a, h
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    ld a, [hl]
-    rst $38
-    ld [bc], a
-    rst $38
-    add d
-    rst $38
-    ld a, h
-    rst $38
-    nop
     rst $38
     ld a, h
     rst $38
@@ -262,32 +108,19 @@ SECTION "ROM Bank $04f", ROMX[$4000], BANK[$4f]
     nop
     rst $38
     nop
+    rst $38
+    nop
+    rst $38
+    nop
+    rst $38
+    nop
+    rst $38
+    nop
+    rst $38
+    nop
 
-jr_04f_4106:
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $28
-    jr c, jr_04f_4106
+    INCBIN "gfx/image_04f_4110.2bpp"
 
-    ld d, h
-    rst $38
-    xor d
-    xor e
-    sub $83
-    cp $ff
-    ld a, h
     rst $30
     ld c, $ff
     inc c
@@ -579,251 +412,9 @@ jr_04f_413a:
     nop
     rst $38
     nop
-    rst $38
-    db $10
-    rst $38
-    jr z, @+$01
 
-    jr z, @+$01
+    INCBIN "gfx/image_04f_4250.2bpp"
 
-    ld b, h
-    rst $38
-    ld a, h
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    nop
-    rst $38
-    ld hl, sp-$01
-    add h
-    rst $38
-    add h
-    rst $38
-    db $fc
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    db $fc
-    rst $38
-    nop
-    rst $38
-    inc a
-    rst $38
-    ld b, d
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    ld b, d
-    rst $38
-    inc a
-    rst $38
-    nop
-    rst $38
-    ld hl, sp-$01
-    add h
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    add h
-    rst $38
-    ld hl, sp-$01
-    nop
-    rst $38
-    cp $ff
-    add b
-    rst $38
-    add b
-    rst $38
-    db $fc
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    cp $ff
-    nop
-    rst $38
-    cp $ff
-    add b
-    rst $38
-    add b
-    rst $38
-    db $fc
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    nop
-    rst $38
-    inc a
-    rst $38
-    ld b, d
-    rst $38
-    add b
-    rst $38
-    sbc [hl]
-    rst $38
-    add d
-    rst $38
-    ld b, d
-    rst $38
-    inc a
-    rst $38
-    nop
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    cp $ff
-    add d
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    nop
-    rst $38
-    ld a, h
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    ld a, [hl]
-    rst $38
-    ld [$08ff], sp
-    rst $38
-    ld [$88ff], sp
-    rst $38
-    adc b
-    rst $38
-    ld [hl], b
-    rst $38
-    nop
-    rst $38
-    add h
-    rst $38
-    adc b
-    rst $38
-    sub b
-    rst $38
-    or b
-    rst $38
-    ret z
-
-    rst $38
-    add h
-    rst $38
-    add d
-    rst $38
-
-Jump_04f_42ff:
-    nop
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    cp $ff
-    nop
-    rst $38
-    add d
-    rst $38
-    add $ff
-    xor d
-    rst $38
-    sub d
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    nop
-    rst $38
-    add d
-    rst $38
-    jp nz, $a2ff
-
-    rst $38
-    sub d
-    rst $38
-    adc d
-    rst $38
-    add [hl]
-    rst $38
-    add d
-    rst $38
-    nop
-    rst $38
-    jr c, @+$01
-
-    ld b, h
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    ld b, h
-    rst $38
-    jr c, @+$01
-
-    nop
-    rst $38
-    db $fc
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    db $fc
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    nop
     rst $38
     jr c, @+$01
 
@@ -840,548 +431,15 @@ Jump_04f_42ff:
     ld a, [hl-]
     rst $38
     nop
-    rst $38
-    db $fc
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    db $fc
-    rst $38
-    adc b
-    rst $38
-    add h
-    rst $38
-    add d
-    rst $38
-    nop
-    rst $38
-    ld a, b
-    rst $38
-    add h
-    rst $38
-    add b
-    rst $38
-    ld a, h
-    rst $38
-    ld [bc], a
-    rst $38
-    add d
-    rst $38
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    cp $ff
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    nop
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    add d
-    rst $38
-    add d
-    rst $38
-    ld b, h
-    rst $38
-    ld b, h
-    rst $38
-    jr z, @+$01
 
-    jr z, @+$01
+    INCBIN "gfx/image_04f_4360.2bpp"
 
-    db $10
-    rst $38
-    nop
-    rst $38
-    add d
-    rst $38
-    sub d
-    rst $38
-    xor d
-    rst $38
-    xor d
-    rst $38
-    add $ff
-    add $ff
-    add d
-    rst $38
-    nop
-    rst $38
-    add $ff
-    ld b, h
-    rst $38
-    jr z, @+$01
+    INCBIN "gfx/image_04f_43e0.2bpp"
 
-    db $10
-    rst $38
-    jr z, @+$01
+    INCBIN "gfx/image_04f_43f0.2bpp"
 
-    ld b, h
-    rst $38
-    add $ff
-    nop
-    rst $38
-    add d
-    rst $38
-    ld b, h
-    rst $38
-    jr z, @+$01
+    INCBIN "gfx/image_04f_44f0.2bpp"
 
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    nop
-    rst $38
-    cp $ff
-    inc b
-    rst $38
-    ld [$10ff], sp
-    rst $38
-    jr nz, @+$01
-
-    ld b, b
-    rst $38
-    cp $ff
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    ld a, b
-    rst $38
-    inc b
-    rst $38
-    ld a, h
-    rst $38
-    add h
-    rst $38
-    ld a, [hl]
-    rst $38
-    nop
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    ld hl, sp-$01
-    add h
-    rst $38
-    add h
-    rst $38
-    ld hl, sp-$01
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    ld a, b
-    rst $38
-    add h
-    rst $38
-    add b
-    rst $38
-    add h
-    rst $38
-    ld a, b
-    rst $38
-    nop
-    rst $38
-    inc b
-    rst $38
-    inc b
-    rst $38
-    inc b
-    rst $38
-    ld a, h
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    ld a, b
-    rst $38
-    add h
-    rst $38
-    db $fc
-    rst $38
-    add b
-    rst $38
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    jr @+$01
-
-    inc h
-    rst $38
-    jr nz, @+$01
-
-    db $fc
-    rst $38
-    jr nz, @+$01
-
-    jr nz, @+$01
-
-    jr nz, @+$01
-
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    ld a, h
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    ld a, h
-    rst $38
-    inc b
-    rst $38
-    ld hl, sp-$01
-    add b
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    ld hl, sp-$01
-    add h
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    db $10
-    rst $38
-    nop
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    db $10
-    rst $38
-    nop
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    ld h, b
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    adc h
-    rst $38
-    or b
-    rst $38
-    ret nz
-
-    rst $38
-    or b
-    rst $38
-    adc h
-    rst $38
-    nop
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    db $ec
-    rst $38
-    sub d
-    rst $38
-    sub d
-    rst $38
-    sub d
-    rst $38
-    sub d
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    ld hl, sp-$01
-    add h
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    ld a, b
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    ld a, b
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    ld hl, sp-$01
-    add h
-    rst $38
-    add h
-    rst $38
-    ld hl, sp-$01
-    add b
-    rst $38
-    add b
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    ld a, h
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    ld a, h
-    rst $38
-    inc b
-    rst $38
-    inc b
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    sbc h
-    rst $38
-    and b
-    rst $38
-    ret nz
-
-    rst $38
-    add b
-    rst $38
-    add b
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    ld a, b
-    rst $38
-    add b
-    rst $38
-    ld a, b
-    rst $38
-    inc b
-    rst $38
-    ld hl, sp-$01
-    nop
-    rst $38
-    nop
-    rst $38
-    jr nz, @+$01
-
-    db $fc
-    rst $38
-    jr nz, @+$01
-
-    jr nz, @+$01
-
-    jr nz, @+$01
-
-    inc e
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    ld a, b
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    ld c, b
-    rst $38
-    jr nc, @+$01
-
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    add d
-    rst $38
-    sub d
-    rst $38
-    sub d
-    rst $38
-    xor d
-    rst $38
-    ld b, h
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    add h
-    rst $38
-    ld c, b
-    rst $38
-    jr nc, @+$01
-
-    ld c, b
-    rst $38
-    add h
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    add h
-    rst $38
-    ld a, h
-    rst $38
-    inc b
-    rst $38
-    ld hl, sp-$01
-    nop
-    rst $38
-    nop
-    rst $38
-    db $fc
-    rst $38
-    ld [$30ff], sp
-    rst $38
-    ld b, b
-    rst $38
-    db $fc
-    rst $38
-    nop
     rst $38
     nop
     rst $38
@@ -1478,38 +536,9 @@ Jump_04f_42ff:
     add b
     rst $38
     nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    ld h, b
-    rst $38
-    ld h, b
-    rst $38
-    jr nz, @+$01
 
-    ld b, b
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    ld h, b
-    rst $38
-    ld h, b
-    rst $38
-    nop
+    INCBIN "gfx/image_04f_45f0.2bpp"
+
     rst $38
     nop
     rst $38
@@ -1540,54 +569,9 @@ Jump_04f_42ff:
     call z, $ccff
     rst $38
     nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    nop
-    rst $38
-    db $10
-    rst $38
-    nop
-    rst $38
-    inc a
-    rst $38
-    ld b, d
-    rst $38
-    ld b, d
-    rst $38
-    inc e
-    rst $38
-    db $10
-    rst $38
-    nop
-    rst $38
-    db $10
-    rst $38
-    nop
+
+    INCBIN "gfx/image_04f_4630.2bpp"
+
     rst $38
     ld l, h
     rst $38
@@ -1615,68 +599,9 @@ Jump_04f_42ff:
     ld [$08ff], sp
     rst $38
     ld [$00ff], sp
-    rst $38
-    ret nz
 
-    rst $38
-    ld c, b
-    rst $38
-    ld a, $ff
-    ld [$08ff], sp
-    rst $38
-    ld [$06ff], sp
-    rst $38
-    nop
-    rst $38
-    ret nz
+    INCBIN "gfx/image_04f_4680.2bpp"
 
-    rst $38
-    ld b, b
-    rst $38
-    inc e
-    rst $38
-    jr nz, @+$01
-
-    inc e
-    rst $38
-    ld [bc], a
-    rst $38
-    inc a
-    rst $38
-    nop
-    rst $38
-    ret nz
-
-    rst $38
-    ld b, b
-    rst $38
-    ld h, $ff
-    jr z, @+$01
-
-    jr nc, @+$01
-
-    jr nz, @+$01
-
-    jr nz, @+$01
-
-    nop
-    rst $38
-    ret nz
-
-    rst $38
-    ld b, b
-    rst $38
-    inc [hl]
-    rst $38
-    ld a, [hl+]
-    rst $38
-    ld a, [hl+]
-    rst $38
-    ld a, [hl+]
-    rst $38
-    ld a, [hl+]
-    rst $38
-    nop
     rst $38
     ret nz
 
@@ -1709,7 +634,7 @@ Jump_04f_42ff:
     rst $38
     ld [$00ff], sp
     rst $38
-    jp nz, Jump_04f_42ff
+    jp nz, $42ff
 
     rst $38
     ld [bc], a
@@ -2359,32 +1284,9 @@ Jump_04f_42ff:
     nop
     rst $38
     nop
-    rst $38
-    jr @+$01
 
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    db $10
-    rst $38
-    jr @+$01
+    INCBIN "gfx/image_04f_4970.2bpp"
 
-    nop
-    rst $38
-    jr @+$01
-
-    ld [$08ff], sp
-    rst $38
-    ld [$08ff], sp
-    rst $38
-    ld [$18ff], sp
-    rst $38
-    nop
     rst $38
     inc a
     rst $38
@@ -2449,37 +1351,9 @@ Jump_04f_42ff:
     nop
     rst $38
     nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    cp $ff
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    ld h, b
-    rst $38
-    sub d
-    rst $38
-    inc c
-    rst $38
-    nop
-    rst $38
-    nop
-    rst $38
-    nop
+
+    INCBIN "gfx/image_04f_49d0.2bpp"
+
     rst $38
     ld [bc], a
     rst $38
@@ -2494,22 +1368,9 @@ Jump_04f_42ff:
     add b
     rst $38
     nop
-    rst $38
-    db $10
-    rst $38
-    sub d
-    rst $38
-    ld d, h
-    rst $38
-    jr c, @+$01
 
-    ld d, h
-    rst $38
-    sub d
-    rst $38
-    db $10
-    rst $38
-    nop
+    INCBIN "gfx/image_04f_4a00.2bpp"
+
     rst $38
     ld [$10ff], sp
     rst $38
@@ -2548,22 +1409,9 @@ Jump_04f_42ff:
     nop
     rst $38
     nop
-    rst $38
-    jr @+$01
 
-    jr @+$01
+    INCBIN "gfx/image_04f_4a40.2bpp"
 
-    nop
-    rst $38
-    nop
-    rst $38
-    jr @+$01
-
-    jr @+$01
-
-    nop
-    rst $38
-    nop
     rst $38
     nop
     rst $38
@@ -3284,62 +2132,9 @@ Jump_04f_42ff:
     nop
     rst $38
     nop
-    rst $38
-    ld sp, hl
-    rst $38
-    ld hl, $21ff
-    rst $38
-    ld hl, $21ff
-    rst $38
-    ld hl, $21ff
-    rst $38
-    nop
-    rst $38
-    rst $20
-    rst $38
-    inc b
-    rst $38
-    inc b
-    rst $38
-    rst $20
-    rst $38
-    dec b
-    rst $38
-    inc b
-    rst $38
-    db $e4
-    rst $38
-    nop
-    rst $38
-    adc a
-    rst $38
-    ld c, b
-    rst $38
-    ld c, b
-    rst $38
-    adc a
-    rst $38
-    ld a, [bc]
-    rst $38
-    adc c
-    rst $38
-    ld c, b
-    rst $38
-    nop
-    rst $38
-    ld de, $91ff
-    rst $38
-    adc d
-    rst $38
-    ld a, [bc]
-    rst $38
-    inc b
-    rst $38
-    inc b
-    rst $38
-    add h
-    rst $38
-    nop
+
+    INCBIN "gfx/image_04f_4d40.2bpp"
+
     rst $38
     nop
     rst $38
@@ -3998,8 +2793,9 @@ Jump_04f_42ff:
     nop
     inc d
     ld d, b
-    ld b, [hl]
-    ld d, b
+
+    db $46, $50
+
     ld e, e
     ld d, d
     or l
@@ -4048,8 +2844,9 @@ Jump_04f_42ff:
     ld e, h
     adc l
     ld e, l
-    add b
-    ld e, [hl]
+
+    db $80, $5e
+
     add b
     ld e, [hl]
     add b
@@ -7202,7 +5999,7 @@ jr_04f_5d47:
     ld b, d
     ld c, a
     ld h, d
-    jr nc, jr_04f_5ebd
+    jr nc, @+$4e
 
     ld c, e
     ld d, b
@@ -7216,66 +6013,18 @@ jr_04f_5d47:
     ld c, a
     ld h, e
     rst $30
-    ldh a, [$ea]
-    sbc a
-    and e
-    inc a
-    ld c, h
-    ld d, d
-    ld l, c
-    ld b, d
-    ld h, d
-    ld a, $62
-    ld d, h
-    ld b, [hl]
-    ld c, d
-    ld c, l
-    ld e, a
-    rst $28
-    xor $25
-    ld d, d
-    ld d, c
-    ld h, d
-    inc l
-    ld l, d
-    ld h, d
-    ld c, e
-    ld c, h
-    ld d, c
-    ld h, d
-    ld b, h
-    ld c, h
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    ld a, [$eff7]
-    xor $51
-    ld c, h
-    ld h, d
-    ld d, b
-    ld b, l
-    ld c, h
-    ld d, h
-    ld h, d
-    ld d, [hl]
-    ld c, h
-    ld d, d
-    ld h, d
-    ld a, $4b
-    ld d, [hl]
-    rst $28
-    xor $4a
-    ld b, d
-    ld c, a
-    ld b, b
-    ld d, [hl]
-    ld e, a
+    db $f0
 
-jr_04f_5ebd:
-    rst $30
-    ldh a, [$ea]
-    sbc a
-    and e
+    db $ea, $9f, $a3, $3c, $4c, $52, $69, $42, $62, $3e, $62, $54, $46, $4a, $4d, $5f
+    db $ef
+
+    db $ee
+
+    db $25, $52, $51, $62, $2c, $6a, $62, $4b, $4c, $51, $62, $44, $4c, $46, $4b, $44
+    db $fa, $f7, $ef, $ee, $51, $4c, $62, $50, $45, $4c, $54, $62, $56, $4c, $52, $62
+    db $3e, $4b, $56, $ef, $ee, $4a, $42, $4f, $40, $56, $5f, $f7, $f0
+
+    ld [$a39f], a
     cpl
     ld e, a
     ld e, a

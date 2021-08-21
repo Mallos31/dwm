@@ -1,3 +1,6 @@
 *.gbc
 *.sav
 /tools
+*.bak
+*.txt
+*Zone.Identifier
