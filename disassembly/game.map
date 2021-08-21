@@ -20424,7 +20424,6 @@ ROMX bank #78:
 
 ROMX bank #79:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $04f"]
-           $413a = jr_04f_413a
            $5246 = Call_04f_5246
            $526f = jr_04f_526f
            $5285 = jr_04f_5285
