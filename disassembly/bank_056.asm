@@ -1377,9 +1377,9 @@ jr_056_45d6:
 
 jr_056_4609:
     ld a, $ff
-    call Call_000_1ab9
+    call Write_OAM_Tile
     xor a
-    call Call_000_1ab9
+    call Write_OAM_Tile
     dec bc
     dec bc
     ld a, b
@@ -1884,7 +1884,7 @@ Call_056_490f:
     ld hl, $9000
     ld de, $1207
     call Call_000_098f
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     ld bc, $0010
     ld a, $00
     call Call_000_12c7
@@ -2001,7 +2001,7 @@ jr_056_4a0a:
     ld d, b
 
 jr_056_4a0c:
-    call Call_000_1ab9
+    call Write_OAM_Tile
     inc a
     dec b
     jr nz, jr_056_4a0c
@@ -2058,7 +2058,7 @@ jr_056_4a36:
 
 
 Call_056_4a50:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 6, a
     jr z, jr_056_4aa6
 
@@ -2067,7 +2067,7 @@ Call_056_4a50:
     ld a, [$df05]
     ld l, a
     ld a, [$df06]
-    call Call_000_1ab9
+    call Write_OAM_Tile
     ld a, [$df07]
     call Call_000_1aad
     ld a, [$df03]
@@ -2104,7 +2104,7 @@ jr_056_4a75:
     ld [$df07], a
 
 jr_056_4aa6:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 7, a
     jr z, jr_056_4afb
 
@@ -2113,7 +2113,7 @@ jr_056_4aa6:
     ld a, [$df05]
     ld l, a
     ld a, [$df06]
-    call Call_000_1ab9
+    call Write_OAM_Tile
     ld a, [$df07]
     call Call_000_1aad
     ld a, [$df03]
@@ -2236,7 +2236,7 @@ jr_056_4b69:
 
 
 Jump_056_4b71:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 2, a
     jr z, jr_056_4b9e
 
@@ -2263,7 +2263,7 @@ jr_056_4b82:
 
 
 jr_056_4b9e:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 1, a
     jp z, Jump_056_4d63
 
@@ -2611,7 +2611,7 @@ Call_056_4d7a:
     jr nz, jr_056_4da3
 
     ld a, $1f
-    call Call_000_1ab9
+    call Write_OAM_Tile
     call Call_000_1aad
     ld a, $01
     ld [$df09], a
@@ -2620,7 +2620,7 @@ Call_056_4d7a:
 
 jr_056_4da3:
     ld a, [$df06]
-    call Call_000_1ab9
+    call Write_OAM_Tile
     ld a, [$df07]
     call Call_000_1aad
     ld a, $00

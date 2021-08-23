@@ -7254,7 +7254,7 @@ jr_006_606b:
     or a
     jp nz, Jump_006_60b8
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $08
     jr z, jr_006_60b8
 
@@ -7278,7 +7278,7 @@ jr_006_60b8:
     or a
     jp nz, Jump_006_611d
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $04
     jr z, jr_006_611d
 
@@ -7346,7 +7346,7 @@ jr_006_611d:
     or a
     jp nz, Jump_006_6247
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $01
     jp z, Jump_006_6247
 
@@ -7539,7 +7539,7 @@ Jump_006_6247:
     or a
     jp nz, Jump_006_6284
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $01
     jr z, jr_006_6284
 

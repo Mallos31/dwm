@@ -7093,7 +7093,7 @@ jr_016_62f1:
     jr z, jr_016_62d8
 
     ld a, [$c925]
-    ld [$c0a0], a
+    ld [wDebug_main_menu_option], a
     add a
     add a
     ld hl, $2da7
@@ -7979,7 +7979,7 @@ jr_016_6826:
     ld [de], a
     inc de
     ld [de], a
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     ld bc, $0005
     ld a, $00
     call Call_000_12c7
@@ -7991,7 +7991,7 @@ jr_016_6837:
     jr z, jr_016_684b
 
     inc hl
-    ld de, $c0a0
+    ld de, wDebug_main_menu_option
     add e
     ld e, a
     ld a, $00
@@ -8004,7 +8004,7 @@ jr_016_6837:
 
 jr_016_684b:
     xor a
-    ld [$c0a0], a
+    ld [wDebug_main_menu_option], a
     ld a, [$c0a1]
     ld b, $14
     call Call_000_1dfb
@@ -8033,7 +8033,7 @@ jr_016_6884:
     cp $ff
     jr z, jr_016_689a
 
-    ld de, $c0a0
+    ld de, wDebug_main_menu_option
     add e
     ld e, a
     ld a, $00
@@ -8117,7 +8117,7 @@ Call_016_68c6:
 
 
 Call_016_68ea:
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     ld a, [$c925]
     cp [hl]
     ret nz

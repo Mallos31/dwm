@@ -295,10 +295,10 @@ jr_017_4102:
 
 jr_017_41a5:
     ld a, $07
-    call Call_000_1ab9
-    call Call_000_1ab9
-    call Call_000_1ab9
-    call Call_000_1ab9
+    call Write_OAM_Tile
+    call Write_OAM_Tile
+    call Write_OAM_Tile
+    call Write_OAM_Tile
     dec b
     jr nz, jr_017_41a5
 

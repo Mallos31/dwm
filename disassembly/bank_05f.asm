@@ -297,7 +297,7 @@ jr_05f_4173:
     ret
 
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $0f
     ret z
 
@@ -440,7 +440,7 @@ jr_05f_42a7:
     cp $d9
     ret z
 
-    call Call_000_1ab9
+    call Write_OAM_Tile
     jr jr_05f_42a7
 
 jr_05f_42b5:
@@ -911,7 +911,7 @@ jr_05f_4614:
 
     ld a, $f4
     call Call_000_1275
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jr nz, jr_05f_463f
 
@@ -5237,7 +5237,7 @@ jr_05f_5c9b:
     ld e, h
     ld a, [bc]
     ld e, l
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jp nz, Jump_05f_5dd7
 
@@ -5259,7 +5259,7 @@ jr_05f_5c9b:
     ret
 
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 1, a
     jp nz, Jump_05f_5e3e
 
@@ -5278,7 +5278,7 @@ jr_05f_5c9b:
     ret
 
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 1, a
     jp nz, Jump_05f_5e3e
 
@@ -5301,7 +5301,7 @@ jr_05f_5c9b:
     or a
     jr z, jr_05f_5d30
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jp nz, Jump_05f_5e87
 
@@ -6266,7 +6266,7 @@ Call_05f_6248:
     or a
     jr nz, jr_05f_62d7
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 2, a
     ret z
 
@@ -6336,7 +6336,7 @@ jr_05f_62d2:
 
 
 jr_05f_62d7:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 2, a
     ret z
 

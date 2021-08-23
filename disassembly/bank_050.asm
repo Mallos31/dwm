@@ -197,7 +197,7 @@ Jump_050_40ed:
     ret
 
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $08
     jr z, jr_050_412d
 
@@ -221,7 +221,7 @@ jr_050_412d:
     ld de, $419b
     ld hl, wMenu_selection
     call Call_050_782e
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jr z, jr_050_419a
 
@@ -334,7 +334,7 @@ jr_050_41b9:
     ret
 
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $08
     jr z, jr_050_4207
 
@@ -763,7 +763,7 @@ jr_050_4401:
     ld hl, wOPTN_and_Item_selection
     ld b, $02
     call Call_050_77f7
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 1, a
     jr z, jr_050_4487
 
@@ -772,7 +772,7 @@ jr_050_4401:
     jr jr_050_44a9
 
 jr_050_4487:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jp z, Jump_050_44a9
 
@@ -912,7 +912,7 @@ jr_050_4560:
     ld hl, wPLAN_selection
     ld b, $04
     call Call_050_77f7
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 1, a
     jr z, jr_050_45f5
 
@@ -990,7 +990,7 @@ jr_050_45d6:
 
 
 jr_050_45f5:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jp z, Jump_050_4714
 
@@ -1415,7 +1415,7 @@ jr_050_4836:
     ld hl, $c8de
     ld b, $03
     call Call_050_77f7
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 1, a
     jr z, jr_050_48d5
 
@@ -1480,7 +1480,7 @@ jr_050_48b7:
 
 
 jr_050_48d5:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jp z, Jump_050_496c
 
@@ -1714,7 +1714,7 @@ jr_050_4a19:
     call Call_050_49d8
 
 jr_050_4a48:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 1, a
     jr z, jr_050_4a65
 
@@ -1736,7 +1736,7 @@ jr_050_4a5e:
 
 
 jr_050_4a65:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jp z, Jump_050_4b97
 
@@ -2216,7 +2216,7 @@ jr_050_4d38:
     and $04
     ld c, a
     call Call_050_5b7a
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 1, a
     jr z, jr_050_4d51
 
@@ -2225,7 +2225,7 @@ jr_050_4d38:
     jr jr_050_4d9b
 
 jr_050_4d51:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jp z, Jump_050_4d9b
 
@@ -2357,7 +2357,7 @@ jr_050_4e2d:
     xor $04
     ld c, a
     call Call_050_5b7a
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 1, a
     jr z, jr_050_4e54
 
@@ -2374,7 +2374,7 @@ jr_050_4e4c:
     jr jr_050_4e89
 
 jr_050_4e54:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jp z, Jump_050_4e89
 
@@ -2838,7 +2838,7 @@ jr_050_50c0:
     call Call_050_506f
 
 jr_050_50e1:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 1, a
     jr z, jr_050_50f4
 
@@ -2850,7 +2850,7 @@ jr_050_50e1:
 
 
 jr_050_50f4:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jp z, Jump_050_517a
 
@@ -3027,7 +3027,7 @@ jr_050_51fb:
     ld hl, $c8dd
     ld b, $02
     call Call_050_77f7
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 1, a
     jr z, jr_050_5227
 
@@ -3040,7 +3040,7 @@ jr_050_51fb:
     jr jr_050_5287
 
 jr_050_5227:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jp z, Jump_050_5287
 
@@ -3152,7 +3152,7 @@ jr_050_52c4:
     and $04
     ld c, a
     call Call_050_5b7a
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 1, a
     jr z, jr_050_5309
 
@@ -3171,7 +3171,7 @@ jr_050_5302:
     jr jr_050_5338
 
 jr_050_5309:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jp z, Jump_050_5338
 
@@ -3417,9 +3417,9 @@ jr_050_548c:
 Call_050_5491:
 jr_050_5491:
     ld a, $ff
-    call Call_000_1ab9
+    call Write_OAM_Tile
     xor a
-    call Call_000_1ab9
+    call Write_OAM_Tile
     dec b
     jr nz, jr_050_5491
 
@@ -3657,7 +3657,7 @@ Call_050_55f9:
     xor $04
     ld c, a
     call Call_050_5b7a
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 1, a
     jr z, jr_050_563a
 
@@ -3677,7 +3677,7 @@ jr_050_5630:
     jr jr_050_5663
 
 jr_050_563a:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jp z, Jump_050_5663
 
@@ -3804,9 +3804,9 @@ jr_050_56f3:
 
 jr_050_56f5:
     ld a, $ff
-    call Call_000_1ab9
+    call Write_OAM_Tile
     xor a
-    call Call_000_1ab9
+    call Write_OAM_Tile
     dec b
     jr nz, jr_050_56f5
 
@@ -4004,7 +4004,7 @@ jr_050_5808:
     ld hl, $c1d5
     ld b, $02
     call Call_050_77f7
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jr z, jr_050_5892
 
@@ -4605,7 +4605,7 @@ jr_050_5b56:
 
 Call_050_5b7a:
     res 7, [hl]
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     and $40
     jp z, Jump_050_5b9a
 
@@ -4625,7 +4625,7 @@ jr_050_5b84:
 
 
 Jump_050_5b9a:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     and $80
     jp z, Jump_050_7820
 
@@ -9846,7 +9846,7 @@ jr_050_7754:
 
 jr_050_7763:
     ld a, $e0
-    call Call_000_1ab9
+    call Write_OAM_Tile
     dec bc
     ld a, b
     or c
@@ -9864,7 +9864,7 @@ Call_050_776e:
     or a
     jp nz, Jump_050_77d5
 
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     bit 5, a
     jr z, jr_050_779b
 
@@ -9892,7 +9892,7 @@ Call_050_776e:
     jr jr_050_77b9
 
 jr_050_779b:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     bit 4, a
     jr z, jr_050_77d5
 
@@ -9974,7 +9974,7 @@ jr_050_77d5:
 Call_050_77f7:
 jr_050_77f7:
     res 7, [hl]
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     bit 6, a
     jr z, jr_050_7809
 
@@ -9988,7 +9988,7 @@ jr_050_77f7:
     jr jr_050_7817
 
 jr_050_7809:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     bit 7, a
     jr z, jr_050_7820
 
@@ -10013,7 +10013,7 @@ jr_050_7818:
 
 Jump_050_7820:
 jr_050_7820:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 0, a
     jr z, jr_050_7829
 
@@ -10027,7 +10027,7 @@ jr_050_7829:
 
 Call_050_782e:
     res 7, [hl]
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     and $c0
     jr z, jr_050_783c
 
@@ -10036,7 +10036,7 @@ Call_050_782e:
     jr jr_050_7817
 
 jr_050_783c:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     and $30
     jr z, jr_050_7820
 

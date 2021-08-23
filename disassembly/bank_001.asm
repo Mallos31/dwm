@@ -195,10 +195,10 @@ jr_001_4155:
 
 jr_001_4161:
     ld a, $e0
-    call Call_000_1ab9
-    call Call_000_1ab9
-    call Call_000_1ab9
-    call Call_000_1ab9
+    call Write_OAM_Tile
+    call Write_OAM_Tile
+    call Write_OAM_Tile
+    call Write_OAM_Tile
     dec b
     jr nz, jr_001_4161
 
@@ -243,8 +243,8 @@ jr_001_4161:
     ld [$c842], a
     ld [$c843], a
     xor a
-    ld [$c846], a
-    ld [$c847], a
+    ld [wJoypad_current_frame], a
+    ld [wJoypad_Current], a
     xor a
     ld [$c848], a
     ld [$c849], a
@@ -259,8 +259,8 @@ Jump_001_41dc:
     ld [$c842], a
     ld [$c843], a
     xor a
-    ld [$c846], a
-    ld [$c847], a
+    ld [wJoypad_current_frame], a
+    ld [wJoypad_Current], a
     xor a
     ld [$c848], a
     ld [$c849], a
@@ -1319,7 +1319,7 @@ jr_001_46d1:
 
     pop hl
     push hl
-    ld de, $c0a0
+    ld de, wDebug_main_menu_option
     ld b, $19
 
 jr_001_46dc:
@@ -1332,7 +1332,7 @@ jr_001_46dc:
     jr nz, jr_001_46dc
 
     pop hl
-    ld de, $c0a0
+    ld de, wDebug_main_menu_option
     ld b, $19
 
 jr_001_46eb:
@@ -1611,7 +1611,7 @@ jr_001_4854:
 
 jr_001_4859:
     ld a, $ff
-    call Call_000_1ab9
+    call Write_OAM_Tile
     dec b
     jr nz, jr_001_4859
 
@@ -1626,7 +1626,7 @@ jr_001_4862:
 
 Call_001_4869:
 jr_001_4869:
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     ld bc, $0004
     ld a, $ff
     call Call_000_12c7
@@ -1634,7 +1634,7 @@ jr_001_4869:
     or a
     jr z, jr_001_48c1
 
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     push hl
     ld a, $00
     ld hl, $cb0b
@@ -1745,7 +1745,7 @@ jr_001_490a:
     pop hl
 
 jr_001_492f:
-    ld a, [$c0a0]
+    ld a, [wDebug_main_menu_option]
     ld [$ca8e], a
     ld a, [$c0a1]
     ld [$ca8f], a
@@ -1760,9 +1760,9 @@ Call_001_4942:
 
 jr_001_4947:
     ld a, $ff
-    call Call_000_1ab9
+    call Write_OAM_Tile
     xor a
-    call Call_000_1ab9
+    call Write_OAM_Tile
     dec b
     jr nz, jr_001_4947
 
@@ -2681,7 +2681,7 @@ Call_001_4db8:
 Call_001_4dda:
     jr jr_001_4dfc
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $04
     jr z, jr_001_4dfc
 
@@ -2755,7 +2755,7 @@ jr_001_4e29:
     ld [$c889], a
 
 jr_001_4e5b:
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     ld a, [$c887]
     ld b, a
     ld a, $91
@@ -2782,7 +2782,7 @@ Call_001_4e82:
     ld [hl+], a
     ld a, $00
     ld [hl+], a
-    ld a, [$c0a0]
+    ld a, [wDebug_main_menu_option]
     ldh [$c9], a
     ld hl, $0401
     rst $10

@@ -929,7 +929,7 @@ Jump_000_03ef:
     jr jr_000_044d
 
 Jump_000_03f8:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
 
 Jump_000_03fb:
     bit 2, a
@@ -973,7 +973,7 @@ jr_000_041f:
     jr z, jr_000_044d
 
 Call_000_0426:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 2, a
 
 Call_000_042b:
@@ -1529,7 +1529,7 @@ jr_000_0666:
 
 Call_000_067e:
 Jump_000_067e:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     ld b, a
     ld a, [$c84a]
     or b
@@ -1619,7 +1619,7 @@ Call_000_06d3:
 Call_000_06df:
     ld a, b
     call Call_000_1aad
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     ld b, a
     ld a, [$c84a]
     or b
@@ -1721,7 +1721,7 @@ Call_000_074a:
 
 
 Jump_000_0753:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     ld b, a
     ld a, [$c84a]
     or b
@@ -1748,7 +1748,7 @@ Jump_000_076d:
     or a
     jp z, Jump_000_0789
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     ld b, a
     ld a, [$c84a]
     or b
@@ -1801,7 +1801,7 @@ Call_000_07bb:
     bit 1, a
     jr nz, jr_000_07f0
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     ld b, a
 
 Call_000_07ce:
@@ -2335,7 +2335,7 @@ jr_000_0a17:
 
 Call_000_0a2e:
     ldh a, [$d5]
-    ld [$c0a0], a
+    ld [wDebug_main_menu_option], a
     ldh a, [$d6]
     ld [$c0a1], a
     ldh a, [$d7]
@@ -2344,7 +2344,7 @@ Call_000_0a2e:
 Jump_000_0a3d:
     call Call_000_0a52
     push af
-    ld a, [$c0a0]
+    ld a, [wDebug_main_menu_option]
 
 Jump_000_0a44:
     ldh [$d5], a
@@ -4584,7 +4584,7 @@ Call_000_1364:
 Call_000_1377:
 jr_000_1377:
     xor a
-    ld [$c847], a
+    ld [wJoypad_Current], a
     ld hl, $c842
     ld a, [hl]
 
@@ -4595,7 +4595,7 @@ Call_000_1380:
     xor [hl]
     dec hl
     and [hl]
-    ld [$c846], a
+    ld [wJoypad_current_frame], a
     ld hl, $c842
     ld a, [hl+]
     or a
@@ -4605,8 +4605,8 @@ Call_000_1380:
     jr z, jr_000_139d
 
 jr_000_1390:
-    ld a, [$c846]
-    ld [$c847], a
+    ld a, [wJoypad_current_frame]
+    ld [wJoypad_Current], a
     ld a, $14
 
 Call_000_1398:
@@ -4621,7 +4621,7 @@ jr_000_139d:
 
     ld [hl], $06
     ld a, [$c842]
-    ld [$c847], a
+    ld [wJoypad_Current], a
 
 jr_000_13ac:
     dec [hl]
@@ -5118,7 +5118,7 @@ Call_000_1597:
     jr z, jr_000_15a5
 
     pop hl
-    call Call_000_1ab9
+    call Write_OAM_Tile
     dec bc
     ld a, b
     or c
@@ -5222,7 +5222,7 @@ Call_000_1600:
     ei
 
 jr_000_1605:
-    call Call_000_1ab9
+    call Write_OAM_Tile
 
 Call_000_1608:
     inc de
@@ -6160,17 +6160,17 @@ jr_000_1aaf:
     ret
 
 
-Call_000_1ab9:
+Write_OAM_Tile:					;called by debug menu. Probably other things too
     push af
     di
 
-jr_000_1abb:
+.check_OAM_write_status:
     ldh a, [rSTAT]
-    bit 1, a
-    jr nz, jr_000_1abb
+    bit 1, a					;check if OAM can be written to
+    jr nz, .check_OAM_write_status		;if not, loop until it can.
 
     pop af
-    ld [hl+], a
+    ld [hl+], a					;write passed tile data into VRAM
     ei
     ret
 
@@ -7343,7 +7343,7 @@ Call_000_200f:
 
 Call_000_2012:
     ldh a, [$d5]
-    ld [$c0a0], a
+    ld [wDebug_main_menu_option], a
     ldh a, [$d6]
     ld [$c0a1], a
     ldh a, [$d7]
@@ -7352,7 +7352,7 @@ Call_000_2012:
 
 Jump_000_2024:
     push af
-    ld a, [$c0a0]
+    ld a, [wDebug_main_menu_option]
     ldh [$d5], a
     ld a, [$c0a1]
     ldh [$d6], a
@@ -12073,7 +12073,7 @@ Call_000_33cc:
 Call_000_33cf:
     call Call_000_33d2
 
-Call_000_33d2:
+Call_000_33d2:		
     push bc
     push de
     push hl
@@ -12093,7 +12093,7 @@ Call_000_33df:
     jr jr_000_33db
 
 jr_000_33e4:
-    ld a, [$4000]
+    ld a, [$4000]		;load rom bank ID into a
     push af
     dec hl
     ld a, [hl-]

@@ -250,13 +250,13 @@ jr_019_413e:
     ld [hl+], a
     ld hl, $0401
     rst $10
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     ld a, [$c939]
     ld c, a
     ld b, $00
     inc bc
     call Call_000_20ad
-    ld a, [$c0a0]
+    ld a, [wDebug_main_menu_option]
     cp $f0
     jr z, jr_019_4193
 
@@ -307,13 +307,13 @@ jr_019_4193:
     ld [hl+], a
     ld hl, $0401
     rst $10
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     ld a, [$c93a]
     ld c, a
     ld b, $00
     dec bc
     call Call_000_20ad
-    ld a, [$c0a0]
+    ld a, [wDebug_main_menu_option]
     cp $f0
     jr z, jr_019_41ee
 
@@ -364,7 +364,7 @@ jr_019_41ee:
     ld [hl+], a
     ld hl, $0401
     rst $10
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $f7
     jr z, jr_019_4220
 
@@ -754,13 +754,13 @@ Call_019_4426:
 
 jr_019_442b:
     ld a, $e0
-    call Call_000_1ab9
+    call Write_OAM_Tile
     ld a, $e0
-    call Call_000_1ab9
+    call Write_OAM_Tile
     ld a, $e0
-    call Call_000_1ab9
+    call Write_OAM_Tile
     ld a, $e0
-    call Call_000_1ab9
+    call Write_OAM_Tile
     dec b
     jr nz, jr_019_442b
 

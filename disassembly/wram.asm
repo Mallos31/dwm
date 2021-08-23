@@ -15,7 +15,35 @@ section "WRAM Bank0", wram0[$c000]
 ; *******************************************************************
 
 wRamStart::
-  ds $8DA
+  ds $A0
+
+
+;Main debug menu option is stored here. It is used in the calculation of vram tile offsets. LIKELY USED BY OTHER THINGS
+wDebug_main_menu_option::
+  ds 1 ;c0a0
+
+wRamUnk5::
+  ds $7A5
+  
+wJoypad_current_frame::
+  ds 1 ;c846
+
+;Current button being pressed
+;00 = none
+;01 = A
+;02 = B
+;04 = Select
+;08 = Start
+;10 = Right
+;20 = Left
+;40 = Up
+;80 = Down   
+wJoypad_Current::
+  ds 1 ;c847
+  
+  
+wRamUnk4::
+  ds $92
   
 ;Currently selected option in menu.
 ;Menues known to use this byte: Battle, Main, Buy/Sell/Exit, 

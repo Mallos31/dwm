@@ -460,7 +460,7 @@ jr_008_413d:
     ld de, $c778
     ld bc, $c85b
     ld a, $08
-    ld [$c0a0], a
+    ld [wDebug_main_menu_option], a
 
 jr_008_4208:
     ld a, [hl+]
@@ -468,9 +468,9 @@ jr_008_4208:
     ld [bc], a
     inc de
     inc bc
-    ld a, [$c0a0]
+    ld a, [wDebug_main_menu_option]
     dec a
-    ld [$c0a0], a
+    ld [wDebug_main_menu_option], a
     jr nz, jr_008_4208
 
     ld a, [$c818]

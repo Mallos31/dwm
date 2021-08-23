@@ -1050,8 +1050,8 @@ ROM0 bank #0:
            $1aad = Jump_000_1aad
            $1aaf = jr_000_1aaf
            $1aaf = Call_000_1aaf
-           $1ab9 = Call_000_1ab9
-           $1abb = jr_000_1abb
+           $1ab9 = Write_OAM_Tile
+           $1abb = Write_OAM_Tile.check_OAM_write_status
            $1ac5 = Call_000_1ac5
            $1ace = jr_000_1ace
            $1acf = jr_000_1acf
@@ -22855,10 +22855,10 @@ ROMX bank #85:
            $4b33 = jr_055_4b33
            $4b35 = jr_055_4b35
            $4b72 = jr_055_4b72
-           $4b95 = jr_055_4b95
+           $4b95 = jr_055_4b72.check_up_and_left
            $4ba6 = jr_055_4ba6
-           $4bae = jr_055_4bae
-           $4bba = jr_055_4bba
+           $4bae = Preap_Debug_Menu_OAM_tile_ID
+           $4bba = Preap_Debug_Menu_OAM_tile_ID.OAM_draw_loop
            $4bdc = jr_055_4bdc
            $4c52 = jr_055_4c52
            $4c5f = jr_055_4c5f
@@ -28404,6 +28404,11 @@ ROMX bank #127:
 WRAM0 bank #0:
   SECTION: $c000-$cffd ($0ffe bytes) ["WRAM Bank0"]
            $c000 = wRamStart
+           $c0a0 = wDebug_main_menu_option
+           $c0a1 = wRamUnk5
+           $c846 = wJoypad_current_frame
+           $c847 = wJoypad_Current
+           $c848 = wRamUnk4
            $c8da = wMenu_selection
            $c8db = wOPTN_and_Item_selection
            $c8dc = wPLAN_selection

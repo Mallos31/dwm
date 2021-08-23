@@ -7334,7 +7334,7 @@ Jump_004_6838:
     jp Jump_004_55f5
 
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $f0
     jp nz, Jump_004_55f5
 
@@ -8558,7 +8558,7 @@ jr_004_7056:
     ld a, $ff
 
 jr_004_7062:
-    call Call_000_1ab9
+    call Write_OAM_Tile
     dec b
     jr nz, jr_004_7062
 
@@ -8567,10 +8567,10 @@ jr_004_7062:
     ld a, $da
 
 jr_004_706f:
-    call Call_000_1ab9
-    call Call_000_1ab9
-    call Call_000_1ab9
-    call Call_000_1ab9
+    call Write_OAM_Tile
+    call Write_OAM_Tile
+    call Write_OAM_Tile
+    call Write_OAM_Tile
     dec b
     jr nz, jr_004_706f
 

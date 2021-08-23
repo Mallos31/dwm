@@ -1049,8 +1049,8 @@
 00:1aad Jump_000_1aad
 00:1aaf jr_000_1aaf
 00:1aaf Call_000_1aaf
-00:1ab9 Call_000_1ab9
-00:1abb jr_000_1abb
+00:1ab9 Write_OAM_Tile
+00:1abb Write_OAM_Tile.check_OAM_write_status
 00:1ac5 Call_000_1ac5
 00:1ace jr_000_1ace
 00:1acf jr_000_1acf
@@ -22514,10 +22514,10 @@
 55:4b33 jr_055_4b33
 55:4b35 jr_055_4b35
 55:4b72 jr_055_4b72
-55:4b95 jr_055_4b95
+55:4b95 jr_055_4b72.check_up_and_left
 55:4ba6 jr_055_4ba6
-55:4bae jr_055_4bae
-55:4bba jr_055_4bba
+55:4bae Preap_Debug_Menu_OAM_tile_ID
+55:4bba Preap_Debug_Menu_OAM_tile_ID.OAM_draw_loop
 55:4bdc jr_055_4bdc
 55:4c52 jr_055_4c52
 55:4c5f jr_055_4c5f
@@ -27891,6 +27891,11 @@
 7d:7f7f Call_07d_7f7f
 7d:7fff Jump_07d_7fff
 00:c000 wRamStart
+00:c0a0 wDebug_main_menu_option
+00:c0a1 wRamUnk5
+00:c846 wJoypad_current_frame
+00:c847 wJoypad_Current
+00:c848 wRamUnk4
 00:c8da wMenu_selection
 00:c8db wOPTN_and_Item_selection
 00:c8dc wPLAN_selection

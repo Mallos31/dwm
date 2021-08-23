@@ -2182,7 +2182,7 @@ Call_055_4924:
     rst $10
     ld hl, $1708
     rst $10
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     ld bc, $0010
     ld a, $00
     call Call_000_12c7
@@ -2242,7 +2242,7 @@ Call_055_496c:
     ld a, $08
     ld [$c823], a
     call Call_055_4b22
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     ld a, [$c8ad]
     ld [hl+], a
     ld a, [$c8ae]
@@ -2301,7 +2301,7 @@ Call_055_496c:
 
 Call_055_4a47:
 jr_055_4a47:
-    call Call_000_1ab9
+    call Write_OAM_Tile
     inc a
     dec b
     jr nz, jr_055_4a47
@@ -2320,7 +2320,7 @@ jr_055_4a47:
     ld a, $04
     ld [$c823], a
     call Call_055_4b1a
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     ld a, [$c969]
     ld [hl+], a
     ld a, [$c968]
@@ -2358,7 +2358,7 @@ jr_055_4a47:
     ld [$c823], a
     call Call_055_4b1a
     xor a
-    ld [$c0a0], a
+    ld [wDebug_main_menu_option], a
     ld [$c0a1], a
     ld hl, $9884
     ld bc, $1006
@@ -2377,7 +2377,7 @@ jr_055_4a47:
     ld a, $09
     ld [$c823], a
     call Call_055_4b1a
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     ld a, [$da02]
     ld [hl+], a
     ld a, [$da03]
@@ -2449,7 +2449,7 @@ jr_055_4b35:
     ret
 
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     bit 2, a
     jr z, jr_055_4b72
 
@@ -2472,6 +2472,7 @@ jr_055_4b35:
 jr_055_4b72:
     ld a, [$c88b]
     rst $00
+    ;DATA BETWEEN COMMENTS IS NOT VALID CODE
     add d
     ld c, e
     db $f4
@@ -2483,11 +2484,12 @@ jr_055_4b72:
     and b
     ld c, a
     ld d, $51
-    ld a, [$c847]
+    ;START OF DEBUG MENU DRAW FUNCTION. NO JUMP TO IT.
+    ld a, [wJoypad_Current]		;poll joypad 
     and $90
-    jr z, jr_055_4b95
+    jr z, .check_up_and_left
 
-    ld a, [$c0a0]
+    ld a, [wDebug_main_menu_option]
     inc a
     cp $06
     jr nz, jr_055_4ba6
@@ -2495,12 +2497,12 @@ jr_055_4b72:
     ld a, $00
     jr jr_055_4ba6
 
-jr_055_4b95:
-    ld a, [$c847]
+.check_up_and_left:
+    ld a, [wJoypad_Current]
     and $60
-    jr z, jr_055_4bae
+    jr z, Preap_Debug_Menu_OAM_tile_ID
 
-    ld a, [$c0a0]
+    ld a, [wDebug_main_menu_option]
     dec a
     cp $ff
     jr nz, jr_055_4ba6
@@ -2508,41 +2510,41 @@ jr_055_4b95:
     ld a, $05
 
 jr_055_4ba6:
-    ld [$c0a0], a
+    ld [wDebug_main_menu_option], a
     ld a, $59
     call Call_000_1b2c
 
-jr_055_4bae:
-    ld a, [$c0a0]
+Preap_Debug_Menu_OAM_tile_ID:
+    ld a, [wDebug_main_menu_option]
     swap a
     add $a0
     ld hl, $9922
-    ld b, $10
+    ld b, $10			;load number of tiles in debug menu text string into b
 
-jr_055_4bba:
-    call Call_000_1ab9
-    inc a
-    dec b
-    jr nz, jr_055_4bba
+.OAM_draw_loop:
+    call Write_OAM_Tile
+    inc a			;increase tile ID
+    dec b			;decrease number of tiles left to draw
+    jr nz, .OAM_draw_loop
 
-    ld a, [$c846]
-    and $01
-    ret z
+    ld a, [wJoypad_current_frame]		;check pressed button (single frame)
+    and $01			;check is A is pressed
+    ret z			;if not, return
 
-    ld a, $59
+    ld a, $59			;if so, load $59 into a and jump to that thing I don't know what it does that doesn't have a $59 as a switch case. 
     call Call_000_1b2c
-    ld a, [$c0a0]
-    cp $05
-    jr z, jr_055_4bdc
+    ld a, [wDebug_main_menu_option]
+    cp $05			;compares debug main menu option to "-  RETURN  -"
+    jr z, jr_055_4bdc		;if A was pressed on this option, jump to 4bdc below
 
-    inc a
-    ld [$c88b], a
-    ld hl, $c88e
-    inc [hl]
+    inc a			;
+    ld [$c88b], a		;c88b is the current debug menu ID
+    ld hl, $c88e		;when c88e is incremented, the screen fades and loads the menu with the ID stored in c88b
+    inc [hl]	
     ret
 
 
-jr_055_4bdc:
+jr_055_4bdc:			;Likely inits data for the title screen 
     ld hl, $c88a
     ld a, [$c8ad]
     ld [hl+], a
@@ -2557,7 +2559,7 @@ jr_055_4bdc:
     ret
 
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $08
     jr z, jr_055_4c52
 
@@ -2583,7 +2585,7 @@ jr_055_4bdc:
     ld [$da02], a
     ld a, $04
     call Call_000_1688
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     ld a, [hl+]
     ld [$c88a], a
     ld a, [hl+]
@@ -2602,7 +2604,7 @@ jr_055_4bdc:
 
 
 jr_055_4c52:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     bit 6, a
     jr z, jr_055_4c5f
 
@@ -2611,7 +2613,7 @@ jr_055_4c52:
     jr jr_055_4c6a
 
 jr_055_4c5f:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     bit 7, a
     jr z, jr_055_4c74
 
@@ -2628,9 +2630,9 @@ jr_055_4c74:
     ld a, [wMenu_selection]
     ld c, a
     ld b, $00
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     add hl, bc
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     and $10
     jr z, jr_055_4c88
 
@@ -2638,7 +2640,7 @@ jr_055_4c74:
     jr jr_055_4c9b
 
 jr_055_4c88:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     and $20
     jr z, jr_055_4c92
 
@@ -2646,7 +2648,7 @@ jr_055_4c88:
     jr jr_055_4c9b
 
 jr_055_4c92:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $01
     jr z, jr_055_4ca0
 
@@ -2658,7 +2660,7 @@ jr_055_4c9b:
     call Call_000_1b2c
 
 jr_055_4ca0:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $02
     jr z, jr_055_4cb5
 
@@ -2672,7 +2674,7 @@ jr_055_4ca0:
 
 
 jr_055_4cb5:
-    ld de, $c0a0
+    ld de, wDebug_main_menu_option
     ld hl, $98cd
     ld b, $01
     ld c, $04
@@ -2691,8 +2693,8 @@ jr_055_4cbf:
     jr nz, jr_055_4cda
 
     xor a
-    call Call_000_1ab9
-    call Call_000_1ab9
+    call Write_OAM_Tile
+    call Write_OAM_Tile
     jr jr_055_4cde
 
 jr_055_4cda:
@@ -2713,7 +2715,7 @@ jr_055_4cde:
     dec c
     jr nz, jr_055_4cbf
 
-    ld a, [$c0a0]
+    ld a, [wDebug_main_menu_option]
     add a
     add a
     add a
@@ -2722,7 +2724,7 @@ jr_055_4cde:
     ld b, $08
 
 jr_055_4cfa:
-    call Call_000_1ab9
+    call Write_OAM_Tile
     inc a
     dec b
     jr nz, jr_055_4cfa
@@ -2735,7 +2737,7 @@ jr_055_4cfa:
     ld b, $01
     ld c, $00
     call Call_055_5326
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $02
     jr z, jr_055_4d24
 
@@ -2749,7 +2751,7 @@ jr_055_4cfa:
 
 
 jr_055_4d24:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     bit 6, a
     jr z, jr_055_4d31
 
@@ -2758,7 +2760,7 @@ jr_055_4d24:
     jr jr_055_4d3c
 
 jr_055_4d31:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     bit 7, a
     jr z, jr_055_4da3
 
@@ -2822,7 +2824,7 @@ jr_055_4da3:
     ret
 
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $08
     jr z, jr_055_4e0a
 
@@ -2836,7 +2838,7 @@ jr_055_4da3:
 Jump_055_4dba:
     ld a, $59
     call Call_000_1b2c
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     ld a, [hl+]
     ld [$c969], a
     ld a, [hl+]
@@ -2873,7 +2875,7 @@ Jump_055_4dba:
 
 
 jr_055_4e0a:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     bit 6, a
     jr z, jr_055_4e17
 
@@ -2882,7 +2884,7 @@ jr_055_4e0a:
     jr jr_055_4e22
 
 jr_055_4e17:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     bit 7, a
     jr z, jr_055_4e2c
 
@@ -2899,9 +2901,9 @@ jr_055_4e2c:
     ld a, [wMenu_selection]
     ld c, a
     ld b, $00
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     add hl, bc
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     and $10
     jr z, jr_055_4e40
 
@@ -2909,7 +2911,7 @@ jr_055_4e2c:
     jr jr_055_4e53
 
 jr_055_4e40:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     and $20
     jr z, jr_055_4e4a
 
@@ -2917,7 +2919,7 @@ jr_055_4e40:
     jr jr_055_4e53
 
 jr_055_4e4a:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $01
     jr z, jr_055_4e85
 
@@ -2948,7 +2950,7 @@ jr_055_4e53:
     call z, Call_055_4ed3
 
 jr_055_4e85:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $02
     jr z, jr_055_4e93
 
@@ -2958,7 +2960,7 @@ jr_055_4e85:
 
 
 jr_055_4e93:
-    ld de, $c0a0
+    ld de, wDebug_main_menu_option
     ld hl, $98cc
     ld b, $01
     ld c, $08
@@ -2977,9 +2979,9 @@ jr_055_4e9d:
     jr nz, jr_055_4ebb
 
     xor a
-    call Call_000_1ab9
-    call Call_000_1ab9
-    call Call_000_1ab9
+    call Write_OAM_Tile
+    call Write_OAM_Tile
+    call Write_OAM_Tile
     jr jr_055_4ec3
 
 jr_055_4ebb:
@@ -3009,7 +3011,7 @@ Call_055_4ed3:
 Jump_055_4ed3:
     push af
     ld a, [wMenu_selection]
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     add l
     ld l, a
     ld a, $00
@@ -3030,7 +3032,7 @@ jr_055_4ee6:
     ld [hl], b
 
 jr_055_4eed:
-    ld a, [$c0a0]
+    ld a, [wDebug_main_menu_option]
     ld [$c823], a
     ld a, $01
     ld [$c822], a
@@ -3041,7 +3043,7 @@ jr_055_4eed:
     ld [$c82a], a
     ld hl, $8800
     call Call_055_4f8f
-    ld a, [$c0a0]
+    ld a, [wDebug_main_menu_option]
     cp $00
     jr z, jr_055_4f14
 
@@ -3099,7 +3101,7 @@ jr_055_4f19:
 
 Call_055_4f87:
 jr_055_4f87:
-    call Call_000_1ab9
+    call Write_OAM_Tile
     inc a
     dec b
     jr nz, jr_055_4f87
@@ -3119,7 +3121,7 @@ Call_055_4f8f:
     ret
 
 
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $08
     jr z, jr_055_4fd2
 
@@ -3127,7 +3129,7 @@ Call_055_4f8f:
     or a
     jr nz, jr_055_4fbe
 
-    ld a, [$c0a0]
+    ld a, [wDebug_main_menu_option]
     ld hl, $50b4
     add l
     ld l, a
@@ -3154,7 +3156,7 @@ jr_055_4fbe:
 
 
 jr_055_4fd2:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     bit 6, a
     jr z, jr_055_4fdf
 
@@ -3163,7 +3165,7 @@ jr_055_4fd2:
     jr jr_055_4fea
 
 jr_055_4fdf:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     bit 7, a
     jr z, jr_055_4ff4
 
@@ -3180,9 +3182,9 @@ jr_055_4ff4:
     ld a, [wMenu_selection]
     ld c, a
     ld b, $00
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     add hl, bc
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     and $10
     jr z, jr_055_5008
 
@@ -3190,7 +3192,7 @@ jr_055_4ff4:
     jr jr_055_501b
 
 jr_055_5008:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     and $20
     jr z, jr_055_5012
 
@@ -3198,7 +3200,7 @@ jr_055_5008:
     jr jr_055_501b
 
 jr_055_5012:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $01
     jr z, jr_055_5031
 
@@ -3217,7 +3219,7 @@ jr_055_501b:
     call z, Call_055_5098
 
 jr_055_5031:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $02
     jr z, jr_055_5046
 
@@ -3231,7 +3233,7 @@ jr_055_5031:
 
 
 jr_055_5046:
-    ld de, $c0a0
+    ld de, wDebug_main_menu_option
     ld hl, $98ca
     ld b, $01
     ld c, $02
@@ -3250,8 +3252,8 @@ jr_055_5050:
     jr nz, jr_055_506b
 
     xor a
-    call Call_000_1ab9
-    call Call_000_1ab9
+    call Write_OAM_Tile
+    call Write_OAM_Tile
     jr jr_055_506f
 
 jr_055_506b:
@@ -3297,7 +3299,7 @@ jr_055_507c:
 Call_055_5098:
     push af
     ld a, [wMenu_selection]
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     add l
     ld l, a
     ld a, $00
@@ -3419,7 +3421,7 @@ jr_055_50d8:
     sbc l
     nop
     nop
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $08
     jr z, jr_055_5162
 
@@ -3441,7 +3443,7 @@ Jump_055_5139:
 jr_055_5139:
     ld a, $59
     call Call_000_1b2c
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     ld a, [hl+]
     ld [$da02], a
     ld a, [hl+]
@@ -3462,7 +3464,7 @@ jr_055_5139:
 
 
 jr_055_5162:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     bit 6, a
     jr z, jr_055_516f
 
@@ -3471,7 +3473,7 @@ jr_055_5162:
     jr jr_055_517a
 
 jr_055_516f:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     bit 7, a
     jr z, jr_055_5184
 
@@ -3488,9 +3490,9 @@ jr_055_5184:
     ld a, [wMenu_selection]
     ld c, a
     ld b, $00
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     add hl, bc
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     and $10
     jr z, jr_055_5198
 
@@ -3498,7 +3500,7 @@ jr_055_5184:
     jr jr_055_51ab
 
 jr_055_5198:
-    ld a, [$c847]
+    ld a, [wJoypad_Current]
     and $20
     jr z, jr_055_51a2
 
@@ -3506,7 +3508,7 @@ jr_055_5198:
     jr jr_055_51ab
 
 jr_055_51a2:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $01
     jr z, jr_055_51e4
 
@@ -3540,7 +3542,7 @@ jr_055_51ab:
     call z, Call_055_5232
 
 jr_055_51e4:
-    ld a, [$c846]
+    ld a, [wJoypad_current_frame]
     and $02
     jr z, jr_055_51f2
 
@@ -3550,7 +3552,7 @@ jr_055_51e4:
 
 
 jr_055_51f2:
-    ld de, $c0a0
+    ld de, wDebug_main_menu_option
     ld hl, $98cb
     ld b, $01
     ld c, $08
@@ -3569,9 +3571,9 @@ jr_055_51fc:
     jr nz, jr_055_521a
 
     xor a
-    call Call_000_1ab9
-    call Call_000_1ab9
-    call Call_000_1ab9
+    call Write_OAM_Tile
+    call Write_OAM_Tile
+    call Write_OAM_Tile
     jr jr_055_5222
 
 jr_055_521a:
@@ -3601,7 +3603,7 @@ Call_055_5232:
 Jump_055_5232:
     push af
     ld a, [wMenu_selection]
-    ld hl, $c0a0
+    ld hl, wDebug_main_menu_option
     add l
     ld l, a
     ld a, $00
@@ -3701,7 +3703,7 @@ Jump_055_52ad:
 
 Call_055_52fc:
 jr_055_52fc:
-    call Call_000_1ab9
+    call Write_OAM_Tile
     inc a
     dec b
     jr nz, jr_055_52fc
@@ -3726,11 +3728,11 @@ Call_055_5315:
     swap a
     and $0f
     inc a
-    call Call_000_1ab9
+    call Write_OAM_Tile
     ld a, c
     and $0f
     inc a
-    call Call_000_1ab9
+    call Write_OAM_Tile
     ret
 
 

@@ -11310,7 +11310,7 @@ jr_013_7381:
 
 jr_013_73cb:
     ld a, $ff
-    call Call_000_1ab9
+    call Write_OAM_Tile
     dec b
     jr nz, jr_013_73cb
 

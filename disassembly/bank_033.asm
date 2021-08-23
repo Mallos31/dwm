@@ -12598,7 +12598,7 @@ jr_033_77f9:
 
 
 jr_033_7807:
-    ld a, [$c0a0]
+    ld a, [wDebug_main_menu_option]
     rra
     jr nc, jr_033_7815
 
