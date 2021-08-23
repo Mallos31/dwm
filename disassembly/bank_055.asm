@@ -2450,10 +2450,10 @@ jr_055_4b35:
 
 
     ld a, [wJoypad_current_frame]
-    bit 2, a
-    jr z, jr_055_4b72
+    bit 2, a				
+    jr z, jr_055_4b72			;if select was not pressed, jump over next code block
 
-    xor a
+    xor a				;if select was pressed, rest a and put it in a bunch of addresses. 
     ld [$df0b], a
     ld [$df0c], a
     ld [$df02], a
@@ -2461,16 +2461,16 @@ jr_055_4b35:
     ld [$df00], a
     ld [$df01], a
     ld a, $0b
-    ld [$c88a], a
-    xor a
-    ld [$c88b], a
-    ld hl, $c88e
-    inc [hl]
-    reti
+    ld [$c88a], a			;load B into the current menu type (message debugger)
+    xor a				;reset a
+    ld [$c88b], a			;use a to reset current debug menu page (page 1)
+    ld hl, $c88e			
+    inc [hl]				;inc c88e to initiate the screen fade and change.
+    reti				;ret and enable interrupts. 
 
 
 jr_055_4b72:
-    ld a, [$c88b]
+    ld a, [$c88b]		;load current debug menu ID into a
     rst $00
     ;DATA BETWEEN COMMENTS IS NOT VALID CODE
     add d
@@ -2500,7 +2500,7 @@ jr_055_4b72:
 .check_up_and_left:
     ld a, [wJoypad_Current]
     and $60
-    jr z, Preap_Debug_Menu_OAM_tile_ID
+    jr z, Prep_Debug_Menu_OAM_tile_ID
 
     ld a, [wDebug_main_menu_option]
     dec a
@@ -2514,7 +2514,7 @@ jr_055_4ba6:
     ld a, $59
     call Call_000_1b2c
 
-Preap_Debug_Menu_OAM_tile_ID:
+Prep_Debug_Menu_OAM_tile_ID:
     ld a, [wDebug_main_menu_option]
     swap a
     add $a0
@@ -2558,15 +2558,15 @@ jr_055_4bdc:			;Likely inits data for the title screen
     inc [hl]
     ret
 
-
+    ;ONCE IN THE GOTO PROGRAM MENU
     ld a, [wJoypad_current_frame]
-    and $08
-    jr z, jr_055_4c52
+    and $08				;checks if start is pressed
+    jr z, jr_055_4c52			;if no, skip next code block and check other buttons. 
 
-    ld a, $59
+    ld a, $59				
     call Call_000_1b2c
     call Call_000_12d0
-    ld a, [$c899]
+    ld a, [$c899]			;possible RNG? Otherwise just some timer. 
     inc a
     ld [$da03], a
     call Call_000_12d0
@@ -2605,43 +2605,43 @@ jr_055_4bdc:			;Likely inits data for the title screen
 
 jr_055_4c52:
     ld a, [wJoypad_Current]
-    bit 6, a
+    bit 6, a			;check if up is pressed
     jr z, jr_055_4c5f
 
-    ld a, [wMenu_selection]
-    dec a
-    jr jr_055_4c6a
+    ld a, [wMenu_selection]	
+    dec a			;move option cursor up
+    jr Menu_option_wrap_around
 
 jr_055_4c5f:
     ld a, [wJoypad_Current]
-    bit 7, a
+    bit 7, a			;check if down pressed
     jr z, jr_055_4c74
 
     ld a, [wMenu_selection]
-    inc a
+    inc a			;inc menu selection. In this menu, it goes down to the next option. 
 
-jr_055_4c6a:
-    and $03
+Menu_option_wrap_around:
+    and $03			;clever way of resetting to 0 (top of the menu) if selection is larger than $03
     ld [wMenu_selection], a
     ld a, $59
-    call Call_000_1b2c
+    call Call_000_1b2c		;loads a into c8b8. Unknown what this does yet. 
 
 jr_055_4c74:
-    ld a, [wMenu_selection]
+    ld a, [wMenu_selection]		
     ld c, a
     ld b, $00
     ld hl, wDebug_main_menu_option
     add hl, bc
     ld a, [wJoypad_Current]
-    and $10
-    jr z, jr_055_4c88
+    and $10			;check if right was pushed
+    jr z, jr_055_4c88		;if not, skip the next code block
 
-    inc [hl]
+    inc [hl]			;if right was pressed, increment the selected menu option 
     jr jr_055_4c9b
 
 jr_055_4c88:
     ld a, [wJoypad_Current]
-    and $20
+    and $20			;check if left was pressed
     jr z, jr_055_4c92
 
     dec [hl]
@@ -2649,8 +2649,8 @@ jr_055_4c88:
 
 jr_055_4c92:
     ld a, [wJoypad_current_frame]
-    and $01
-    jr z, jr_055_4ca0
+    and $01			;check if A was pressed
+    jr z, Return_to_debug_main_menu
 
     xor a
     ld [hl], a
@@ -2659,9 +2659,9 @@ jr_055_4c9b:
     ld a, $59
     call Call_000_1b2c
 
-jr_055_4ca0:
+Return_to_debug_main_menu:
     ld a, [wJoypad_current_frame]
-    and $02
+    and $02			;check if B was pressed
     jr z, jr_055_4cb5
 
     ld a, $59

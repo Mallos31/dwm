@@ -499,21 +499,21 @@ Call_009_4256:
     jr jr_009_42b3
 
 jr_009_428c:
-    ld a, [wJoypad_current_frame]	;load game state into a
-    bit 4, a		;check bit 4 (shop) of game state
-    jr z, jr_009_42cf	;if zero, jump
+    ld a, [wJoypad_current_frame]	
+    bit 4, a		  ; checking if your pressing right
+    jr z, jr_009_42cf	
 
     ld a, [$df0d]	;df0d = the current page in the shop, but changing it does not update the page number on screen. 
     inc a		;inc a to open the message window
     and $01		;and a with 01 to make sure it's the only bit set
-    ld [$df0d], a
-    inc hl
-    ld a, [hl]
-    inc a
+    ld [$df0d], a   ; load the contents of a (mesage window status) into df0d
+    inc hl  ; add 1 to hl (unknown pointer)
+    ld a, [hl]  ; load the contents of hl (unknown pointer +1) into a
+    inc a   ; add 1 to a
     push af
-    push de
+    push de     
     push bc
-    ld a, b
+    ld a, b     ; load the contents of b 
     ld b, c
     dec b
     call Call_000_1dfb
@@ -529,28 +529,28 @@ jr_009_428c:
     ld a, $00
 
 jr_009_42b3:
-    ld [hl-], a
-    dec c
-    cp c
-    jr nz, jr_009_4312
+    ld [hl-], a     ; load the contents of a (unknown pointer) into hl then -1
+    dec c   ; subtract 1 from c
+    cp c    ; compare a and c
+    jr nz, jr_009_4312  ; if the last resault was not 0 jump to 4312
 
-    ld a, [$c8e1]
-    ld c, a
+    ld a, [$c8e1]   ; load the contents of c8e1 () into a
+    ld c, a     ; load the contents of a (c8el)into c
     push de
     push bc
-    ld a, b
-    ld b, c
+    ld a, b     ; load the contents of b (unknown variable) into a
+    ld b, c     ; load the contents of c (c8el) into b
     call Call_000_1dfb
     pop bc
     pop de
     or a
     jr z, jr_009_4312
 
-    dec a
-    cp [hl]
-    jr nc, jr_009_4312
+    dec a   ; subtract 1 from a
+    cp [hl]     ; compare hl (unknown pointer -1) to a
+    jr nc, jr_009_4312 
 
-    ld [hl], a
+    ld [hl], a  ; load the contents of a ( which must be smaller than hl) into hl
     jr jr_009_4312
 
 Jump_009_42cf:
@@ -662,8 +662,8 @@ jr_009_433a:
     jr jr_009_4311
 
 Call_009_434a:
-    res 7, [hl]
-    ld a, c
+    res 7, [hl]     ; set contents of bit 7 of hl ($c8da) to 0
+    ld a, c     ; load the contents of c (unknown pointer) into a
     ldh [$d7], a
     ld a, [wJoypad_Current]
     bit 7, a
@@ -870,18 +870,18 @@ jr_009_4444:
     ld b, $00   ; load $00 into b
 
 jr_009_4447:
-    ld a, [de]
-    ld l, a
-    inc de
-    ld a, [de]
-    ld h, a
-    inc de
-    and l
-    cp $ff
-    ret z
+    ld a, [de]  ; load the contents of de (unknown pointer) to a
+    ld l, a     ; load the contents of a (unknown pointer) into l
+    inc de  ; add 1 to de (unknown pointer)
+    ld a, [de]  ; load the contents of de (unknown pointer +1) into a 
+    ld h, a     ; load the contents of a (unknown pointer +1) into h
+    inc de  ; add 1 to de
+    and l   ; compares h and l (to set flags)
+    cp $ff  ; compares h to ff
+    ret z   ; returns to the function that called this one if last resault was 0
 
-    ld a, l
-    ldh [$d5], a
+    ld a, l     ; load the contents of l (unknown pointer) into a
+    ldh [$d5], a    ; 
     ld a, h
     ldh [$d6], a
     push de
