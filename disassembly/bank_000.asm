@@ -71,7 +71,7 @@ Jump_000_0014:
 
 Call_000_0015:
 Jump_000_0015:
-    ld [$2100], a
+    ld [$2100], a	;load value in h as the new rom bank
 
 RST_18::
     swap a
@@ -81,7 +81,7 @@ Jump_000_001a:
     and $03
 
 Jump_000_001d:
-    ld [$4100], a
+    ld [$4100], a	;load ram bank
 
 RST_20::
     add hl, hl
@@ -3150,9 +3150,9 @@ Jump_000_0d6f:
 
 
 Call_000_0d78:
-    ld a, [$4000]
+    ld a, [$4000]	;rom bank to a
     push af
-    ld a, [$c824]
+    ld a, [$c824]	;
     ld [$2100], a
     ld a, [hl]
     ld b, a
@@ -3162,11 +3162,8 @@ Call_000_0d78:
     ret
 
 
-    jr nc, jr_000_0db4
-
-    ld [hl], $25
-    jr c, jr_000_0db9
-
+    db $30, $28, $36, $25, $38, $29	;@TEXT "MSGBUF" ;0d8a
+    
     ldh a, [$f0]
     set 7, [hl]
     daa

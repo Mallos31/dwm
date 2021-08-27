@@ -5,58 +5,10 @@
 
 SECTION "ROM Bank $056", ROMX[$4000], BANK[$56]
 
-    db $56
-
-    ld bc, $0849
-    ld c, c
-    rrca
-    ld c, c
-
-    db $16, $49, $46, $4a, $85, $44, $c7, $44
-
-    ccf
-    ld b, b
-    ld h, h
-    ld b, b
-    ld h, a
-    ld l, b
-    add d
-    ld l, b
-    and e
-    ld l, b
-    add $68
-    ld [hl], c
-    ld l, d
-    rst $00
-    ld l, e
-    xor b
-    ld l, h
-    rrca
-    ld l, l
-    ld a, l
-    ld l, l
-    sbc $6d
-    jr nc, jr_056_4097
-
-    sub [hl]
-    ld l, [hl]
-    sub $6e
-    dec h
-    ld l, a
-    adc d
-    ld l, a
-    jp c, Jump_000_0c6f
-
-    ld [hl], b
-    ld e, [hl]
-    ld [hl], b
-    pop bc
-    ld [hl], b
-    scf
-    ld [hl], c
-    or b
-    ld [hl], c
-    jr jr_056_40b1
+    db $56, $01, $49, $08, $49, $0f, $49, $16, $49, $46, $4a, $85, $44, $c7, $44, $3f
+    db $40, $64, $40, $67, $68, $82, $68, $a3, $68, $c6, $68, $71, $6a, $c7, $6b, $a8
+    db $6c, $0f, $6d, $7d, $6d, $de, $6d, $30, $6e, $96, $6e, $d6, $6e, $25, $6f, $8a
+    db $6f, $da, $6f, $0c, $70, $5e, $70, $c1, $70, $37, $71, $b0, $71, $18, $72
 
     xor a
     ld hl, $9800
@@ -1118,12 +1070,12 @@ jr_056_4128:
     rst $38
 
 Call_056_4485:
-    ld hl, $c829
+    ld hl, $c829	
     ld a, [hl+]
     or [hl]
     ret z
 
-    ld a, [$c827]
+    ld a, [$c827]	;loads address to start of which vram bank to load to into hl and 
     ld l, a
     ld a, [$c828]
     ld h, a
@@ -1142,13 +1094,13 @@ jr_056_449b:
 jr_056_44a1:
     di
 
-jr_056_44a2:
+jr_056_44a2:		;copy blank tile from rom to vram when in vblank
     ldh a, [rSTAT]
     bit 1, a
     jr nz, jr_056_44a2
 
-    ld a, [de]
-    ld [hl+], a
+    ld a, [de]			;load byte of 2bpp tile into vram
+    ld [hl+], a			;
     ei
     inc de
     dec b
@@ -1164,7 +1116,7 @@ jr_056_44a2:
     ret
 
 
-    INCBIN "gfx/image_056_44b7.2bpp"
+    INCBIN "gfx/image_056_44b7.2bpp"	;blank tile
 
     ld a, d
     ld [$c83a], a
@@ -1677,8 +1629,8 @@ jr_056_478a:
     cp $0b
     jr nz, jr_056_4806
 
-    ld hl, $0d8a
-    ld a, l
+    ld hl, $0d8a		;ptr to text "MSGBUF"
+    ld a, l			;
     ld [$c82d], a
     ld a, h
     ld [$c82e], a
@@ -2226,9 +2178,9 @@ jr_056_4b61:
     jr jr_056_4b69
 
 jr_056_4b66:
-    ld [$df07], a
+    ld [$df07], a		;tile ID in Message Debug menu option. Current row stored in either df00 or df03. Option itself is stored in df01
 
-jr_056_4b69:
+jr_056_4b69:;decrese msg debug option
     ld a, [$df01]
     dec a
     ld [$df01], a
@@ -2236,21 +2188,21 @@ jr_056_4b69:
 
 
 Jump_056_4b71:
-    ld a, [wJoypad_current_frame]
-    bit 2, a
-    jr z, jr_056_4b9e
+    ld a, [wJoypad_current_frame]	;check if the B button is pressed
+    bit 2, a				
+    jr z, jr_056_4b9e			;if not, skip to the check for the A button
 
-    ld a, [$c88b]
+    ld a, [$c88b]			;load msg debug page into a and increment.
     inc a
-    cp $0a
-    jr nz, jr_056_4b82
+    cp $0a			
+    jr nz, jr_056_4b82			;if it reaches page $0a, skip the jump and reset it to $00
 
     ld a, $00
 
 jr_056_4b82:
-    ld [$c88b], a
-    ld hl, $c88e
-    inc [hl]
+    ld [$c88b], a			;if the next page was not $0a, store the incremented value into the current page number
+    ld hl, $c88e			;inc this to change the page
+    inc [hl]				;see?
     ld a, [$c88b]
     ld c, $04
     call Call_000_1dbe
@@ -2579,23 +2531,23 @@ jr_056_4d54:
 
 
 Jump_056_4d63:
-    ld a, [$c842]
+    ld a, [$c842]	;checks if start has been pressed. If it has, exit the function
     and $08
     cp $08
     jr nz, jr_056_4d79
 
-    ld a, $07
+    ld a, $07		;7, the ID for the debug main menu is loaded into the current screen byte.
     ld [$c88a], a
     xor a
-    ld [$c88b], a
+    ld [$c88b], a	;and it is reset to the first page. 
     ld hl, $c88e
-    inc [hl]
+    inc [hl]		;and inc c88e to change the screen. 
 
 jr_056_4d79:
     ret
 
 
-Call_056_4d7a:
+Call_056_4d7a:		;function for blinking the msg debug selection
     ld a, [$df08]
     cp $00
     jr nz, jr_056_4db5
@@ -2606,9 +2558,9 @@ Call_056_4d7a:
     ld h, a
     ld a, [$df05]
     ld l, a
-    ld a, [$df09]
+    ld a, [$df09]	;msg_debug selection blink flag
     cp $00
-    jr nz, jr_056_4da3
+    jr nz, jr_056_4da3	
 
     ld a, $1f
     call Write_OAM_Tile
@@ -2758,5214 +2710,487 @@ Call_056_4dba:
     dec c
     nop
 
+   ;@TEXT msgdebug page 1
+   
+   ;[ MESSEGE
+   ;     DEBUG ]
+   ;  TESTMES
+   ;DEBUGNAME
+   ;   SYSMES
+   ; MNAMEMES
+   
     db $96, $62, $30, $28, $36, $36, $28, $2a, $28, $f1, $62, $62, $62, $62, $62, $27
     db $28, $25, $38, $2a, $62, $97, $f1, $62, $62, $37, $28, $36, $37, $30, $28, $36
     db $f1, $27, $28, $25, $38, $2a, $31, $24, $30, $28, $f1, $62, $62, $62, $36, $3c
-    db $36, $30, $28, $36, $f1, $62, $30, $31, $24, $30, $28, $30, $28, $36, $f1, $00
-    db $01, $02, $03, $04, $05, $06, $07, $08, $09, $24, $25, $26, $27, $28, $29, $62
-    db $2e, $28, $2c, $37, $32, $38, $30, $28, $36, $f1, $36, $3c, $38, $3d, $32, $2e
-    db $38, $30, $28, $36, $f1, $37, $32, $2e, $38, $2a, $2c, $31, $24, $30, $28, $f1
-    db $62, $62, $62, $36, $3c, $38, $31, $24, $30, $28, $f0, $62, $62, $2c, $37, $28
-    db $30, $31, $24, $30, $28, $f1, $62, $62, $62, $2c, $37, $28, $30, $30, $28, $36
-    db $f1, $36, $28, $2c, $2e, $24, $2e, $38, $30, $28, $36, $f1, $62, $25, $37, $2f
-    db $3a, $2c, $31, $30, $28, $36, $f0, $62, $25, $24, $37, $37, $2f, $28, $30, $28
-    db $36, $f1, $62, $62, $2c, $37, $28, $30, $30, $28, $36, $02, $f1, $37, $32, $2e
-    db $38, $2a, $38, $30, $28, $36, $02, $f1, $2e, $24, $2c, $3a, $24, $30, $28, $36
-    db $00, $00, $f0, $2e, $24, $2c, $3a, $24, $30, $28, $36, $00, $01, $f1, $2e, $24
-    db $2c, $3a, $24, $30, $28, $36, $00, $02, $f1, $2e, $24, $2c, $3a, $24, $30, $28
-    db $36, $00, $03, $f1, $2e, $24, $2c, $3a, $24, $30, $28, $36, $00, $04, $f0, $2e
-    db $24, $2c, $3a, $24, $30, $28, $36, $00, $05, $f1, $2e, $24, $2c, $3a, $24, $30
-    db $28, $36, $00, $06, $f1, $2e, $24, $2c, $3a, $24, $30, $28, $36, $00, $07, $f1
-    db $2e, $24, $2c, $3a, $24, $30, $28, $36, $00, $08, $f0, $2e, $24, $2c, $3a, $24
-    db $30, $28, $36, $00, $09, $f1, $62, $62, $62, $62, $25, $37, $2f, $30, $28, $36
-    db $f1, $62, $62, $62, $25, $37, $2f, $30, $28, $36, $01, $f1, $62, $62, $62, $25
-    db $37, $2f, $30, $28, $36, $02, $f0
+    db $36, $30, $28, $36, $f1, $62, $30, $31, $24, $30, $28, $30, $28, $36, $f1
+   
+   ;@TEXT msgdebug hex digits
+   ;0123456789ABCDEF
+    db $00, $01, $02, $03, $04, $05, $06, $07, $08, $09, $24, $25, $26, $27, $28, $29
+   
+   ;@TEXT msgdebug page 2
+   
+   ; KEITOUMES
+   ;SYUZOKUMES
+   ;TOKUGINAME
+   ;   SYUNAME
+   
+    db $62, $2E, $28, $2C, $37, $32, $38, $30, $28, $36, $F1, $36, $3C, $38, $3D, $32
+    db $2E, $38, $30, $28, $36, $F1, $37, $32, $2E, $38, $2A, $2C, $31, $24, $30, $28
+    db $F1, $62, $62, $62, $36, $3C, $38, $31, $24, $30, $28, $F0
+   
+   ;@TEXT msgdebug page 3
+   
+   ;  ITEMNAME
+   ;   ITEMMES
+   ;SEIKAKUMES
+   ; BTLWINMES
+   
+    db $62, $62, $2C, $37, $28, $30, $31, $24, $30, $28, $F1, $62, $62, $62, $2C, $37
+    db $28, $30, $30, $28, $36, $F1, $36, $28, $2C, $2E, $24, $2E, $38, $30, $28, $36
+    db $F1, $62, $25, $37, $2F, $3A, $2C, $31, $30, $28, $36, $F0
+   
+   ;@TEXT msgdebug page 4 
+   
+   ; BATTLEMES
+   ;  ITEMMES2
+   ;TOKUGUMES2
+   ;KAIWAMES00
+   
+    db $62, $25, $24, $37, $37, $2F, $28, $30, $28, $36, $F1, $62, $62, $2C, $37, $28
+    db $30, $30, $28, $36, $02, $F1, $37, $32, $2E, $38, $2A, $38, $30, $28, $36, $02
+    db $F1, $2E, $24, $2C, $3A, $24, $30, $28, $36, $00, $00, $F0
+   
+   ;@TEXT msgdebug page 5
+   
+   ;KAIWAMES01
+   ;KAIWAMES02
+   ;KAIWAMES03
+   ;KAIWAMES04
+   
+    db $2E, $24, $2C, $3A, $24, $30, $28, $36, $00, $01, $F1, $2E, $24, $2C, $3A, $24
+    db $30, $28, $36, $00, $02, $F1, $2E, $24, $2C, $3A, $24, $30, $28, $36, $00, $03
+    db $F1, $2E, $24, $2C, $3A, $24, $30, $28, $36, $00, $04, $F0
+   
+   ;@TEXT msgdebug page 6
+   
+   ;KAIWAMES05
+   ;KAIWAMES06
+   ;KAIWAMES07
+   ;KAIWAMES08
+   
+    db $2E, $24, $2C, $3A, $24, $30, $28, $36, $00, $05, $F1, $2E, $24, $2C, $3A, $24
+    db $30, $28, $36, $00, $06, $F1, $2E, $24, $2C, $3A, $24, $30, $28, $36, $00, $07
+    db $F1, $2E, $24, $2C, $3A, $24, $30, $28, $36, $00, $08, $F0
+   
+   ;@TEXT msgdebug page 7
 
-    ld h, d
-    ld h, d
-    ld h, d
-    dec h
-    scf
-    cpl
-    ld h, $30
-    daa
-    pop af
-    ld h, d
-    ld h, d
-    dec h
-    scf
-    cpl
-    jr nc, @+$2a
+   ;KAIWAMES09
+   ;    BTLMES
+   ;   BTLMES1
+   ;   BTLMES2
+   
+    db $2E, $24, $2C, $3A, $24, $30, $28, $36, $00, $09, $F1, $62, $62, $62, $62, $25
+    db $37, $2F, $30, $28, $36, $F1, $62, $62, $62, $25, $37, $2F, $30, $28, $36, $01
+    db $F1, $62, $62, $62, $25, $37, $2F, $30, $28, $36, $02, $F0
 
-    ld [hl], $04
-    pop af
-    ld [hl], $37
-    inc h
-    add hl, hl
-    add hl, hl
-    jr nc, @+$2a
+   ;@TEXT msgdebug page 8
+   
+   ;   BTLCMD
+   ;  BTLMES4
+   ;STAFFMES0
+   ;STAFFMES1
+   
+    db $62, $62, $62, $25, $37, $2f, $26, $30, $27, $f1, $62, $62, $25, $37, $2f, $30
+    db $28, $36, $04, $f1, $36, $37, $24, $29, $29, $30, $28, $36, $00, $f1, $36, $37
+    db $24, $29, $29, $30, $28, $36, $01, $f0
+    
+   ;@TEXT msgdebug page 9
 
-    ld [hl], $00
-    pop af
-    ld [hl], $37
-    inc h
-    add hl, hl
-    add hl, hl
-    jr nc, @+$2a
+   ;ENDINGMES
+   ;MONHAIMES
+   ;MONINFMES
+   ;TOKUGIMES
+   
+    db $28, $31, $27, $2c, $31, $2a, $30, $28, $36, $f1, $30, $32, $31, $2b, $24, $2c
+    db $30, $28, $36, $f1, $30, $32, $31, $2c, $31, $29, $30, $28, $36, $f1, $37, $32
+    db $2e, $38, $2a, $2c, $30, $28, $36, $f0
+    
+   ;@TEXT msgdebug page 10
 
-    ld [hl], $01
-    ldh a, [$28]
-    ld sp, $2c27
-    ld sp, $302a
-    jr z, jr_056_500a
+   ; DEMOMES00
+   ;DEMONAME00
+   ; BOOKMES00
+   ; OBJTMES00
+   
+    db $62, $27, $28, $30, $32, $30, $28, $36, $00, $00, $f1, $27, $28, $30, $32, $31
+    db $24, $30, $28, $00, $00, $f1, $62, $25, $32, $32, $2e, $30, $28, $36, $00, $00
+    db $f1, $62, $32, $25, $2d, $37, $30, $28, $36, $00, $00, $f0
+    
+   ;@TEXT msgdebug error
 
-    pop af
-    jr nc, jr_056_5009
-
-    ld sp, $242b
-    inc l
-    jr nc, jr_056_5005
-
-    ld [hl], $f1
-    jr nc, jr_056_5013
-
-    ld sp, $312c
-    add hl, hl
-    jr nc, jr_056_500f
-
-    ld [hl], $f1
-    scf
-    ld [hl-], a
-    ld l, $38
-    ld a, [hl+]
-    inc l
-    jr nc, jr_056_5019
-
-    ld [hl], $f0
-    ld h, d
-    daa
-    jr z, jr_056_5027
-
-    ld [hl-], a
-    jr nc, @+$2a
-
-    ld [hl], $00
-    nop
-    pop af
-    daa
-    jr z, jr_056_5031
-
-    ld [hl-], a
-    ld sp, $3024
-
-jr_056_5005:
-    jr z, jr_056_5007
-
-jr_056_5007:
-    nop
-    pop af
-
-jr_056_5009:
-    ld h, d
-
-jr_056_500a:
-    dec h
-    ld [hl-], a
-    ld [hl-], a
-    ld l, $30
-
-jr_056_500f:
-    jr z, jr_056_5047
-
-    nop
-    nop
-
-jr_056_5013:
-    pop af
-    ld h, d
-    ld [hl-], a
-    dec h
-    dec l
-    scf
-
-jr_056_5019:
-    jr nc, jr_056_5043
-
-    ld [hl], $00
-    nop
-    ldh a, [$2c]
-    ld sp, $2439
-    cpl
-    inc l
-    daa
-    ld h, d
-
-jr_056_5027:
-    ld sp, $3038
-    dec h
-    jr z, jr_056_5062
-
-    ld h, e
-    ldh a, [$2c]
-    ld c, e
-
-jr_056_5031:
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    pop af
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-
-jr_056_5043:
-    ld h, d
-    ld a, $62
-    ld d, b
-
-jr_056_5047:
-    ld c, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, e
-    ld b, [hl]
-    ld c, a
-    ld b, d
-    pop af
-    ccf
-    ld a, $49
-    ld c, c
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-
-jr_056_5062:
-    ld a, $44
-    ld b, d
-    pop af
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld a, $62
-    ld b, h
-    ld b, [hl]
-    ld a, $4b
-    ld d, c
-    pop af
-    ld b, e
-    ld b, [hl]
-    ld c, a
-    ld b, d
-    ld h, d
-    ccf
-    ld a, $49
-    ld c, c
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    pop af
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld c, l
-    ld b, [hl]
-    ld c, c
-    ld c, c
-    ld a, $4f
-    ld d, b
-    ld h, d
-    ld c, h
-    ld b, e
-    pop af
-    ld b, e
-    ld b, [hl]
-    ld c, a
-    ld b, d
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    pop af
-    ld a, $62
-    ld d, b
-    ld c, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ccf
-    ld c, c
-    ld a, $57
-    ld b, d
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    pop af
-    ld a, $62
-    ld b, l
-    ld d, d
-    ld b, h
-    ld b, d
-    ld h, d
-    ccf
-    ld c, c
-    ld a, $57
-    ld b, d
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    pop af
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld a, $62
-    ccf
-    ld b, [hl]
-    ld b, h
-    ld h, d
-    ccf
-    ld c, c
-    ld a, $57
-    ld b, d
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    pop af
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld d, l
-    ld c, l
-    ld c, c
-    ld c, h
-    ld d, b
-    ld b, [hl]
-    ld c, h
-    ld c, e
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    pop af
-    ld b, d
-    ld d, l
-    ld c, l
-    ld c, c
-    ld c, h
-    ld d, b
-    ld b, [hl]
-    ld c, h
-    ld c, e
-    ld d, b
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    pop af
-    ld a, $62
-    dec hl
-    jr c, jr_056_51ec
-
-    jr z, jr_056_5226
-
-    ld b, d
-    ld d, l
-    ld c, l
-    ld c, c
-    ld c, h
-    ld d, b
-    ld b, [hl]
-    ld c, h
-    ld c, e
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld d, b
-    pop af
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-
-jr_056_51ec:
-    ld d, b
-    pop af
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld a, $62
-    ld d, h
-    ld b, l
-    ld b, [hl]
-    ld c, a
-    ld c, c
-    ld d, h
-    ld b, [hl]
-    ld c, e
-    ld b, c
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld d, b
-    pop af
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    pop af
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld a, $62
-
-jr_056_5226:
-    ld d, c
-    ld c, h
-    ld c, a
-    ld c, e
-    ld a, $41
-    ld c, h
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld d, b
-    pop af
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    pop af
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld a, $62
-    ld b, l
-    ld d, d
-    ld c, a
-    ld c, a
-    ld b, [hl]
-    ld b, b
-    ld a, $4b
-    ld b, d
-    ldh a, [$29]
-    ld c, a
-    ld b, d
-    ld b, d
-    ld d, a
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld b, [hl]
-    ld b, b
-    ld b, d
-    ldh a, [$37]
-    ld d, d
-    ld c, a
-    ld c, e
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    pop af
-    ld b, [hl]
-    ld c, e
-    ld d, c
-    ld c, h
-    ld h, d
-    ld b, [hl]
-    ld b, b
-    ld b, d
-    ldh a, [rNR50]
-    ld d, c
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld a, $f1
-    ld b, e
-    ld c, a
-    ld b, [hl]
-    ld b, h
-    ld b, [hl]
-    ld b, c
-    ld h, d
-    ccf
-    ld c, c
-    ld b, [hl]
-    ld d, a
-    ld d, a
-    ld a, $4f
-    ld b, c
-    ldh a, [$36]
-    ld d, c
-    ld c, a
-    ld b, [hl]
-    ld c, b
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    pop af
-    ld c, c
-    ld b, [hl]
-    ld b, h
-    ld b, l
-    ld d, c
-    ld c, e
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    ldh a, [$36]
-    ld d, c
-    ld c, a
-    ld b, [hl]
-    ld c, b
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    pop af
-    ld a, $62
-    ld d, c
-    ld b, l
-    ld d, d
-    ld c, e
-    ld b, c
-    ld b, d
-    ld c, a
-    ccf
-    ld c, h
-    ld c, c
-    ld d, c
-    ldh a, [$36]
-    ld d, c
-    ld c, a
-    ld b, [hl]
-    ld c, b
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    pop af
-    ld d, c
-    ld b, l
-    ld d, d
-    ld c, e
-    ld b, c
-    ld b, d
-    ld c, a
-    ccf
-    ld c, h
-    ld c, c
-    ld d, c
-    ld d, b
-    ldh a, [$2c]
-    ld c, e
-    ld d, b
-    ld d, c
-    ld a, $4b
-    ld d, c
-    ld c, c
-    ld d, [hl]
-    ld h, d
-    ld c, b
-    ld c, e
-    ld c, h
-    ld b, b
-    ld c, b
-    ld d, b
-    pop af
-    ld c, h
-    ld d, d
-    ld d, c
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ldh a, [$2c]
-    ld c, e
-    ld d, b
-    ld d, c
-    ld a, $4b
-    ld d, c
-    ld c, c
-    ld d, [hl]
-    ld h, d
-    ld c, b
-    ld c, e
-    ld c, h
-    ld b, b
-    ld c, b
-    ld d, b
-    pop af
-    ld c, h
-    ld d, d
-    ld d, c
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$2e]
-    ld c, e
-    ld c, h
-    ld b, b
-    ld c, b
-    ld d, b
-    ld h, d
-    ld c, h
-    ld d, d
-    ld d, c
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    pop af
-    ld b, b
-    ld a, $50
-    ld d, c
-    ld b, d
-    ld c, a
-    ld h, d
-    ld a, $4b
-    ld b, c
-    pop af
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$33]
-    ld d, d
-    ld d, c
-    ld d, b
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    pop af
-    ld d, c
-    ld c, h
-    ld h, d
-    ld d, b
-    ld c, c
-    ld b, d
-    ld b, d
-    ld c, l
-    ldh a, [$33]
-    ld d, d
-    ld d, c
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    pop af
-    ld d, c
-    ld c, h
-    ld h, d
-    ld d, b
-    ld c, c
-    ld b, d
-    ld b, d
-    ld c, l
-    ldh a, [$36]
-    ld d, d
-    ld d, b
-    ld c, l
-    ld b, d
-    ld c, e
-    ld b, c
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld b, e
-    ld c, a
-    ld c, h
-    ld c, d
-    pop af
-    ld b, b
-    ld a, $50
-    ld d, c
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    ld h, d
-    ld d, b
-    ld c, l
-    ld b, d
-    ld c, c
-    ld c, c
-    ld d, b
-    ldh a, [$28]
-    ld c, e
-    ld b, h
-    ld d, d
-    ld c, c
-    ld b, e
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld a, $4b
-    pop af
-    ld b, [hl]
-    ld c, c
-    ld c, c
-    ld d, d
-    ld d, b
-    ld b, [hl]
-    ld c, h
-    ld c, e
-    ldh a, [rNR52]
-    ld c, h
-    ld c, e
-    ld b, e
-    ld d, d
-    ld d, b
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$36]
-    ld d, c
-    ld b, d
-    ld a, $49
-    ld d, b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ld l, b
-    ld h, d
-    jr nc, jr_056_5476
-
-    ldh a, [rNR50]
-    ccf
-    ld d, b
-    ld c, h
-    ld c, a
-    ccf
-    ld d, b
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    jr nc, jr_056_5485
-
-    ld h, d
-    ld c, h
-    ld b, e
-    pop af
-    ld a, $62
-    ld d, b
-    ld c, l
-    ld b, d
-    ld c, c
-    ld c, c
-    ld h, d
-    ld b, b
-    ld a, $50
-    ld d, c
-    ld h, d
-    ccf
-    ld d, [hl]
-    pop af
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ldh a, [$2f]
-    ld c, h
-    ld d, h
-    ld b, d
-    ld c, a
-    ld d, b
-    ld h, d
-
-jr_056_5476:
-    ld a, $4b
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ld l, b
-    ld h, d
-    daa
-    jr z, jr_056_54ac
-
-    jr z, @+$33
-
-jr_056_5485:
-    ld [hl], $28
-    ldh a, [$2f]
-    ld c, h
-    ld d, h
-    ld b, d
-    ld c, a
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld e, h
-    ld h, d
-    daa
-    jr z, @+$2b
-
-    jr z, @+$33
-
-    ld [hl], $28
-    ldh a, [$2c]
-    ld c, e
-    ld b, b
-    ld c, a
-
-jr_056_54ac:
-    ld b, d
-    ld a, $50
-    ld b, d
-    ld d, b
-    ld h, d
-    daa
-    jr z, jr_056_54de
-
-    jr z, jr_056_54e8
-
-    ld [hl], $28
-    pop af
-    ld b, e
-    ld c, h
-    ld c, a
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld d, [hl]
-    ldh a, [$2c]
-    ld c, e
-    ld b, b
-    ld c, a
-    ld b, d
-    ld a, $50
-    ld b, d
-    ld d, b
-    ld h, d
-    daa
-    jr z, jr_056_54fc
-
-    jr z, jr_056_5506
-
-    ld [hl], $28
-    pop af
-    ld b, e
-    ld c, h
-    ld c, a
-    ld h, d
-    ld a, $49
-
-jr_056_54de:
-    ld c, c
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$27]
-
-jr_056_54e8:
-    ld b, d
-    ld b, b
-    ld c, a
-    ld b, d
-    ld a, $50
-    ld b, d
-    ld d, b
-    ld h, d
-    inc h
-    ld a, [hl+]
-    inc l
-    cpl
-    inc l
-    scf
-    inc a
-    pop af
-    ld c, h
-    ld b, e
-    ld h, d
-
-jr_056_54fc:
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ldh a, [$27]
-
-jr_056_5506:
-    ld b, d
-    ld b, b
-    ld c, a
-    ld b, d
-    ld a, $50
-    ld b, d
-    ld d, b
-    ld h, d
-    inc h
-    ld a, [hl+]
-    inc l
-    cpl
-    inc l
-    scf
-    inc a
-    pop af
-    ld c, h
-    ld b, e
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$2c]
-    ld c, e
-    ld b, b
-    ld c, a
-    ld b, d
-    ld a, $50
-    ld b, d
-    ld d, b
-    ld h, d
-    inc h
-    ld a, [hl+]
-    inc l
-    cpl
-    inc l
-    scf
-    inc a
-    pop af
-    ld b, e
-    ld c, h
-    ld c, a
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld d, [hl]
-    ldh a, [$2c]
-    ld c, e
-    ld b, b
-    ld c, a
-    ld b, d
-    ld a, $50
-    ld b, d
-    ld d, b
-    ld h, d
-    inc h
-    ld a, [hl+]
-    inc l
-    cpl
-    inc l
-    scf
-    inc a
-    pop af
-    ld b, e
-    ld c, h
-    ld c, a
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [rNR50]
-    ld c, c
-    ld c, c
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ccf
-    ld b, d
-    ld b, b
-    ld c, h
-    ld c, d
-    ld b, d
-    pop af
-    ld c, d
-    ld c, h
-    ld c, a
-    ld b, d
-    ld h, d
-    ld c, a
-    ld b, d
-    ld d, b
-    ld b, [hl]
-    ld d, b
-    ld d, c
-    ld a, $4b
-    ld d, c
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ccf
-    ld c, a
-    ld b, d
-    ld a, $51
-    ld b, l
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld c, h
-    ld d, d
-    ccf
-    ld c, c
-    ld b, d
-    pop af
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ldh a, [$2c]
-    ld c, e
-    ld b, b
-    ld c, a
-    ld b, d
-    ld a, $50
-    ld b, d
-    ld d, b
-    pop af
-    ld c, a
-    ld b, d
-    ld d, b
-    ld b, [hl]
-    ld d, b
-    ld d, c
-    ld a, $4b
-    ld b, b
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ld h, d
-    ld d, b
-    ld c, l
-    ld b, d
-    ld c, c
-    ld c, c
-    ld d, b
-    ldh a, [$35]
-    ld b, d
-    ld b, e
-    ld c, c
-    ld b, d
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld c, d
-    ld a, $44
-    ld b, [hl]
-    ld b, b
-    pop af
-    ld b, b
-    ld a, $50
-    ld d, c
-    ld h, d
-    ccf
-    ld d, [hl]
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    pop af
-    ld b, e
-    ld c, h
-    ld c, a
-    ld h, d
-    ld c, h
-    ld c, e
-    ld b, d
-    ld h, d
-    ld d, c
-    ld d, d
-    ld c, a
-    ld c, e
-    ldh a, [$35]
-    ld b, d
-    ld b, e
-    ld c, c
-    ld b, d
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    pop af
-    ld d, b
-    ld c, l
-    ld b, d
-    ld c, c
-    ld c, c
-    ld d, b
-    ld h, d
-    ld d, c
-    ld b, l
-    ld a, $51
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    pop af
-    ld b, b
-    ld a, $50
-    ld d, c
-    ld b, d
-    ld c, a
-    ld h, d
-    ld c, a
-    ld b, d
-    ld b, b
-    ld b, d
-    ld b, [hl]
-    ld d, e
-    ld b, d
-    ld d, b
-    ldh a, [$37]
-    ld c, a
-    ld a, $4b
-    ld d, b
-    ld b, e
-    ld c, h
-    ld c, a
-    ld c, d
-    ld h, d
-    ld b, [hl]
-    ld c, e
-    ld d, c
-    ld c, h
-    pop af
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld d, b
-    ld a, $4a
-    ld b, d
-    ld h, d
-    ld d, b
-    ld c, l
-    ld b, d
-    ld b, b
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    pop af
-    ld a, $50
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ldh a, [$37]
-    ld d, d
-    ld c, a
-    ld c, e
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    pop af
-    ld b, [hl]
-    ld c, e
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $62
-    ld c, l
-    ld c, a
-    ld c, h
-    ld d, c
-    ld b, d
-    ld b, b
-    ld d, c
-    ld b, [hl]
-    ld d, e
-    ld b, d
-    pop af
-    ld c, c
-    ld d, d
-    ld c, d
-    ld c, l
-    ld h, d
-    ld c, h
-    ld b, e
-    ld h, d
-    ld b, [hl]
-    ld c, a
-    ld c, h
-    ld c, e
-    ldh a, [$2b]
-    ld b, d
-    ld a, $49
-    ld d, b
-    ld h, d
-    ccf
-    ld b, d
-    ld d, c
-    ld d, h
-    ld b, d
-    ld b, d
-    ld c, e
-    pop af
-    inc bc
-    nop
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    inc b
-    nop
-    ld h, d
-    dec hl
-    inc sp
-    ld h, d
-    ld b, e
-    ld c, h
-    ld c, a
-    ld h, d
-    ld a, $4b
-    pop af
-    ld a, $49
-    ld c, c
-    ld d, [hl]
-    ldh a, [$2b]
-    ld b, d
-    ld a, $49
-    ld d, b
-    ld h, d
-    ccf
-    ld b, d
-    ld d, c
-    ld d, h
-    ld b, d
-    ld b, d
-    ld c, e
-    pop af
-    rlca
-    dec b
-    ld h, d
-    ld a, $4b
-    ld b, c
-    ld h, d
-    add hl, bc
-    nop
-    ld h, d
-    dec hl
-    inc sp
-    ld h, d
-    ld b, e
-    ld c, h
-    ld c, a
-    pop af
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$2b]
-    ld b, d
-    ld a, $49
-    ld d, b
-    ld h, d
-    dec hl
-    inc sp
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld c, d
-    ld a, $55
-    pop af
-    ld b, e
-    ld c, h
-    ld c, a
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld d, [hl]
-    ldh a, [$2b]
-    ld b, d
-    ld a, $49
-    ld d, b
-    ld h, d
-    ccf
-    ld b, d
-    ld d, c
-    ld d, h
-    ld b, d
-    ld b, d
-    ld c, e
-    pop af
-    add hl, bc
-    nop
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld bc, $0002
-    ld h, d
-    dec hl
-    inc sp
-    ld h, d
-    ld b, e
-    ld c, h
-    ld c, a
-    pop af
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$2b]
-    ld b, d
-    ld a, $49
-    ld d, b
-    ld h, d
-    dec hl
-    inc sp
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld c, d
-    ld a, $55
-    pop af
-    ld b, e
-    ld c, h
-    ld c, a
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$35]
-    ld b, d
-    ld d, e
-    ld b, [hl]
-    ld d, e
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld d, [hl]
-    ldh a, [$35]
-    ld b, d
-    ld d, e
-    ld b, [hl]
-    ld d, e
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld d, [hl]
-    ldh a, [$35]
-    ld b, d
-    ld d, e
-    ld b, [hl]
-    ld d, e
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld c, h
-    ld d, c
-    ld b, l
-    ld b, d
-    ld c, a
-    pop af
-    ld a, $49
-    ld c, c
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ccf
-    ld d, d
-    ld d, c
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    pop af
-    ld b, b
-    ld a, $50
-    ld d, c
-    ld b, d
-    ld c, a
-    ld h, d
-    ld b, b
-    ld c, h
-    ld c, c
-    ld c, c
-    ld a, $4d
-    ld d, b
-    ld b, d
-    ld d, b
-    ldh a, [rNR52]
-    ld d, d
-    ld c, a
-    ld b, d
-    ld d, b
-    ld h, d
-    ld c, l
-    ld c, h
-    ld b, [hl]
-    ld d, b
-    ld c, h
-    ld c, e
-    ldh a, [rNR52]
-    ld d, d
-    ld c, a
-    ld b, d
-    ld d, b
-    ld h, d
-    ld c, l
-    ld a, $4f
-    ld a, $49
-    ld d, [hl]
-    ld d, b
-    ld b, [hl]
-    ld d, b
-    pop af
-    ld c, h
-    ld c, a
-    ld h, d
-    ld d, h
-    ld a, $48
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, d
-    ld c, l
-    pop af
-    ld a, $4b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld d, [hl]
-    ldh a, [rNR52]
-    ld d, d
-    ld c, a
-    ld b, d
-    ld d, b
-    ld h, d
-    ld b, b
-    ld c, h
-    ld c, e
-    ld b, e
-    ld d, d
-    ld d, b
-    ld b, [hl]
-    ld c, h
-    ld c, e
-    ldh a, [rNR51]
-    ld c, a
-    ld b, d
-    ld a, $48
-    ld d, b
-    ld h, d
-    ld a, $62
-    ld b, b
-    ld d, d
-    ld c, a
-    ld d, b
-    ld b, d
-    ldh a, [$33]
-    ld c, a
-    ld c, h
-    ld d, c
-    ld b, d
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, e
-    ld c, a
-    ld c, h
-    ld c, d
-    pop af
-    ld c, c
-    ld a, $4b
-    ld b, c
-    ld h, d
-    ld b, l
-    ld a, $57
-    ld a, $4f
-    ld b, c
-    ld d, b
-    pop af
-    ld d, h
-    ld b, l
-    ld b, [hl]
-    ld c, c
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, a
-    ld a, $53
-    ld b, d
-    ld c, c
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    ldh a, [$35]
-    ld b, d
-    ld d, e
-    ld b, d
-    ld a, $49
-    ld d, b
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld b, d
-    ld c, e
-    ld d, c
-    ld b, [hl]
-    ld c, a
-    ld b, d
-    pop af
-    ld c, d
-    ld a, $4d
-    ld h, d
-    ld c, h
-    ld b, e
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    pop af
-    ld c, c
-    ld a, $4b
-    ld b, c
-    ld d, b
-    ld b, b
-    ld a, $4d
-    ld b, d
-    ldh a, [rNR50]
-    ld h, d
-    ld c, a
-    ld a, $4b
-    ld b, c
-    ld c, h
-    ld c, d
-    ld h, d
-    ld d, b
-    ld c, l
-    ld b, d
-    ld c, c
-    ld c, c
-    ld e, [hl]
-    pop af
-    ld b, b
-    ld a, $4b
-    ld h, d
-    ccf
-    ld b, d
-    ld h, d
-    ld b, h
-    ld c, h
-    ld c, h
-    ld b, c
-    ld h, d
-    ld c, h
-    ld c, a
-    ld h, d
-    ccf
-    ld a, $41
-    ldh a, [$f0]
-    add hl, hl
-    ld b, d
-    ld a, $4f
-    ld c, c
-    ld b, d
-    ld d, b
-    ld d, b
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ldh a, [rNR50]
-    ld d, c
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld c, c
-    ld b, [hl]
-    ld c, b
-    ld b, d
-    ld h, d
-    ld a, $62
-    ld c, a
-    ld a, $4a
-    pop af
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld b, [hl]
-    ld d, c
-    ld d, b
-    ld h, d
-    ld d, c
-    ld c, a
-    ld d, d
-    ld b, d
-    pop af
-    ld b, [hl]
-    ld c, e
-    ld c, e
-    ld b, d
-    ld c, a
-    ld h, d
-    ld d, b
-    ld d, c
-    ld c, a
-    ld b, d
-    ld c, e
-    ld b, h
-    ld d, c
-    ld b, l
-    ldh a, [rNR50]
-    ld d, c
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld c, c
-    ld b, [hl]
-    ld c, b
-    ld b, d
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld c, a
-    ld b, d
-    pop af
-    ld b, [hl]
-    ld d, b
-    ld h, d
-    ld c, e
-    ld c, h
-    ld h, d
-    ld d, c
-    ld c, h
-    ld c, d
-    ld c, h
-    ld c, a
-    ld c, a
-    ld c, h
-    ld d, h
-    ldh a, [rNR50]
-    ld h, d
-    ld d, b
-    ld d, d
-    ld b, [hl]
-    ld b, b
-    ld b, [hl]
-    ld b, c
-    ld b, d
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    pop af
-    ld d, c
-    ld c, h
-    ld h, d
-    ld c, b
-    ld c, e
-    ld c, h
-    ld b, b
-    ld c, b
-    ld h, d
-    ld c, h
-    ld d, d
-    ld d, c
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, h
-    ld c, a
-    ld b, d
-    ld a, $51
-    pop af
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld d, [hl]
-    pop af
-    ld c, h
-    ld c, a
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ldh a, [rNR50]
-    ld d, c
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld c, c
-    ld b, [hl]
-    ld c, b
-    ld b, d
-    ld h, d
-    ld a, $f1
-    ld c, a
-    ld d, d
-    ld d, c
-    ld b, l
-    ld c, c
-    ld b, d
-    ld d, b
-    ld d, b
-    ld h, d
-    ld b, c
-    ld b, d
-    ld c, d
-    ld c, h
-    ld c, e
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, l
-    ld d, d
-    ld b, h
-    ld b, d
-    pop af
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    pop af
-    ld c, h
-    ld c, e
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld c, e
-    ld b, d
-    ld d, l
-    ld d, c
-    ld h, d
-    ld d, c
-    ld d, d
-    ld c, a
-    ld c, e
-    ldh a, [$2d]
-    ld d, d
-    ld c, d
-    ld c, l
-    ld d, b
-    ld h, d
-    ld b, [hl]
-    ld c, e
-    ld d, c
-    ld c, h
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld a, $46
-    ld c, a
-    pop af
-    ld a, $4b
-    ld b, c
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld c, h
-    ld c, e
-    pop af
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld c, e
-    ld b, d
-    ld d, l
-    ld d, c
-    ld h, d
-    ld d, c
-    ld d, d
-    ld c, a
-    ld c, e
-    ldh a, [$36]
-    ld d, d
-    ld b, b
-    ld c, b
-    ld d, b
-    ld h, d
-    ld b, [hl]
-    ld c, e
-    ld h, d
-    ld a, $46
-    ld c, a
-    ld h, d
-    ld c, l
-    ld c, h
-    ld d, h
-    ld b, d
-    ld c, a
-    pop af
-    ld d, c
-    ld c, h
-    ld h, d
-    ld b, [hl]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    pop af
-    ld c, h
-    ld c, e
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld c, e
-    ld b, d
-    ld d, l
-    ld d, c
-    ld h, d
-    ld d, c
-    ld d, d
-    ld c, a
-    ld c, e
-    ldh a, [rNR51]
-    ld d, d
-    ld c, a
-    ld c, e
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    ld h, d
-    ccf
-    ld c, c
-    ld a, $41
-    ld b, d
-    pop af
-    ld d, b
-    ld d, h
-    ld c, h
-    ld c, a
-    ld b, c
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ldh a, [$37]
-    ld b, l
-    ld d, d
-    ld c, e
-    ld b, c
-    ld b, d
-    ld c, a
-    ccf
-    ld c, h
-    ld c, c
-    ld d, c
-    pop af
-    ld d, b
-    ld d, h
-    ld c, h
-    ld c, a
-    ld b, c
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ldh a, [$3a]
-    ld b, l
-    ld b, [hl]
-    ld c, a
-    ld c, c
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    ld h, d
-    ld d, e
-    ld a, $40
-    ld d, d
-    ld d, d
-    ld c, d
-    pop af
-    ld d, b
-    ld d, h
-    ld c, h
-    ld c, a
-    ld b, c
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ldh a, [$29]
-    ld c, a
-    ld b, d
-    ld b, d
-    ld d, a
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    ld h, d
-    ld b, [hl]
-    ld b, b
-    ld b, d
-    pop af
-    ld d, b
-    ld d, h
-    ld c, h
-    ld c, a
-    ld b, c
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, h
-    ld c, a
-    ld b, d
-    ld a, $51
-    pop af
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld c, d
-    ld b, d
-    ld d, c
-    ld a, $49
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, h
-    ld c, a
-    ld b, d
-    ld a, $51
-    pop af
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld b, c
-    ld c, a
-    ld a, $44
-    ld c, h
-    ld c, e
-    ld d, b
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, h
-    ld c, a
-    ld b, d
-    ld a, $51
-    pop af
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ccf
-    ld b, d
-    ld a, $50
-    ld d, c
-    ld d, b
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, h
-    ld c, a
-    ld b, d
-    ld a, $51
-    pop af
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ccf
-    ld b, [hl]
-    ld c, a
-    ld b, c
-    ld d, b
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, h
-    ld c, a
-    ld b, d
-    ld a, $51
-    pop af
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld c, h
-    ld c, e
-    ld h, d
-    ld b, c
-    ld b, d
-    ld d, e
-    ld b, [hl]
-    ld c, c
-    ld d, b
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld h, d
-    ld b, h
-    ld c, a
-    ld b, d
-    ld a, $51
-    pop af
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld d, a
-    ld c, h
-    ld c, d
-    ccf
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, h
-    ld c, a
-    ld b, d
-    ld a, $51
-    pop af
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ld c, d
-    ld a, $51
-    ld b, d
-    ld c, a
-    ld b, [hl]
-    ld a, $49
-    ld d, b
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    pop af
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    pop af
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld c, d
-    ld a, $4b
-    ld d, [hl]
-    ld h, d
-    ld b, b
-    ld d, d
-    ld d, c
-    ld d, b
-    ldh a, [rNR50]
-    ld d, c
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld d, c
-    ld d, h
-    ld b, [hl]
-    ld b, b
-    ld b, d
-    ld h, d
-    ld b, [hl]
-    ld c, e
-    pop af
-    ld c, h
-    ld c, e
-    ld b, d
-    ld h, d
-    ld d, c
-    ld d, d
-    ld c, a
-    ld c, e
-    ldh a, [rNR50]
-    ld d, c
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    inc b
-    ld h, d
-    ld d, c
-    ld b, [hl]
-    ld c, d
-    ld b, d
-    ld d, b
-    pop af
-    ld b, [hl]
-    ld c, e
-    ld h, d
-    ld c, h
-    ld c, e
-    ld b, d
-    ld h, d
-    ld d, c
-    ld d, d
-    ld c, a
-    ld c, e
-    ldh a, [rNR52]
-    ld a, $49
-    ld c, c
-    ld d, b
-    ld h, d
-    ld b, e
-    ld c, h
-    ld c, a
-    ld h, d
-    ld a, $62
-    ccf
-    ld a, $40
-    ld c, b
-    ld d, d
-    ld c, l
-    ldh a, [rNR52]
-    ld a, $49
-    ld c, c
-    ld d, b
-    ld h, d
-    ld a, $62
-    ld b, h
-    ld c, a
-    ld c, h
-    ld d, d
-    ld c, l
-    ld h, d
-    ld c, h
-    ld b, e
-    pop af
-    ld c, d
-    ld c, h
-    ld c, e
-    ld d, b
-    ld d, c
-    ld b, d
-    ld c, a
-    ld d, b
-    ld h, d
-    ld b, e
-    ld c, h
-    ld c, a
-    ld h, d
-    ld b, l
-    ld b, d
-    ld c, c
-    ld c, l
-    ldh a, [$37]
-    ld d, h
-    ld c, h
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    pop af
-    ld c, h
-    ld c, e
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld c, e
-    ld b, d
-    ld d, l
-    ld d, c
-    pop af
-    ld d, c
-    ld d, d
-    ld c, a
-    ld c, e
-    ldh a, [rNR50]
-    ld c, c
-    ld c, c
-    ld c, h
-    ld d, h
-    ld d, b
-    ld h, d
-    ld d, [hl]
-    ld c, h
-    ld d, d
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld h, d
-    ld b, e
-    ld b, [hl]
-    ld c, a
-    ld d, b
-    ld d, c
-    pop af
-    ld b, [hl]
-    ld c, e
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld d, c
-    ld d, d
-    ld c, a
-    ld c, e
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld a, [hl+]
-    ld c, a
-    ld b, d
-    ld a, $51
-    pop af
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    pop af
-    ld a, $51
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld c, c
-    ld a, $50
-    ld d, c
-    ld h, d
-    ld d, c
-    ld d, d
-    ld c, a
-    ld c, e
-    ldh a, [rNR50]
-    ld d, c
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld b, [hl]
-    ld c, e
-    ld h, d
-    ld c, h
-    ld c, e
-    ld b, d
-    pop af
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ldh a, [rNR50]
-    ld d, c
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    pop af
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld a, $62
-    ld d, e
-    ld b, [hl]
-    ld c, h
-    ld c, c
-    ld b, d
-    ld c, e
-    ld d, c
-    pop af
-    ld d, h
-    ld b, l
-    ld b, [hl]
-    ld c, a
-    ld c, c
-    ld d, h
-    ld b, [hl]
-    ld c, e
-    ld b, c
-    ldh a, [rNR50]
-    ld d, c
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld a, $f1
-    ld b, h
-    ld b, [hl]
-    ld a, $4b
-    ld d, c
-    ld h, d
-    ld d, e
-    ld a, $40
-    ld d, d
-    ld d, d
-    ld c, d
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld c, h
-    ld c, e
-    pop af
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    pop af
-    ld c, c
-    ld b, [hl]
-    ld b, h
-    ld b, l
-    ld d, c
-    ld c, e
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    ldh a, [$37]
-    ld b, l
-    ld c, a
-    ld c, h
-    ld d, h
-    ld d, b
-    ld h, d
-    ld a, $62
-    ld b, l
-    ld d, d
-    ld b, h
-    ld b, d
-    ld h, d
-    ld c, a
-    ld c, h
-    ld b, b
-    ld c, b
-    pop af
-    ld c, h
-    ld c, e
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [rNR51]
-    ld c, a
-    ld b, d
-    ld a, $51
-    ld b, l
-    ld b, d
-    ld d, b
-    ld h, d
-    ld c, h
-    ld d, d
-    ld d, c
-    ld h, d
-    ld b, e
-    ld b, [hl]
-    ld c, a
-    ld b, d
-    pop af
-    ld d, c
-    ld c, h
-    ld h, d
-    ld b, [hl]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    pop af
-    ld c, h
-    ld c, e
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [rNR51]
-    ld c, c
-    ld c, h
-    ld d, h
-    ld d, b
-    ld h, d
-    ld c, h
-    ld d, d
-    ld d, c
-    ld h, d
-    ld a, $62
-    ccf
-    ld c, c
-    ld a, $57
-    ld b, d
-    pop af
-    ld d, c
-    ld c, h
-    ld h, d
-    ld b, [hl]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    pop af
-    ld c, h
-    ld c, e
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [rNR51]
-    ld d, d
-    ld c, a
-    ld c, e
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    pop af
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld a, $62
-    ld b, c
-    ld b, d
-    ld d, e
-    ld a, $50
-    ld d, c
-    ld a, $51
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    pop af
-    ld b, e
-    ld c, c
-    ld a, $4a
-    ld b, d
-    ldh a, [rNR50]
-    ld d, c
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld a, $4b
-    pop af
-    ld d, d
-    ld c, e
-    ld b, [hl]
-    ld c, d
-    ld a, $44
-    ld b, [hl]
-    ld c, e
-    ld a, $3f
-    ld c, c
-    ld b, d
-    ld h, d
-    ccf
-    ld c, c
-    ld a, $57
-    ld b, d
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    pop af
-    ld b, [hl]
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, e
-    ld c, a
-    ld b, [hl]
-    ld b, h
-    ld b, [hl]
-    ld b, c
-    ld h, d
-    ccf
-    ld c, a
-    ld b, d
-    ld a, $51
-    ld b, l
-    ldh a, [$29]
-    ld c, a
-    ld b, d
-    ld b, d
-    ld d, a
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld a, $f1
-    ld d, e
-    ld b, [hl]
-    ld c, h
-    ld c, c
-    ld b, d
-    ld c, e
-    ld d, c
-    ld h, d
-    ld b, [hl]
-    ld b, b
-    ld b, d
-    ld h, d
-    ld d, b
-    ld d, c
-    ld c, h
-    ld c, a
-    ld c, d
-    ldh a, [rNR50]
-    ld d, c
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld a, $4b
-    pop af
-    ld b, [hl]
-    ld c, e
-    ld b, b
-    ld a, $4b
-    ld b, c
-    ld b, d
-    ld d, b
-    ld b, b
-    ld b, d
-    ld c, e
-    ld d, c
-    ld h, d
-    ld a, $46
-    ld c, a
-    ldh a, [$2b]
-    ld b, d
-    ld c, c
-    ld c, c
-    ld h, d
-    ld c, l
-    ld c, h
-    ld d, h
-    ld b, d
-    ld c, a
-    ld b, d
-    ld b, c
-    pop af
-    ld c, c
-    ld b, [hl]
-    ld b, h
-    ld b, l
-    ld d, c
-    ld c, e
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    ld h, d
-    ccf
-    ld c, c
-    ld a, $50
-    ld d, c
-    pop af
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, e
-    ld c, h
-    ld b, d
-    ld d, b
-    ldh a, [rNR52]
-    ld c, a
-    ld b, d
-    ld a, $51
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $62
-    ld b, l
-    ld d, d
-    ld b, h
-    ld b, d
-    pop af
-    ld b, d
-    ld d, l
-    ld c, l
-    ld c, c
-    ld c, h
-    ld d, b
-    ld b, [hl]
-    ld c, h
-    ld c, e
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$37]
-    ld b, l
-    ld b, d
-    ld h, d
-    ld c, d
-    ld c, h
-    ld d, b
-    ld d, c
-    ld h, d
-    ld c, l
-    ld c, h
-    ld d, h
-    ld b, d
-    ld c, a
-    ld b, e
-    ld d, d
-    ld c, c
-    pop af
-    ld d, b
-    ld c, l
-    ld b, d
-    ld c, c
-    ld c, c
-    ld h, d
-    ld d, c
-    ld b, l
-    ld a, $51
-    ld h, d
-    ld a, $43
-    ld b, e
-    ld b, d
-    ld b, b
-    ld d, c
-    ld d, b
-    pop af
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$33]
-    ld c, h
-    ld b, [hl]
-    ld d, b
-    ld c, h
-    ld c, e
-    ld d, b
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    pop af
-    ld d, c
-    ld b, l
-    ld a, $51
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld b, d
-    ld b, c
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    pop af
-    ld a, $49
-    ld c, c
-    ld d, [hl]
-    ldh a, [$36]
-    ld b, d
-    ld c, e
-    ld b, c
-    ld d, b
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    pop af
-    ld d, c
-    ld b, l
-    ld a, $51
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld b, d
-    ld b, c
-    pop af
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld d, [hl]
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld d, b
-    ld c, c
-    ld b, d
-    ld b, d
-    ld c, l
-    ldh a, [$33]
-    ld a, $4f
-    ld a, $49
-    ld d, [hl]
-    ld d, a
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ld h, d
-    ld d, c
-    ld b, l
-    ld a, $51
-    pop af
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld b, d
-    ld b, c
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld d, [hl]
-    ldh a, [$36]
-    ld b, d
-    ld c, e
-    ld b, c
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    pop af
-    ld d, c
-    ld c, h
-    ld h, d
-    ld d, b
-    ld c, c
-    ld b, d
-    ld b, d
-    ld c, l
-    ldh a, [$33]
-    ld a, $4f
-    ld a, $49
-    ld d, [hl]
-    ld d, a
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$33]
-    ld c, h
-    ld b, [hl]
-    ld d, b
-    ld c, h
-    ld c, e
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$36]
-    ld b, d
-    ld d, e
-    ld b, d
-    ld c, a
-    ld c, c
-    ld d, [hl]
-    ld h, d
-    ld c, l
-    ld c, h
-    ld b, [hl]
-    ld d, b
-    ld c, h
-    ld c, e
-    ld d, b
-    pop af
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [rNR52]
-    ld c, h
-    ld c, e
-    ld b, e
-    ld d, d
-    ld d, b
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [rNR52]
-    ld d, d
-    ld c, a
-    ld d, b
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$30]
-    ld a, $48
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, [hl]
-    ld c, h
-    ld d, d
-    ld h, d
-    ld b, e
-    ld b, d
-    ld b, d
-    ld c, c
-    pop af
-    ld b, l
-    ld a, $4d
-    ld c, l
-    ld d, [hl]
-    ldh a, [$2c]
-    ld c, e
-    ld d, b
-    ld d, c
-    ld a, $4b
-    ld d, c
-    ld c, c
-    ld d, [hl]
-    ld h, d
-    ld c, b
-    ld c, e
-    ld c, h
-    ld b, b
-    ld c, b
-    ld d, b
-    pop af
-    ld c, h
-    ld d, d
-    ld d, c
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [rNR50]
-    ld d, c
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    pop af
-    ld a, $62
-    ld d, b
-    ld a, $4b
-    ld b, c
-    ld d, b
-    ld d, c
-    ld c, h
-    ld c, a
-    ld c, d
-    ldh a, [rNR51]
-    ld c, c
-    ld b, [hl]
-    ld c, e
-    ld b, c
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    pop af
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld b, [hl]
-    ld d, c
-    ld d, b
-    ld h, d
-    ccf
-    ld c, a
-    ld b, [hl]
-    ld b, h
-    ld b, l
-    ld d, c
-    pop af
-    ld c, c
-    ld b, [hl]
-    ld b, h
-    ld b, l
-    ld d, c
-    ldh a, [$30]
-    ld a, $48
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    pop af
-    ld c, c
-    ld b, d
-    ld d, b
-    ld d, b
-    ld h, d
-    ld c, a
-    ld b, d
-    ld d, b
-    ld b, [hl]
-    ld d, b
-    ld d, c
-    ld a, $4b
-    ld d, c
-    pop af
-    ld d, c
-    ld c, h
-    ld h, d
-    ld c, d
-    ld a, $44
-    ld b, [hl]
-    ld b, b
-    ld h, d
-    ld d, b
-    ld c, l
-    ld b, d
-    ld c, c
-    ld c, c
-    ld d, b
-    ldh a, [$27]
-    ld c, a
-    ld c, h
-    ld c, l
-    ld d, b
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ld l, b
-    pop af
-    jr nc, jr_056_6112
-
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld b, [hl]
-    ld d, c
-    ld d, b
-    ld h, d
-    ld c, h
-    ld b, c
-    ld b, c
-    pop af
-    ld b, c
-    ld a, $4b
-    ld b, b
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    ld h, d
-    ld d, b
-    ld d, c
-    ld b, d
-    ld c, l
-    ld d, b
-    ldh a, [$36]
-    ld d, c
-    ld b, d
-    ld a, $49
-    ld d, b
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ld l, b
-    pop af
-    jr nc, jr_056_6141
-
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-
-jr_056_6112:
-    ld b, l
-    ld h, d
-    ld b, [hl]
-    ld d, c
-    ld d, b
-    pop af
-    ld c, d
-    ld b, d
-    ld d, b
-    ld c, d
-    ld b, d
-    ld c, a
-    ld b, [hl]
-    ld d, a
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    ld h, d
-    ld b, c
-    ld a, $4b
-    ld b, b
-    ld b, d
-    ldh a, [$36]
-    ld b, [hl]
-    ld b, c
-    ld b, d
-    ld d, b
-    ld d, c
-    ld b, d
-    ld c, l
-    ld d, b
-    ld h, d
-    ld a, $4b
-    pop af
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ldh a, [$2f]
-    ld d, d
-    ld c, a
-
-jr_056_6141:
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ld h, d
-    ld d, c
-    ld c, h
-    pop af
-    ld a, $62
-    ld d, c
-    ld c, a
-    ld a, $4d
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld b, [hl]
-    ld d, c
-    ld d, b
-    pop af
-    ld b, c
-    ld a, $4b
-    ld b, b
-    ld b, d
-    ldh a, [$2f]
-    ld b, [hl]
-    ld b, b
-    ld c, b
-    ld d, b
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    pop af
-    ld d, c
-    ld c, h
-    ld h, d
-    ld d, b
-    ld d, c
-    ld c, h
-    ld c, l
-    ld h, d
-    ld b, [hl]
-    ld d, c
-    ld h, d
-    ld b, e
-    ld c, a
-    ld c, h
-    ld c, d
-    pop af
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    ldh a, [$2f]
-    ld c, h
-    ld d, h
-    ld b, d
-    ld c, a
-    ld d, b
-    ld h, d
-    daa
-    jr z, jr_056_61c2
-
-    jr z, jr_056_61cc
-
-    ld [hl], $28
-    pop af
-    ccf
-    ld d, [hl]
-    ld h, d
-    ld b, h
-    ld b, [hl]
-    ld d, e
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    pop af
-    ld a, $62
-    ld d, b
-    ld b, [hl]
-    ld b, b
-    ld c, b
-    ld c, c
-    ld d, [hl]
-    ld h, d
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld c, b
-    ldh a, [$37]
-    ld c, a
-    ld b, [hl]
-
-jr_056_61c2:
-    ld c, l
-    ld d, b
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-
-jr_056_61cc:
-    ld d, [hl]
-    ld h, d
-    ccf
-    ld d, [hl]
-    pop af
-    ld d, b
-    ld d, h
-    ld b, d
-    ld b, d
-    ld c, l
-    ld b, [hl]
-    ld c, e
-    ld b, h
-    ld h, d
-    ld b, [hl]
-    ld d, c
-    ld d, b
-    ld h, d
-    ld c, c
-    ld b, d
-    ld b, h
-    ld d, b
-    ldh a, [$37]
-    ld c, a
-    ld b, [hl]
-    ld c, l
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$29]
-    ld c, a
-    ld b, d
-    ld b, d
-    ld d, a
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, h
-    ld b, [hl]
-    ld d, c
-    ld b, l
-    ld h, d
-    ld a, $f1
-    ld d, e
-    ld b, d
-    ld c, a
-    ld d, [hl]
-    ld h, d
-    ld c, c
-    ld c, h
-    ld d, d
-    ld b, c
-    ld h, d
-    ld c, a
-    ld c, h
-    ld a, $4f
-    ldh a, [$36]
-    ld d, d
-    ld c, d
-    ld c, d
-    ld c, h
-    ld c, e
-    ld d, b
-    ld h, d
-    ld c, d
-    ld c, h
-    ld c, e
-    ld d, b
-    ld d, c
-    ld b, d
-    ld c, a
-    ld d, b
-    ldh a, [$2c]
-    ld c, d
-    ld b, [hl]
-    ld d, c
-    ld a, $51
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ld l, b
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ldh a, [$27]
-    ld b, [hl]
-    ld d, b
-    ld c, l
-    ld b, d
-    ld c, c
-    ld d, b
-    ld h, d
-    ld c, d
-    ld a, $44
-    ld b, [hl]
-    ld b, b
-    pop af
-    ld b, d
-    ld b, e
-    ld b, e
-    ld b, d
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld c, h
-    ld c, e
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld a, $49
-    ld c, c
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [rNR52]
-    ld d, d
-    ld c, a
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $4b
-    ld d, [hl]
-    ld h, d
-    ld a, $46
-    ld c, c
-    ld c, d
-    ld b, d
-    ld c, e
-    ld d, c
-    ld d, b
-    pop af
-    ld b, e
-    ld c, h
-    ld c, a
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$2a]
-    ld c, a
-    ld b, d
-    ld a, $51
-    ld c, c
-    ld d, [hl]
-    ld h, d
-    ld d, h
-    ld b, d
-    ld a, $48
-    ld b, d
-    ld c, e
-    ld d, b
-    pop af
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ldh a, [rNR52]
-    ld c, a
-    ld b, d
-    ld a, $51
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $62
-    ld d, c
-    ld b, l
-    ld b, [hl]
-    ld b, b
-    ld c, b
-    pop af
-    ld b, e
-    ld c, h
-    ld b, h
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld d, b
-    ld d, d
-    ld d, b
-    ld c, l
-    ld b, d
-    ld c, e
-    ld b, c
-    pop af
-    ld c, d
-    ld a, $44
-    ld b, [hl]
-    ld b, b
-    ld h, d
-    ld d, b
-    ld c, l
-    ld b, d
-    ld c, c
-    ld c, c
-    ld d, b
-    ldh a, [$36]
-    ld d, d
-    ld c, d
-    ld c, d
-    ld c, h
-    ld c, e
-    ld d, b
-    ld h, d
-    scf
-    ld a, $51
-    ld d, b
-    ld d, d
-    pop af
-    ld c, d
-    ld c, h
-    ld c, e
-    ld d, b
-    ld d, c
-    ld b, d
-    ld c, a
-    ld d, b
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    pop af
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ldh a, [$36]
-    ld d, d
-    ld c, d
-    ld c, d
-    ld c, h
-    ld c, e
-    ld d, b
-    ld h, d
-    daa
-    ld b, [hl]
-    ld a, $44
-    ld c, h
-    pop af
-    ld c, d
-    ld c, h
-    ld c, e
-    ld d, b
-    ld d, c
-    ld b, d
-    ld c, a
-    ld d, b
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    pop af
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ldh a, [$36]
-    ld d, d
-    ld c, d
-    ld c, d
-    ld c, h
-    ld c, e
-    ld d, b
-    ld h, d
-    ld [hl], $3e
-    ld c, d
-    ld d, b
-    ld b, [hl]
-    pop af
-    ld c, d
-    ld c, h
-    ld c, e
-    ld d, b
-    ld d, c
-    ld b, d
-    ld c, a
-    ld d, b
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    pop af
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ldh a, [$36]
-    ld d, d
-    ld c, d
-    ld c, d
-    ld c, h
-    ld c, e
-    ld d, b
-    ld h, d
-    dec h
-    ld a, $57
-    ld c, h
-    ld c, h
-    pop af
-    ld c, d
-    ld c, h
-    ld c, e
-    ld d, b
-    ld d, c
-    ld b, d
-    ld c, a
-    ld d, b
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    pop af
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ldh a, [$37]
-    ld b, l
-    ld c, a
-    ld c, h
-    ld d, h
-    ld d, b
-    ld h, d
-    ld b, [hl]
-    ld d, c
-    ld d, b
-    ld b, d
-    ld c, c
-    ld b, e
-    ld h, d
-    ld b, [hl]
-    ld c, e
-    pop af
-    ld b, e
-    ld c, a
-    ld c, h
-    ld c, e
-    ld d, c
-    ld h, d
-    ld c, h
-    ld b, e
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    pop af
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld h, d
-    ld b, e
-    ld c, h
-    ld c, a
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld d, [hl]
-    ldh a, [$37]
-    ld a, $48
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    pop af
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld b, e
-    ld c, a
-    ld c, h
-    ld c, d
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$35]
-    ld b, d
-    ld b, e
-    ld c, c
-    ld b, d
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ccf
-    ld a, $40
-    ld c, b
-    ld h, d
-    inc h
-    ld b, [hl]
-    ld c, a
-    pop af
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ldh a, [$35]
-    ld b, d
-    ld b, e
-    ld c, c
-    ld b, d
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ccf
-    ld a, $40
-    ld c, b
-    ld h, d
-    inc h
-    ld b, [hl]
-    ld c, a
-    pop af
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$27]
-    ld c, h
-    ld b, c
-    ld b, h
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $4b
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ldh a, [$33]
-    ld c, a
-    ld b, d
-    ld c, l
-    ld a, $4f
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld b, c
-    ld b, d
-    ld b, e
-    ld b, d
-    ld c, e
-    ld b, c
-    pop af
-    ld b, [hl]
-    ld d, c
-    ld d, b
-    ld b, d
-    ld c, c
-    ld b, e
-    ld h, d
-    ld b, e
-    ld c, h
-    ld c, a
-    ld h, d
-    ld a, $4b
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ldh a, [$33]
-    ld c, a
-    ld b, d
-    ld c, l
-    ld a, $4f
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $62
-    ld d, b
-    ld d, c
-    ld c, a
-    ld c, h
-    ld c, e
-    ld b, h
-    pop af
-    ld b, c
-    ld b, d
-    ld b, e
-    ld b, d
-    ld c, e
-    ld d, b
-    ld b, d
-    ld h, d
-    ld a, $44
-    ld a, $46
-    ld c, e
-    ld d, b
-    ld d, c
-    pop af
-    ld a, $4b
-    ld d, [hl]
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ldh a, [$36]
-    ld d, d
-    ld b, b
-    ld c, b
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld d, c
-    ld b, l
-    ld b, d
-    ld h, d
-    ld a, $46
-    ld c, a
-    pop af
-    ld d, c
-    ld c, h
-    ld h, d
-    ld b, [hl]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld h, d
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    pop af
-    ld c, h
-    ld c, e
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$27]
-    ld b, d
-    ld b, e
-    ld b, d
-    ld c, e
-    ld b, c
-    ld d, b
-    ld h, d
-    ld a, $44
-    ld a, $46
-    ld c, e
-    ld d, b
-    ld d, c
-    pop af
-    ld a, $62
-    ld b, b
-    ld c, h
-    ld d, d
-    ld c, e
-    ld d, c
-    ld b, d
-    ld c, a
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ldh a, [$36]
-    ld d, d
-    ld d, b
-    ld c, l
-    ld b, d
-    ld c, e
-    ld b, c
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ld e, h
-    ld h, d
-    daa
-    ld a, $4b
-    ld b, b
-    ld b, d
-    pop af
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ld d, b
-    ldh a, [$36]
-    ld d, d
-    ld d, b
-    ld c, l
-    ld b, d
-    ld c, e
-    ld b, c
-    ld d, b
-    ld h, d
-    ld a, $4b
-    pop af
-    ld b, d
-    ld c, e
-    ld b, d
-    ld c, d
-    ld d, [hl]
-    ld l, b
-    ld h, d
-    inc h
-    ld b, [hl]
-    ld c, a
-    pop af
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ldh a, [$35]
-    ld b, d
-    ld d, b
-    ld d, c
-    ld c, h
-    ld c, a
-    ld b, d
-    ld d, b
-    ld h, d
-    dec b
-    nop
-    nop
-    ld h, d
-    dec hl
-    inc sp
-    pop af
-    ccf
-    ld d, [hl]
-    ld h, d
-    ld c, d
-    ld b, d
-    ld b, c
-    ld b, [hl]
-    ld d, c
-    ld a, $51
-    ld b, [hl]
-    ld c, h
-    ld c, e
-    ldh a, [$35]
-    ld b, d
-    ld d, b
-    ld d, c
-    ld c, h
-    ld c, a
-    ld b, d
-    ld d, b
-    ld h, d
-    ccf
-    ld b, d
-    ld d, c
-    ld d, h
-    ld b, d
-    ld b, d
-    ld c, e
-    pop af
-    rlca
-    nop
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld [$6200], sp
-    dec hl
-    inc sp
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $49
-    ld c, c
-    pop af
-    ld a, $49
-    ld c, c
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$35]
-    ld b, d
-    ld d, e
-    ld b, [hl]
-    ld d, e
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$35]
-    ld b, d
-    ld d, e
-    ld b, [hl]
-    ld d, e
-    ld b, d
-    ld d, b
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld h, d
-    ld a, $49
-    ld c, c
-    ld b, [hl]
-    ld b, d
-    ld d, b
-    ldh a, [$f0]
-    ld h, $3e
-    ld d, b
-    ld d, c
-    ld b, d
-    ld c, a
-    ld h, d
-    ld d, c
-    ld c, a
-    ld a, $4b
-    ld d, b
-    ld b, e
-    ld c, h
-    ld c, a
-    ld c, d
-    ld d, b
-    pop af
-    ld b, [hl]
-    ld c, e
-    ld d, c
-    ld c, h
-    ld h, d
-    ld a, $62
-    ld b, c
-    ld c, a
-    ld a, $44
-    ld c, h
-    ld c, e
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, h
-    ld c, a
-    ld b, d
-    ld a, $51
-    pop af
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld d, b
-    ld c, c
-    ld b, [hl]
-    ld c, d
-    ld b, d
-    ld d, b
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, h
-    ld c, a
-    ld b, d
-    ld a, $51
-    pop af
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ccf
-    ld d, d
-    ld b, h
-    ld d, b
-    ldh a, [$2c]
-    ld c, e
-    ld b, e
-    ld c, c
-    ld b, [hl]
-    ld b, b
-    ld d, c
-    ld d, b
-    ld h, d
-    ld b, h
-    ld c, a
-    ld b, d
-    ld a, $51
-    pop af
-    ld b, c
-    ld a, $4a
-    ld a, $44
-    ld b, d
-    ld h, d
-    ld d, c
-    ld c, h
-    ld h, d
-    ld c, l
-    ld c, c
-    ld a, $4b
-    ld d, c
-    ld d, b
-    ldh a, [$30]
-    ld c, h
-    ld d, b
-    ld d, c
-    ld h, d
-    ld b, c
-    ld b, d
-    ld d, b
-    ld d, c
-    ld c, a
-    ld d, d
-    ld b, b
-    ld d, c
-    ld b, [hl]
-    ld d, e
-    ld b, d
-    pop af
-    ld d, b
-    ld d, h
-    ld c, h
-    ld c, a
-    ld b, c
-    ld h, d
-    ld a, $51
-    ld d, c
-    ld a, $40
-    ld c, b
-    ldh a, [$30]
-    ld a, $48
-    ld b, d
-    ld d, b
-    ld h, d
-    ld d, [hl]
-    ld c, h
-    ld d, d
-    ld h, d
-    ld b, e
-    ld b, d
-    ld b, d
-    ld c, c
-    pop af
-    ld d, b
-    ld b, [hl]
-    ld b, b
-    ld c, b
+   ;INVALID NUMBER!
+   
+    db $2c, $31, $39, $24, $2f, $2c, $27, $62, $31, $38, $30, $25, $28, $35, $63
+    
+    db $f0
+    
+   ;@TEXT Skill descriptions 
+    db $2c, $4b, $43, $49, $46, $40, $51, $50, $62, $41, $3e, $4a, $3e, $44, $42, $f1
+    db $54, $46, $51, $45, $62, $3e, $62, $50, $4a, $3e, $49, $49, $62, $43, $46, $4f
+    db $42, $f1, $3f, $3e, $49, $49, $f0, $2c, $4b, $43, $49, $46, $40, $51, $50, $62
+    db $41, $3e, $4a, $3e, $44, $42, $f1, $54, $46, $51, $45, $62, $3e, $62, $44, $46
+    db $3e, $4b, $51, $f1, $43, $46, $4f, $42, $62, $3f, $3e, $49, $49, $f0, $2c, $4b
+    db $43, $49, $46, $40, $51, $50, $62, $41, $3e, $4a, $3e, $44, $42, $f1, $54, $46
+    db $51, $45, $62, $4d, $46, $49, $49, $3e, $4f, $50, $62, $4c, $43, $f1, $43, $46
+    db $4f, $42, $f0, $2c, $4b, $43, $49, $46, $40, $51, $50, $62, $41, $3e, $4a, $3e
+    db $44, $42, $62, $51, $4c, $f1, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42
+    db $50, $62, $54, $46, $51, $45, $f1, $3e, $62, $50, $4a, $3e, $49, $49, $62, $3f
+    db $49, $3e, $57, $42, $f0, $2c, $4b, $43, $49, $46, $40, $51, $50, $62, $41, $3e
+    db $4a, $3e, $44, $42, $62, $51, $4c, $f1, $3e, $49, $49, $62, $42, $4b, $42, $4a
+    db $46, $42, $50, $62, $54, $46, $51, $45, $f1, $3e, $62, $45, $52, $44, $42, $62
+    db $3f, $49, $3e, $57, $42, $f0, $2c, $4b, $43, $49, $46, $40, $51, $50, $62, $41
+    db $3e, $4a, $3e, $44, $42, $62, $51, $4c, $f1, $3e, $49, $49, $62, $51, $45, $42
+    db $62, $42, $4b, $42, $4a, $46, $42, $50, $f1, $54, $46, $51, $45, $62, $3e, $62
+    db $3f, $46, $44, $62, $3f, $49, $3e, $57, $42, $f0, $2c, $4b, $43, $49, $46, $40
+    db $51, $50, $62, $41, $3e, $4a, $3e, $44, $42, $62, $51, $4c, $f1, $3e, $49, $49
+    db $62, $42, $4b, $42, $4a, $46, $42, $50, $62, $54, $46, $51, $45, $f1, $3e, $4b
+    db $62, $42, $55, $4d, $49, $4c, $50, $46, $4c, $4b, $f0, $2c, $4b, $43, $49, $46
+    db $40, $51, $50, $62, $41, $3e, $4a, $3e, $44, $42, $62, $51, $4c, $f1, $3e, $49
+    db $49, $62, $42, $4b, $42, $4a, $46, $42, $50, $62, $54, $46, $51, $45, $f1, $42
+    db $55, $4d, $49, $4c, $50, $46, $4c, $4b, $50, $f0, $2c, $4b, $43, $49, $46, $40
+    db $51, $50, $62, $41, $3e, $4a, $3e, $44, $42, $62, $51, $4c, $f1, $3e, $49, $49
+    db $62, $42, $4b, $42, $4a, $46, $42, $50, $62, $54, $46, $51, $45, $f1, $3e, $62
+    db $2b, $38, $2a, $28, $62, $42, $55, $4d, $49, $4c, $50, $46, $4c, $4b, $f0, $2c
+    db $4b, $43, $49, $46, $40, $51, $50, $62, $41, $3e, $4a, $3e, $44, $42, $50, $f1
+    db $51, $4c, $62, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42, $50, $f1, $54
+    db $46, $51, $45, $62, $3e, $62, $54, $45, $46, $4f, $49, $54, $46, $4b, $41, $f0
+    db $2c, $4b, $43, $49, $46, $40, $51, $50, $62, $41, $3e, $4a, $3e, $44, $42, $50
+    db $f1, $51, $4c, $62, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42, $50, $f1
+    db $54, $46, $51, $45, $62, $3e, $62, $51, $4c, $4f, $4b, $3e, $41, $4c, $f0, $2c
+    db $4b, $43, $49, $46, $40, $51, $50, $62, $41, $3e, $4a, $3e, $44, $42, $50, $f1
+    db $51, $4c, $62, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42, $50, $f1, $54
+    db $46, $51, $45, $62, $3e, $62, $45, $52, $4f, $4f, $46, $40, $3e, $4b, $42, $f0
+    db $29, $4f, $42, $42, $57, $42, $50, $62, $3e, $49, $49, $f1, $42, $4b, $42, $4a
+    db $46, $42, $50, $62, $54, $46, $51, $45, $62, $46, $40, $42, $f0, $37, $52, $4f
+    db $4b, $50, $62, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42, $50, $f1, $46
+    db $4b, $51, $4c, $62, $46, $40, $42, $f0, $24, $51, $51, $3e, $40, $48, $50, $62
+    db $3e, $49, $49, $f1, $42, $4b, $42, $4a, $46, $42, $50, $62, $54, $46, $51, $45
+    db $62, $3e, $f1, $43, $4f, $46, $44, $46, $41, $62, $3f, $49, $46, $57, $57, $3e
+    db $4f, $41, $f0, $36, $51, $4f, $46, $48, $42, $50, $62, $3e, $49, $49, $f1, $42
+    db $4b, $42, $4a, $46, $42, $50, $62, $54, $46, $51, $45, $f1, $49, $46, $44, $45
+    db $51, $4b, $46, $4b, $44, $f0, $36, $51, $4f, $46, $48, $42, $50, $62, $3e, $49
+    db $49, $f1, $42, $4b, $42, $4a, $46, $42, $50, $62, $54, $46, $51, $45, $f1, $3e
+    db $62, $51, $45, $52, $4b, $41, $42, $4f, $3f, $4c, $49, $51, $f0, $36, $51, $4f
+    db $46, $48, $42, $50, $62, $3e, $49, $49, $f1, $42, $4b, $42, $4a, $46, $42, $50
+    db $62, $54, $46, $51, $45, $f1, $51, $45, $52, $4b, $41, $42, $4f, $3f, $4c, $49
+    db $51, $50, $f0, $2c, $4b, $50, $51, $3e, $4b, $51, $49, $56, $62, $48, $4b, $4c
+    db $40, $48, $50, $f1, $4c, $52, $51, $62, $3e, $4b, $62, $42, $4b, $42, $4a, $56
+    db $f0, $2c, $4b, $50, $51, $3e, $4b, $51, $49, $56, $62, $48, $4b, $4c, $40, $48
+    db $50, $f1, $4c, $52, $51, $62, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42
+    db $50, $f0, $2e, $4b, $4c, $40, $48, $50, $62, $4c, $52, $51, $62, $51, $45, $42
+    db $f1, $40, $3e, $50, $51, $42, $4f, $62, $3e, $4b, $41, $f1, $3e, $49, $49, $62
+    db $42, $4b, $42, $4a, $46, $42, $50, $f0, $33, $52, $51, $50, $62, $3e, $4b, $62
+    db $42, $4b, $42, $4a, $56, $f1, $51, $4c, $62, $50, $49, $42, $42, $4d, $f0, $33
+    db $52, $51, $50, $62, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42, $50, $f1
+    db $51, $4c, $62, $50, $49, $42, $42, $4d, $f0, $36, $52, $50, $4d, $42, $4b, $41
+    db $50, $62, $3e, $49, $49, $62, $51, $45, $42, $f1, $42, $4b, $42, $4a, $46, $42
+    db $50, $62, $43, $4f, $4c, $4a, $f1, $40, $3e, $50, $51, $46, $4b, $44, $62, $50
+    db $4d, $42, $49, $49, $50, $f0, $28, $4b, $44, $52, $49, $43, $50, $62, $3e, $49
+    db $49, $62, $51, $45, $42, $f1, $42, $4b, $42, $4a, $46, $42, $50, $62, $54, $46
+    db $51, $45, $62, $3e, $4b, $f1, $46, $49, $49, $52, $50, $46, $4c, $4b, $f0, $26
+    db $4c, $4b, $43, $52, $50, $42, $50, $62, $3e, $49, $49, $f1, $42, $4b, $42, $4a
+    db $46, $42, $50, $f0, $36, $51, $42, $3e, $49, $50, $62, $42, $4b, $42, $4a, $56
+    db $68, $62, $30, $33, $f0, $24, $3f, $50, $4c, $4f, $3f, $50, $62, $51, $45, $42
+    db $62, $30, $33, $62, $4c, $43, $f1, $3e, $62, $50, $4d, $42, $49, $49, $62, $40
+    db $3e, $50, $51, $62, $3f, $56, $f1, $3e, $4b, $62, $42, $4b, $42, $4a, $56, $f0
+    db $2f, $4c, $54, $42, $4f, $50, $62, $3e, $4b, $f1, $42, $4b, $42, $4a, $56, $68
+    db $62, $27, $28, $29, $28, $31, $36, $28, $f0, $2f, $4c, $54, $42, $4f, $50, $62
+    db $3e, $49, $49, $62, $51, $45, $42, $f1, $42, $4b, $42, $4a, $46, $42, $50, $5c
+    db $62, $27, $28, $29, $28, $31, $36, $28, $f0, $2c, $4b, $40, $4f, $42, $3e, $50
+    db $42, $50, $62, $27, $28, $29, $28, $31, $36, $28, $f1, $43, $4c, $4f, $62, $3e
+    db $4b, $62, $3e, $49, $49, $56, $f0, $2c, $4b, $40, $4f, $42, $3e, $50, $42, $50
+    db $62, $27, $28, $29, $28, $31, $36, $28, $f1, $43, $4c, $4f, $62, $3e, $49, $49
+    db $62, $3e, $49, $49, $46, $42, $50, $f0, $27, $42, $40, $4f, $42, $3e, $50, $42
+    db $50, $62, $24, $2a, $2c, $2f, $2c, $37, $3c, $f1, $4c, $43, $62, $3e, $4b, $62
+    db $42, $4b, $42, $4a, $56, $f0, $27, $42, $40, $4f, $42, $3e, $50, $42, $50, $62
+    db $24, $2a, $2c, $2f, $2c, $37, $3c, $f1, $4c, $43, $62, $3e, $49, $49, $62, $42
+    db $4b, $42, $4a, $46, $42, $50, $f0, $2c, $4b, $40, $4f, $42, $3e, $50, $42, $50
+    db $62, $24, $2a, $2c, $2f, $2c, $37, $3c, $f1, $43, $4c, $4f, $62, $3e, $4b, $62
+    db $3e, $49, $49, $56, $f0, $2c, $4b, $40, $4f, $42, $3e, $50, $42, $50, $62, $24
+    db $2a, $2c, $2f, $2c, $37, $3c, $f1, $43, $4c, $4f, $62, $3e, $49, $49, $62, $3e
+    db $49, $49, $46, $42, $50, $f0, $24, $49, $49, $62, $3e, $49, $49, $46, $42, $50
+    db $62, $3f, $42, $40, $4c, $4a, $42, $f1, $4a, $4c, $4f, $42, $62, $4f, $42, $50
+    db $46, $50, $51, $3e, $4b, $51, $62, $51, $4c, $f1, $3f, $4f, $42, $3e, $51, $45
+    db $62, $3e, $51, $51, $3e, $40, $48, $50, $f0, $2c, $4b, $43, $49, $46, $40, $51
+    db $50, $62, $41, $4c, $52, $3f, $49, $42, $f1, $51, $45, $42, $62, $41, $3e, $4a
+    db $3e, $44, $42, $62, $51, $4c, $f1, $3e, $4b, $62, $42, $4b, $42, $4a, $56, $f0
+    db $2c, $4b, $40, $4f, $42, $3e, $50, $42, $50, $f1, $4f, $42, $50, $46, $50, $51
+    db $3e, $4b, $40, $42, $62, $51, $4c, $f1, $51, $45, $42, $62, $42, $4b, $42, $4a
+    db $56, $62, $50, $4d, $42, $49, $49, $50, $f0, $35, $42, $43, $49, $42, $40, $51
+    db $50, $62, $51, $45, $42, $62, $4a, $3e, $44, $46, $40, $f1, $40, $3e, $50, $51
+    db $62, $3f, $56, $62, $51, $45, $42, $62, $42, $4b, $42, $4a, $56, $f1, $43, $4c
+    db $4f, $62, $4c, $4b, $42, $62, $51, $52, $4f, $4b, $f0, $35, $42, $43, $49, $42
+    db $40, $51, $50, $62, $51, $45, $42, $62, $42, $4b, $42, $4a, $56, $f1, $50, $4d
+    db $42, $49, $49, $50, $62, $51, $45, $3e, $51, $62, $51, $45, $42, $f1, $40, $3e
+    db $50, $51, $42, $4f, $62, $4f, $42, $40, $42, $46, $53, $42, $50, $f0, $37, $4f
+    db $3e, $4b, $50, $43, $4c, $4f, $4a, $62, $46, $4b, $51, $4c, $f1, $51, $45, $42
+    db $62, $50, $3e, $4a, $42, $62, $50, $4d, $42, $40, $46, $42, $50, $f1, $3e, $50
+    db $62, $51, $45, $42, $62, $42, $4b, $42, $4a, $56, $f0, $37, $52, $4f, $4b, $50
+    db $62, $3e, $49, $49, $62, $3e, $49, $49, $46, $42, $50, $f1, $46, $4b, $51, $4c
+    db $62, $3e, $62, $4d, $4f, $4c, $51, $42, $40, $51, $46, $53, $42, $f1, $49, $52
+    db $4a, $4d, $62, $4c, $43, $62, $46, $4f, $4c, $4b, $f0, $2b, $42, $3e, $49, $50
+    db $62, $3f, $42, $51, $54, $42, $42, $4b, $f1, $03, $00, $62, $51, $4c, $62, $04
+    db $00, $62, $2b, $33, $62, $43, $4c, $4f, $62, $3e, $4b, $f1, $3e, $49, $49, $56
+    db $f0, $2b, $42, $3e, $49, $50, $62, $3f, $42, $51, $54, $42, $42, $4b, $f1, $07
+    db $05, $62, $3e, $4b, $41, $62, $09, $00, $62, $2b, $33, $62, $43, $4c, $4f, $f1
+    db $3e, $49, $49, $62, $3e, $49, $49, $46, $42, $50, $f0, $2b, $42, $3e, $49, $50
+    db $62, $2b, $33, $62, $51, $4c, $62, $4a, $3e, $55, $f1, $43, $4c, $4f, $62, $3e
+    db $4b, $62, $3e, $49, $49, $56, $f0, $2b, $42, $3e, $49, $50, $62, $3f, $42, $51
+    db $54, $42, $42, $4b, $f1, $09, $00, $62, $51, $4c, $62, $01, $02, $00, $62, $2b
+    db $33, $62, $43, $4c, $4f, $f1, $3e, $49, $49, $62, $3e, $49, $49, $46, $42, $50
+    db $f0, $2b, $42, $3e, $49, $50, $62, $2b, $33, $62, $51, $4c, $62, $4a, $3e, $55
+    db $f1, $43, $4c, $4f, $62, $3e, $49, $49, $62, $3e, $49, $49, $46, $42, $50, $f0
+    db $35, $42, $53, $46, $53, $42, $50, $62, $3e, $4b, $62, $3e, $49, $49, $56, $f0
+    db $35, $42, $53, $46, $53, $42, $50, $62, $3e, $4b, $62, $3e, $49, $49, $56, $f0
+    db $35, $42, $53, $46, $53, $42, $50, $62, $3e, $49, $49, $62, $4c, $51, $45, $42
+    db $4f, $f1, $3e, $49, $49, $46, $42, $50, $62, $3f, $52, $51, $62, $51, $45, $42
+    db $f1, $40, $3e, $50, $51, $42, $4f, $62, $40, $4c, $49, $49, $3e, $4d, $50, $42
+    db $50, $f0, $26, $52, $4f, $42, $50, $62, $4d, $4c, $46, $50, $4c, $4b, $f0, $26
+    db $52, $4f, $42, $50, $62, $4d, $3e, $4f, $3e, $49, $56, $50, $46, $50, $f1, $4c
+    db $4f, $62, $54, $3e, $48, $42, $50, $62, $52, $4d, $f1, $3e, $4b, $62, $3e, $49
+    db $49, $56, $f0, $26, $52, $4f, $42, $50, $62, $40, $4c, $4b, $43, $52, $50, $46
+    db $4c, $4b, $f0, $25, $4f, $42, $3e, $48, $50, $62, $3e, $62, $40, $52, $4f, $50
+    db $42, $f0, $33, $4f, $4c, $51, $42, $40, $51, $50, $62, $43, $4f, $4c, $4a, $f1
+    db $49, $3e, $4b, $41, $62, $45, $3e, $57, $3e, $4f, $41, $50, $f1, $54, $45, $46
+    db $49, $42, $62, $51, $4f, $3e, $53, $42, $49, $46, $4b, $44, $f0, $35, $42, $53
+    db $42, $3e, $49, $50, $62, $51, $45, $42, $62, $42, $4b, $51, $46, $4f, $42, $f1
+    db $4a, $3e, $4d, $62, $4c, $43, $62, $51, $45, $42, $f1, $49, $3e, $4b, $41, $50
+    db $40, $3e, $4d, $42, $f0, $24, $62, $4f, $3e, $4b, $41, $4c, $4a, $62, $50, $4d
+    db $42, $49, $49, $5e, $f1, $40, $3e, $4b, $62, $3f, $42, $62, $44, $4c, $4c, $41
+    db $62, $4c, $4f, $62, $3f, $3e, $41, $f0, $f0, $29, $42, $3e, $4f, $49, $42, $50
+    db $50, $62, $3e, $51, $51, $3e, $40, $48, $f0, $24, $51, $51, $3e, $40, $48, $50
+    db $62, $49, $46, $48, $42, $62, $3e, $62, $4f, $3e, $4a, $f1, $54, $46, $51, $45
+    db $62, $46, $51, $50, $62, $51, $4f, $52, $42, $f1, $46, $4b, $4b, $42, $4f, $62
+    db $50, $51, $4f, $42, $4b, $44, $51, $45, $f0, $24, $51, $51, $3e, $40, $48, $50
+    db $62, $49, $46, $48, $42, $62, $51, $45, $42, $4f, $42, $f1, $46, $50, $62, $4b
+    db $4c, $62, $51, $4c, $4a, $4c, $4f, $4f, $4c, $54, $f0, $24, $62, $50, $52, $46
+    db $40, $46, $41, $42, $62, $3e, $51, $51, $3e, $40, $48, $f1, $51, $4c, $62, $48
+    db $4b, $4c, $40, $48, $62, $4c, $52, $51, $62, $51, $45, $42, $f1, $42, $4b, $42
+    db $4a, $56, $f0, $2c, $4b, $43, $49, $46, $40, $51, $50, $62, $44, $4f, $42, $3e
+    db $51, $f1, $41, $3e, $4a, $3e, $44, $42, $62, $51, $4c, $62, $3e, $4b, $62, $3e
+    db $49, $49, $56, $f1, $4c, $4f, $62, $3e, $4b, $62, $42, $4b, $42, $4a, $56, $f0
+    db $24, $51, $51, $3e, $40, $48, $50, $62, $49, $46, $48, $42, $62, $3e, $f1, $4f
+    db $52, $51, $45, $49, $42, $50, $50, $62, $41, $42, $4a, $4c, $4b, $f0, $2c, $4b
+    db $43, $49, $46, $40, $51, $50, $62, $45, $52, $44, $42, $f1, $41, $3e, $4a, $3e
+    db $44, $42, $62, $51, $4c, $62, $3e, $4b, $62, $42, $4b, $42, $4a, $56, $f1, $4c
+    db $4b, $62, $51, $45, $42, $62, $4b, $42, $55, $51, $62, $51, $52, $4f, $4b, $f0
+    db $2d, $52, $4a, $4d, $50, $62, $46, $4b, $51, $4c, $62, $51, $45, $42, $62, $3e
+    db $46, $4f, $f1, $3e, $4b, $41, $62, $3e, $51, $51, $3e, $40, $48, $50, $62, $4c
+    db $4b, $f1, $51, $45, $42, $62, $4b, $42, $55, $51, $62, $51, $52, $4f, $4b, $f0
+    db $36, $52, $40, $48, $50, $62, $46, $4b, $62, $3e, $46, $4f, $62, $4d, $4c, $54
+    db $42, $4f, $f1, $51, $4c, $62, $46, $4b, $43, $49, $46, $40, $51, $62, $41, $3e
+    db $4a, $3e, $44, $42, $f1, $4c, $4b, $62, $51, $45, $42, $62, $4b, $42, $55, $51
+    db $62, $51, $52, $4f, $4b, $f0, $25, $52, $4f, $4b, $46, $4b, $44, $62, $3f, $49
+    db $3e, $41, $42, $f1, $50, $54, $4c, $4f, $41, $62, $3e, $51, $51, $3e, $40, $48
+    db $f0, $37, $45, $52, $4b, $41, $42, $4f, $3f, $4c, $49, $51, $f1, $50, $54, $4c
+    db $4f, $41, $62, $3e, $51, $51, $3e, $40, $48, $f0, $3a, $45, $46, $4f, $49, $46
+    db $4b, $44, $62, $53, $3e, $40, $52, $52, $4a, $f1, $50, $54, $4c, $4f, $41, $62
+    db $3e, $51, $51, $3e, $40, $48, $f0, $29, $4f, $42, $42, $57, $46, $4b, $44, $62
+    db $46, $40, $42, $f1, $50, $54, $4c, $4f, $41, $62, $3e, $51, $51, $3e, $40, $48
+    db $f0, $2c, $4b, $43, $49, $46, $40, $51, $50, $62, $44, $4f, $42, $3e, $51, $f1
+    db $41, $3e, $4a, $3e, $44, $42, $62, $51, $4c, $62, $4a, $42, $51, $3e, $49, $f1
+    db $42, $4b, $42, $4a, $46, $42, $50, $f0, $2c, $4b, $43, $49, $46, $40, $51, $50
+    db $62, $44, $4f, $42, $3e, $51, $f1, $41, $3e, $4a, $3e, $44, $42, $62, $51, $4c
+    db $62, $41, $4f, $3e, $44, $4c, $4b, $50, $f0, $2c, $4b, $43, $49, $46, $40, $51
+    db $50, $62, $44, $4f, $42, $3e, $51, $f1, $41, $3e, $4a, $3e, $44, $42, $62, $51
+    db $4c, $62, $3f, $42, $3e, $50, $51, $50, $f0, $2c, $4b, $43, $49, $46, $40, $51
+    db $50, $62, $44, $4f, $42, $3e, $51, $f1, $41, $3e, $4a, $3e, $44, $42, $62, $51
+    db $4c, $62, $3f, $46, $4f, $41, $50, $f0, $2c, $4b, $43, $49, $46, $40, $51, $50
+    db $62, $44, $4f, $42, $3e, $51, $f1, $41, $3e, $4a, $3e, $44, $42, $62, $4c, $4b
+    db $62, $41, $42, $53, $46, $49, $50, $f0, $2c, $4b, $43, $49, $46, $40, $51, $62
+    db $44, $4f, $42, $3e, $51, $f1, $41, $3e, $4a, $3e, $44, $42, $62, $51, $4c, $62
+    db $57, $4c, $4a, $3f, $46, $42, $50, $f0, $2c, $4b, $43, $49, $46, $40, $51, $50
+    db $62, $44, $4f, $42, $3e, $51, $f1, $41, $3e, $4a, $3e, $44, $42, $62, $51, $4c
+    db $f1, $4a, $3e, $51, $42, $4f, $46, $3e, $49, $50, $f0, $2c, $4b, $43, $49, $46
+    db $40, $51, $50, $62, $41, $3e, $4a, $3e, $44, $42, $f1, $51, $4c, $62, $3e, $49
+    db $49, $62, $42, $4b, $42, $4a, $46, $42, $50, $f1, $54, $46, $51, $45, $62, $4a
+    db $3e, $4b, $56, $62, $40, $52, $51, $50, $f0, $24, $51, $51, $3e, $40, $48, $50
+    db $62, $51, $54, $46, $40, $42, $62, $46, $4b, $f1, $4c, $4b, $42, $62, $51, $52
+    db $4f, $4b, $f0, $24, $51, $51, $3e, $40, $48, $50, $62, $04, $62, $51, $46, $4a
+    db $42, $50, $f1, $46, $4b, $62, $4c, $4b, $42, $62, $51, $52, $4f, $4b, $f0, $26
+    db $3e, $49, $49, $50, $62, $43, $4c, $4f, $62, $3e, $62, $3f, $3e, $40, $48, $52
+    db $4d, $f0, $26, $3e, $49, $49, $50, $62, $3e, $62, $44, $4f, $4c, $52, $4d, $62
+    db $4c, $43, $f1, $4a, $4c, $4b, $50, $51, $42, $4f, $50, $62, $43, $4c, $4f, $62
+    db $45, $42, $49, $4d, $f0, $37, $54, $4c, $62, $3e, $51, $51, $3e, $40, $48, $50
+    db $f1, $4c, $4b, $62, $51, $45, $42, $62, $4b, $42, $55, $51, $f1, $51, $52, $4f
+    db $4b, $f0, $24, $49, $49, $4c, $54, $50, $62, $56, $4c, $52, $62, $51, $4c, $f1
+    db $3e, $51, $51, $3e, $40, $48, $62, $43, $46, $4f, $50, $51, $f1, $46, $4b, $62
+    db $51, $45, $42, $62, $51, $52, $4f, $4b, $f0, $2c, $4b, $43, $49, $46, $40, $51
+    db $50, $62, $2a, $4f, $42, $3e, $51, $f1, $41, $3e, $4a, $3e, $44, $42, $62, $51
+    db $4c, $62, $3e, $4b, $62, $42, $4b, $42, $4a, $56, $f1, $3e, $51, $62, $51, $45
+    db $42, $62, $49, $3e, $50, $51, $62, $51, $52, $4f, $4b, $f0, $24, $51, $51, $3e
+    db $40, $48, $50, $62, $3e, $49, $49, $f1, $42, $4b, $42, $4a, $46, $42, $50, $62
+    db $46, $4b, $62, $4c, $4b, $42, $f1, $3e, $51, $51, $3e, $40, $48, $f0, $24, $51
+    db $51, $3e, $40, $48, $50, $62, $3e, $4b, $62, $42, $4b, $42, $4a, $56, $f1, $54
+    db $46, $51, $45, $62, $3e, $62, $53, $46, $4c, $49, $42, $4b, $51, $f1, $54, $45
+    db $46, $4f, $49, $54, $46, $4b, $41, $f0, $24, $51, $51, $3e, $40, $48, $50, $62
+    db $3e, $49, $49, $f1, $42, $4b, $42, $4a, $46, $42, $50, $62, $54, $46, $51, $45
+    db $62, $3e, $f1, $44, $46, $3e, $4b, $51, $62, $53, $3e, $40, $52, $52, $4a, $f0
+    db $2c, $4b, $43, $49, $46, $40, $51, $50, $62, $41, $3e, $4a, $3e, $44, $42, $62
+    db $4c, $4b, $f1, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42, $50, $62, $54
+    db $46, $51, $45, $f1, $49, $46, $44, $45, $51, $4b, $46, $4b, $44, $f0, $37, $45
+    db $4f, $4c, $54, $50, $62, $3e, $62, $45, $52, $44, $42, $62, $4f, $4c, $40, $48
+    db $f1, $4c, $4b, $62, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42, $50, $f0
+    db $25, $4f, $42, $3e, $51, $45, $42, $50, $62, $4c, $52, $51, $62, $43, $46, $4f
+    db $42, $f1, $51, $4c, $62, $46, $4b, $43, $49, $46, $40, $51, $62, $41, $3e, $4a
+    db $3e, $44, $42, $f1, $4c, $4b, $62, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46
+    db $42, $50, $f0, $25, $49, $4c, $54, $50, $62, $4c, $52, $51, $62, $3e, $62, $3f
+    db $49, $3e, $57, $42, $f1, $51, $4c, $62, $46, $4b, $43, $49, $46, $40, $51, $62
+    db $41, $3e, $4a, $3e, $44, $42, $f1, $4c, $4b, $62, $3e, $49, $49, $62, $42, $4b
+    db $42, $4a, $46, $42, $50, $f0, $25, $52, $4f, $4b, $50, $62, $3e, $49, $49, $62
+    db $42, $4b, $42, $4a, $46, $42, $50, $f1, $54, $46, $51, $45, $62, $3e, $62, $41
+    db $42, $53, $3e, $50, $51, $3e, $51, $46, $4b, $44, $f1, $43, $49, $3e, $4a, $42
+    db $f0, $24, $51, $51, $3e, $40, $48, $50, $62, $3e, $49, $49, $f1, $42, $4b, $42
+    db $4a, $46, $42, $50, $62, $54, $46, $51, $45, $62, $3e, $4b, $f1, $52, $4b, $46
+    db $4a, $3e, $44, $46, $4b, $3e, $3f, $49, $42, $62, $3f, $49, $3e, $57, $42, $f0
+    db $2c, $4b, $43, $49, $46, $40, $51, $50, $62, $41, $3e, $4a, $3e, $44, $42, $62
+    db $51, $4c, $f1, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42, $50, $62, $54
+    db $46, $51, $45, $f1, $46, $51, $50, $62, $43, $4f, $46, $44, $46, $41, $62, $3f
+    db $4f, $42, $3e, $51, $45, $f0, $29, $4f, $42, $42, $57, $42, $50, $62, $3e, $49
+    db $49, $f1, $42, $4b, $42, $4a, $46, $42, $50, $f0, $2c, $4b, $43, $49, $46, $40
+    db $51, $50, $62, $41, $3e, $4a, $3e, $44, $42, $62, $51, $4c, $f1, $3e, $49, $49
+    db $62, $42, $4b, $42, $4a, $46, $42, $50, $62, $54, $46, $51, $45, $62, $3e, $f1
+    db $53, $46, $4c, $49, $42, $4b, $51, $62, $46, $40, $42, $62, $50, $51, $4c, $4f
+    db $4a, $f0, $24, $51, $51, $3e, $40, $48, $50, $62, $3e, $49, $49, $f1, $42, $4b
+    db $42, $4a, $46, $42, $50, $62, $54, $46, $51, $45, $62, $3e, $4b, $f1, $46, $4b
+    db $40, $3e, $4b, $41, $42, $50, $40, $42, $4b, $51, $62, $3e, $46, $4f, $f0, $2b
+    db $42, $49, $49, $62, $4d, $4c, $54, $42, $4f, $42, $41, $f1, $49, $46, $44, $45
+    db $51, $4b, $46, $4b, $44, $62, $3f, $49, $3e, $50, $51, $f1, $3e, $51, $51, $3e
+    db $40, $48, $50, $62, $3e, $49, $49, $62, $43, $4c, $42, $50, $f0, $26, $4f, $42
+    db $3e, $51, $42, $50, $62, $3e, $62, $45, $52, $44, $42, $f1, $42, $55, $4d, $49
+    db $4c, $50, $46, $4c, $4b, $62, $51, $4c, $f1, $3e, $51, $51, $3e, $40, $48, $62
+    db $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42, $50, $f0, $37, $45, $42, $62
+    db $4a, $4c, $50, $51, $62, $4d, $4c, $54, $42, $4f, $43, $52, $49, $f1, $50, $4d
+    db $42, $49, $49, $62, $51, $45, $3e, $51, $62, $3e, $43, $43, $42, $40, $51, $50
+    db $f1, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42, $50, $f0, $33, $4c, $46
+    db $50, $4c, $4b, $50, $62, $51, $45, $42, $62, $42, $4b, $42, $4a, $56, $f1, $51
+    db $45, $3e, $51, $62, $3e, $51, $51, $3e, $40, $48, $42, $41, $62, $51, $45, $42
+    db $f1, $3e, $49, $49, $56, $f0, $36, $42, $4b, $41, $50, $62, $51, $45, $42, $62
+    db $42, $4b, $42, $4a, $56, $f1, $51, $45, $3e, $51, $62, $3e, $51, $51, $3e, $40
+    db $48, $42, $41, $f1, $51, $45, $42, $62, $3e, $49, $49, $56, $62, $51, $4c, $62
+    db $50, $49, $42, $42, $4d, $f0, $33, $3e, $4f, $3e, $49, $56, $57, $42, $50, $62
+    db $51, $45, $42, $f1, $42, $4b, $42, $4a, $56, $62, $51, $45, $3e, $51, $f1, $3e
+    db $51, $51, $3e, $40, $48, $42, $41, $62, $51, $45, $42, $62, $3e, $49, $49, $56
+    db $f0, $36, $42, $4b, $41, $62, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42
+    db $50, $f1, $51, $4c, $62, $50, $49, $42, $42, $4d, $f0, $33, $3e, $4f, $3e, $49
+    db $56, $57, $42, $50, $62, $3e, $49, $49, $f1, $42, $4b, $42, $4a, $46, $42, $50
+    db $f0, $33, $4c, $46, $50, $4c, $4b, $50, $62, $3e, $49, $49, $f1, $42, $4b, $42
+    db $4a, $46, $42, $50, $f0, $36, $42, $53, $42, $4f, $49, $56, $62, $4d, $4c, $46
+    db $50, $4c, $4b, $50, $f1, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42, $50
+    db $f0, $26, $4c, $4b, $43, $52, $50, $42, $50, $62, $3e, $49, $49, $f1, $42, $4b
+    db $42, $4a, $46, $42, $50, $f0, $26, $52, $4f, $50, $42, $50, $62, $3e, $49, $49
+    db $62, $42, $4b, $42, $4a, $46, $42, $50, $f0, $30, $3e, $48, $42, $50, $62, $56
+    db $4c, $52, $62, $43, $42, $42, $49, $f1, $45, $3e, $4d, $4d, $56, $f0, $2c, $4b
+    db $50, $51, $3e, $4b, $51, $49, $56, $62, $48, $4b, $4c, $40, $48, $50, $f1, $4c
+    db $52, $51, $62, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42, $50, $f0, $24
+    db $51, $51, $3e, $40, $48, $50, $62, $3e, $49, $49, $f1, $42, $4b, $42, $4a, $46
+    db $42, $50, $62, $54, $46, $51, $45, $f1, $3e, $62, $50, $3e, $4b, $41, $50, $51
+    db $4c, $4f, $4a, $f0, $25, $49, $46, $4b, $41, $50, $62, $3e, $49, $49, $62, $42
+    db $4b, $42, $4a, $46, $42, $50, $f1, $54, $46, $51, $45, $62, $46, $51, $50, $62
+    db $3f, $4f, $46, $44, $45, $51, $f1, $49, $46, $44, $45, $51, $f0, $30, $3e, $48
+    db $42, $50, $62, $3e, $49, $49, $62, $42, $4b, $42, $4a, $46, $42, $50, $f1, $49
+    db $42, $50, $50, $62, $4f, $42, $50, $46, $50, $51, $3e, $4b, $51, $f1, $51, $4c
+    db $62, $4a, $3e, $44, $46, $40, $62, $50, $4d, $42, $49, $49, $50, $f0, $27, $4f
+    db $4c, $4d, $50, $62, $3e, $4b, $62, $42, $4b, $42, $4a, $56, $68, $f1, $30, $33
+    db $62, $54, $46, $51, $45, $62, $46, $51, $50, $62, $4c, $41, $41, $f1, $41, $3e
+    db $4b, $40, $46, $4b, $44, $62, $50, $51, $42, $4d, $50, $f0, $36, $51, $42, $3e
+    db $49, $50, $62, $3e, $4b, $62, $42, $4b, $42, $4a, $56, $68, $f1, $30, $33, $62
+    db $54, $46, $51, $45, $62, $46, $51, $50, $f1, $4a, $42, $50, $4a, $42, $4f, $46
+    db $57, $46, $4b, $44, $62, $41, $3e, $4b, $40, $42, $f0, $36, $46, $41, $42, $50
+    db $51, $42, $4d, $50, $62, $3e, $4b, $f1, $3e, $51, $51, $3e, $40, $48, $f0, $2f
+    db $52, $4f, $42, $50, $62, $3e, $4b, $62, $42, $4b, $42, $4a, $56, $62, $51, $4c
+    db $f1, $3e, $62, $51, $4f, $3e, $4d, $62, $54, $46, $51, $45, $62, $46, $51, $50
+    db $f1, $41, $3e, $4b, $40, $42, $f0, $2f, $46, $40, $48, $50, $62, $3e, $4b, $62
+    db $42, $4b, $42, $4a, $56, $f1, $51, $4c, $62, $50, $51, $4c, $4d, $62, $46, $51
+    db $62, $43, $4f, $4c, $4a, $f1, $3e, $51, $51, $3e, $40, $48, $46, $4b, $44, $f0
+    db $2f, $4c, $54, $42, $4f, $50, $62, $27, $28, $29, $28, $31, $36, $28, $f1, $3f
+    db $56, $62, $44, $46, $53, $46, $4b, $44, $62, $3e, $4b, $62, $42, $4b, $42, $4a
+    db $56, $f1, $3e, $62, $50, $46, $40, $48, $49, $56, $62, $49, $46, $40, $48, $f0
+    db $37, $4f, $46, $4d, $50, $62, $3e, $4b, $62, $42, $4b, $42, $4a, $56, $62, $3f
+    db $56, $f1, $50, $54, $42, $42, $4d, $46, $4b, $44, $62, $46, $51, $50, $62, $49
+    db $42, $44, $50, $f0, $37, $4f, $46, $4d, $50, $62, $3e, $49, $49, $62, $42, $4b
+    db $42, $4a, $46, $42, $50, $f0, $29, $4f, $42, $42, $57, $42, $50, $62, $3e, $49
+    db $49, $f1, $42, $4b, $42, $4a, $46, $42, $50, $62, $54, $46, $51, $45, $62, $3e
+    db $f1, $53, $42, $4f, $56, $62, $49, $4c, $52, $41, $62, $4f, $4c, $3e, $4f, $f0
+    db $36, $52, $4a, $4a, $4c, $4b, $50, $62, $4a, $4c, $4b, $50, $51, $42, $4f, $50
+    db $f0, $2c, $4a, $46, $51, $3e, $51, $42, $50, $62, $51, $45, $42, $f1, $42, $4b
+    db $42, $4a, $56, $68, $62, $3e, $51, $51, $3e, $40, $48, $f0, $27, $46, $50, $4d
+    db $42, $49, $50, $62, $4a, $3e, $44, $46, $40, $f1, $42, $43, $43, $42, $40, $51
+    db $50, $62, $4c, $4b, $62, $3e, $49, $49, $f1, $3e, $49, $49, $46, $42, $50, $f0
+    db $26, $52, $4f, $42, $50, $62, $3e, $4b, $56, $62, $3e, $46, $49, $4a, $42, $4b
+    db $51, $50, $f1, $43, $4c, $4f, $62, $3e, $49, $49, $62, $3e, $49, $49, $46, $42
+    db $50, $f0, $2a, $4f, $42, $3e, $51, $49, $56, $62, $54, $42, $3e, $48, $42, $4b
+    db $50, $f1, $51, $45, $42, $62, $42, $4b, $42, $4a, $56, $f0, $26, $4f, $42, $3e
+    db $51, $42, $50, $62, $3e, $62, $51, $45, $46, $40, $48, $f1, $43, $4c, $44, $62
+    db $51, $4c, $62, $50, $52, $50, $4d, $42, $4b, $41, $f1, $4a, $3e, $44, $46, $40
+    db $62, $50, $4d, $42, $49, $49, $50, $f0, $36, $52, $4a, $4a, $4c, $4b, $50, $62
+    db $37, $3e, $51, $50, $52, $f1, $4a, $4c, $4b, $50, $51, $42, $4f, $50, $62, $51
+    db $4c, $62, $3e, $51, $51, $3e, $40, $48, $f1, $51, $45, $42, $62, $42, $4b, $42
+    db $4a, $56, $f0, $36, $52, $4a, $4a, $4c, $4b, $50, $62, $27, $46, $3e, $44, $4c
+    db $f1, $4a, $4c, $4b, $50, $51, $42, $4f, $50, $62, $51, $4c, $62, $3e, $51, $51
+    db $3e, $40, $48, $f1, $51, $45, $42, $62, $42, $4b, $42, $4a, $56, $f0, $36, $52
+    db $4a, $4a, $4c, $4b, $50, $62, $36, $3e, $4a, $50, $46, $f1, $4a, $4c, $4b, $50
+    db $51, $42, $4f, $50, $62, $51, $4c, $62, $3e, $51, $51, $3e, $40, $48, $f1, $51
+    db $45, $42, $62, $42, $4b, $42, $4a, $56, $f0, $36, $52, $4a, $4a, $4c, $4b, $50
+    db $62, $25, $3e, $57, $4c, $4c, $f1, $4a, $4c, $4b, $50, $51, $42, $4f, $50, $62
+    db $51, $4c, $62, $3e, $51, $51, $3e, $40, $48, $f1, $51, $45, $42, $62, $42, $4b
+    db $42, $4a, $56, $f0, $37, $45, $4f, $4c, $54, $50, $62, $46, $51, $50, $42, $49
+    db $43, $62, $46, $4b, $f1, $43, $4f, $4c, $4b, $51, $62, $4c, $43, $62, $51, $45
+    db $42, $f1, $3e, $51, $51, $3e, $40, $48, $62, $43, $4c, $4f, $62, $3e, $4b, $62
+    db $3e, $49, $49, $56, $f0, $37, $3e, $48, $42, $50, $62, $3e, $49, $49, $62, $51
+    db $45, $42, $f1, $3e, $51, $51, $3e, $40, $48, $50, $62, $43, $4f, $4c, $4a, $62
+    db $3e, $49, $49, $f1, $42, $4b, $42, $4a, $46, $42, $50, $f0, $35, $42, $43, $49
+    db $42, $40, $51, $50, $62, $3f, $3e, $40, $48, $62, $24, $46, $4f, $f1, $3e, $51
+    db $51, $3e, $40, $48, $62, $51, $4c, $62, $3e, $4b, $62, $42, $4b, $42, $4a, $56
+    db $f0, $35, $42, $43, $49, $42, $40, $51, $50, $62, $3f, $3e, $40, $48, $62, $24
+    db $46, $4f, $f1, $3e, $51, $51, $3e, $40, $48, $50, $62, $51, $4c, $62, $3e, $49
+    db $49, $f1, $42, $4b, $42, $4a, $46, $42, $50, $f0, $27, $4c, $41, $44, $42, $50
+    db $62, $3e, $4b, $62, $3e, $51, $51, $3e, $40, $48, $f0, $33, $4f, $42, $4d, $3e
+    db $4f, $42, $50, $62, $51, $4c, $62, $41, $42, $43, $42, $4b, $41, $f1, $46, $51
+    db $50, $42, $49, $43, $62, $43, $4c, $4f, $62, $3e, $4b, $f1, $42, $4b, $42, $4a
+    db $56, $62, $3e, $51, $51, $3e, $40, $48, $f0, $33, $4f, $42, $4d, $3e, $4f, $42
+    db $50, $62, $3e, $62, $50, $51, $4f, $4c, $4b, $44, $f1, $41, $42, $43, $42, $4b
+    db $50, $42, $62, $3e, $44, $3e, $46, $4b, $50, $51, $f1, $3e, $4b, $56, $62, $3e
+    db $51, $51, $3e, $40, $48, $f0, $36, $52, $40, $48, $50, $62, $3e, $49, $49, $62
+    db $51, $45, $42, $62, $3e, $46, $4f, $f1, $51, $4c, $62, $46, $4b, $43, $49, $46
+    db $40, $51, $62, $41, $3e, $4a, $3e, $44, $42, $f1, $4c, $4b, $62, $3e, $49, $49
+    db $62, $42, $4b, $42, $4a, $46, $42, $50, $f0, $27, $42, $43, $42, $4b, $41, $50
+    db $62, $3e, $44, $3e, $46, $4b, $50, $51, $f1, $3e, $62, $40, $4c, $52, $4b, $51
+    db $42, $4f, $3e, $51, $51, $3e, $40, $48, $f0, $36, $52, $50, $4d, $42, $4b, $41
+    db $50, $62, $3e, $49, $49, $f1, $42, $4b, $42, $4a, $46, $42, $50, $5c, $62, $27
+    db $3e, $4b, $40, $42, $f1, $3e, $51, $51, $3e, $40, $48, $50, $f0, $36, $52, $50
+    db $4d, $42, $4b, $41, $50, $62, $3e, $4b, $f1, $42, $4b, $42, $4a, $56, $68, $62
+    db $24, $46, $4f, $f1, $3e, $51, $51, $3e, $40, $48, $f0, $35, $42, $50, $51, $4c
+    db $4f, $42, $50, $62, $05, $00, $00, $62, $2b, $33, $f1, $3f, $56, $62, $4a, $42
+    db $41, $46, $51, $3e, $51, $46, $4c, $4b, $f0, $35, $42, $50, $51, $4c, $4f, $42
+    db $50, $62, $3f, $42, $51, $54, $42, $42, $4b, $f1, $07, $00, $62, $51, $4c, $62
+    db $08, $00, $62, $2b, $33, $62, $51, $4c, $62, $3e, $49, $49, $f1, $3e, $49, $49
+    db $46, $42, $50, $f0, $35, $42, $53, $46, $53, $42, $50, $62, $3e, $49, $49, $62
+    db $3e, $49, $49, $46, $42, $50, $f0, $35, $42, $53, $46, $53, $42, $50, $62, $3e
+    db $49, $49, $62, $3e, $49, $49, $46, $42, $50, $f0, $f0, $26, $3e, $50, $51, $42
+    db $4f, $62, $51, $4f, $3e, $4b, $50, $43, $4c, $4f, $4a, $50, $f1, $46, $4b, $51
+    db $4c, $62, $3e, $62, $41, $4f, $3e, $44, $4c, $4b, $f0, $2c, $4b, $43, $49, $46
+    db $40, $51, $50, $62, $44, $4f, $42, $3e, $51, $f1, $41, $3e, $4a, $3e, $44, $42
+    db $62, $51, $4c, $62, $50, $49, $46, $4a, $42, $50, $f0, $2c, $4b, $43, $49, $46
+    db $40, $51, $50, $62, $44, $4f, $42, $3e, $51, $f1, $41, $3e, $4a, $3e, $44, $42
+    db $62, $51, $4c, $62, $3f, $52, $44, $50, $f0, $2c, $4b, $43, $49, $46, $40, $51
+    db $50, $62, $44, $4f, $42, $3e, $51, $f1, $41, $3e, $4a, $3e, $44, $42, $62, $51
+    db $4c, $62, $4d, $49, $3e, $4b, $51, $50, $f0, $30, $4c, $50, $51, $62, $41, $42
+    db $50, $51, $4f, $52, $40, $51, $46, $53, $42, $f1, $50, $54, $4c, $4f, $41, $62
+    db $3e, $51, $51, $3e, $40, $48, $f0, $30, $3e, $48, $42, $50, $62, $56, $4c, $52
+    db $62, $43, $42, $42, $49, $f1, $50, $46, $40, $48
+   ;Everything below here is graphics, but they are either corrupted, or in a format I do not yet understand.
     ldh a, [$f0]
 
     db $4f, $66

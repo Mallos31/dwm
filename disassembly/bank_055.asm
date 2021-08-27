@@ -2223,8 +2223,8 @@ Call_055_496c:
     call Call_055_4b22
     ld hl, $98a3
     ld bc, $1002
-    ld a, $80
-    jp Jump_055_4b33
+    ld a, $80			;load the ID of the first tile of "[ DEBUG MODE SELECT ]" into a
+    jp Jump_055_4b33		;call the function that draws tiles to vram. It increments the tile number and vram address to draw the debug menu.
 
 
     xor a
@@ -2428,7 +2428,7 @@ jr_055_4b33:
     ld d, b
 
 jr_055_4b35:
-    ld [hl+], a
+    ld [hl+], a			     	;load tile ID into vram. 
     inc a
     dec b
     jr nz, jr_055_4b35
@@ -2789,7 +2789,7 @@ Call_055_4d44:
     ld hl, $8800
     call Call_000_1577
     ld a, [wMenu_selection]
-    ld [$c81e], a
+    ld [$c81e], a		;unknown if this is used by other things, but the debug screen monster id is stored here
     ld a, $04
     ld [$c81f], a
     ld hl, $0087
