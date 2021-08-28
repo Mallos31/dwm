@@ -7623,7 +7623,7 @@ jr_006_62c3:
 
 jr_006_62c6:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -8427,7 +8427,7 @@ jr_006_6734:
 
 jr_006_6737:
     ld a, $07
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -8481,7 +8481,7 @@ jr_006_6776:
 
 jr_006_6779:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -8792,18 +8792,18 @@ jr_006_6920:
 Call_006_6939:
 jr_006_6939:
     ld a, $fe
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_006_67f0
     ld b, $12
     ld a, $e0
     call Call_006_694d
     ld a, $ff
-    jp Jump_000_1aad
+    jp Write_gfx_tile
 
 
 Call_006_694d:
 jr_006_694d:
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_006_67f0
     dec b
     jr nz, jr_006_694d
@@ -8840,23 +8840,23 @@ Call_006_6957:
     ld a, [$c91a]
     ld h, a
     ld a, $fa
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_006_67f0
     ld b, $12
     ld a, $ef
     call Call_006_694d
     ld a, $fb
-    call Call_000_1aad
+    call Write_gfx_tile
     ld hl, $0080
     call Call_006_682f
     ld a, $fc
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_006_67f0
     ld b, $12
     ld a, $ee
     call Call_006_694d
     ld a, $fd
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_000_1ed5
     ld hl, $0000
     ldh a, [$d3]
@@ -9102,7 +9102,7 @@ Call_006_6ad7:
 Call_006_6b3d:
 jr_006_6b3d:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     inc de
     call Call_006_67f0
     dec b
@@ -9676,7 +9676,7 @@ Call_006_6e6b:
 Call_006_6e7f:
     call Call_006_6e88
     ld a, $e0
-    call Call_000_1aad
+    call Write_gfx_tile
     ret
 
 
@@ -9908,7 +9908,7 @@ jr_006_6fbe:
 
 jr_006_6fd8:
     ld a, $e0
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     add $20
     ld l, a
@@ -9932,7 +9932,7 @@ jr_006_6fd8:
 
 jr_006_6ffb:
     ld a, $e0
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     add $20
     ld l, a
@@ -9989,7 +9989,7 @@ jr_006_704d:
 
 jr_006_7050:
     ld a, $07
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -10043,7 +10043,7 @@ jr_006_708f:
 
 jr_006_7092:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af

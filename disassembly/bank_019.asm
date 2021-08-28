@@ -754,13 +754,13 @@ Call_019_4426:
 
 jr_019_442b:
     ld a, $e0
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     ld a, $e0
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     ld a, $e0
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     ld a, $e0
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_019_442b
 
@@ -901,7 +901,7 @@ Call_019_44f5:
     ld a, [de]
     or $80
     inc de
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_019_4458
     ret
 

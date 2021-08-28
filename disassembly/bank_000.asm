@@ -424,7 +424,7 @@ Jump_000_0156:
 jr_000_0157:
     ld [$c81d], a
 
-Jump_000_015a:
+Init_stack_pointer:
     ld sp, $dfff
 
 Jump_000_015d:
@@ -439,7 +439,7 @@ Jump_000_0166:
     ld bc, $1c00
     xor a
     call Call_000_12c7
-    ld hl, $c88a
+    ld hl, wGameMode ;c88a
     xor a
     ld [hl+], a
     ld [hl+], a
@@ -454,7 +454,7 @@ Jump_000_0177:
 Call_000_017a:
     ld [$c8ee], a
     ld a, $00
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $01
 
 Call_000_0184:
@@ -715,7 +715,7 @@ Call_000_030c:
 
 Call_000_030f:
 Jump_000_030f:
-    ld a, [$c88a]
+    ld a, [wGameMode]
 
 Call_000_0312:
 Jump_000_0312:
@@ -902,7 +902,7 @@ Call_000_03d4:
 
 Call_000_03d9:
 jr_000_03d9:
-    ld a, [$c842]
+    ld a, [$c842]			;checks if A B Start and Select are pressed
     and $0f
 
 Call_000_03de:
@@ -913,7 +913,7 @@ Call_000_03e0:
 
     ld a, [$c86c]
     or a
-    jp z, Jump_000_015a
+    jp z, Init_stack_pointer
 
 jr_000_03e9:
     ld a, [$c86c]
@@ -924,15 +924,15 @@ Call_000_03ed:
 
 Jump_000_03ef:
     ld a, [$c842]
-    and $03
+    and $03				;check if A and B are being pressed
     cp $03
-    jr jr_000_044d
+    jr jr_000_044d			;@BUG not really a bug, more than likely purposefully changed from jr nz, 044d to jr 044d to disable the debug menu.
 
 Jump_000_03f8:
     ld a, [wJoypad_current_frame]
 
 Jump_000_03fb:
-    bit 2, a
+    bit 2, a				;checking for the B button the be pressed. If it is not pressed, the code loading the debug menu is skipped. 
     jr z, jr_000_041f
 
 Call_000_03ff:
@@ -940,7 +940,7 @@ Jump_000_03ff:
     ld hl, $c8ad
 
 Call_000_0402:
-    ld a, [$c88a]
+    ld a, [wGameMode]
     ld [hl+], a
 
 Call_000_0406:
@@ -956,10 +956,10 @@ Jump_000_040a:
 Jump_000_040e:
     ld a, [$c88d]
     ld [hl], a
-    ld a, $07
+    ld a, $07			;loads 7 into a preparing to load the debug menu
 
 Jump_000_0414:
-    ld [$c88a], a
+    ld [wGameMode], a
     xor a
 
 Jump_000_0418:
@@ -981,7 +981,7 @@ Call_000_042b:
 
 Jump_000_042d:
     ld hl, $c8ad
-    ld a, [$c88a]
+    ld a, [wGameMode]
 
 Jump_000_0433:
     ld [hl+], a
@@ -999,7 +999,7 @@ Jump_000_043f:
 
 Jump_000_0440:
     ld a, $0c
-    ld [$c88a], a
+    ld [wGameMode], a
     xor a
     ld [$c88b], a
     ld hl, $c88e
@@ -1065,7 +1065,7 @@ Jump_000_0483:
     ld [$c8c9], a
     ld a, [$c8c9]
     or a
-    jp nz, Jump_000_015a
+    jp nz, Init_stack_pointer
 
     ld a, [$c863]
     bit 1, a
@@ -1164,7 +1164,7 @@ Jump_000_050a:
 Call_000_050f:
 Jump_000_050f:
 jr_000_050f:
-    ld a, [$c88a]
+    ld a, [wGameMode]
 
 Call_000_0512:
     rst $00
@@ -1511,7 +1511,7 @@ Call_000_065a:
 Call_000_065f:
     call Call_000_0ce7
     ld a, c
-    call Call_000_1aad
+    call Write_gfx_tile
 
 Jump_000_0666:
 jr_000_0666:
@@ -1606,7 +1606,7 @@ jr_000_06c1:
 Call_000_06ce:
 Jump_000_06ce:
     ld a, c
-    call Call_000_1aad
+    call Write_gfx_tile
     push bc
 
 Call_000_06d3:
@@ -1618,7 +1618,7 @@ Call_000_06d3:
 
 Call_000_06df:
     ld a, b
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, [wJoypad_current_frame]
     ld b, a
     ld a, [$c84a]
@@ -1670,7 +1670,7 @@ jr_000_0720:
 
 jr_000_0723:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
 
 Call_000_0728:
@@ -1930,7 +1930,7 @@ Call_000_0856:
 
 
 Call_000_0864:
-    ld a, [$c825]
+    ld a, [$c825]	;
     bit 5, a
     ret z
 
@@ -1941,7 +1941,7 @@ Call_000_0864:
     ld b, $09
     call Call_000_0ce7
     ld a, $ee
-    call Call_000_1aad
+    call Write_gfx_tile
 
 Call_000_087f:
     ret
@@ -2983,7 +2983,7 @@ jr_000_0cd0:
 
 jr_000_0cd1:
     ld a, e
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_000_0cee
     inc e
     dec b
@@ -3085,7 +3085,7 @@ Call_000_0d30:
 Call_000_0d34:
 jr_000_0d34:
     ld a, $e0
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_000_0cee
     dec b
     jr nz, jr_000_0d34
@@ -5115,7 +5115,7 @@ Call_000_1597:
     jr z, jr_000_15a5
 
     pop hl
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec bc
     ld a, b
     or c
@@ -5219,7 +5219,7 @@ Call_000_1600:
     ei
 
 jr_000_1605:
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
 
 Call_000_1608:
     inc de
@@ -6140,8 +6140,7 @@ jr_000_1aa6:
 Jump_000_1aab:
     jr jr_000_1aa6
 
-Call_000_1aad:
-Jump_000_1aad:
+Write_gfx_tile:
     push af
     di
 
@@ -6157,14 +6156,14 @@ jr_000_1aaf:
     ret
 
 
-Write_OAM_Tile:					;called by debug menu. Probably other things too
+Write_gfx_tile_and_inc_HL:			;called by debug menu. Probably other things too
     push af
     di
 
-.check_OAM_write_status:
+.check_vblank:
     ldh a, [rSTAT]
     bit 1, a					;check if OAM can be written to
-    jr nz, .check_OAM_write_status		;if not, loop until it can.
+    jr nz, .check_vblank			;if not, loop until it can.
 
     pop af
     ld [hl+], a					;write passed tile data into VRAM
@@ -7504,13 +7503,13 @@ Jump_000_20d2:
 
 Call_000_20d3:
     add $f0
-    call Call_000_1aad
+    call Write_gfx_tile
     ret
 
 
 Call_000_20d9:
     ld a, $e0
-    call Call_000_1aad
+    call Write_gfx_tile
     ret
 
 
@@ -7736,7 +7735,7 @@ Call_000_220a:
     jr z, jr_000_221a
 
 Jump_000_2210:
-    ld a, [$c88a]
+    ld a, [wGameMode]
     cp $02
 
 Jump_000_2215:
@@ -8673,7 +8672,7 @@ jr_000_261d:
 
 jr_000_2620:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, $07
     call Call_000_1ac5
     ld a, l

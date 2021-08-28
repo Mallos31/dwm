@@ -43,7 +43,7 @@ jr_056_4046:
 
     ld hl, $c8ad
     ld a, [hl+]
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, [hl+]
     ld [$c88b], a
     ld a, [hl+]
@@ -1297,7 +1297,7 @@ jr_056_45c9:
 
 jr_056_45d6:
     ld a, e
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_000_0cee
     inc e
     dec b
@@ -1329,9 +1329,9 @@ jr_056_45d6:
 
 jr_056_4609:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec bc
     dec bc
     ld a, b
@@ -1344,7 +1344,7 @@ jr_056_4609:
 
 jr_056_461f:
     ld a, e
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_000_0cee
     inc e
     dec b
@@ -1435,7 +1435,7 @@ jr_056_4679:
 
 jr_056_46b5:
     ld a, e
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_000_0cee
     inc e
     dec b
@@ -1625,7 +1625,7 @@ jr_056_478a:
     ld a, [$c832]
     adc $00
     ld [$c832], a
-    ld a, [$c88a]
+    ld a, [wGameMode]
     cp $0b
     jr nz, jr_056_4806
 
@@ -1778,7 +1778,7 @@ jr_056_48b9:
     jr jr_056_48b8
 
 jr_056_48d4:
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_000_0cee
     jr jr_056_48b9
 
@@ -1953,7 +1953,7 @@ jr_056_4a0a:
     ld d, b
 
 jr_056_4a0c:
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     inc a
     dec b
     jr nz, jr_056_4a0c
@@ -2019,9 +2019,9 @@ Call_056_4a50:
     ld a, [$df05]
     ld l, a
     ld a, [$df06]
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     ld a, [$df07]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, [$df03]
     dec a
     cp $ff
@@ -2056,7 +2056,7 @@ jr_056_4a75:
     ld [$df07], a
 
 jr_056_4aa6:
-    ld a, [wJoypad_current_frame]
+    ld a, [wJoypad_current_frame]	;check if down is pressed
     bit 7, a
     jr z, jr_056_4afb
 
@@ -2065,9 +2065,9 @@ jr_056_4aa6:
     ld a, [$df05]
     ld l, a
     ld a, [$df06]
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     ld a, [$df07]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, [$df03]
     inc a
     cp $04
@@ -2132,13 +2132,13 @@ jr_056_4b0f:
 
 jr_056_4b26:
     ld [$df06], a
-    jr jr_056_4b2e
+    jr Increment_msgdebug_option
 
 jr_056_4b2b:
     ld [$df07], a
 
-jr_056_4b2e:
-    ld a, [$df01]
+Increment_msgdebug_option:		
+    ld a, [$df01]	
     inc a
     ld [$df01], a
     ret
@@ -2537,7 +2537,7 @@ Jump_056_4d63:
     jr nz, jr_056_4d79
 
     ld a, $07		;7, the ID for the debug main menu is loaded into the current screen byte.
-    ld [$c88a], a
+    ld [wGameMode], a
     xor a
     ld [$c88b], a	;and it is reset to the first page. 
     ld hl, $c88e
@@ -2563,8 +2563,8 @@ Call_056_4d7a:		;function for blinking the msg debug selection
     jr nz, jr_056_4da3	
 
     ld a, $1f
-    call Write_OAM_Tile
-    call Call_000_1aad
+    call Write_gfx_tile_and_inc_HL
+    call Write_gfx_tile
     ld a, $01
     ld [$df09], a
     ret
@@ -2572,9 +2572,9 @@ Call_056_4d7a:		;function for blinking the msg debug selection
 
 jr_056_4da3:
     ld a, [$df06]
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     ld a, [$df07]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, $00
     ld [$df09], a
     ret
@@ -2593,7 +2593,7 @@ Call_056_4dba:
     rlca
     rlca
     rlca
-    ld [$df01], a
+    ld [$df01], a	;
     ld a, [$df07]
     sub $70
     ld c, a

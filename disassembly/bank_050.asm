@@ -3417,9 +3417,9 @@ jr_050_548c:
 Call_050_5491:
 jr_050_5491:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_050_5491
 
@@ -3804,9 +3804,9 @@ jr_050_56f3:
 
 jr_050_56f5:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_050_56f5
 
@@ -6201,7 +6201,7 @@ Jump_050_640a:
     ld a, $04
     call Call_000_1688
     ld a, $01
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $00
     ld [$c88b], a
     ld a, $00
@@ -6525,7 +6525,7 @@ jr_050_6663:
     ld a, $04
     call Call_000_1688
     ld a, $06
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $00
     ld [$c88b], a
     ld a, $00
@@ -9582,7 +9582,7 @@ jr_050_75bf:
     jr jr_050_75bf
 
 jr_050_75e8:
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_050_756b
     jr jr_050_75bf
 
@@ -9674,7 +9674,7 @@ Call_050_7656:
     adc d
     ld d, a
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld b, $03
     ld l, c
     ld h, $98
@@ -9731,7 +9731,7 @@ jr_050_769b:
 Call_050_76b2:
 jr_050_76b2:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -9846,7 +9846,7 @@ jr_050_7754:
 
 jr_050_7763:
     ld a, $e0
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec bc
     ld a, b
     or c
@@ -10107,7 +10107,7 @@ jr_050_7865:
     ld a, $e8
 
 jr_050_7897:
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ld a, [$d9ea]
     ld l, a
@@ -10156,7 +10156,7 @@ Call_050_78b0:
     ld a, c
     and $7f
     add $f1
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -10954,7 +10954,7 @@ jr_050_7d02:
 
 jr_050_7d05:
     ld a, $00
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af

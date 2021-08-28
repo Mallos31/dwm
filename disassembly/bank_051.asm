@@ -5457,9 +5457,9 @@ jr_051_6041:
 
 jr_051_6043:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_051_6043
 
@@ -5509,9 +5509,9 @@ jr_051_6085:
 
 jr_051_6087:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_051_6087
 
@@ -5624,9 +5624,9 @@ jr_051_6135:
 
 jr_051_6137:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_051_6137
 
@@ -6912,9 +6912,9 @@ Call_051_6a0d:
 
 jr_051_6a2d:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     ld a, $00
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_051_6a2d
 
@@ -8748,7 +8748,7 @@ jr_051_729b:
     jr jr_051_729b
 
 jr_051_72c4:
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_051_7247
     jr jr_051_729b
 
@@ -8839,7 +8839,7 @@ Call_051_7332:
     adc d
     ld d, a
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld b, $03
     ld l, c
     ld h, $98
@@ -8896,7 +8896,7 @@ jr_051_7377:
 Call_051_738e:
 jr_051_738e:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -9012,7 +9012,7 @@ Call_051_7439:
 
 jr_051_743f:
     ld a, $e0
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec bc
     ld a, b
     or c
@@ -9270,7 +9270,7 @@ jr_051_7541:
     ld a, $e8
 
 jr_051_7573:
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ld a, [$d9ea]
     ld l, a
@@ -9319,7 +9319,7 @@ Call_051_758c:
     ld a, c
     and $7f
     add $f1
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -10116,7 +10116,7 @@ jr_051_79de:
 
 jr_051_79e1:
     ld a, $00
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af

@@ -156,7 +156,7 @@ jr_00f_40a9:
     jr jr_00f_40a9
 
 jr_00f_40d2:
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_00f_40da
     jr jr_00f_40a9
 

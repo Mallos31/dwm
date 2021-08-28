@@ -510,7 +510,7 @@ jr_015_43d5:
     ld a, $04
     call Call_000_1688
     ld a, $01
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $00
     ld [$c88b], a
     ld a, $00
@@ -792,9 +792,9 @@ Call_015_45e5:
 
 jr_015_45ef:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_015_45ef
 
@@ -1213,9 +1213,9 @@ jr_015_4846:
 
 jr_015_4848:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_015_4848
 
@@ -2041,9 +2041,9 @@ jr_015_4dae:
 
 jr_015_4db0:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_015_4db0
 
@@ -2597,7 +2597,7 @@ Jump_015_50da:
 
     xor a
     ld [$c8c7], a
-    ld hl, $c88a
+    ld hl, wGameMode
     ld a, $00
     ld [hl+], a
     ld a, $01
@@ -2850,7 +2850,7 @@ jr_015_5307:
     ld [$c8ba], a
 
 jr_015_5317:
-    ld hl, $c88a
+    ld hl, wGameMode
     ld a, $02
     ld [hl+], a
     ld a, $00
@@ -3299,9 +3299,9 @@ jr_015_55a5:
 
 jr_015_55a7:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_015_55a7
 
@@ -3877,7 +3877,7 @@ Jump_015_58e0:
 
     xor a
     ld [$c8c7], a
-    ld hl, $c88a
+    ld hl, wGameMode
     ld a, $00
     ld [hl+], a
     ld a, $01
@@ -4058,7 +4058,7 @@ jr_015_5aa5:
 
     xor a
     ld [$c8c7], a
-    ld hl, $c88a
+    ld hl, wGameMode
     ld a, $01
     ld [hl+], a
     ld a, $01
@@ -4469,7 +4469,7 @@ jr_015_5d62:
     jr jr_015_5d62
 
 jr_015_5d87:
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_015_5d10
     jr jr_015_5d62
 
@@ -4529,7 +4529,7 @@ jr_015_5dcd:
 
 jr_015_5dd0:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -4657,7 +4657,7 @@ Call_015_5e8b:
 
 jr_015_5e91:
     ld a, $e0
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec bc
     ld a, b
     or c
@@ -4980,7 +4980,7 @@ jr_015_6000:
     ld a, $e8
 
 jr_015_6030:
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -5029,7 +5029,7 @@ Call_015_6047:
     ld a, c
     and $7f
     add $f1
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -5237,7 +5237,7 @@ jr_015_6154:
 
 Call_015_6166:
     add $f0
-    call Call_000_1aad
+    call Write_gfx_tile
     ret
 
 

@@ -11310,7 +11310,7 @@ jr_013_7381:
 
 jr_013_73cb:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_013_73cb
 
@@ -11344,7 +11344,7 @@ jr_013_73cb:
     ld a, $04
     call Call_000_1688
     ld a, $02
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $00
     ld [$c88b], a
     ld a, $00
@@ -12028,7 +12028,7 @@ Call_013_776b:
 Call_013_777f:
     call Call_013_7788
     ld a, $e6
-    call Call_000_1aad
+    call Write_gfx_tile
     ret
 
 

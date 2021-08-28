@@ -4842,7 +4842,7 @@ jr_002_5bcb:
 
 
     ld a, $01
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $00
     ld [$c88b], a
     ld a, $00
@@ -5147,7 +5147,7 @@ jr_002_5d75:
 
 
     ld a, $01
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $00
     ld [$c88b], a
     ld a, $00
@@ -5452,7 +5452,7 @@ jr_002_5f30:
     ret nz
 
     ld a, $01
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $00
     ld [$c88b], a
     ld a, $00
@@ -5497,7 +5497,7 @@ jr_002_5f66:
     ret nz
 
     ld a, $01
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $00
     ld [$c88b], a
     ld a, $00

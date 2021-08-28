@@ -872,7 +872,7 @@ Call_018_4455:
 
 jr_018_4457:
     ld a, $e0
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     add $20
     ld l, a
@@ -1523,9 +1523,9 @@ jr_018_484f:
 
 jr_018_4851:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_018_4851
 
@@ -1585,9 +1585,9 @@ jr_018_48a6:
 
 jr_018_48a8:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_018_48a8
 
@@ -1700,9 +1700,9 @@ jr_018_4956:
 
 jr_018_4958:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_018_4958
 
@@ -2239,7 +2239,7 @@ jr_018_4cd8:
     or a
     ret nz
 
-    ld hl, $c88a
+    ld hl, wGameMode
     ld a, $00
     ld [hl+], a
     ld a, $01
@@ -2589,7 +2589,7 @@ Call_018_4ed1:
     adc $98
     ld h, a
     pop af
-    call Call_000_1aad
+    call Write_gfx_tile
     pop hl
     ret
 
@@ -2778,7 +2778,7 @@ jr_018_4fa8:
     jr jr_018_4fa8
 
 jr_018_4fcd:
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_018_4f56
     jr jr_018_4fa8
 
@@ -2838,7 +2838,7 @@ jr_018_5013:
 
 jr_018_5016:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -3050,7 +3050,7 @@ jr_018_5148:
 
 jr_018_5157:
     ld a, $e0
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec bc
     ld a, b
     or c
@@ -3317,7 +3317,7 @@ jr_018_5261:
     ld a, $e8
 
 jr_018_5291:
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -3366,7 +3366,7 @@ Call_018_52a8:
     ld a, c
     and $7f
     add $f1
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -3663,7 +3663,7 @@ jr_018_5453:
 
 Call_018_5465:
     add $f0
-    call Call_000_1aad
+    call Write_gfx_tile
     ret
 
 

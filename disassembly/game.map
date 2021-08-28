@@ -112,7 +112,7 @@ ROM0 bank #0:
            $0154 = Call_000_0154
            $0156 = Jump_000_0156
            $0157 = jr_000_0157
-           $015a = Jump_000_015a
+           $015a = Init_stack_pointer
            $015d = Jump_000_015d
            $0163 = Jump_000_0163
            $0166 = Jump_000_0166
@@ -1046,12 +1046,11 @@ ROM0 bank #0:
            $1aa6 = Call_000_1aa6
            $1aa6 = jr_000_1aa6
            $1aab = Jump_000_1aab
-           $1aad = Call_000_1aad
-           $1aad = Jump_000_1aad
+           $1aad = Write_gfx_tile
            $1aaf = jr_000_1aaf
            $1aaf = Call_000_1aaf
-           $1ab9 = Write_OAM_Tile
-           $1abb = Write_OAM_Tile.check_OAM_write_status
+           $1ab9 = Write_gfx_tile_and_inc_HL
+           $1abb = Write_gfx_tile_and_inc_HL.check_vblank
            $1ac5 = Call_000_1ac5
            $1ace = jr_000_1ace
            $1acf = jr_000_1acf
@@ -23103,7 +23102,7 @@ ROMX bank #86:
            $4b0f = jr_056_4b0f
            $4b26 = jr_056_4b26
            $4b2b = jr_056_4b2b
-           $4b2e = jr_056_4b2e
+           $4b2e = Increment_msgdebug_option
            $4b36 = Jump_056_4b36
            $4b4a = jr_056_4b4a
            $4b61 = jr_056_4b61
@@ -28384,6 +28383,8 @@ WRAM0 bank #0:
            $c846 = wJoypad_current_frame
            $c847 = wJoypad_Current
            $c848 = wRamUnk4
+           $c88a = wGameMode
+           $c88b = wRamUnk8
            $c8da = wMenu_selection
            $c8db = wOPTN_and_Item_selection
            $c8dc = wPLAN_selection

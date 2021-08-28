@@ -175,7 +175,7 @@ jr_009_409c:
     jr jr_009_409c
 
 jr_009_40c1:
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_009_404a
     jr jr_009_409c
 
@@ -235,7 +235,7 @@ jr_009_4107:
 
 jr_009_410a:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -449,7 +449,7 @@ jr_009_423c:
 
 jr_009_424b:
     ld a, $e0
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec bc
     ld a, b
     or c
@@ -907,7 +907,7 @@ jr_009_4447:
     ld a, $e8
 
 jr_009_4477:
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -994,7 +994,7 @@ Call_009_44db:
     pop bc
     pop de
     pop af
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -1185,7 +1185,7 @@ jr_009_45bd:
     pop hl
 
 jr_009_45ce:
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -4416,7 +4416,7 @@ jr_009_5ac2:
     pop hl
 
 jr_009_5ad3:
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -6892,7 +6892,7 @@ Call_009_6a83:
 
 Call_009_6a96:
     ldh a, [$d7]
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -6968,7 +6968,7 @@ jr_009_6ad0:
     ld a, $a0
 
 jr_009_6aef:
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a

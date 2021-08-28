@@ -2301,7 +2301,7 @@ Call_055_496c:
 
 Call_055_4a47:
 jr_055_4a47:
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     inc a
     dec b
     jr nz, jr_055_4a47
@@ -2461,7 +2461,7 @@ jr_055_4b35:
     ld [$df00], a
     ld [$df01], a
     ld a, $0b
-    ld [$c88a], a			;load B into the current menu type (message debugger)
+    ld [wGameMode], a			;load B into the current menu type (message debugger)
     xor a				;reset a
     ld [$c88b], a			;use a to reset current debug menu page (page 1)
     ld hl, $c88e			
@@ -2522,7 +2522,7 @@ Prep_Debug_Menu_OAM_tile_ID:
     ld b, $10			;load number of tiles in debug menu text string into b
 
 .OAM_draw_loop:
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     inc a			;increase tile ID
     dec b			;decrease number of tiles left to draw
     jr nz, .OAM_draw_loop
@@ -2545,7 +2545,7 @@ Prep_Debug_Menu_OAM_tile_ID:
 
 
 jr_055_4bdc:			;Likely inits data for the title screen 
-    ld hl, $c88a
+    ld hl, wGameMode
     ld a, [$c8ad]
     ld [hl+], a
     ld a, [$c8ae]
@@ -2587,7 +2587,7 @@ jr_055_4bdc:			;Likely inits data for the title screen
     call Call_000_1688
     ld hl, wDebug_main_menu_option
     ld a, [hl+]
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, [hl+]
     ld [$c88b], a
     ld a, [hl+]
@@ -2693,8 +2693,8 @@ jr_055_4cbf:
     jr nz, jr_055_4cda
 
     xor a
-    call Write_OAM_Tile
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
+    call Write_gfx_tile_and_inc_HL
     jr jr_055_4cde
 
 jr_055_4cda:
@@ -2724,7 +2724,7 @@ jr_055_4cde:
     ld b, $08
 
 jr_055_4cfa:
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     inc a
     dec b
     jr nz, jr_055_4cfa
@@ -2831,7 +2831,7 @@ jr_055_4da3:
     ld a, $04
     call Call_000_1688
     ld a, $01
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $00
     ld [$c88b], a
 
@@ -2979,9 +2979,9 @@ jr_055_4e9d:
     jr nz, jr_055_4ebb
 
     xor a
-    call Write_OAM_Tile
-    call Write_OAM_Tile
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
+    call Write_gfx_tile_and_inc_HL
+    call Write_gfx_tile_and_inc_HL
     jr jr_055_4ec3
 
 jr_055_4ebb:
@@ -3101,7 +3101,7 @@ jr_055_4f19:
 
 Call_055_4f87:
 jr_055_4f87:
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     inc a
     dec b
     jr nz, jr_055_4f87
@@ -3252,8 +3252,8 @@ jr_055_5050:
     jr nz, jr_055_506b
 
     xor a
-    call Write_OAM_Tile
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
+    call Write_gfx_tile_and_inc_HL
     jr jr_055_506f
 
 jr_055_506b:
@@ -3428,7 +3428,7 @@ jr_055_50d8:
     ld a, $04
     call Call_000_1688
     ld a, $02
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $00
     ld [$c88b], a
     call Call_055_5379
@@ -3571,9 +3571,9 @@ jr_055_51fc:
     jr nz, jr_055_521a
 
     xor a
-    call Write_OAM_Tile
-    call Write_OAM_Tile
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
+    call Write_gfx_tile_and_inc_HL
+    call Write_gfx_tile_and_inc_HL
     jr jr_055_5222
 
 jr_055_521a:
@@ -3703,7 +3703,7 @@ Jump_055_52ad:
 
 Call_055_52fc:
 jr_055_52fc:
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     inc a
     dec b
     jr nz, jr_055_52fc
@@ -3728,11 +3728,11 @@ Call_055_5315:
     swap a
     and $0f
     inc a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     ld a, c
     and $0f
     inc a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     ret
 
 
@@ -3783,7 +3783,7 @@ Call_055_5357:
     push af
     ld a, d
     add b
-    call Call_000_1aad
+    call Write_gfx_tile
     pop af
     ret
 
@@ -3791,7 +3791,7 @@ Call_055_5357:
 Call_055_535f:
     push af
     ld a, c
-    call Call_000_1aad
+    call Write_gfx_tile
     pop af
     ret
 

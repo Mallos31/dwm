@@ -295,10 +295,10 @@ jr_017_4102:
 
 jr_017_41a5:
     ld a, $07
-    call Write_OAM_Tile
-    call Write_OAM_Tile
-    call Write_OAM_Tile
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
+    call Write_gfx_tile_and_inc_HL
+    call Write_gfx_tile_and_inc_HL
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_017_41a5
 
@@ -398,7 +398,7 @@ jr_017_423a:
 
 jr_017_423d:
     ld a, [$c81f]
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_017_4265
     dec b
     jr nz, jr_017_423d

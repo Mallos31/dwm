@@ -111,7 +111,7 @@
 00:0154 Call_000_0154
 00:0156 Jump_000_0156
 00:0157 jr_000_0157
-00:015a Jump_000_015a
+00:015a Init_stack_pointer
 00:015d Jump_000_015d
 00:0163 Jump_000_0163
 00:0166 Jump_000_0166
@@ -1045,12 +1045,11 @@
 00:1aa6 Call_000_1aa6
 00:1aa6 jr_000_1aa6
 00:1aab Jump_000_1aab
-00:1aad Call_000_1aad
-00:1aad Jump_000_1aad
+00:1aad Write_gfx_tile
 00:1aaf jr_000_1aaf
 00:1aaf Call_000_1aaf
-00:1ab9 Write_OAM_Tile
-00:1abb Write_OAM_Tile.check_OAM_write_status
+00:1ab9 Write_gfx_tile_and_inc_HL
+00:1abb Write_gfx_tile_and_inc_HL.check_vblank
 00:1ac5 Call_000_1ac5
 00:1ace jr_000_1ace
 00:1acf jr_000_1acf
@@ -22758,7 +22757,7 @@
 56:4b0f jr_056_4b0f
 56:4b26 jr_056_4b26
 56:4b2b jr_056_4b2b
-56:4b2e jr_056_4b2e
+56:4b2e Increment_msgdebug_option
 56:4b36 Jump_056_4b36
 56:4b4a jr_056_4b4a
 56:4b61 jr_056_4b61
@@ -27871,6 +27870,8 @@
 00:c846 wJoypad_current_frame
 00:c847 wJoypad_Current
 00:c848 wRamUnk4
+00:c88a wGameMode
+00:c88b wRamUnk8
 00:c8da wMenu_selection
 00:c8db wOPTN_and_Item_selection
 00:c8dc wPLAN_selection

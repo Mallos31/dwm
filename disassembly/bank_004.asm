@@ -8558,7 +8558,7 @@ jr_004_7056:
     ld a, $ff
 
 jr_004_7062:
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_004_7062
 
@@ -8567,10 +8567,10 @@ jr_004_7062:
     ld a, $da
 
 jr_004_706f:
-    call Write_OAM_Tile
-    call Write_OAM_Tile
-    call Write_OAM_Tile
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
+    call Write_gfx_tile_and_inc_HL
+    call Write_gfx_tile_and_inc_HL
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_004_706f
 
@@ -8607,7 +8607,7 @@ jr_004_70a1:
 
 jr_004_70a4:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af

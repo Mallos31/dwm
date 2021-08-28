@@ -265,7 +265,7 @@ jr_05f_4173:
     ld hl, wGameState
     res 0, [hl]
     ld a, $01
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $00
     ld [$c88b], a
     ld a, $00
@@ -356,7 +356,7 @@ jr_05f_424a:
 
 jr_05f_424c:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     inc hl
     inc de
     dec b
@@ -440,7 +440,7 @@ jr_05f_42a7:
     cp $d9
     ret z
 
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     jr jr_05f_42a7
 
 jr_05f_42b5:
@@ -5490,7 +5490,7 @@ Jump_05f_5e3e:
     ld a, $04
     call Call_000_1688
     ld a, $07
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $00
     ld [$c88b], a
     ld a, $00

@@ -156,7 +156,7 @@ jr_00c_40a9:
     jr jr_00c_40a9
 
 jr_00c_40d2:
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_00c_40da
     jr jr_00c_40a9
 
@@ -5931,7 +5931,7 @@ jr_00c_5a65:
     ld e, d
     ld bc, $25ff
     nop
-    jp Jump_000_015a
+    jp Init_stack_pointer
 
 
     rst $38

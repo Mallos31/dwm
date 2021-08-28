@@ -239,7 +239,7 @@ jr_00b_4168:
     ld a, [de]
     swap a
     and $0f
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -252,7 +252,7 @@ jr_00b_4168:
     ld l, a
     ld a, [de]
     and $0f
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -322,7 +322,7 @@ jr_00b_41d5:
 
 jr_00b_41d8:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af

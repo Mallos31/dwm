@@ -43,7 +43,13 @@ wJoypad_Current::
   
   
 wRamUnk4::
-  ds $92
+  ds $42
+  
+wGameMode::
+  ds 1	;c88a
+
+wRamUnk8::
+  ds $4f
   
 ;Currently selected option in menu.
 ;Menues known to use this byte: Battle, Main, Buy/Sell/Exit, 

@@ -362,7 +362,7 @@ jr_059_4250:
 
 
     ld a, $00
-    ld [$c88a], a
+    ld [wGameMode], a
     xor a
     ld [$c88b], a
     xor a
@@ -1449,7 +1449,7 @@ jr_059_453f:
     ret nz
 
     ld a, $00
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $00
     ld [$c88b], a
     ld a, $00
@@ -2128,7 +2128,7 @@ jr_059_4c7f:
     ret nz
 
     ld a, $00
-    ld [$c88a], a
+    ld [wGameMode], a
     ld a, $00
     ld [$c88b], a
     ld a, $00
@@ -5192,7 +5192,7 @@ jr_059_5cda:
     cp $d9
     jr z, jr_059_5cf5
 
-    call Call_000_1aad
+    call Write_gfx_tile
     inc hl
     jr jr_059_5cda
 

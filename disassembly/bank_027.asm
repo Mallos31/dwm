@@ -10477,7 +10477,7 @@ jr_027_6d3a:
     inc b
     jp nz, Jump_000_040a
 
-    jp nc, Jump_000_040e
+    db $D2, $0E, $04
 
     ld [c], a
     ld a, [bc]

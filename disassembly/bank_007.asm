@@ -722,9 +722,9 @@ Call_007_4482:
 
 jr_007_448b:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_007_448b
 
@@ -3101,9 +3101,9 @@ Call_007_5456:
 Call_007_5492:
 jr_007_5492:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_007_5492
 
@@ -3441,7 +3441,7 @@ jr_007_56a3:
     ld a, [$c8dd]
     and $01
     add $f1
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ld hl, $0150
     ld a, l
@@ -3455,7 +3455,7 @@ jr_007_56a3:
     ld hl, $0151
     call Call_007_6889
     ld a, $e7
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ld hl, $0151
     ld a, l
@@ -5346,9 +5346,9 @@ Call_007_6254:
 Call_007_6264:
 jr_007_6264:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_007_6264
 
@@ -5944,7 +5944,7 @@ jr_007_65f9:
     call Call_007_6a8f
     call Call_007_690d
     call Call_007_6a9e
-    ld a, [$c88a]
+    ld a, [wGameMode]
     or a
     jr z, jr_007_661b
 
@@ -6008,7 +6008,7 @@ jr_007_6658:
     ld a, [de]
     swap a
     and $0f
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -6021,7 +6021,7 @@ jr_007_6658:
     ld l, a
     ld a, [de]
     and $0f
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -6096,7 +6096,7 @@ Call_007_66b1:
 
 
 Call_007_66c8:
-    ld a, [$c88a]
+    ld a, [wGameMode]
     or a
     ret z
 
@@ -6145,7 +6145,7 @@ jr_007_6701:
 
 
 Call_007_670e:
-    ld a, [$c88a]
+    ld a, [wGameMode]
     or a
     ret z
 
@@ -6473,7 +6473,7 @@ jr_007_68af:
     jr jr_007_68af
 
 jr_007_68d4:
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_007_685d
     jr jr_007_68af
 
@@ -6533,7 +6533,7 @@ jr_007_691a:
 
 jr_007_691d:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -6775,7 +6775,7 @@ Call_007_6a9e:
 
 jr_007_6aa4:
     ld a, $e0
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec bc
     ld a, b
     or c
@@ -7183,7 +7183,7 @@ jr_007_6cac:
     ld a, $e8
 
 jr_007_6cdc:
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -7232,7 +7232,7 @@ Call_007_6cf3:
     ld a, c
     and $7f
     add $f1
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -8002,7 +8002,7 @@ jr_007_7026:
 
 Call_007_7038:
     add $f0
-    call Call_000_1aad
+    call Write_gfx_tile
     ret
 
 

@@ -163,7 +163,7 @@ jr_012_4087:
     jr jr_012_4087
 
 jr_012_40ac:
-    call Call_000_1aad
+    call Write_gfx_tile
     call Call_012_4035
     jr jr_012_4087
 
@@ -223,7 +223,7 @@ jr_012_40f2:
 
 jr_012_40f5:
     ld a, [de]
-    call Call_000_1aad
+    call Write_gfx_tile
     ld a, l
     and $e0
     push af
@@ -436,7 +436,7 @@ jr_012_4227:
 
 jr_012_4236:
     ld a, $e0
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec bc
     ld a, b
     or c
@@ -703,7 +703,7 @@ jr_012_4340:
     ld a, $e8
 
 jr_012_4370:
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -752,7 +752,7 @@ Call_012_4387:
     ld a, c
     and $7f
     add $f1
-    call Call_000_1aad
+    call Write_gfx_tile
     push af
     ldh a, [$d5]
     ld l, a
@@ -1203,9 +1203,9 @@ Call_012_465c:
 
 jr_012_4665:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_012_4665
 
@@ -2275,9 +2275,9 @@ jr_012_4d97:
 
 jr_012_4d99:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_012_4d99
 
@@ -3781,9 +3781,9 @@ jr_012_57b6:
 
 jr_012_57b8:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_012_57b8
 
@@ -3896,9 +3896,9 @@ jr_012_5866:
 
 jr_012_5868:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_012_5868
 
@@ -5133,7 +5133,7 @@ jr_012_603a:
 
 Call_012_604c:
     add $f0
-    call Call_000_1aad
+    call Write_gfx_tile
     ret
 
 
@@ -5586,9 +5586,9 @@ jr_012_6310:
 
 jr_012_6312:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_012_6312
 
@@ -6819,9 +6819,9 @@ jr_012_6995:
 
 jr_012_6997:
     ld a, $ff
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     xor a
-    call Write_OAM_Tile
+    call Write_gfx_tile_and_inc_HL
     dec b
     jr nz, jr_012_6997
 

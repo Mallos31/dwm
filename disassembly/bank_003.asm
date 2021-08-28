@@ -96,7 +96,7 @@ jr_003_4071:
     or a
     jp z, Jump_003_4142
 
-    ld a, [$c88a]
+    ld a, [wGameMode]
     or a
     jr nz, jr_003_40b5
 
@@ -158,7 +158,7 @@ Jump_003_40c8:
     ei
     ld hl, $0109
     rst $10
-    ld hl, $c88a
+    ld hl, wGameMode
     ld a, $00
     ld [hl+], a
     ld a, $02
@@ -189,7 +189,7 @@ Jump_003_4107:
     di
     call Call_000_21b2
     ei
-    ld hl, $c88a
+    ld hl, wGameMode
     ld a, $00
     ld [hl+], a
     ld a, $03
