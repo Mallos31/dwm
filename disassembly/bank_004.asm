@@ -5240,79 +5240,87 @@ jr_004_5aef:
     set 3, [hl]
     ret
 
+                        ; begining of function relating to tresure chests
+                        ; inc unknown counter
+    ld a, [$d8d5]
+    add $01
+    ld [$d8d5], a
+    ld a, [$d8d6]
+    adc $00
+    ld [$d8d6], a
 
-    ld a, [$d8d5]
+    call Call_004_71ef
+    ld l, c             ; load c into l
+    ld h, b             ; load b into h
+    push hl             ; push hl (location in ram of opened tresure chest flags)
+    ld a, [$d8d5]       ; inc unknown counter
     add $01
     ld [$d8d5], a
     ld a, [$d8d6]
     adc $00
     ld [$d8d6], a
+
     call Call_004_71ef
-    ld l, c
-    ld h, b
-    push hl
-    ld a, [$d8d5]
-    add $01
-    ld [$d8d5], a
-    ld a, [$d8d6]
-    adc $00
-    ld [$d8d6], a
-    call Call_004_71ef
-    pop hl
-    ld [hl], c
+    pop hl              ; pop hl (location in ram of opened tresure chest flags)
+    ld [hl], c          ; load c (chests id bit) into the contents of hl (opened chest bit plane)
     jp Jump_004_55f5
 
 
-    ld a, [$d8d5]
+    ld a, [$d8d5]       ; inc unknown counter
     add $01
     ld [$d8d5], a
     ld a, [$d8d6]
     adc $00
     ld [$d8d6], a
+
     call Call_004_71ef
-    ld l, c
-    ld h, b
-    push hl
-    ld a, [$d8d5]
+    ld l, c             ; load c into l 
+    ld h, b             ; load b into h
+    push hl             ; push hl (unknown)
+    ld a, [$d8d5]       ; inc unknown counter
     add $01
     ld [$d8d5], a
     ld a, [$d8d6]
     adc $00
     ld [$d8d6], a
+
     call Call_004_71ef
-    pop hl
-    ld [hl], c
-    inc hl
-    ld [hl], b
+    pop hl              ; pop hl (unknown)
+    ld [hl], c          ; load c into the contents of hl (unknown)
+    inc hl              ; add 1 to the pointer in hl (unknown pointer)
+    ld [hl], b          ; loads b into the contents of hl (unknown)
     jp Jump_004_55f5
 
 
-    ld a, [$d8d5]
+    ld a, [$d8d5]       ; inc unknown counter
     add $01
     ld [$d8d5], a
     ld a, [$d8d6]
     adc $00
     ld [$d8d6], a
+
     call Call_004_71ef
     jp Jump_004_7212
 
 
-    ld a, [$d8d5]
+    ld a, [$d8d5]       ; inc unknown counter
     add $01
     ld [$d8d5], a
     ld a, [$d8d6]
     adc $00
     ld [$d8d6], a
+
     call Call_004_71ef
-    ld l, c
-    ld h, b
-    push hl
-    ld a, [$d8d5]
+    ld l, c             ; load c into l
+    ld h, b             ; load b into h
+    push hl             ; push hl (unknown)
+    ld a, [$d8d5]       ; inc unknown counter
     add $01
     ld [$d8d5], a
     ld a, [$d8d6]
     adc $00
     ld [$d8d6], a
+
     call Call_004_71ef
     pop hl
     ld a, [$d8d5]
@@ -5990,7 +5998,7 @@ jr_004_5fda:
     adc $00
     ld [$d8d6], a
     call Call_004_71ef
-    ld hl, $ca51
+    ld hl, $ca51        ;first inventory slot
     ld b, $14
 
 jr_004_5ff3:
@@ -8816,12 +8824,12 @@ jr_004_71cf:
 
 
 Call_004_71ef:
-    ld a, [$d8d3]
-    cp $06
+    ld a, [$d8d3]       ; load d8d3 into a
+    cp $06              ; check to see if a is greater than 6
     jr nc, jr_004_71fb
 
-    ld hl, $0c00
-    rst $10
+    ld hl, $0c00        ; load 0c00 (rom bank c ram bank 0) into hl
+    rst $10             ; unknown
     ret
 
 

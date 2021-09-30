@@ -7536,8 +7536,10 @@ Call_001_67f8:
     call Call_001_69ad
     call Call_001_69ad
     call Call_001_69ad
+    
+    ;initialize enemy monster slots
     ld a, $ff
-    ld [$da03], a
+    ld [$da03], a		
     ld [$da05], a
     ld [$da07], a
     ld hl, $c0d8
@@ -7597,7 +7599,7 @@ jr_001_68d8:
     adc h
     ld h, a
     ld a, [hl+]
-    ld [$da03], a
+    ld [$da03], a	;load new monster ID into monster slot 1
     ld a, [hl]
     ld [$da04], a
     ld a, $00
@@ -7708,7 +7710,7 @@ Call_001_696c:
 
 
 Call_001_6989:
-    push hl
+    push hl		
     call Call_000_12d0
     ld a, [$c899]
     ld l, a

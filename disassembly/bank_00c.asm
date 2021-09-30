@@ -4,25 +4,23 @@
 ; https://github.com/mattcurrie/mgbdis
 
 SECTION "ROM Bank $00c", ROMX[$4000], BANK[$c]
-
-    inc c
-    rlca
-    ld b, b
-    cpl
-    ld b, b
-    db $10
-    ld b, c
-
-Call_00c_4007:
-    ld a, [$d8d3]
+    ;rom bank
+    db $0c
+    
+    ;code jump table
+    db $07, $40, $2F, $40, $10, $41
+    
+Call_00c_4007:			;jumped to by call_004_71ef's RST10 call.
+    ld a, [$d8d3]		;
     ld l, a
     ld h, $00
     add hl, hl
-    ld de, $41ba
+    ld de, $41ba		;data block. First 2 bytes may be a pointer
     add hl, de
     ld e, [hl]
     inc hl
     ld d, [hl]
+    
     ld a, [$d8d4]
     ld l, a
     ld h, $00
@@ -31,7 +29,8 @@ Call_00c_4007:
     ld e, [hl]
     inc hl
     ld d, [hl]
-    ld a, [$d8d5]
+    
+    ld a, [$d8d5]		;unknown counter from rom bank 4
     ld l, a
     ld a, [$d8d6]
     ld h, a
@@ -44,7 +43,7 @@ Call_00c_4007:
     ret
 
 
-    ld hl, $ffb7
+    ld hl, $ffb7	;jump table address 2
     ld a, [hl]
     and $f8
     ld [hl], a
@@ -218,7 +217,7 @@ jr_00c_410e:
     ret
 
 
-    ld hl, $ffb7
+    ld hl, $ffb7		;jump table address 3
     ld a, [hl]
     and $f8
     ld [hl], a

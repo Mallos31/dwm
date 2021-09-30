@@ -32,7 +32,7 @@ Call_000_0007:
 Jump_000_0007:
     ld h, a
 
-RST_08::
+RST_08::		;called by RST10. Jumps to address at second and third bytes of ROM bank. 
     ld a, [hl+]
 
 Call_000_0009:
@@ -59,25 +59,25 @@ Jump_000_000e:
 Jump_000_000f:
     ret
 
-
-RST_10::
+;loads ROM bank H and jumps to the start of code found at addresses 4001 and 4002 at the beginning of each bank.
+RST_10::		
     ld a, [$4000] 	;load current rom bank number into reg a
 
 Call_000_0013:
     push af
 
 Jump_000_0014:
-    ld a, h
+    ld a, h		;load new rom bank passed with H into A
 
 Call_000_0015:
 Jump_000_0015:
-    ld [$2100], a	;load value in h as the new rom bank
+    ld [$2100], a	;load value from h as the new rom bank
 
 RST_18::
-    swap a
+    swap a		;swap A to prepare to find correct RAM bank
 
 Jump_000_001a:
-    rra
+    rra			
     and $03
 
 Jump_000_001d:
@@ -95,7 +95,7 @@ Call_000_0026:
 
 Call_000_0027:
 Jump_000_0027:
-    db $cd
+    db $cd		;call 0008
 
 RST_28::
     ld [$f100], sp
@@ -1785,7 +1785,7 @@ jr_000_07ab:
     ld l, a
     ld a, [$c82e]
     ld h, a
-    ld a, [hl]
+    ld a, [hl]			;read character for text box. 
     cp $8d
     jp z, Jump_000_0822
 
@@ -1794,7 +1794,7 @@ jr_000_07ab:
 Call_000_07bb:
     jp z, Jump_000_0822
 
-    cp $e0
+    cp $e0			;e0 brings up the YES NO box. 
     jp nc, Jump_000_0838
 
     ld a, [$c825]
@@ -1974,14 +1974,14 @@ Call_000_08a2:
 jr_000_08a7:
     di
 
-jr_000_08a8:
+jr_000_08a8:		;wait for vblank
     ldh a, [rSTAT]
     bit 1, a
     jr nz, jr_000_08a8
 
 Jump_000_08ae:
     ld a, [de]
-    ld [hl+], a
+    ld [hl+], a		;load tile data into vram and increment. Used when drawing text.
     inc e
     ld a, [de]
     ld [hl+], a

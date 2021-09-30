@@ -9,6 +9,26 @@
 08=8
 09=9
 
+0A=0
+0B=1
+0C=2
+0D=3
+
+//0E and 0F are blank
+
+10=[slime]
+11=[dragon]
+12=[beast]
+13=[bird]
+14=[plant]
+15=[bug]
+16=[devil]
+17=[zombie]
+18=[material]
+19=[???]
+
+//20-23 are blank
+
 24=A
 25=B
 26=C
@@ -16,7 +36,7 @@
 28=E
 29=F
 2A=G
-2B=H
+2B=H				
 2C=I
 2D=J
 2E=K
@@ -62,26 +82,78 @@
 56=y
 57=z
 
-5C='
 
+
+5C='
+5D=►					
 5E=,
 5F=.
-
+60=;
+61=..
 62= 
 63=!
 64=?
-
+65="
 66='l
 67='t
-
+68='s
 69='r
 6A='m
+6B='y
+6C='v
+6D='d
+6E='e
+6F='c
+70='n
+71='T
 
+//72-86 are blank
+87='t
+
+//88-8C are blank
+8D=。
+
+//8E-95 are blank
 96=[
 97=]
+98=?
+99=!
+9A=
+9B=•
+9C=-
 9D=~
+9E=/
 9F=*
+A0=(
+A1=)
+A2=+
 A3=:
+A4=•••
+A5=Lv
+A6=Ex
+A7=♂
+A8=♀
+A9=[up]
+
+//AA-AB are unused Japanese characters
+AC=[star]
+AD=[down]
+AE=[left]
+AF=[right]
+B0=[UpLeft]
+B1=[UpRight]
+B2=[DownLeft]
+B3=[DownRight]
+B4=[zz]
+B5=[copyright]
+B6=&
+
+//B7-D2 are blank
+D3D4D5D6=TERRY
+
+//D7-DF are blank
+E0=[YES/NO]
+
 EFEE=\n
 F6=[NAME]
 F900=[MON]
