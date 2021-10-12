@@ -1262,7 +1262,7 @@ jr_038_456c:
     dec sp
     ld a, [hl-]
     ld hl, $0a21
-    jp c, Jump_000_0004
+    db $da, $04, $00
 
     ld bc, $0102
     ld bc, $0303

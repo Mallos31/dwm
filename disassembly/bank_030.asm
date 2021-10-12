@@ -4233,7 +4233,7 @@ jr_030_521a:
     ld l, c
     ld l, e
     ld [de], a
-    call c, Call_000_1210
+    db $dc, $10, $12
     and b
     rst $38
     ld c, l
@@ -5401,7 +5401,7 @@ jr_030_5770:
     ld l, c
     ld l, e
     ld [de], a
-    call c, Call_000_1210
+    db $dc, $10, $12
     and b
     rst $38
     ld c, l
@@ -8346,7 +8346,7 @@ jr_030_64a1:
     ld [bc], a
     ldh [rNR32], a
     ld [bc], a
-    jp nc, Jump_000_001a
+    db $d2, $1a, $00
 
     ld [bc], a
 
@@ -8562,7 +8562,7 @@ Jump_030_6578:
     ld [bc], a
     ldh [rNR32], a
     ld [bc], a
-    jp nc, Jump_000_001a
+    db $d2, $1a, $00
 
     ld [$0006], sp
     rst $00
@@ -12598,7 +12598,7 @@ jr_030_7837:
     ld a, $c9
     dec [hl]
     dec sp
-    call nz, Call_000_120a
+    db $c4, $0a, $12
     ld [$bfbf], sp
     rst $08
     jr nc, jr_030_7877

@@ -10864,7 +10864,7 @@ jr_05b_6e14:
     rra
     rrca
     rrca
-    jp nz, Jump_000_00c2
+    db $c2, $c2, $00
 
 jr_05b_6e37:
     nop

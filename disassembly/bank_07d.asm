@@ -3429,7 +3429,7 @@ jr_07d_4ecf:
     rst $18
     adc a
     sbc $fe
-    call c, Call_000_00be
+    db $dc, $be, $00
     inc bc
     rrca
     add hl, de
@@ -3471,7 +3471,7 @@ jr_07d_4f09:
     rst $28
     rst $38
     cp $fe
-    call c, Call_000_00be
+    db $dc, $be, $00
     rlca
     inc e
     jr nc, jr_07d_4f87
@@ -7346,7 +7346,7 @@ jr_07d_5fac:
     ld a, l
     db $fd
     db $fd
-    jp nz, Jump_000_00fc
+    db $c2, $fc, $00
 
     ld bc, $0806
     db $10

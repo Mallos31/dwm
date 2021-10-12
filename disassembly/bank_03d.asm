@@ -1898,7 +1898,7 @@ jr_03d_4721:
     inc sp
     ld bc, $0f39
     add hl, bc
-    ld bc, HeaderNewLicenseeCode
+    ld bc, $0144
     ld bc, $0f5a
     rlca
     inc sp
@@ -2522,7 +2522,7 @@ jr_03d_4f0f:
     nop
     ld bc, $0709
     ld bc, $0da4
-    ld bc, HeaderNewLicenseeCode
+    ld bc, $0144
     ld bc, $0fba
     rlca
     ld bc, $0162

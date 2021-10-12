@@ -1434,7 +1434,7 @@ jr_065_4643:
     rst $38
     ei
     di
-    jp Jump_000_0081
+    db $c3, $81, $00
 
 
     nop
@@ -2779,7 +2779,7 @@ jr_065_4c26:
     inc c
     ld h, [hl]
     inc bc
-    jp Jump_000_0004
+    db $c3, $04, $00
 
 
     add d

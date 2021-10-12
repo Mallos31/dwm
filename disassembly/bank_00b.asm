@@ -4,27 +4,21 @@
 ; https://github.com/mattcurrie/mgbdis
 
 SECTION "ROM Bank $00b", ROMX[$4000], BANK[$b]
-
-    dec bc
-    dec d
-    ld b, b
-    adc b
-    ld b, b
-    adc $40
-    inc de
-    ld b, d
-    ld [hl-], a
-    ld b, e
-    and h
-    ld b, e
-    dec e
-    ld b, l
-    rrca
-    ld b, a
-    add hl, sp
-    ld b, d
-    adc b
-    ld b, h
+    db $0b	;rom bank
+    
+    ;JUMPTABLE
+    db $15, $40 
+    db $88, $40 
+    db $ce, $40 
+    db $13, $42 
+    db $32, $43 
+    db $a4, $43 
+    db $1d, $45 
+    db $0f, $47
+    db $39, $42 
+    db $88, $44
+    
+    
     ld a, [$c96c]
     or a
     jr z, jr_00b_4027
@@ -35,8 +29,9 @@ SECTION "ROM Bank $00b", ROMX[$4000], BANK[$b]
     ld [$c969], a	;c969 may be the overworld flag. 
 
 jr_00b_4027:
-    ld hl, $1605
+    ld hl, $1605	;set ROM bank to 16, RAM bank to 00, and call function 5b4e.
     rst $10
+    
     ld de, $26dd
     ld a, [$c969]
     or a
@@ -881,6 +876,9 @@ Call_00b_4452:
 
     jr jr_00b_4447
 
+
+
+;4488
     ld a, [$c850]
     or a
     ret nz
@@ -1189,7 +1187,7 @@ jr_00b_4601:
     ld a, b
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [$c96c], a	;if c96c is 0, room transitions do not work. The scren fades, but that's it. 
     ld a, [$c96e]
     or a
     jr nz, jr_00b_466b
@@ -1871,7 +1869,7 @@ jr_00b_496c:
     add $20
     ret
 
-
+;DATA
     nop
     cpl
     ld b, b
@@ -13968,7 +13966,7 @@ jr_00b_7eb5:
     sub l
     ld l, [hl]
     sub c
-    call c, Call_000_0023
+    db $dc, $23, $00
     rst $38
     ld b, b
     cp d
@@ -14065,7 +14063,7 @@ jr_00b_7eb5:
     sub l
     ld l, [hl]
     sub c
-    call c, Call_000_0023
+    db $dc, $23, $00
     rst $38
     ld [bc], a
     ld hl, sp+$05

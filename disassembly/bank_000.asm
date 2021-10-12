@@ -7,94 +7,42 @@ SECTION "ROM Bank $000", ROM0[$0]
 
 RST_00::
     pop hl
-
-Call_000_0001:
-Jump_000_0001:
     add a
-
-Call_000_0002:
-Jump_000_0002:
     add l
-
-Call_000_0003:
-Jump_000_0003:
     ld l, a
-
-Call_000_0004:
-Jump_000_0004:
     ld a, $00
-
-Call_000_0006:
-Jump_000_0006:
     adc h
-
-Call_000_0007:
-Jump_000_0007:
     ld h, a
 
 RST_08::		;called by RST10. Jumps to address at second and third bytes of ROM bank. 
     ld a, [hl+]
-
-Call_000_0009:
-Jump_000_0009:
     ld h, [hl]
-
-Call_000_000a:
-Jump_000_000a:
     ld l, a
-
-Call_000_000b:
     jp hl
 
-
-Call_000_000c:
-Jump_000_000c:
     ld a, [hl+]
     ld h, [hl]
-
-Call_000_000e:
-Jump_000_000e:
     ld l, a
-
-Jump_000_000f:
     ret
 
 ;loads ROM bank H and jumps to the start of code found at addresses 4001 and 4002 at the beginning of each bank.
 RST_10::		
     ld a, [$4000] 	;load current rom bank number into reg a
-
-Call_000_0013:
     push af
-
-Jump_000_0014:
     ld a, h		;load new rom bank passed with H into A
-
-Call_000_0015:
-Jump_000_0015:
     ld [$2100], a	;load value from h as the new rom bank
 
 RST_18::
     swap a		;swap A to prepare to find correct RAM bank
-
-Jump_000_001a:
     rra			
     and $03
-
-Jump_000_001d:
     ld [$4100], a	;load ram bank
 
 RST_20::
     add hl, hl
     ld h, $00
-
-Call_000_0023:
     ld bc, $4001
-
-Call_000_0026:
     add hl, bc
-
-Call_000_0027:
-Jump_000_0027:
     db $cd		;call 0008
 
 RST_28::
@@ -104,39 +52,24 @@ RST_28::
 
 RST_30::
     rra
-
-Call_000_0031:
     and $03
     ld [$4100], a
     ret
 
-
-    rst $38
+    db $ff
 
 RST_38::
     ld e, $01
-
-Jump_000_003a:
     ld a, [de]
     inc a
-
-Jump_000_003c:
     ld [de], a
-
-Call_000_003d:
-Jump_000_003d:
     ret
 
-
-    rst $38
-    rst $38
-
+    db $ff, $ff
+    
 VBlankInterrupt::
     di
-
-Call_000_0041:
     jp Jump_000_036e
-
 
     ld bc, $181a
     cp b
@@ -156,15 +89,9 @@ TimerOverflowInterrupt::
 Call_000_0051:
     ld a, [$c002]
     or a
-
-Call_000_0055:
     ret
 
-
-    rst $38
-
-Call_000_0057:
-    rst $38
+    db $ff, $ff
 
 SerialTransferCompleteInterrupt::
     jp Jump_000_2edd
@@ -173,10 +100,7 @@ SerialTransferCompleteInterrupt::
     reti
 
 
-    rst $38
-    rst $38
-    rst $38
-    rst $38
+    db $ff, $ff, $ff, $ff
 
 JoypadTransitionInterrupt::
     reti
@@ -189,12 +113,7 @@ Call_000_0062:
     push bc
     push de
     push hl
-    db $21
-
-Call_000_0067:
-    ld b, b
-
-    rst $38
+    ld hl, $ff40
     res 0, [hl]
     res 1, [hl]
     ld hl, $ddc2
@@ -202,57 +121,37 @@ Call_000_0067:
     ld a, [$c984]
     or a
     jr nz, jr_000_00ab
-
+    
     inc a
     ld [$c984], a
     call $ff90
-
-Call_000_007e:
     call Call_000_0ef7
-
-Jump_000_0081:
     add b
-
-Jump_000_0082:
     ld b, $0a
     ld hl, $008e
 
 jr_000_0087:
     ld a, [hl+]
     ld [c], a
-
-Call_000_0089:
-Jump_000_0089:
     inc c
     dec b
     jr nz, jr_000_0087
-
     ret
 
 
     ld a, $c0
-
-Jump_000_0090:
     ldh [rDMA], a
     ld a, $28
 
-Jump_000_0094:
 jr_000_0094:
     dec a
-
-Jump_000_0095:
     jr nz, jr_000_0094
-
-Jump_000_0097:
     ret
 
 
-Jump_000_0098:
     inc de
     call $1290
     call $4000
-
-Call_000_009f:
     call $17ba
     xor a
     ld [$c984], a
@@ -275,91 +174,43 @@ jr_000_00ab:
     pop de
     pop bc
     pop af
-
-Call_000_00be:
     call $04a7
-
-Jump_000_00c1:
     reti
 
 
 Call_000_00c2:
-Jump_000_00c2:
     ld hl, $c991
     ld a, [hl+]
     ldh [rSCY], a
     ld a, [hl+]
     ldh [rSCX], a
     ld a, [hl+]
-
-Call_000_00cc:
     ldh [rWY], a
     ld a, [hl+]
     ldh [rWX], a
-
-Call_000_00d1:
     ld a, [hl+]
     ldh [rBGP], a
     ld a, [hl+]
     ldh [rOBP0], a
     ld a, [hl+]
-
-Call_000_00d8:
     ldh [rOBP1], a
     ld a, [hl]
     ldh [rLYC], a
-
-Jump_000_00dd:
     ld a, [$ddc1]
     ld [$ddc0], a
     ld a, [$c990]
     ldh [rLCDC], a
     ld a, [$ddc7]
     or a
-
-Call_000_00ec:
     ret z
 
     jp Jump_000_1214
 
 
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-
-Call_000_00f8:
-    rst $38
-    rst $38
-
-Call_000_00fa:
-    rst $38
-
-Call_000_00fb:
-    rst $38
-
-Call_000_00fc:
-Jump_000_00fc:
-    rst $38
-
-Jump_000_00fd:
-    rst $38
-
-Jump_000_00fe:
-    rst $38
-
-Call_000_00ff:
-Jump_000_00ff:
-    rst $38
+    db $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
 
 Boot::
     nop
-
-Call_000_0101:
     jp Jump_000_0150
 
 
@@ -419,12 +270,12 @@ Jump_000_0154:
     jr nz, jr_000_0157
 
 Jump_000_0156:
-    inc a
+    inc a		;make sure a is a non-zero value. This is usually 1 at boot due to the boot rom's code. 
 
 jr_000_0157:
     ld [$c81d], a
 
-Init_stack_pointer:
+InitStackPointer:
     ld sp, $dfff
 
 Jump_000_015d:
@@ -913,7 +764,7 @@ Call_000_03e0:
 
     ld a, [$c86c]
     or a
-    jp z, Init_stack_pointer
+    jp z, InitStackPointer
 
 jr_000_03e9:
     ld a, [$c86c]
@@ -1049,7 +900,7 @@ jr_000_047a:
     ret
 
 
-Call_000_047e:
+Empty_Func_047e:
     ld a, [$c86c]
 
 Jump_000_0481:
@@ -1065,7 +916,7 @@ Jump_000_0483:
     ld [$c8c9], a
     ld a, [$c8c9]
     or a
-    jp nz, Init_stack_pointer
+    jp nz, InitStackPointer
 
     ld a, [$c863]
     bit 1, a
@@ -3995,7 +3846,7 @@ Call_000_10e5:
     or a
     ret z
 
-    call Call_000_11e7
+    call TurnOffLCD
 
 Call_000_10f0:
     call Call_000_140b
@@ -4060,7 +3911,7 @@ Jump_000_1130:
     call Call_000_10cf
 
 Jump_000_113a:
-    call Call_000_11e7
+    call TurnOffLCD
     ret
 
 
@@ -4077,7 +3928,7 @@ Jump_000_1145:
     push bc
 
 Call_000_1147:
-    call Call_000_11e7
+    call TurnOffLCD
     call Call_000_140b
 
 Jump_000_114d:
@@ -4156,7 +4007,7 @@ Call_000_1193:
     rst $10
     ld bc, $0006
     call Call_000_10cf
-    call Call_000_11e7
+    call TurnOffLCD
     pop af
     ld [$2100], a
     swap a
@@ -4206,19 +4057,17 @@ Call_000_11de:
     and $e2
     ldh [rIE], a
 
-Call_000_11e7:
+TurnOffLCD:		;check the LCD status
     ld hl, $ff40
     bit 7, [hl]
+    ret z		;if the LCD is off, return
 
-Call_000_11ec:
-    ret z
-
-jr_000_11ed:
-    ldh a, [rLY]
+.LCD_On:		;if the LCD is on, 
+    ldh a, [rLY]	;check for vblank
     cp $91
-    jr nz, jr_000_11ed
+    jr nz, .LCD_On
 
-    res 7, [hl]
+    res 7, [hl]		;and once in vblank, turn the LCD off. 
     ld hl, $c8a1
     res 7, [hl]
     ret
@@ -4228,24 +4077,15 @@ Call_000_11fb:
     ld hl, $c8a1
     set 7, [hl]
 
-Call_000_1200:
-Jump_000_1200:
+Jump_000_1200:		;FAKE JUMP needs fixing
     ld a, [hl]
     ldh [rLCDC], a
     ld a, [$c81c]
-
-Call_000_1206:
     or a
     ret z
-
-Jump_000_1208:
     ld a, $01
-
-Call_000_120a:
     ld [$c774], a
     ld hl, $0800
-
-Call_000_1210:
     rst $10
 
 Call_000_1211:
@@ -4269,11 +4109,11 @@ Call_000_1219:
     ret
 
 
-Call_000_1220:
-jr_000_1220:
+WaitForSerialTransferEnd:
+.wait:
     ldh a, [rSC]
     bit 7, a
-    jr nz, jr_000_1220
+    jr nz, .wait
 
     ret
 
@@ -6721,7 +6561,7 @@ jr_000_1d64:
 jr_000_1d69:
     ei
     call Call_000_1da2
-    call Call_000_1220
+    call WaitForSerialTransferEnd
     ldh a, [rSB]
     cp $f5
     call nz, Call_000_1da2

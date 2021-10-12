@@ -1148,7 +1148,7 @@ jr_00c_44a0:
     dec d
     rst $38
     cp c
-    jp z, Jump_000_0001
+    db $ca, $01, $00
 
     xor h
     ld b, l
@@ -1202,7 +1202,7 @@ jr_00c_44a0:
     dec d
     rst $38
     cp c
-    jp z, Jump_000_0002
+    db $ca, $02, $00
 
     xor h
     ld b, l
@@ -1298,13 +1298,13 @@ jr_00c_44a0:
 
     rst $38
     cp c
-    jp z, Jump_000_0001
+    db $ca, $01, $00
 
     ldh a, [rLYC]
     dec d
     rst $38
     cp c
-    jp z, Jump_000_0002
+    db $ca, $02, $00
 
     ldh a, [rLYC]
     ld c, d
@@ -5930,7 +5930,7 @@ jr_00c_5a65:
     ld e, d
     ld bc, $25ff
     nop
-    jp Init_stack_pointer
+    jp InitStackPointer
 
 
     rst $38
@@ -7689,7 +7689,7 @@ jr_00c_6285:
     dec d
     rst $38
     adc l
-    jp z, Jump_000_0001
+    db $ca, $01, $00
 
     inc hl
     ld h, e
@@ -10675,7 +10675,7 @@ jr_00c_6e51:
 
     rst $38
     adc l
-    jp z, Jump_000_0001
+    db $ca, $01, $00
 
     ld l, e
     ld [hl], b
@@ -10691,7 +10691,7 @@ jr_00c_6e51:
 
     rst $38
     adc l
-    jp z, Jump_000_0002
+    db $ca, $02, $00
 
     ld l, e
     ld [hl], b

@@ -1958,7 +1958,7 @@ jr_02f_48c3:
     ld e, $17
     add hl, bc
     rrca
-    jp nc, Jump_000_00dd
+    db $d2, $dd, $00
 
     nop
     ldh [$e0], a
@@ -5999,7 +5999,7 @@ jr_02f_5b3a:
     rst $38
     inc bc
     dec b
-    jp nc, Jump_000_0002
+    db $d2, $02, $00
 
     jr c, jr_02f_5b78
 

@@ -5265,7 +5265,7 @@ jr_063_56d4:
     rst $38
     add d
     pop af
-    jp Jump_000_0003
+    db $c3, $03, $00
 
 
     xor b
@@ -7535,7 +7535,7 @@ jr_063_60e1:
     inc c
     ld hl, sp+$04
     nop
-    call c, Call_000_0101
+    db $dc, $01, $01
     nop
     nop
     jr @+$37
@@ -8485,7 +8485,7 @@ jr_063_6506:
     rst $38
     add d
     rst $20
-    jp Jump_000_0003
+    db $c3, $03, $00
 
 
     add l
@@ -10585,7 +10585,7 @@ jr_063_6e09:
     jp $e0e0
 
 
-    call nz, Call_000_00f8
+    db $c4, $f8, $00
     nop
     rst $38
     rlca

@@ -84,7 +84,7 @@ Call_029_4007:
     ld a, e
     or d
     ld a, e
-    call nz, Call_000_007e
+    db $c4, $7e, $00
     ld [bc], a
     add hl, bc
     ld h, $09
@@ -7043,7 +7043,7 @@ Jump_029_6040:
     ld a, [$1ffa]
     rra
     add [hl]
-    call c, Call_000_0031
+    db $dc, $31, $00
     rst $38
     rst $38
     rst $20
@@ -8908,7 +8908,7 @@ jr_029_6906:
 
     ld [hl], c
     nop
-    jp nz, Jump_000_0014
+    db $c2, $14, $00
 
     inc d
     ld a, [bc]
@@ -12016,8 +12016,8 @@ jr_029_7665:
     db $e4
     ld [$d918], a
     sbc b
-    call nz, Call_000_1206
-    nop
+    db $c4, $06, $12, $00
+
     add b
     ret nz
 

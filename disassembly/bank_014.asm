@@ -3083,7 +3083,7 @@ jr_014_4fb2:
     adc h
     rst $38
     rst $38
-    jp Jump_000_0090
+    db $c3, $90, $00
 
 
     inc bc
@@ -9264,7 +9264,7 @@ jr_014_6af9:
 
 
     rst $38
-    jp nz, Jump_000_000a
+    db $c2, $0a, $00
 
     inc b
     ld bc, $000c
@@ -12103,8 +12103,8 @@ jr_014_76ed:
     dec c
     dec b
     inc e
-    call z, Call_000_1200
-    nop
+    db $cc, $00, $12, $00
+    
     or c
     nop
     inc l

@@ -526,7 +526,7 @@ jr_05d_423b:
     inc bc
     nop
     db $d3
-    call nc, Call_000_0003
+    db $d4, $03, $00
     ld hl, sp-$3a
     inc bc
     ld b, b
@@ -3897,7 +3897,7 @@ jr_05d_50aa:
     nop
     ld hl, sp-$3c
     ld [$de40], sp
-    jp c, Jump_000_000c
+    db $da, $0c, $00
 
     sbc $e2
     dec c
@@ -5441,7 +5441,7 @@ jr_05d_5282:
     inc bc
     nop
     add b
-    call nc, Call_000_00ec
+    db $d4, $ec, $00
     nop
     jp hl
 
@@ -5622,7 +5622,7 @@ jr_05d_58f2:
 
     db $fc
     ld [$8020], sp
-    jp nc, Jump_000_00fc
+    db $d2, $fc, $00
 
     nop
     ret c
@@ -6464,7 +6464,7 @@ jr_05d_5c1d:
     nop
     call nc, $100c
     nop
-    call c, Call_000_11ec
+    db $dc, $ec, $11
     nop
     call c, Call_000_12f4
     nop
@@ -7514,7 +7514,7 @@ jr_05d_61e2:
     ld [bc], a
     ld h, b
     db $e4
-    jp c, Jump_000_0001
+    db $da, $01, $00
 
     add sp, -$01
     inc b
@@ -8119,7 +8119,7 @@ jr_05d_647f:
     call z, $0012
     ret nc
 
-    call nc, Call_000_0013
+    db $d4, $13, $00
     ldh a, [$08]
     inc bc
     nop
@@ -13418,7 +13418,7 @@ jr_05d_7cf5:
     ldh [rTIMA], a
     inc bc
     nop
-    call nc, Call_000_00fb
+    db $d4, $fb, $00
     nop
     call nc, $0103
     nop

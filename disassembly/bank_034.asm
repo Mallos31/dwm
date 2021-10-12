@@ -916,7 +916,7 @@ Jump_034_43cf:
 Call_034_43fd:
     ld l, [hl]
     or a
-    jp c, Jump_000_00ff
+    db $da, $ff, $00
 
     rst $38
     ld bc, $06ff

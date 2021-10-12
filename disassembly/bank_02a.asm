@@ -4048,7 +4048,7 @@ jr_02a_512a:
     ld b, l
     ld [hl], $54
     dec sp
-    jp z, Jump_000_0094
+    db $ca, $94, $00
 
     rst $38
     cp $fe
@@ -10842,7 +10842,7 @@ jr_02a_740e:
     adc b
     nop
     daa
-    jp nz, Jump_000_1208
+    db $c2, $08, $12
 
     ld de, $3427
     ld a, [bc]
@@ -11011,8 +11011,8 @@ jr_02a_74e3:
     adc b
     nop
     daa
-    jp nz, Jump_000_1208
-
+    db $c2, $08, $12
+    
     ld de, $3427
     ld a, [bc]
     daa
@@ -11184,7 +11184,7 @@ jr_02a_75bf:
     adc b
     nop
     add hl, bc
-    jp nz, Jump_000_1208
+    db $c2, $08, $12
 
     ld de, $3409
     ld a, [bc]
@@ -11356,7 +11356,7 @@ jr_02a_7695:
     adc b
     nop
     add hl, bc
-    jp nz, Jump_000_1208
+    db $c2, $08, $12
 
     ld de, $3409
     ld a, [bc]
@@ -12383,7 +12383,7 @@ jr_02a_7b29:
     adc b
     nop
     daa
-    jp nz, Jump_000_1208
+    db $c2, $08, $12
 
     ld de, $3427
     ld a, [bc]
@@ -12551,7 +12551,7 @@ jr_02a_7bfe:
     adc b
     nop
     daa
-    jp nz, Jump_000_1208
+    db $c2, $08, $12
 
     ld de, $3427
     ld a, [bc]
@@ -12722,7 +12722,7 @@ jr_02a_7cd4:
     adc b
     nop
     dec c
-    jp nz, Jump_000_1208
+    db $c2, $08, $12
 
     ld de, $340d
     ld a, [bc]
@@ -12893,7 +12893,7 @@ jr_02a_7daf:
     adc b
     nop
     add hl, bc
-    jp nz, Jump_000_1208
+    db $c2, $08, $12
 
     ld de, $3409
     ld a, [bc]

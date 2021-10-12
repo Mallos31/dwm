@@ -1652,7 +1652,7 @@ jr_007_4a59:
 
 
 Call_007_4b21:
-    ld de, $ca51
+    ld de, wInventory
     ld a, [wPLAN_selection]
     ld b, a
     add a
@@ -1699,7 +1699,7 @@ jr_007_4b4f:
 
 
 Call_007_4b69:
-    ld hl, $ca51
+    ld hl, wInventory
     ld a, [wPLAN_selection]
     ld b, a
     add a
@@ -1731,7 +1731,7 @@ jr_007_4b87:
 
 
 Call_007_4b99:
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
     ld c, $00
 
@@ -1829,7 +1829,7 @@ jr_007_4c27:
 
 
 Call_007_4c28:
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
 
 jr_007_4c2d:
@@ -1847,7 +1847,7 @@ jr_007_4c33:
     ld c, $14
 
 jr_007_4c39:
-    ld hl, $ca51
+    ld hl, wInventory
     ld de, $ca52
     ld b, $13
 
@@ -1949,7 +1949,7 @@ jr_007_4cef:
     bit 0, a
     jp z, Jump_007_4d4a
 
-    ld hl, $ca51
+    ld hl, wInventory
     ld a, [wPLAN_selection]
     ld b, a
     add a
@@ -2063,7 +2063,7 @@ Call_007_4da6:
     ld a, [wOPTN_and_Item_selection]
     and $7f
     add b
-    ld hl, $ca51
+    ld hl, wInventory
     add l
     ld l, a
     ld a, $00
@@ -2272,7 +2272,7 @@ jr_007_4ef4:
     ld a, [wOPTN_and_Item_selection]
     and $7f
     add b
-    ld hl, $ca51
+    ld hl, wInventory
     add l
     ld l, a
     ld a, $00
@@ -2813,7 +2813,7 @@ jr_007_5279:
     ld a, [wOPTN_and_Item_selection]
     and $7f
     add b
-    ld hl, $ca51
+    ld hl, wInventory
     add l
     ld l, a
     ld a, $00
@@ -2915,7 +2915,7 @@ jr_007_5330:
     ld a, [wOPTN_and_Item_selection]
     and $7f
     add b
-    ld hl, $ca51
+    ld hl, wInventory
     add l
     ld l, a
     ld a, $00
@@ -10872,7 +10872,7 @@ jr_007_7e33:
     ld b, d
     sbc c
     adc d
-    jp Jump_000_0089
+    db $c3, $89, $00
 
 
     nop

@@ -11423,7 +11423,7 @@ jr_023_71d0:
     call c, Call_000_3c07
     dec b
     ld d, $c3
-    jp z, Jump_000_0014
+    db $ca, $14, $00
 
     rlca
     ld a, a
@@ -12687,7 +12687,7 @@ jr_023_7757:
     inc c
     jp nz, Jump_000_0c00
 
-    call nz, Call_000_0002
+    db $c4, $02, $00
     ld bc, $140c
     ld [$e60c], sp
     inc b
@@ -13205,7 +13205,7 @@ jr_023_798b:
     jp $e0e0
 
 
-    call nz, Call_000_00f8
+    db $c4, $f8, $00
     nop
     rst $38
     rlca

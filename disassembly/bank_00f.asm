@@ -2984,7 +2984,7 @@ jr_00f_4a48:
     ld [de], a
     rst $38
     ld [bc], a
-    jp c, Jump_000_0001
+    db $da, $01, $00
 
     jr nz, @+$01
 

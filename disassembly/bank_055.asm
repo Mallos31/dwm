@@ -3847,7 +3847,7 @@ jr_055_53a5:
     ld a, $01
     ld [wCurrGoldHi], a
     ld a, $01
-    ld [$ca51], a
+    ld [wInventory], a
     ld a, $02
     ld [$ca52], a
     ld a, $03

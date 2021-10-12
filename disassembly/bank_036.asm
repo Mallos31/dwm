@@ -945,7 +945,7 @@ jr_036_4412:
 jr_036_4416:
     cpl
     xor $db
-    jp c, Jump_000_00ff
+    db $da, $ff, $00
 
     rst $38
     jr jr_036_4416
@@ -4927,7 +4927,7 @@ jr_036_5471:
     ld [bc], a
     ld l, h
     ld b, $c0
-    call c, Call_000_0101
+    db $dc, $01, $01
     ld c, $3f
     ldh [$f8], a
     rst $38
@@ -6560,7 +6560,7 @@ jr_036_5d98:
     ccf
     ld h, b
     add hl, bc
-    call c, Call_000_0101
+    db $dc, $01, $01
     add hl, bc
     ld a, d
     ld bc, $0904
@@ -7203,7 +7203,7 @@ jr_036_6070:
     db $fc
 
 jr_036_6087:
-    call Call_000_00ff
+    db $cd, $ff, $00
     ei
     jr c, jr_036_6070
 
@@ -7342,7 +7342,7 @@ jr_036_6106:
     db $fc
     rst $00
     ld a, e
-    call nz, Call_000_00fb
+    db $c4, $fb, $00
     rst $38
     and b
     rst $38
@@ -12392,7 +12392,7 @@ jr_036_778e:
 
     ld d, a
     nop
-    jp nz, Jump_000_001d
+    db $c2, $1d, $00
 
     ld a, [c]
     inc c

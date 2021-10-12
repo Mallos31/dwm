@@ -353,7 +353,7 @@ jr_040_41a5:
     ldh [$a3], a
     ld [$4100], a
     ei
-    jp Init_stack_pointer
+    jp InitStackPointer
 
 
 jr_040_4218:

@@ -20,11 +20,12 @@ hRamStart::
 hPlayer_xpos::
   ds 1 ;FF92
   
-hUnk1::
-  ds 2 ;FF93-94  
+hff93::
+  ds 1 ;FF93
+  
+hff94::
+  ds 1 ;FF94  
   
 hPlayer_ypos::
-  ds 1 ;FF95  
+  ds 1 ;FF95
   
-hRamRest::
-  ds $69 ;FF93 - FFFE

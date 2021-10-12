@@ -4804,7 +4804,7 @@ jr_056_6d20:
     rst $38
     inc b
     rst $38
-    call nz, Call_000_00ff
+    db $c4, $ff, $00
     rst $38
     add b
     rst $38
@@ -4996,7 +4996,7 @@ jr_056_6e17:
     nop
     rst $38
     adc a
-    ld bc, HeaderNewLicenseeCode
+    ld bc, $0144
     adc a
     rst $38
     ld a, [bc]
@@ -5483,7 +5483,7 @@ jr_056_705d:
     nop
     rst $38
     ld [$14ff], sp
-    ld bc, HeaderNewLicenseeCode
+    ld bc, $0144
     ld a, $01
     inc b
     ld bc, $ff00

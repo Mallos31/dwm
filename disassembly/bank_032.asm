@@ -2437,7 +2437,7 @@ Jump_032_4a4b:
     db $e4
 
 jr_032_4aae:
-    call c, Call_000_00ff
+    db $dc, $ff, $00
     rst $38
     add b
     ld a, a

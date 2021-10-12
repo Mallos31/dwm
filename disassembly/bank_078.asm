@@ -4306,7 +4306,7 @@ jr_078_5284:
     ld a, [hl]
     rst $20
     rst $20
-    jp Jump_000_0003
+    db $c3, $03, $00
 
 
     add l
@@ -5853,7 +5853,7 @@ jr_078_5961:
     adc e
     add b
     ld b, b
-    jp Jump_000_0001
+    db $c3, $01, $00
 
 
     db $10
@@ -7131,7 +7131,7 @@ jr_078_5f1f:
     ld b, $1d
     inc sp
     ld l, [hl]
-    call c, Call_000_0007
+    db $dc, $07, $00
     adc c
     ld [hl], b
     add sp, $7f
@@ -8950,7 +8950,7 @@ jr_078_6668:
     jr c, jr_078_6773
 
     ld hl, sp-$08
-    call c, Call_000_0004
+    db $dc, $04, $00
     adc h
     ld b, b
     add b
@@ -10373,7 +10373,7 @@ jr_078_6d22:
 jr_078_6d45:
     add c
     add c
-    jp Jump_000_00ff
+    db $c3, $ff, $00
 
 
     ld h, b
@@ -11787,7 +11787,7 @@ jr_078_72d9:
     cp e
     rrca
     scf
-    jp Jump_000_0001
+    db $c3, $01, $00
 
 
     nop

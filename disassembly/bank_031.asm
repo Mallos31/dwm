@@ -4214,7 +4214,7 @@ jr_031_5391:
     ld e, $17
     add hl, bc
     rrca
-    jp nc, Jump_000_00dd
+    db $d2, $dd, $00
 
     nop
     ldh [$e0], a
@@ -10017,7 +10017,7 @@ jr_031_6d9e:
 
     rst $38
     inc b
-    jp z, Jump_000_0002
+    db $ca, $02, $00
 
     nop
     rst $18

@@ -100,7 +100,7 @@ jr_019_4047:
     or a
     jp z, Jump_019_413e
 
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
 
 jr_019_4080:

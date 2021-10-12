@@ -14168,7 +14168,7 @@ jr_04b_7f18:
     sub l
     ld l, [hl]
     sub c
-    call c, Call_000_0023
+    db $dc, $23, $00
     rst $38
     ld b, b
     cp d
@@ -14269,7 +14269,7 @@ jr_04b_7f18:
     sub l
     ld l, [hl]
     sub c
-    call c, Call_000_0023
+    db $dc, $23, $00
     rst $38
     ld [bc], a
     ld hl, sp+$05

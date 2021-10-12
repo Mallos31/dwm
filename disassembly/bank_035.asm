@@ -8192,7 +8192,7 @@ jr_035_6410:
     cp l
     rst $20
     rst $38
-    jp Jump_000_00ff
+    db $c3, $ff, $00
 
 
     ld h, a
@@ -10761,7 +10761,7 @@ jr_035_6f5b:
     ccf
     ld c, c
     ld a, [hl]
-    call nc, Call_000_00fc
+    db $d4, $fc, $00
     cp $38
     rst $38
     ld e, h

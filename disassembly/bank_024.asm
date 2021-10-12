@@ -12495,7 +12495,7 @@ Jump_024_76cb:
     db $e4
     ld de, $23f6
     db $ec
-    jp nz, Jump_000_00fd
+    db $c2, $fd, $00
 
     rst $38
     ld b, $f9

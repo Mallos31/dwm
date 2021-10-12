@@ -5,25 +5,11 @@
 
 SECTION "ROM Bank $003", ROMX[$4000], BANK[$3]
 
-    inc bc
-    inc de
-    ld b, b
-    ccf
-    ld b, h
-    add b
-    ld l, c
-    and d
-    ld l, c
-    inc h
-    ld l, [hl]
-    ld h, b
-    ld [hl], c
-    sub b
-    ld [hl], c
-    or [hl]
-    ld [hl], c
-    inc [hl]
-    ld [hl], c
+    db $03
+
+    db $13, $40, $3f, $44, $80, $69, $a2, $69, $24, $6e, $60, $71, $90, $71, $b6, $71
+    db $34, $71    
+    
     ld a, [$c864]
     bit 7, a
     jr z, jr_003_4020
@@ -44,7 +30,7 @@ jr_003_4020:
     ld b, c
     or a
     ld b, c
-    call Call_000_1220
+    call WaitForSerialTransferEnd		;check for Seral Transfer Start (Link cable)
     ldh a, [rSB]
     ld b, a
     cp $f0
@@ -9583,7 +9569,7 @@ Call_003_7134:
     ld a, $ff
     ld [$da5e], a
     ld a, [$da5f]
-    ld hl, $ca51
+    ld hl, wInventory
     add l
     ld l, a
     ld a, $00
@@ -9596,7 +9582,7 @@ Call_003_7134:
 
 Call_003_7160:
     ld hl, $c0d8
-    ld de, $ca51
+    ld de, wInventory
     ld b, $14
 
 jr_003_7168:
@@ -9606,12 +9592,12 @@ jr_003_7168:
     dec b
     jr nz, jr_003_7168
 
-    ld hl, $ca51
+    ld hl, wInventory
     ld bc, $0014
     ld a, $ff
     call Call_000_12c7
     ld hl, $c0d8
-    ld de, $ca51
+    ld de, wInventory
     ld b, $14
 
 jr_003_7181:
@@ -9639,7 +9625,7 @@ jr_003_718c:
     cp $ff
     ret z
 
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
 
 jr_003_719e:
@@ -9672,7 +9658,7 @@ jr_003_71b1:
     cp $ff
     ret z
 
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
 
 jr_003_71c4:

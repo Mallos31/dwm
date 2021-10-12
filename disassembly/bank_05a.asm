@@ -7743,7 +7743,7 @@ jr_05a_6118:
     ld b, $00
     ld [bc], a
     dec bc
-    jp nz, Jump_000_0001
+    db $c2, $01, $00
 
     ld [hl], b
 
@@ -8246,7 +8246,7 @@ jr_05a_631a:
     ld b, $00
     ld [bc], a
     dec bc
-    jp nz, Jump_000_0001
+    db $c2, $01, $00
 
     ld [hl], b
 
@@ -8797,7 +8797,7 @@ jr_05a_6562:
     ld b, $00
     ld [bc], a
     dec de
-    jp nz, Jump_000_0001
+    db $c2, $01, $00
 
     ld [hl], b
 
@@ -13940,7 +13940,7 @@ jr_05a_7bfe:
     ld b, $00
     ld [bc], a
     dec bc
-    jp nz, Jump_000_0001
+    db $c2, $01, $00
 
     ld [hl], b
 

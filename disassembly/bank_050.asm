@@ -2679,7 +2679,7 @@ jr_050_4fb3:
     ld bc, $1400
 
 jr_050_4fec:
-    ld hl, $ca51
+    ld hl, wInventory
     ld a, c
     add l
     ld l, a
@@ -2757,7 +2757,7 @@ jr_050_503a:
 
 
 Call_050_506f:
-    ld de, $ca51
+    ld de, wInventory
     ld a, [wPLAN_selection]
     add a
     add a
@@ -2799,7 +2799,7 @@ jr_050_5092:
 
 
 Call_050_50ac:
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
     ld c, $00
 
@@ -2860,7 +2860,7 @@ jr_050_50f4:
     add a
     add a
     add [hl]
-    ld hl, $ca51
+    ld hl, wInventory
     add l
     ld l, a
     ld a, $00
@@ -5114,7 +5114,7 @@ jr_050_5dc8:
     or a
     jr z, jr_050_5e3e
 
-    call Call_000_047e
+    call Empty_Func_047e
     ld a, [$c850]
     or a
     ret nz
@@ -6415,7 +6415,7 @@ jr_050_6559:
     ld [wCurrGoldMid], a
     ld a, e
     ld [wCurrGoldHi], a
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
 
 jr_050_65ab:

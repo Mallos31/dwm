@@ -1914,7 +1914,7 @@ jr_009_4a63:
     ld hl, $0007
     jr c, jr_009_4ac2
 
-    ld hl, $ca51
+    ld hl, wInventory
     call Call_009_4880
     ld a, [$c8dd]
     add c
@@ -1929,10 +1929,10 @@ jr_009_4a63:
     ld a, [$c8e6]
     ld e, a
     call Call_000_2424
-    ld hl, $ca51
+    ld hl, wInventory
     call Call_009_4880
     ld a, c
-    ld hl, $ca51
+    ld hl, wInventory
     add l
     ld l, a
     ld a, $00
@@ -2200,7 +2200,7 @@ Call_009_4c24:
     ld bc, $0014
     xor a
     call Call_000_12c7
-    ld de, $ca51
+    ld de, wInventory
     ld b, $14
 
 jr_009_4c41:
@@ -2939,7 +2939,7 @@ Jump_009_5104:
     ld d, e
     sbc [hl]
     ld d, e
-    ld hl, $ca51
+    ld hl, wInventory
     call Call_009_51f0
     ld a, c
     or a
@@ -3008,7 +3008,7 @@ Call_009_5199:
     ld bc, $0028
     xor a
     call Call_000_12c7
-    ld de, $ca51
+    ld de, wInventory
     ld b, $14
 
 jr_009_51b6:
@@ -3557,7 +3557,7 @@ jr_009_54f7:
     ld hl, $0011
     jr z, jr_009_5557
 
-    ld hl, $ca51
+    ld hl, wInventory
     call Call_009_51f0
     ld a, c
     cp $14
@@ -3854,7 +3854,7 @@ jr_009_5728:
     ld bc, $0162
     rst $38
     rst $38
-    ld hl, $ca51
+    ld hl, wInventory
     call Call_009_51f0
     ld a, [$c8de]
     add c

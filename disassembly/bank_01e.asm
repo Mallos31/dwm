@@ -2326,7 +2326,7 @@ jr_01e_49fc:
     dec sp
     ld bc, $0140
     ld b, d
-    ld bc, HeaderNewLicenseeCode
+    ld bc, $0144
     ld b, [hl]
     ld bc, HeaderROMSize
     ld c, e

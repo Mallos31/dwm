@@ -332,7 +332,7 @@ jr_02c_4127:
     rrca
     di
     ccf
-    jp Jump_000_003c
+    db $c3, $3c, $00
 
 
     db $fc
@@ -2530,7 +2530,7 @@ jr_02c_4af2:
     nop
     rst $38
     inc h
-    jp Jump_000_00c1
+    db $c3, $c1, $00
 
 
     rst $38
@@ -9694,7 +9694,7 @@ jr_02c_69f7:
     jr nc, jr_02c_6a2a
 
     nop
-    call z, Call_000_0002
+    db $cc, $02, $00
     sub h
     rrca
     dec b
@@ -11795,7 +11795,7 @@ jr_02c_72da:
 
 jr_02c_72e9:
     nop
-    jp nz, Jump_000_000c
+    db $c2, $0c, $00
 
     sub h
     ld a, [bc]
@@ -11913,7 +11913,7 @@ jr_02c_733e:
     ld c, d
     ld [bc], a
     nop
-    call nz, Call_000_0002
+    db $c4, $02, $00
     ld d, d
     ld c, $3a
     dec sp
@@ -12238,7 +12238,7 @@ jr_02c_74cf:
     ld bc, $0000
     inc d
     nop
-    jp nz, Jump_000_0004
+    db $c2, $04, $00
 
     ld [de], a
     ld e, $00

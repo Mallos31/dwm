@@ -5804,7 +5804,7 @@ jr_028_5902:
     call c, Call_000_3c07
     dec b
     ld d, $c3
-    jp z, Jump_000_0014
+    db $ca, $14, $00
 
     rlca
     ld a, a

@@ -395,7 +395,7 @@ jr_02e_4189:
     ld sp, hl
     ldh [$db], a
     ld bc, $0201
-    call c, Call_000_0101
+    db $dc, $01, $01
     ld bc, $f401
     ld hl, sp-$20
     pop hl
@@ -418,7 +418,7 @@ jr_02e_4233:
     ld sp, hl
     ldh [$db], a
     ld bc, $0201
-    call c, Call_000_0101
+    db $dc, $01, $01
     ld bc, $f401
     ld hl, sp-$20
 
@@ -5673,7 +5673,7 @@ jr_02e_5aeb:
 
     db $e4
     rst $18
-    call nc, Call_000_00fa
+    db $d4, $fa, $00
     db $fd
     nop
     ld [hl], a
@@ -6922,7 +6922,7 @@ jr_02e_6054:
     nop
     ld hl, sp+$00
     ldh [rP1], a
-    jp nz, Jump_000_00ff
+    db $c2, $ff, $00
 
     rst $38
     nop
@@ -7289,7 +7289,7 @@ jr_02e_61bd:
     nop
     add [hl]
     nop
-    call c, Call_000_00ff
+    db $dc, $ff, $00
     ccf
     nop
     ldh a, [rDIV]

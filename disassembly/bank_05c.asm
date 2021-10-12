@@ -5027,7 +5027,7 @@ jr_05c_5724:
 jr_05c_5728:
     call c, $032e
     nop
-    call nc, Call_000_0026
+    db $d4, $26, $00
     nop
     rst $20
     dec d
@@ -5190,7 +5190,7 @@ jr_05c_57b5:
     ld h, b
     call nc, Call_000_1108
     nop
-    call nc, Call_000_1210
+    db $d4, $10, $12
     nop
     call nc, $141c
     nop
@@ -5968,7 +5968,7 @@ jr_05c_5aec:
     db $e4
 
 jr_05c_5b38:
-    jp Jump_000_000f
+    db $c3, $0f, $00
 
 
     db $e4
@@ -6057,15 +6057,15 @@ jr_05c_5b93:
     jr nz, jr_05c_5b70
 
 jr_05c_5b99:
-    call nc, Call_000_0007
+    db $d4, $07, $00
     rst $10
 
 jr_05c_5b9d:
     call c, RST_08
     rst $18
-    call nc, Call_000_0009
+    db $d4, $09, $00
     rst $18
-    call c, Call_000_000a
+    db $dc, $0a, $00
     ld [$02cb], a
     jr nz, @-$1c
 

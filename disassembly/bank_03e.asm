@@ -1092,7 +1092,7 @@ jr_03e_4074:
     inc sp
     nop
     nop
-    ld bc, HeaderNewLicenseeCode
+    ld bc, $0144
     ld bc, $0f5a
     inc b
     ld bc, $0043

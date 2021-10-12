@@ -6678,7 +6678,7 @@ jr_026_5d27:
     rst $20
     ld [hl], e
     di
-    call z, Call_000_00cc
+    db $cc, $cc, $00
     nop
     ld [hl], l
     rst $18
@@ -9922,7 +9922,7 @@ Call_026_6adf:
     inc b
     ld b, $07
     inc d
-    jp nc, Jump_000_000a
+    db $d2, $0a, $00
 
     ld [bc], a
     inc d
@@ -10137,7 +10137,7 @@ jr_026_6c40:
 
     rlca
     inc d
-    jp nc, Jump_000_000a
+    db $d2, $0a, $00
 
     ld [$000b], sp
     nop

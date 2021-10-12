@@ -7053,7 +7053,7 @@ jr_012_6a9f:
     ld l, h
     ld a, [de]
     ld l, l
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
     ld c, $00
 

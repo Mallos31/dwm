@@ -11845,7 +11845,7 @@ jr_04c_71af:
     ret
 
 
-    call z, Call_000_00ff
+    db $cc, $ff, $00
     rst $38
     rst $38
     nop

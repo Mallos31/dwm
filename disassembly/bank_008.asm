@@ -4305,7 +4305,7 @@ jr_008_5226:
     rst $38
     ld h, b
     rst $28
-    call nz, Call_000_0007
+    db $c4, $07, $00
     nop
     nop
     nop

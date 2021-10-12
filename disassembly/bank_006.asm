@@ -8979,7 +8979,7 @@ jr_006_6a25:
     ld [wCurrGoldMid], a
     ld a, e
     ld [wCurrGoldHi], a
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
 
 jr_006_6a8b:
@@ -9080,7 +9080,7 @@ Call_006_6ad7:
     ld b, c
     ld bc, $0142
     ld b, e
-    ld bc, HeaderNewLicenseeCode
+    ld bc, $0144
     ld b, h
     ld bc, $1521
     ret

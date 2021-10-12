@@ -9789,22 +9789,22 @@ jr_00e_69ca:
     inc de
     rst $38
     inc bc
-    jp c, Jump_000_0097
+    db $da, $97, $00
 
     inc de
     rst $38
     dec b
-    jp c, Jump_000_0095
+    db $da, $95, $00
 
     inc de
     rst $38
     rlca
-    jp c, Jump_000_0098
+    db $da, $98, $00
 
     ld [de], a
     rst $38
     ld [bc], a
-    jp c, Jump_000_0002
+    db $da, $02, $00
 
     ld e, e
     rst $38
