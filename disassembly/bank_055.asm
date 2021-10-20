@@ -5793,7 +5793,7 @@ jr_055_5c71:
     add h
     rst $38
     rst $38
-    jp Jump_000_0a83
+    db $c3, $83, $0a
 
 
     inc bc
@@ -10378,7 +10378,7 @@ jr_055_701d:
 
     sub b
     ld h, c
-    jp Jump_000_0c1c
+    db $c3, $1c, $0c
 
 
 jr_055_7059:

@@ -5783,7 +5783,7 @@ jr_07d_5915:
     ret nz
 
     ldh a, [$e0]
-    jp Jump_000_0c05
+    db $c3, $05, $0c
 
 
     jr jr_07d_5983

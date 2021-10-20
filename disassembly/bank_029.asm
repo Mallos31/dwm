@@ -3520,7 +3520,7 @@ jr_029_4f63:
     ld b, b
     xor $11
     dec c
-    call c, Call_000_0d30
+    db $dc, $30, $0d
     add b
     ld [bc], a
     and l
@@ -12335,7 +12335,7 @@ jr_029_77dc:
     cpl
     or h
     ld [hl], a
-    call nc, Call_000_08df
+    db $d4, $df, $08
     dec bc
     inc b
     ld a, c
@@ -12654,7 +12654,7 @@ jr_029_7994:
     ld b, [hl]
     nop
     inc b
-    call nz, Call_000_090f
+    db $c4, $0f, $09
     inc b
     ld h, [hl]
     nop
@@ -13786,7 +13786,7 @@ jr_029_7e4a:
     cpl
     or h
     ld [hl], a
-    call nc, Call_000_08df
+    db $d4, $df, $08
     dec c
     inc d
     ld de, $da25

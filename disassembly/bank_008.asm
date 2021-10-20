@@ -210,7 +210,7 @@ jr_008_404f:
     nop
     dec bc
     add hl, sp
-    call Call_000_0c48
+    db $cd, $48, $0c
     ret nc
 
     inc [hl]
@@ -1411,7 +1411,7 @@ jr_008_45f3:
 jr_008_460d:
     inc h
     inc b
-    call nz, Call_000_0c04
+    db $c4, $04, $0c
     inc c
     inc a
     inc c
@@ -4865,7 +4865,7 @@ jr_008_5344:
     ld b, d
     cp l
     cp l
-    jp Jump_000_0bc3
+    db $c3, $c3, $0b
 
 
     nop

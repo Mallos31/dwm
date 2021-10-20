@@ -9826,7 +9826,7 @@ jr_018_70ac:
     add e
     ld b, d
     add e
-    jp nc, Jump_000_0e40
+    db $d2, $40, $0e
 
     add e
     ld b, c
@@ -9846,7 +9846,7 @@ jr_018_70ac:
     add e
 
 jr_018_70e4:
-    jp nc, Jump_000_0942
+    db $d2, $42, $09
 
     add e
     ld b, e
@@ -11275,7 +11275,7 @@ jr_018_7649:
 
     add hl, sp
     add e
-    jp nc, Jump_000_1130
+    db $d2, $30, $11
 
     add e
     ld sp, $3283

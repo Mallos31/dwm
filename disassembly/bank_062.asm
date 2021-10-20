@@ -4,7 +4,7 @@
 ; https://github.com/mattcurrie/mgbdis
 
 SECTION "ROM Bank $062", ROMX[$4000], BANK[$62]
-
+;This may be a function, but the rest is not. No more invalid jumps here.
     ld hl, $400a
     ld bc, $9800
     call Call_000_1f94

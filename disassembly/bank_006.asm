@@ -5115,7 +5115,7 @@ jr_006_5710:
     nop
     nop
     nop
-    call nz, Call_000_1100
+    db $c4, $00, $11
     ld e, d
     rst $38
     rst $38

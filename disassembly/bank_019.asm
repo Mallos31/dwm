@@ -5051,7 +5051,7 @@ jr_019_5cfb:
     dec sp
     add [hl]
     or h
-    call nc, Call_000_0c37
+    db $d4, $37, $0c
     add [hl]
     jr nc, jr_019_5c91
 
@@ -5082,7 +5082,7 @@ jr_019_5d0b:
     ld a, [hl-]
     add [hl]
     or h
-    call nc, Call_000_0c36
+    db $d4, $36, $0c
     add [hl]
     jr nc, jr_019_5cb4
 
@@ -5118,7 +5118,7 @@ jr_019_5d0b:
     or e
     dec b
     ld e, l
-    call nc, Call_000_0c36
+    db $d4, $36, $0c
     add [hl]
     cpl
     add [hl]
@@ -5435,7 +5435,7 @@ jr_019_5e2d:
 jr_019_5e8f:
     ld c, e
     ld e, [hl]
-    call nc, Call_000_0c59
+    db $d4, $59, $0c
     add [hl]
     ld d, c
     add [hl]
@@ -5565,7 +5565,7 @@ jr_019_5e8f:
     or d
     db $e3
     ld e, h
-    call nc, Call_000_0c26
+    db $d4, $26, $0c
     add l
     or c
     cp l
@@ -5867,7 +5867,7 @@ jr_019_5ff7:
     or e
     dec sp
     ld h, b
-    jp nc, Jump_000_113a
+    db $d2, $3a, $11
 
     adc h
     ld a, $8c
@@ -5899,7 +5899,7 @@ jr_019_5ff7:
     or e
     ld c, [hl]
     ld h, b
-    jp nc, Jump_000_113a
+    db $d2, $3a, $11
 
     adc h
     ld a, $8c
@@ -8409,7 +8409,7 @@ jr_019_6a5a:
     add [hl]
     push bc
     nop
-    jp nc, Jump_000_113a
+    db $d2, $3a, $11
 
     add e
     dec sp
@@ -12536,17 +12536,17 @@ jr_019_7ac2:
 
     jr c, jr_019_7a66
 
-    call nc, Call_000_0e26
+    db $d4, $26, $0e
     and b
     daa
     and b
-    call nc, Call_000_0e26
+    db $d4, $26, $0e
     sbc b
     call nc, $d498
     daa
     and b
     or h
-    call nc, Call_000_0e26
+    db $d4, $26, $0e
     and b
     daa
     and b

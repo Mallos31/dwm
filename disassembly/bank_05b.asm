@@ -1000,7 +1000,7 @@ jr_05b_4433:
     ret c
 
     dec sp
-    call nz, Call_000_0cc3
+    db $c4, $c3, $0c
     rst $20
     ld [$18e7], sp
     and $19
@@ -7528,7 +7528,7 @@ Call_05b_600f:
     pop af
     push af
     dec b
-    jp z, Jump_000_0f10
+    db $ca, $10, $0f
 
     ld c, a
     rrca

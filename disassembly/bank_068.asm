@@ -2989,7 +2989,7 @@ jr_068_4cfc:
     add c
     rrca
     ld [de], a
-    jp nc, Jump_000_0f81
+    db $d2, $81, $0f
 
     inc c
     rst $38

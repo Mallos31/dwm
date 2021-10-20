@@ -11318,7 +11318,7 @@ jr_033_716a:
 
     adc h
     adc h
-    jp Jump_000_0ec3
+    db $c3, $c3, $0e
 
 
     cp $fc

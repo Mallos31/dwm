@@ -702,7 +702,7 @@ jr_013_4348:
     ld l, c
     ld c, $a4
     sbc $0e
-    call nc, Call_000_0f53
+    db $d4, $53, $0f
     inc b
 
 jr_013_43ee:
@@ -875,7 +875,7 @@ jr_013_4471:
     ld l, h
     ld b, [hl]
     ld [bc], a
-    call nz, Call_000_027a
+    db $c4, $7a, $02
     ld [hl], h
     or c
     ld [bc], a
@@ -982,7 +982,7 @@ jr_013_4471:
     inc [hl]
     cp e
     db $10
-    call c, Call_000_111c
+    db $dc, $1c, $11
     add h
     ld a, [hl]
     ld de, $e02c
@@ -1122,7 +1122,7 @@ jr_013_459a:
     ld l, h
     ld b, [hl]
     ld [bc], a
-    call nz, Call_000_027a
+    db $c4, $7a, $02
     ld [hl], h
     or c
     ld [bc], a
@@ -1181,7 +1181,7 @@ jr_013_45f2:
     and h
     ld [hl], e
     dec bc
-    call nc, Call_000_0be8
+    db $d4, $e8, $0b
     inc b
     ld e, [hl]
     inc c
@@ -1448,7 +1448,7 @@ jr_013_46c3:
     inc [hl]
     ld d, b
     dec c
-    call c, Call_000_0db1
+    db $dc, $b1, $0d
     add h
     inc de
     ld c, $2c
@@ -1461,14 +1461,14 @@ jr_013_46c3:
     inc h
     sbc d
     rrca
-    call z, Call_000_0ffb
+    db $cc, $fb, $0f
     ld [hl], h
     ld e, l
     db $10
     inc e
     cp a
     db $10
-    call nz, Call_000_1120
+    db $c4, $20, $11
 
 jr_013_4777:
     ld l, h
@@ -1706,7 +1706,7 @@ jr_013_47ec:
     sub h
     or c
     rrca
-    call nz, Call_000_1026
+    db $c4, $26, $10
     db $f4
     sbc e
     db $10
@@ -2208,7 +2208,7 @@ Call_013_4a8c:
     sub h
     or c
     rrca
-    call nz, Call_000_1026
+    db $c4, $26, $10
     db $f4
     sbc e
     db $10
@@ -2670,7 +2670,7 @@ jr_013_4c88:
 
 jr_013_4cde:
     ld h, b
-    call z, Call_000_0c05
+    db $cc, $05, $0c
     ld d, a
     ld b, $d4
     db $ed
@@ -3966,7 +3966,7 @@ jr_013_52a0:
     sbc b
     ld [$450c], sp
     add hl, bc
-    call nc, Call_000_09f4
+    db $d4, $f4, $09
     xor b
 
 jr_013_52ac:
@@ -6709,14 +6709,14 @@ jr_013_5df7:
     ld c, h
     xor c
     ld a, [bc]
-    call z, Call_000_0b64
+    db $cc, $64, $0b
     inc [hl]
     inc h
     inc c
     add h
     rst $20
     inc c
-    call nc, Call_000_0daa
+    db $d4, $aa, $0d
     inc h
     ld l, [hl]
 

@@ -1011,7 +1011,7 @@ Call_034_43fd:
     db $ed
     ld [hl-], a
     rst $38
-    call nz, Call_000_08ff
+    db $c4, $ff, $08
     rst $38
     rla
     rst $38
@@ -2854,7 +2854,7 @@ jr_034_4c4f:
     ccf
     ret nz
 
-    jp Jump_000_0f00
+    db $c3, $00, $0f
 
 
     nop
@@ -3264,7 +3264,7 @@ jr_034_4d4a:
     dec c
     db $fc
     dec [hl]
-    call c, Call_000_0a77
+    db $dc, $77, $0a
     inc c
     rlca
     add b
@@ -7545,7 +7545,7 @@ jr_034_619b:
     ret z
 
     ld h, a
-    call Call_000_0d63
+    db $cd, $63, $0d
     ld c, $3f
     ld [hl], $19
     rra
@@ -8621,7 +8621,7 @@ Call_034_6567:
     call $33cd
     ld [hl-], a
     rst $08
-    call z, Call_000_0ff3
+    db $cc, $f3, $0f
     call nz, Call_000_063c
     cp $0b
     db $fd
@@ -11105,7 +11105,7 @@ jr_034_71d1:
     ret nz
 
     dec bc
-    call z, Call_000_0b11
+    db $cc, $11, $0b
     reti
 
 

@@ -7598,7 +7598,7 @@ jr_01c_5df5:
     inc c
     and b
     dec c
-    jp nz, Jump_000_1010
+    db $c2, $10, $10
 
     inc b
     db $10

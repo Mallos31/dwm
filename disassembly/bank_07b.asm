@@ -946,7 +946,7 @@ jr_07b_440b:
     sub b
     jr nz, jr_07b_43bc
 
-    jp Jump_000_0d66
+    db $c3, $66, $0d
 
 
     rla
@@ -1946,7 +1946,7 @@ jr_07b_489b:
     sub b
     jr nz, jr_07b_4830
 
-    jp Jump_000_0d66
+    db $c3, $66, $0d
 
 
     rla

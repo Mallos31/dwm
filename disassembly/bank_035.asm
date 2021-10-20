@@ -2416,7 +2416,7 @@ Jump_035_4a4b:
     ld a, [c]
     ld e, $e2
     dec sp
-    call nz, Call_000_0a74
+    db $c4, $74, $0a
     dec sp
     ld c, [hl]
     ld l, a
@@ -10593,7 +10593,7 @@ jr_035_6e8f:
 
 jr_035_6eb1:
     ld [hl-], a
-    call nz, Call_000_0de7
+    db $c4, $e7, $0d
     or h
     ld l, c
     ld [bc], a

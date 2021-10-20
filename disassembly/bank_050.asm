@@ -5344,7 +5344,7 @@ jr_050_5f2f:
     ldh a, [$62]
     pop bc
     ld h, e
-    jp nc, Jump_000_0a63
+    db $d2, $63, $0a
 
     ld h, h
     ld d, c

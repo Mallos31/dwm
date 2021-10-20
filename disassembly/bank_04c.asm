@@ -685,7 +685,7 @@ Call_04c_42b1:
     ld h, a
     cp l
     ld h, a
-    call z, Call_000_0d67
+    db $cc, $67, $0d
     ld l, b
     ld e, h
     ld l, b

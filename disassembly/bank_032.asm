@@ -5088,7 +5088,7 @@ jr_032_562c:
 jr_032_5644:
     ld [hl+], a
     ld [hl+], a
-    jp nz, Jump_000_01c2
+    db $c2, $c2, $01
 
 jr_032_5649:
     ld sp, $7d09
@@ -5848,7 +5848,7 @@ jr_032_587d:
     rst $30
     pop bc
     push de
-    jp Jump_000_10c6
+    db $c3, $c6, $10
 
 
     ld [hl], e
@@ -6369,7 +6369,7 @@ jr_032_5bcc:
     ld hl, sp+$09
     cp $03
     dec c
-    jp nc, Jump_000_0d01
+    db $d2, $01, $0d
 
     rst $38
     di
@@ -9868,7 +9868,7 @@ jr_032_6b00:
     dec bc
     xor a
     rra
-    jp nz, Jump_000_0163
+    db $c2, $63, $01
 
 jr_032_6b22:
     ld sp, hl
@@ -11674,7 +11674,7 @@ jr_032_7295:
     ld c, $10
     ld b, $90
     ld h, [hl]
-    jp nc, Jump_000_0d6f
+    db $d2, $6f, $0d
 
     dec b
     ret nc

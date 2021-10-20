@@ -652,7 +652,7 @@ jr_003_4424:
     ld [$c8c9], a
     ret
 
-
+;443f
     ld de, $da33
     call Call_003_4446
     ret
@@ -8224,7 +8224,7 @@ jr_003_699b:
 
     ret
 
-
+;69a2
     ld a, [$da5e]
     cp $ff
     ret z
@@ -11788,7 +11788,7 @@ Jump_003_7c8b:
     call nz, Call_000_3f01
     ld a, l
     call $0298
-    call Call_000_08da
+    db $cd, $da, $08
     call $059c
     rst $30
     jr z, jr_003_7d5e

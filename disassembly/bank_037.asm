@@ -957,7 +957,7 @@ jr_037_43d4:
 
     jp c, $7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rSC]
@@ -3257,7 +3257,7 @@ jr_037_4db4:
 
     jp c, $7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rSC]
@@ -5479,7 +5479,7 @@ jr_037_577b:
 
     jp c, $7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rSC]
@@ -7178,7 +7178,7 @@ jr_037_5e7c:
 
     jp c, $7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rSC]
@@ -9471,7 +9471,7 @@ jr_037_685c:
 
     jp c, $7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rSC]
@@ -11922,7 +11922,7 @@ jr_037_7277:
 
     jp c, $7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rSC]

@@ -8307,7 +8307,7 @@ jr_00e_61d7:
     rst $38
     ld bc, $77ff
     nop
-    jp c, Jump_000_0163
+    db $da, $63, $01
 
     rst $38
     ld [hl], l

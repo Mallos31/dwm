@@ -5541,7 +5541,7 @@ Call_002_5fa7:
     ld h, h
     sbc a
     ld h, h
-    call z, Call_000_0d64
+    db $cc, $64, $0d
     ld h, l
     xor e
     ld h, [hl]
@@ -7617,7 +7617,7 @@ jr_002_6d16:
     add b
     db $d3
     call nz, RST_00
-    call nz, Call_000_01ec
+    db $c4, $ec, $01
     nop
     ld a, [c]
     db $cc, $01, $00

@@ -142,7 +142,7 @@ SECTION "ROM Bank $03c", ROMX[$4000], BANK[$3c]
     ld d, b
     or e
     ld d, b
-    call nc, Call_000_0f50
+    db $d4, $50, $0f
     ld d, c
     ld a, [hl+]
     ld d, c

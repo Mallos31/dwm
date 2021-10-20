@@ -4,7 +4,7 @@
 ; https://github.com/mattcurrie/mgbdis
 
 SECTION "ROM Bank $078", ROMX[$4000], BANK[$78]
-
+;All invalid jumps to external banks have been removed.
     inc bc
     nop
     add l
@@ -692,7 +692,7 @@ jr_078_42b5:
     cp $cc
     call z, $fe03
     add d
-    call z, Call_000_03cc
+    db $cc, $cc, $03
     cp $07
     nop
     adc c
@@ -760,7 +760,7 @@ jr_078_4363:
     ld a, b
     db $f4
     db $fc
-    call c, Call_000_3cbc
+    db $dc, $bc, $3c
     ld a, h
     dec b
     nop
@@ -1592,7 +1592,7 @@ jr_078_4704:
     ret nz
 
     ldh a, [$e0]
-    jp Jump_000_0c05
+    db $c3, $05, $0c
 
 
     jr jr_078_4776
@@ -2155,7 +2155,7 @@ jr_078_4978:
     ld a, b
     db $10
     xor l
-    jp nc, Jump_000_18cc
+    db $d2, $cc, $18
 
     ld sp, $4161
     and c
@@ -2600,14 +2600,14 @@ jr_078_4a84:
 jr_078_4b6e:
     inc a
     ld a, [hl]
-    jp Jump_000_0481
+    db $c3, $81, $04
 
 
     nop
     add h
     inc a
     ld a, [hl]
-    jp Jump_000_0481
+    db $c3, $81, $04
 
 
     nop
@@ -2746,7 +2746,7 @@ jr_078_4bd6:
     inc sp
     ld h, e
     ld h, [hl]
-    call z, Call_000_1098
+    db $cc, $98, $10
     nop
     nop
     inc bc
@@ -3257,7 +3257,7 @@ jr_078_4e39:
     nop
     dec sp
     ld [hl], b
-    call z, Call_000_0198
+    db $cc, $98, $01
     rrca
     ccf
     ld a, a
@@ -3468,7 +3468,7 @@ jr_078_4e76:
 
     dec sp
     ld [hl], b
-    call z, Call_000_0198
+    db $cc, $98, $01
     rrca
     ccf
     ld a, a
@@ -3873,7 +3873,7 @@ jr_078_5082:
     cp l
     add e
     cp d
-    jp c, Jump_000_05fd
+    db $da, $fd, $05
 
     nop
     adc e
@@ -4136,7 +4136,7 @@ jr_078_516c:
     db $fd
     ld a, [bc]
     inc c
-    call z, Call_000_3ede
+    db $cc, $de, $3e
     ld a, [c]
     db $ed
     di
@@ -5353,7 +5353,7 @@ jr_078_575c:
     ret nz
 
     ldh a, [$fe]
-    call c, Call_000_26d6
+    db $dc, $d6, $26
     jp nz, $e106
 
     or b
@@ -5931,7 +5931,7 @@ jr_078_59a3:
     cp a
     pop bc
     or [hl]
-    call z, Call_000_0f78
+    db $cc, $78, $0f
     rra
     ccf
     ld a, a
@@ -6604,7 +6604,7 @@ jr_078_5cbf:
     jr nc, jr_078_5cc4
 
 jr_078_5cc4:
-    jp z, Jump_000_3c18
+    db $ca, $18, $3c
 
     ld a, h
     ld h, [hl]
@@ -7085,9 +7085,9 @@ jr_078_5ed1:
     jr c, jr_078_5f37
 
     ld b, h
-    call nz, Call_000_1804
+    db $c4, $04, $18
     inc a
-    jp nc, Jump_000_0231
+    db $d2, $31, $02
 
     db $e4
     ld [c], a
@@ -8459,7 +8459,7 @@ jr_078_6488:
     ld sp, $fa3e
     db $fc
     db $fc
-    call nz, Call_000_3272
+    db $c4, $72, $32
     ld [de], a
     add d
     adc $7f
@@ -8968,7 +8968,7 @@ jr_078_6668:
 
     jr c, jr_078_673f
 
-    call nz, Call_000_022c
+    db $c4, $2c, $02
     rra
     ld a, e
     ld e, [hl]
@@ -9650,7 +9650,7 @@ jr_078_6990:
     dec bc
     inc b
     ld a, [bc]
-    call z, Call_000_0b0b
+    db $cc, $0b, $0b
     inc c
     sub b
     xor c
@@ -10073,7 +10073,7 @@ jr_078_6be5:
     ld b, $00
     ld b, b
     ldh [$e3], a
-    call nz, Call_000_09c1
+    db $c4, $c1, $09
     add hl, de
     inc sp
     rst $20
@@ -10412,7 +10412,7 @@ jr_078_6d45:
     add e
     rst $20
     rst $20
-    jp Jump_000_2410
+    db $c3, $10, $24
 
 
     ld a, [bc]
@@ -10572,7 +10572,7 @@ jr_078_6e05:
     or b
     jr jr_078_6e64
 
-    call z, Call_000_1c8c
+    db $cc, $8c, $1c
     ld e, $3f
     ld a, a
     ld a, [c]
@@ -12615,7 +12615,7 @@ jr_078_76bc:
     ret z
 
     inc b
-    call z, Call_000_0222
+    db $cc, $22, $02
     jr z, jr_078_7710
 
     dec h
@@ -13255,7 +13255,7 @@ jr_078_797f:
 
 jr_078_799c:
     db $f4
-    jp c, Jump_000_05fc
+    db $da, $fc, $05
 
     inc bc
     rst $38
@@ -13624,7 +13624,7 @@ jr_078_7b1e:
     ld e, $3e
     inc bc
     nop
-    call c, Call_000_1f07
+    db $dc, $07, $1f
     ccf
     ld a, a
     pop hl
@@ -13858,7 +13858,7 @@ jr_078_7c37:
     ld sp, hl
     rst $38
     and $c4
-    call nz, Call_000_033f
+    db $c4, $3f, $03
     rst $38
     add h
     ld a, a
@@ -13870,7 +13870,7 @@ jr_078_7c37:
     ld sp, hl
     rst $38
     and $c4
-    call nz, Call_000_043f
+    db $c4, $3f, $04
     nop
     add [hl]
     inc bc
@@ -14139,7 +14139,7 @@ jr_078_7cd1:
     ld [$7c3c], sp
     ld a, a
     rst $20
-    jp Jump_000_056e
+    db $c3, $6e, $05
 
 
     nop

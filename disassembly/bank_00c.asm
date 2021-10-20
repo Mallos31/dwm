@@ -4255,7 +4255,7 @@ jr_00c_510b:
     rst $38
     ld bc, $f1ff
     nop
-    call Call_000_0152
+    db $cd, $52, $01
     rst $38
     jr jr_00c_5282
 
@@ -4374,7 +4374,7 @@ jr_00c_52c8:
     rst $38
     ld bc, $f1ff
     nop
-    call Call_000_0154
+    db $cd, $54, $01
     rst $38
     xor h
     nop
@@ -5930,7 +5930,7 @@ jr_00c_5a65:
     ld e, d
     ld bc, $25ff
     nop
-    jp InitStackPointer
+    jp InitGameData
 
 
     rst $38
@@ -6570,7 +6570,7 @@ jr_00c_5d2f:
     ld e, l
     ld bc, $35ff
     nop
-    jp Jump_000_015d
+    db $c3, $5d, $01
 
 
     rst $38

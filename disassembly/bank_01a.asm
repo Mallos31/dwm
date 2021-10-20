@@ -166,7 +166,7 @@ jr_01a_4071:
     ld d, h
     adc l
     ld d, h
-    jp nz, Jump_000_0154
+    db $c2, $54, $01
 
     ld d, l
     inc l

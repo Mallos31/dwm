@@ -408,7 +408,7 @@ jr_036_4168:
     ld hl, $dbde
     or $23
     cp [hl]
-    jp nz, Jump_000_0bfe
+    db $c2, $fe, $0b
 
     or $83
     ld a, [hl]
@@ -4872,7 +4872,7 @@ jr_036_5471:
     scf
     ret nz
 
-    jp z, Jump_000_0f00
+    db $ca, $00, $0f
 
     rlca
     rra

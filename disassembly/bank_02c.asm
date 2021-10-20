@@ -4656,7 +4656,7 @@ jr_02c_53ed:
     dec de
     sbc h
     adc a
-    call nz, Call_000_01cf
+    db $c4, $cf, $01
     inc b
     cp c
     cp b
@@ -7556,7 +7556,7 @@ jr_02c_60a2:
     nop
     ld bc, $0302
     inc c
-    jp z, Jump_000_0c02
+    db $ca, $02, $0c
 
     ld [de], a
     ld a, [bc]
@@ -7705,7 +7705,7 @@ jr_02c_6151:
     jr nc, jr_02c_618c
 
     nop
-    call z, Call_000_090f
+    db $cc, $0f, $09
     ld [hl-], a
     inc sp
     ld [hl-], a
@@ -7844,7 +7844,7 @@ jr_02c_61d7:
     adc b
     nop
     inc c
-    jp z, Jump_000_0c00
+    db $ca, $00, $0c
 
     jp nc, $010f
 
@@ -8325,7 +8325,7 @@ jr_02c_6401:
     adc b
     nop
     inc c
-    call nz, Call_000_0c00
+    db $c4, $00, $0c
     adc b
     nop
     inc h
@@ -8748,7 +8748,7 @@ jr_02c_65d6:
     jr nc, jr_02c_661e
 
     inc c
-    jp z, Jump_000_0c00
+    db $ca, $00, $0c
 
     sub b
     inc c
@@ -8823,7 +8823,7 @@ jr_02c_661e:
     inc l
     dec l
     inc c
-    jp z, Jump_000_0c00
+    db $ca, $00, $0c
 
     ld b, h
     db $10
@@ -9059,7 +9059,7 @@ jr_02c_670d:
 
 jr_02c_673a:
     inc c
-    call nz, Call_000_0c14
+    db $c4, $14, $0c
     ld [de], a
 
 jr_02c_673f:
@@ -9553,7 +9553,7 @@ jr_02c_695d:
     jr nz, jr_02c_6988
 
     inc c
-    call nz, Call_000_0c00
+    db $c4, $00, $0c
     jp nc, $360e
 
     scf

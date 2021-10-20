@@ -137,7 +137,7 @@ jr_026_408d:
     nop
     nop
     cp $fe
-    call Call_000_0923
+    db $cd, $23, $09
     rst $20
     ld bc, $f301
     add hl, bc
@@ -411,7 +411,7 @@ jr_026_408d:
     add $80
     res 0, b
     ld hl, sp-$80
-    call z, Call_000_0a80
+    db $cc, $80, $0a
     ret nz
 
     nop
@@ -539,7 +539,7 @@ jr_026_41de:
 
     jp c, Jump_026_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [$0a]
@@ -780,7 +780,7 @@ jr_026_4379:
     nop
     nop
     cp $fe
-    call Call_000_0923
+    db $cd, $23, $09
     rst $20
     ld bc, $f301
     add hl, bc
@@ -1430,7 +1430,7 @@ jr_026_466a:
     nop
     nop
     cp $fe
-    call Call_000_0923
+    db $cd, $23, $09
     rst $20
     ld bc, $f301
     add hl, bc
@@ -2825,7 +2825,7 @@ jr_026_4c3c:
 
     jp c, Jump_026_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rSC]
@@ -3691,7 +3691,7 @@ Jump_026_5002:
 
     jp c, Jump_026_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rSC]
@@ -4546,7 +4546,7 @@ jr_026_5398:
 
     jp c, Jump_026_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rSC]
@@ -4689,7 +4689,7 @@ jr_026_545c:
     dec sp
     inc a
     inc c
-    jp z, Jump_000_090f
+    db $ca, $0f, $09
 
     ld b, l
 
@@ -5959,7 +5959,7 @@ Jump_026_5a3d:
     ld de, $02c9
     add $22
     dec hl
-    jp c, Jump_000_01e6
+    db $da, $e6, $01
 
     ld e, l
     ld bc, $e1e1
@@ -7342,7 +7342,7 @@ jr_026_5fd2:
     cpl
     or h
     ld [hl], a
-    call nc, Call_000_08dd
+    db $d4, $dd, $08
     add hl, bc
     nop
     inc bc
@@ -7905,7 +7905,7 @@ Jump_026_621d:
     ld de, $02c9
     add $22
     dec hl
-    jp c, Jump_000_01e6
+    db $da, $e6, $01
 
     ld e, l
 
@@ -10210,7 +10210,7 @@ jr_026_6c67:
     add b
     add b
     cp $fe
-    call Call_000_0923
+    db $cd, $23, $09
     rst $20
     ld bc, $f301
     add hl, bc
@@ -11455,7 +11455,7 @@ jr_026_719f:
     nop
     nop
     cp $fe
-    call Call_000_0923
+    db $cd, $23, $09
     rst $20
     ld bc, $f301
     add hl, bc

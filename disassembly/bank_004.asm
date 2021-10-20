@@ -11233,7 +11233,7 @@ jr_004_7c8e:
     rst $38
     cp c
     dec hl
-    call nz, Call_000_0205
+    db $c4, $05, $02
     nop
     ld bc, $ff20
     jr jr_004_7cc0

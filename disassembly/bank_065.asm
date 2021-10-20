@@ -2093,7 +2093,7 @@ jr_065_47d3:
     db $fc
     db $fc
     db $ec
-    call z, Call_000_10f8
+    db $cc, $f8, $10
     nop
     adc b
     sub b
@@ -2556,7 +2556,7 @@ jr_065_4b04:
     di
     add e
     db $e3
-    jp Jump_000_0ffe
+    db $c3, $fe, $0f
 
 
     rst $38

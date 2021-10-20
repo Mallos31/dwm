@@ -11363,7 +11363,7 @@ Call_001_79d1:
     call Call_000_07e8
     ld bc, $fe00
     call $0552
-    call Call_000_01cf
+    db $cd, $cf, $01
     ld b, h
     ld c, l
     ld hl, $c0c0

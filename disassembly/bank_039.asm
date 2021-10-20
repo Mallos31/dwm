@@ -229,7 +229,7 @@ jr_039_40e8:
     ldh a, [$e8]
     ld hl, sp-$08
     cp b
-    call c, Call_000_09e4
+    db $dc, $e4, $09
     rrca
     pop de
     rst $18
@@ -775,7 +775,7 @@ jr_039_4319:
     ld [c], a
     rst $38
     db $fc
-    call c, Call_000_10f0
+    db $dc, $f0, $10
     nop
     nop
     db $10

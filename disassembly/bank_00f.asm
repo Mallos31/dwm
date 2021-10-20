@@ -2974,12 +2974,12 @@ jr_00f_4a48:
     inc de
     rst $38
     inc bc
-    jp c, Jump_000_0156
+    db $da, $56, $01
 
     inc de
     rst $38
     dec b
-    jp c, Jump_000_0156
+    db $da, $56, $01
 
     ld [de], a
     rst $38

@@ -1422,7 +1422,7 @@ jr_02f_4655:
     ld [bc], a
     cp h
     nop
-    call nc, Call_000_10f4
+    db $d4, $f4, $10
     ldh a, [$c8]
     ld hl, sp+$3e
     cp $01
@@ -2473,7 +2473,7 @@ jr_02f_4b0f:
     db $fc
     db $f4
     db $fc
-    call nz, Call_000_08fc
+    db $c4, $fc, $08
     dec b
     ld a, e
     ld bc, $ffbf
@@ -4160,7 +4160,7 @@ jr_02f_52fe:
     ld a, a
     ldh a, [rIF]
     ld hl, sp+$02
-    jp nc, Jump_000_0d0f
+    db $d2, $0f, $0d
 
     ldh a, [$1f]
     db $fc
@@ -4963,7 +4963,7 @@ jr_02f_560f:
     rra
     pop hl
     ccf
-    jp nz, Jump_000_027e
+    db $c2, $7e, $02
 
     ldh [$03], a
     rlca
@@ -6935,7 +6935,7 @@ jr_02f_5f6a:
     rst $38
     dec c
     inc c
-    jp z, Jump_000_0c00
+    db $ca, $00, $0c
 
     ld [c], a
     nop

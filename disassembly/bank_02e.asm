@@ -5699,7 +5699,7 @@ Call_02e_5b05:
     ld [hl], l
     ld d, $fc
     inc hl
-    call nz, Call_000_0184
+    db $c4, $84, $01
     inc bc
     inc h
     rlca
@@ -6068,7 +6068,7 @@ Call_02e_5b05:
     rst $38
     xor e
     xor e
-    jp nz, Jump_000_0ccb
+    db $c2, $cb, $0c
 
     adc $7e
     cp $00
@@ -6799,7 +6799,7 @@ jr_02e_5fac:
     rst $38
     nop
     ldh a, [rP1]
-    jp Jump_000_0e00
+    db $c3, $00, $0e
 
 
     nop
@@ -9383,7 +9383,7 @@ jr_02e_6aba:
     nop
     ld h, [hl]
     db $fd
-    jp z, Jump_000_0a8b
+    db $ca, $8b, $0a
 
     db $eb
     ld c, $cf
@@ -10150,7 +10150,7 @@ jr_02e_6df7:
     rst $38
     xor e
     xor e
-    jp nz, Jump_000_0ccb
+    db $c2, $cb, $0c
 
     adc $08
     nop

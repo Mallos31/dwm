@@ -4313,7 +4313,7 @@ jr_03e_5988:
     ld b, d
     sub c
     ld b, d
-    jp Jump_000_0d42
+    db $c3, $42, $0d
 
 
     ld b, h
@@ -7870,7 +7870,7 @@ jr_03e_66bd:
     ld b, d
     sub c
     ld b, d
-    jp Jump_000_0d42
+    db $c3, $42, $0d
 
 
     ld b, h

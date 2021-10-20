@@ -2439,7 +2439,7 @@ jr_041_4a08:
     db $76
     or e
     db $76
-    call Call_000_0176
+    db $cd, $76, $01
     ld [hl], a
     ld bc, $3977
     ld [hl], a
