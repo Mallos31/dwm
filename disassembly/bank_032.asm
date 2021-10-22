@@ -4028,7 +4028,7 @@ jr_032_51bf:
     add sp, -$17
     ld [hl], l
     sbc a
-    jp c, Jump_000_123b
+    db $da, $3b, $12
 
     rst $10
     push de
@@ -13010,7 +13010,7 @@ jr_032_77d0:
     ldh [$a7], a
     xor a
     ld [$c6a0], a
-    call Call_000_140f
+    db $cd, $0f, $14
     and a
     jr z, jr_032_7802
 
@@ -14083,7 +14083,7 @@ jr_032_7d3c:
     ldh [$a7], a
     xor a
     ld [$c6a0], a
-    call Call_000_140f
+    db $cd, $0f, $14
     and a
     jr z, jr_032_7d6e
 

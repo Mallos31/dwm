@@ -1343,7 +1343,7 @@ Jump_02f_45fe:
     xor $6a
     ld a, $fa
     db $fc
-    call nc, Call_000_14fc
+    db $d4, $fc, $14
     ld hl, sp-$08
     db $fc
     inc a
@@ -1398,7 +1398,7 @@ jr_02f_4625:
     pop af
     rra
     cp $3a
-    call nc, Call_000_18f4
+    db $d4, $f4, $18
     ld hl, sp-$38
     ld hl, sp+$38
     ld hl, sp+$08
@@ -5071,7 +5071,7 @@ jr_02f_5698:
 
     ld h, d
     rlca
-    call nz, Call_000_181f
+    db $c4, $1f, $18
     ld a, a
     ld h, b
     ld [bc], a
@@ -12847,7 +12847,7 @@ Jump_02f_7a53:
     rst $38
     ld h, $bf
     rrca
-    call c, Call_000_1a07
+    db $dc, $07, $1a
     and e
     dec b
     ret

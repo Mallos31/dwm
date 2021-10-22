@@ -35,7 +35,7 @@ SECTION "ROM Bank $024", ROMX[$4000], BANK[$24]
     ld e, h
     di
     ld e, h
-    jp c, Jump_000_195d
+    db $da, $5d, $19
 
     ld h, d
     nop
@@ -586,7 +586,7 @@ jr_024_4267:
     nop
     add b
     cp $b5
-    call c, Call_000_1597
+    db $dc, $97, $15
     sbc h
     jr nz, jr_024_425f
 
@@ -6552,7 +6552,7 @@ jr_024_5c5a:
     ld e, b
     ld e, c
     ld a, [de]
-    jp nz, Jump_000_1a02
+    db $c2, $02, $1a
 
     ld d, d
     ld c, $1a
@@ -6751,7 +6751,7 @@ jr_024_5d41:
     ld e, b
     ld e, c
     ld a, [de]
-    jp nz, Jump_000_1a02
+    db $c2, $02, $1a
 
     ld d, d
     ld c, $1a
@@ -11930,7 +11930,7 @@ jr_024_7437:
     ld hl, sp+$0c
     rrca
     ld [$1508], sp
-    call nc, Call_000_1415
+    db $d4, $15, $14
     db $fd
     db $fc
     dec h
@@ -12281,7 +12281,7 @@ jr_024_7616:
     inc d
     jr z, jr_024_7637
 
-    call nz, Call_000_1600
+    db $c4, $00, $16
     inc h
     jr z, jr_024_763d
 

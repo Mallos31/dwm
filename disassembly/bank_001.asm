@@ -2346,7 +2346,7 @@ jr_001_4bab:
     ld l, $0c
     ld l, $21
     pop bc
-    jp z, Jump_000_1406
+    db $ca, $06, $14
 
 jr_001_4bc6:
     push hl

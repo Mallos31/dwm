@@ -9425,7 +9425,7 @@ jr_014_6b6c:
     inc de
     rst $38
     rst $38
-    jp nz, Jump_000_17bc
+    db $c2, $bc, $17
 
     inc b
     ld h, $4a

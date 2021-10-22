@@ -3403,7 +3403,7 @@ jr_02a_4ebd:
     db $eb
     ld sp, $a3d5
     cpl
-    jp Jump_000_14d3
+    db $c3, $d3, $14
 
 
     jr c, jr_02a_4f0c

@@ -10904,7 +10904,7 @@ jr_006_7464:
     ld a, [hl]
     ld a, [hl]
     inc a
-    call c, Call_000_183d
+    db $dc, $3d, $18
     adc b
     inc bc
     rlca

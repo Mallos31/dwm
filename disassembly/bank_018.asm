@@ -9790,7 +9790,7 @@ jr_018_6eea:
     ld h, l
     cp a
     ld e, [hl]
-    jp nc, Jump_000_183c
+    db $d2, $3c, $18
 
     add e
 
@@ -9800,7 +9800,7 @@ jr_018_70ac:
     ld a, $83
     ccf
     add e
-    jp nc, Jump_000_163d
+    db $d2, $3d, $16
 
     add e
     ld a, $83
@@ -9808,7 +9808,7 @@ jr_018_70ac:
     add e
     ld b, b
     add e
-    jp nc, Jump_000_133e
+    db $d2, $3e, $13
 
     add e
     ccf

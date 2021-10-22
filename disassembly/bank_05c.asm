@@ -8951,7 +8951,7 @@ jr_05c_68e0:
     jp c, $1138
 
     nop
-    jp c, Jump_000_1240
+    db $da, $40, $12
 
 jr_05c_68eb:
     nop
@@ -9788,7 +9788,7 @@ jr_05c_6ca9:
     jp c, $1138
 
     nop
-    jp c, Jump_000_1240
+    db $da, $40, $12
 
 jr_05c_6cb1:
     nop

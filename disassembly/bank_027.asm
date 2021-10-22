@@ -1891,7 +1891,7 @@ jr_027_47ea:
     ld b, h
     inc b
     inc c
-    jp nc, Jump_000_160e
+    db $d2, $0e, $16
 
     rla
     inc c
@@ -10150,7 +10150,7 @@ jr_027_6bf1:
     inc h
     dec h
     inc b
-    call nc, Call_000_160c
+    db $d4, $0c, $16
     rla
     inc b
     ld h, d

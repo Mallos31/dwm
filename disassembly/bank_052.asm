@@ -3551,7 +3551,7 @@ jr_052_53de:
     cp d
     ld h, d
     bit 4, d
-    call c, Call_000_1162
+    db $dc, $62, $11
     ld h, e
     rra
     ld h, e

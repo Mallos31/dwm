@@ -12365,7 +12365,7 @@ jr_036_778e:
     db $10
     inc b
     ldh [$0c], a
-    jp Jump_000_1710
+    db $c3, $10, $17
 
 
     nop

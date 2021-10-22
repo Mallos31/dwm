@@ -9856,7 +9856,7 @@ Call_026_6adf:
     xor b
     nop
     inc d
-    jp nc, Jump_000_140c
+    db $d2, $0c, $14
 
     add b
     ld b, $14
@@ -10061,7 +10061,7 @@ jr_026_6bb7:
     ld a, [bc]
     dec bc
     inc d
-    jp nc, Jump_000_140c
+    db $d2, $0c, $14
 
     ld [$5204], sp
     ld d, e

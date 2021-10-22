@@ -146,7 +146,7 @@ jr_049_408f:
     ld d, e
     cp c
     ld d, e
-    call c, Call_000_1553
+    db $dc, $53, $15
     ld d, h
     ld a, [hl-]
     ld d, h

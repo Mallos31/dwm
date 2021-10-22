@@ -5595,7 +5595,7 @@ jr_02e_5a32:
     add $00
     ld sp, hl
     nop
-    jp nz, Jump_000_1900
+    db $c2, $00, $19
 
     nop
     ld hl, sp+$00
@@ -8017,7 +8017,7 @@ jr_02e_6473:
     ld b, b
     ld [hl], h
     nop
-    call Call_000_1a00
+    db $cd, $00, $1a
     nop
     rst $38
     ld a, [$60ff]

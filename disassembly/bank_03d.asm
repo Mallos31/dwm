@@ -332,7 +332,7 @@ jr_03d_40f0:
     ld l, l
     add d
     ld l, l
-    call nz, Call_000_116d
+    db $c4, $6d, $11
     ld l, [hl]
     ld e, e
     ld l, [hl]

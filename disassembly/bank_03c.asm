@@ -261,7 +261,7 @@ jr_03c_40d9:
     ld e, l
     and e
     ld e, l
-    call c, Call_000_195d
+    db $dc, $5d, $19
     ld e, [hl]
     ld h, d
     ld e, [hl]
@@ -1014,7 +1014,7 @@ jr_03c_44d3:
 
     inc b
     ld [bc], a
-    jp z, Jump_000_130f
+    db $ca, $0f, $13
 
     nop
     ld bc, $1102
@@ -1074,7 +1074,7 @@ jr_03c_44d3:
 
     inc b
     ld [bc], a
-    jp z, Jump_000_130f
+    db $ca, $0f, $13
 
     nop
     ld bc, $0202

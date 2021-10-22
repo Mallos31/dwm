@@ -4603,7 +4603,7 @@ jr_029_55a3:
     jp z, $d5b5
 
     xor d
-    jp z, Jump_000_13b5
+    db $ca, $b5, $13
 
     adc c
     nop
@@ -5068,7 +5068,7 @@ jr_029_5796:
     inc de
     xor h
     ld [bc], a
-    call nz, Call_000_13c4
+    db $c4, $c4, $13
     and h
 
 jr_029_57a5:
@@ -6993,7 +6993,7 @@ Jump_029_5ff0:
     di
     ld [hl+], a
     di
-    call nz, Call_000_18f7
+    db $c4, $f7, $18
     rst $18
     rst $20
     sbc b

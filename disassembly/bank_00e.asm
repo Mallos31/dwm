@@ -6403,25 +6403,25 @@ Call_00e_5c00:
     ld e, h
     inc h
     rst $38
-    call nz, Call_000_145c
+    db $c4, $5c, $14
     rst $38
     ld c, [hl]
     ld e, h
     inc h
     rst $38
-    call z, Call_000_145c
+    db $cc, $5c, $14
     rst $38
     ld c, [hl]
     ld e, h
     inc h
     rst $38
-    call nc, Call_000_145c
+    db $d4, $5c, $14
     rst $38
     ld c, [hl]
     ld e, h
     inc h
     rst $38
-    call c, Call_000_145c
+    db $dc, $5c, $14
     rst $38
     ld c, [hl]
     ld e, h
@@ -8916,7 +8916,7 @@ jr_00e_65f1:
     ld h, [hl]
     call z, Call_00e_7c66
     ld h, [hl]
-    call nc, Call_000_1268
+    db $d4, $68, $12
     rst $38
     dec hl
     reti

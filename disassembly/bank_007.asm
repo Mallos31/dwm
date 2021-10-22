@@ -4518,7 +4518,7 @@ jr_007_5c7e:
     ld h, e
     ld c, a
     ld h, e
-    jp Jump_000_1163
+    db $c3, $63, $11
 
 
     dec c

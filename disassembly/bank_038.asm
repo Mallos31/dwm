@@ -6321,7 +6321,7 @@ jr_038_5c4a:
     cp $02
     sbc $a2
     db $fc
-    call nz, Call_000_18f8
+    db $c4, $f8, $18
     ldh [$e0], a
     nop
     nop

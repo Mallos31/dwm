@@ -8935,7 +8935,7 @@ jr_034_6777:
     ld [de], a
     db $10
     rst $00
-    call z, Call_000_1812
+    db $cc, $12, $18
     ld [de], a
     add $67
     adc [hl]
@@ -9070,7 +9070,7 @@ jr_034_67fb:
     ld d, h
     push de
     ld a, [de]
-    jp c, Jump_000_13d3
+    db $da, $d3, $13
 
     call c, $9e1c
     ld d, [hl]
@@ -9144,7 +9144,7 @@ jr_034_68ca:
     rst $38
     rra
     ld [de], a
-    call c, Call_000_1219
+    db $dc, $19, $12
     db $db
     ld de, $0240
     ld bc, $00ff

@@ -1480,7 +1480,7 @@ jr_028_4697:
     nop
     ldh [rNR14], a
     adc h
-    jp Jump_000_1610
+    db $c3, $10, $16
 
 
     ld h, b
@@ -2367,7 +2367,7 @@ jr_028_4a28:
     ld e, e
     db $db
     db $db
-    call Call_000_12cd
+    db $cd, $cd, $12
     ld l, d
     db $10
     cp $fe
@@ -7550,7 +7550,7 @@ jr_028_60a9:
     ld b, $25
     jp z, $88a8
 
-    call z, Call_000_1314
+    db $cc, $14, $13
     inc de
     call c, $b423
     ld [hl-], a
@@ -8477,7 +8477,7 @@ jr_028_6493:
     ld b, $25
     jp z, $88a8
 
-    call z, Call_000_1314
+    db $cc, $14, $13
     inc de
     call c, $b423
     ld [hl-], a
@@ -10639,7 +10639,7 @@ jr_028_6db2:
     ld b, $25
     jp z, $88a8
 
-    call z, Call_000_1314
+    db $cc, $14, $13
     sub e
     ld e, h
     and e
@@ -12688,7 +12688,7 @@ jr_028_76cb:
 
     inc b
     inc c
-    call nc, Call_000_160c
+    db $d4, $0c, $16
     rla
     inc c
     ld l, [hl]

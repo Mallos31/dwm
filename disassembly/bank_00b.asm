@@ -2452,7 +2452,7 @@ jr_00b_4b70:
     jp z, $af68
 
     ld l, d
-    call nc, Call_000_126a
+    db $d4, $6a, $12
     ld l, e
     ld b, c
     ld l, e
@@ -3529,8 +3529,7 @@ jr_00b_4ff1:
     ld a, [hl+]
     inc bc
     ld d, c
-    jp Jump_000_1552
-
+    db $c3, $52, $15
 
     ld a, [hl+]
     dec e

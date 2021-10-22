@@ -1023,7 +1023,7 @@ jr_05b_4433:
     cp [hl]
     ld b, c
     inc a
-    jp Jump_000_140a
+    db $c3, $0a, $14
 
 
     nop
@@ -1849,7 +1849,7 @@ jr_05b_47da:
 
     ld l, c
     dec [hl]
-    jp z, Jump_000_12ed
+    db $ca, $ed, $12
 
     add hl, de
     and $00
@@ -3092,7 +3092,7 @@ jr_05b_4d07:
     nop
     ld [hl], b
     add hl, de
-    jp nc, Jump_000_1900
+    db $d2, $00, $19
 
     ld [hl], $01
     add hl, de
@@ -8920,7 +8920,7 @@ jr_05b_6556:
     rst $10
     add c
     add c
-    jp Jump_000_18db
+    db $c3, $db, $18
 
 
     inc h

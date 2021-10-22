@@ -2896,7 +2896,7 @@ jr_025_4d1e:
 
     ld h, c
     ld l, l
-    jp nc, Jump_000_12da
+    db $d2, $da, $12
 
     dec de
     add hl, bc
@@ -4054,7 +4054,7 @@ jr_025_5243:
     add sp, -$01
     ld sp, hl
     dec d
-    call z, Call_000_1510
+    db $cc, $10, $15
     call z, Call_025_7f10
     dec d
     and b
@@ -9859,7 +9859,7 @@ jr_025_6b65:
     dec hl
     ld a, e
     inc d
-    call nc, Call_000_1713
+    db $d4, $13, $17
     ld [de], a
     ld d, $d2
     sub $93
@@ -10690,7 +10690,7 @@ jr_025_6f21:
     dec hl
     ld a, e
     inc d
-    call nc, Call_000_1713
+    db $d4, $13, $17
     ld [de], a
     ld d, $d2
     sub $93

@@ -5954,7 +5954,7 @@ jr_019_5ff7:
     or e
     sbc h
     ld h, b
-    jp nc, Jump_000_1141
+    db $d2, $41, $11
 
     adc h
     ld b, l
@@ -5987,7 +5987,7 @@ jr_019_5ff7:
     or e
     xor h
     ld h, b
-    jp nc, Jump_000_1141
+    db $d2, $41, $11
 
     adc h
     ld b, l
@@ -8132,7 +8132,7 @@ jr_019_693e:
     add e
     dec sp
     add e
-    jp nc, Jump_000_143c
+    db $d2, $3c, $14
 
     sbc b
     scf
@@ -9020,7 +9020,7 @@ jr_019_6ceb:
 jr_019_6cf0:
     ld c, e
     sbc l
-    call nc, Call_000_1330
+    db $d4, $30, $13
     adc h
     inc sp
     add h
@@ -9034,7 +9034,7 @@ jr_019_6cf0:
     adc h
     jr nc, jr_019_6ca2
 
-    call nc, Call_000_1330
+    db $d4, $30, $13
     adc h
     inc sp
     add h
@@ -9053,7 +9053,7 @@ jr_019_6d10:
     jr nc, jr_019_6cb2
 
     or h
-    call nc, Call_000_1330
+    db $d4, $30, $13
     adc h
     inc sp
     add h
@@ -9111,7 +9111,7 @@ jr_019_6d20:
     or e
     inc de
     ld l, l
-    call nc, Call_000_1330
+    db $d4, $30, $13
     adc h
     inc sp
     add h
@@ -9132,7 +9132,7 @@ jr_019_6d20:
     adc h
     ld c, e
     adc h
-    call nc, Call_000_1335
+    db $d4, $35, $13
     adc h
     jr c, jr_019_6cf0
 
@@ -9150,7 +9150,7 @@ jr_019_6d20:
     or e
     ld h, [hl]
     ld l, l
-    call nc, Call_000_1335
+    db $d4, $35, $13
     adc h
     jr c, @-$7a
 
@@ -9266,7 +9266,7 @@ jr_019_6d20:
     add [hl]
     dec sp
     add [hl]
-    call nc, Call_000_133c
+    db $d4, $3c, $13
     adc h
     ccf
     add h
@@ -10010,12 +10010,12 @@ jr_019_7098:
     sbc l
     or b
     xor [hl]
-    jp nc, Jump_000_183a
+    db $d2, $3a, $18
 
     add e
     dec sp
     add e
-    jp nc, Jump_000_183c
+    db $d2, $3c, $18
 
     adc h
     scf
@@ -13220,7 +13220,7 @@ jr_019_7c1b:
     inc d
     or b
     or b
-    call nc, Call_000_1848
+    db $d4, $48, $18
     adc e
     ret nc
 

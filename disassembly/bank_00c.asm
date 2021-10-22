@@ -1294,7 +1294,7 @@ jr_00c_44a0:
     sbc e
     ret z
 
-    jp nc, Jump_000_1500
+    db $d2, $00, $15
 
     rst $38
     cp c
@@ -2047,7 +2047,7 @@ jr_00c_48c8:
 
     scf
     nop
-    call c, Call_000_154a
+    db $dc, $4a, $15
     rst $38
     db $e3
     reti
@@ -2893,13 +2893,13 @@ jr_00c_49e6:
     sbc e
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc h
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc l
@@ -3113,13 +3113,13 @@ jr_00c_4d2c:
     sbc e
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc h
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc l
@@ -3374,7 +3374,7 @@ jr_00c_4d2c:
     ld c, [hl]
     ld [$07ff], sp
     rst $38
-    jp z, Jump_000_1405
+    db $ca, $05, $14
 
     rst $38
     ld c, [hl]
@@ -3388,13 +3388,13 @@ jr_00c_4d2c:
     ld c, [hl]
     ld [$07ff], sp
     rst $38
-    call z, Call_000_1405
+    db $cc, $05, $14
     rst $38
     ld c, [hl]
     ld c, [hl]
     ld [$07ff], sp
     rst $38
-    call Call_000_1405
+    db $cd, $05, $14
     rst $38
     ld c, [hl]
     ld c, [hl]
@@ -3714,13 +3714,13 @@ jr_00c_4d2c:
     sbc e
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc h
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc l
@@ -3766,13 +3766,13 @@ jr_00c_4d2c:
     sbc e
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc h
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc l
@@ -7548,7 +7548,7 @@ jr_00c_60ff:
     rst $38
     rst $08
     ld [$ffff], sp
-    call Call_000_1502
+    db $cd, $02, $15
     rst $38
     inc a
     ret z
@@ -10671,7 +10671,7 @@ jr_00c_6e51:
     ld [$ff14], sp
     ccf
     ld [hl], b
-    jp nc, Jump_000_1508
+    db $d2, $08, $15
 
     rst $38
     adc l
@@ -10687,7 +10687,7 @@ jr_00c_6e51:
     ld [$ff14], sp
     ld d, l
     ld [hl], b
-    jp nc, Jump_000_1508
+    db $d2, $08, $15
 
     rst $38
     adc l
@@ -11280,7 +11280,7 @@ jr_00c_71cc:
     ld [hl], e
     ld de, $ff02
     rst $38
-    call c, Call_000_1502
+    db $dc, $02, $15
     rst $38
     inc a
     ret z
@@ -11816,7 +11816,7 @@ jr_00c_74b9:
     rlca
     rst $38
     rst $38
-    jp nz, Jump_000_1507
+    db $c2, $07, $15
 
     rst $38
     inc a

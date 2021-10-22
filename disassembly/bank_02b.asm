@@ -4867,7 +4867,7 @@ jr_02b_5595:
     ld b, [hl]
     ld [bc], a
     inc c
-    jp nc, Jump_000_160e
+    db $d2, $0e, $16
 
     rla
     inc c

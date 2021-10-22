@@ -10835,7 +10835,7 @@ jr_015_7a13:
     inc bc
     ld a, e
     add a
-    call c, Call_000_17e3
+    db $dc, $e3, $17
     rst $28
     add sp, -$09
     dec e

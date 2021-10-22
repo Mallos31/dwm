@@ -4542,7 +4542,7 @@ jr_02c_5396:
     jr z, jr_02c_537f
 
     ld [hl+], a
-    jp z, Jump_000_1504
+    db $ca, $04, $15
 
     add [hl]
     sub $00
@@ -6130,7 +6130,7 @@ jr_02c_5a88:
 
 jr_02c_5aa4:
     dec d
-    jp Jump_000_12c4
+    db $c3, $c4, $12
 
 
 jr_02c_5aa8:

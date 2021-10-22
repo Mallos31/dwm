@@ -2535,7 +2535,7 @@ jr_07d_4b13:
     ld a, [$cd1d]
 
 jr_07d_4b21:
-    call Call_000_18cf
+    db $cd, $cf, $18
     rst $38
     ccf
     rst $18
@@ -4418,7 +4418,7 @@ jr_07d_52e0:
 
 jr_07d_5309:
     ldh a, [$d8]
-    call z, Call_000_1326
+    db $cc, $26, $13
     adc c
     ld b, h
     ld [hl+], a
@@ -5905,7 +5905,7 @@ jr_07d_59ab:
     ld a, b
     db $10
     xor l
-    jp nc, Jump_000_18cc
+    db $d2, $cc, $18
 
     ld sp, $4161
     and c
@@ -7989,7 +7989,7 @@ jr_07d_62bb:
     ei
     ei
     and [hl]
-    jp Jump_000_18db
+    db $c3, $db, $18
 
 
     nop
@@ -8880,7 +8880,7 @@ jr_07d_6662:
     nop
     ld a, a
     ld bc, $0115
-    call nc, Call_000_1a00
+    db $d4, $00, $1a
     ld a, h
     cp $22
     ld c, a
