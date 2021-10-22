@@ -3852,7 +3852,7 @@ jr_02c_5063:
     ccf
     rlca
     push hl
-    call nc, Call_000_1ce9
+    db $d4, $e9, $1c
     inc e
     db $e3
     ldh a, [rIF]

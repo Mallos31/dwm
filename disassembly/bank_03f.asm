@@ -613,7 +613,7 @@ jr_03f_4245:
     cpl
     ld c, l
     dec b
-    call nc, Call_000_1f2f
+    db $d4, $2f, $1f
     ld [bc], a
     ld [bc], a
     dec b

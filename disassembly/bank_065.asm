@@ -922,7 +922,7 @@ jr_065_43fd:
     adc $ce
 
 jr_065_4407:
-    call z, Call_000_1c8c
+    db $cc, $8c, $1c
     ld a, h
     db $fc
     rra

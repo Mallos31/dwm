@@ -318,7 +318,7 @@ jr_033_409b:
     or $9f
     ld a, [c]
     rst $38
-    call z, Call_000_1ef7
+    db $cc, $f7, $1e
     rst $38
     dec bc
     cp $0b

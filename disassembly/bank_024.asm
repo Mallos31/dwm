@@ -6641,7 +6641,7 @@ jr_024_5c86:
     ld a, [de]
     add $04
     ld a, [de]
-    jp nz, Jump_000_1a12
+    db $c2, $12, $1a
 
     sub $0e
     ld a, [de]
@@ -6840,7 +6840,7 @@ jr_024_5d6d:
     ld a, [de]
     add $04
     ld a, [de]
-    jp nz, Jump_000_1a12
+    db $c2, $12, $1a
 
     sub $0e
     ld a, [de]
@@ -7319,7 +7319,7 @@ jr_024_5fd6:
     push af
     ld a, [hl]
     or a
-    call c, Call_000_1cf7
+    db $dc, $f7, $1c
     rst $30
     inc e
     sub a
@@ -7431,7 +7431,7 @@ jr_024_6065:
 jr_024_6069:
     push af
     cp $17
-    call c, Call_000_1c17
+    db $dc, $17, $1c
     rla
     inc e
     push af

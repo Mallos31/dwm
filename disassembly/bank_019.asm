@@ -6278,16 +6278,16 @@ jr_019_61a3:
     sbc l
     or b
     xor [hl]
-    jp nc, Jump_000_1d2d
+    db $d2, $2d, $1d
 
     add e
     ld l, $83
-    call nc, Call_000_1d2f
+    db $d4, $2f, $1d
     and b
     ld a, [hl+]
     and b
     or h
-    call nc, Call_000_1d27
+    db $d4, $27, $1d
     sbc h
     db $db
     inc h
@@ -6439,7 +6439,7 @@ jr_019_629b:
     scf
     add e
     or h
-    call nc, Call_000_1d38
+    db $d4, $38, $1d
     and b
     inc [hl]
     and b
@@ -13343,7 +13343,7 @@ jr_019_7dfe:
     ld h, b
     cp a
     ld [hl], c
-    call nc, Call_000_1d37
+    db $d4, $37, $1d
     and b
     db $db
     jr c, jr_019_7dbd
@@ -13373,7 +13373,7 @@ jr_019_7e49:
     adc h
     inc l
     adc h
-    call nc, Call_000_1d24
+    db $d4, $24, $1d
     sub d
     jr z, @-$6c
 
@@ -13392,7 +13392,7 @@ jr_019_7e49:
 
     ld h, $83
     or h
-    call nc, Call_000_1d24
+    db $d4, $24, $1d
     sub d
     jr z, jr_019_7dfe
 
@@ -13494,7 +13494,7 @@ jr_019_7e49:
     ld h, [hl]
     ld a, [hl]
     adc $7e
-    call c, Call_000_1d7d
+    db $dc, $7d, $1d
     ld a, [hl]
     add h
     ld a, [hl]

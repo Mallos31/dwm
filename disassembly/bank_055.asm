@@ -11872,7 +11872,7 @@ jr_055_7683:
     rlca
     ld c, $3c
     ld hl, sp-$04
-    call c, Call_000_1c1c
+    db $dc, $1c, $1c
     rrca
     dec h
     cp $03

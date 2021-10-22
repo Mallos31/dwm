@@ -10269,7 +10269,7 @@ jr_01c_6aa0:
     db $fc
     ld h, d
     nop
-    call nz, Call_000_1a15
+    db $c4, $15, $1a
     inc c
     dec h
     ld b, $2a
@@ -11951,7 +11951,7 @@ jr_01c_72b1:
     db $10
     and e
     dec b
-    call nz, Call_000_1f0a
+    db $c4, $0a, $1f
     ld [$0840], sp
     ret nz
 

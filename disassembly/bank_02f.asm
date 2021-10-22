@@ -4108,7 +4108,7 @@ jr_02f_522e:
     ld [de], a
     di
     ld e, $02
-    jp nc, Jump_000_1e0f
+    db $d2, $0f, $1e
 
     jr z, @+$01
 
@@ -4854,7 +4854,7 @@ jr_02f_560f:
     ld b, $ff
     inc sp
     rst $20
-    call z, Call_000_1bad
+    db $cc, $ad, $1b
     rst $08
     ld a, [bc]
     dec e
@@ -5936,7 +5936,7 @@ jr_02f_598e:
     ld e, $f3
     ld [de], a
     dec b
-    jp nc, Jump_000_1d0f
+    db $d2, $0f, $1d
 
     rst $28
     jr z, @+$01

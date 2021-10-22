@@ -4008,7 +4008,7 @@ jr_017_4ae7:
     reti
 
 
-    jp c, Jump_000_1d3c
+    db $da, $3c, $1d
 
     ld h, b
     sbc b
@@ -4023,7 +4023,7 @@ jr_017_4ae7:
     reti
 
 
-    call c, Call_000_1d3c
+    db $dc, $3c, $1d
     ld h, b
     sbc b
     reti

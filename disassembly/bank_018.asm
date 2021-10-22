@@ -10551,7 +10551,7 @@ jr_018_73be:
     ld l, l
     cp a
     ld a, b
-    jp nc, Jump_000_1f47
+    db $d2, $47, $1f
 
     add e
     ld b, [hl]
@@ -10679,7 +10679,7 @@ jr_018_7436:
     ld l, l
     cp a
     ld a, b
-    jp nc, Jump_000_1f47
+    db $d2, $47, $1f
 
     add e
     ld b, [hl]
@@ -10799,7 +10799,7 @@ jr_018_74b2:
     ld l, l
     cp a
     ld a, b
-    jp nc, Jump_000_1f47
+    db $d2, $47, $1f
 
     add e
     ld b, [hl]
@@ -10954,7 +10954,7 @@ jr_018_7555:
 jr_018_755f:
     cp a
     ld a, b
-    jp nc, Jump_000_1f47
+    db $d2, $47, $1f
 
     add e
     ld b, [hl]
@@ -13099,7 +13099,7 @@ jr_018_7e23:
     add $00
     cp a
     ld a, b
-    call nc, Call_000_1f33
+    db $d4, $33, $1f
     adc h
     rst $20
     sbc b

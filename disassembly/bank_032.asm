@@ -2304,7 +2304,7 @@ jr_032_49c8:
     ld d, [hl]
     sbc $a9
     db $fd
-    call Call_000_1fef
+    db $cd, $ef, $1f
     push de
     cp e
     add $7f
@@ -4625,7 +4625,7 @@ jr_032_5433:
     jr jr_032_5433
 
     rst $38
-    call c, Call_000_1bdf
+    db $dc, $df, $1b
     dec de
     inc bc
     db $e3

@@ -6562,7 +6562,7 @@ jr_025_5d32:
     ld e, c
     ld d, [hl]
     inc c
-    call nz, Call_000_2000
+    db $c4, $00, $20
     ld hl, $3534
     inc c
     inc d
@@ -6599,7 +6599,7 @@ jr_025_5d32:
     ld [bc], a
     ld [de], a
     inc c
-    jp nc, Jump_000_1e0c
+    db $d2, $0c, $1e
 
     rra
     inc c
@@ -6856,7 +6856,7 @@ jr_025_5e9b:
     ld [bc], a
     ld [de], a
     inc c
-    jp nc, Jump_000_1e0c
+    db $d2, $0c, $1e
 
     rra
     inc c

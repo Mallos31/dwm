@@ -3258,7 +3258,7 @@ jr_029_4eb9:
     rst $18
     ld [hl], c
     rst $38
-    jp nz, Jump_000_1adb
+    db $c2, $db, $1a
 
     ld a, [$fd25]
     ld [bc], a
@@ -5354,7 +5354,7 @@ jr_029_58c7:
     ld d, b
     xor a
     dec l
-    jp nc, Jump_000_1fef
+    db $d2, $ef, $1f
 
     sub b
     ld d, a
@@ -6894,7 +6894,7 @@ jr_029_5f41:
     jp nc, Jump_000_32c3
 
     rlca
-    call nz, Call_000_1e19
+    db $c4, $19, $1e
     cp $e1
     rst $30
     ld e, b
@@ -11373,7 +11373,7 @@ jr_029_72b5:
     rrca
     ld a, [hl]
     ld a, [hl]
-    call Call_000_1fcd
+    db $cd, $cd, $1f
     rra
     inc e
     rra
@@ -12648,7 +12648,7 @@ jr_029_7994:
     rrca
     ld c, l
     inc b
-    jp nc, Jump_000_1b0f
+    db $d2, $0f, $1b
 
     inc b
     ld b, [hl]

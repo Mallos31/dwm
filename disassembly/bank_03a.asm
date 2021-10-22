@@ -118,7 +118,7 @@ SECTION "ROM Bank $03a", ROMX[$4000], BANK[$3a]
     ld l, [hl]
     jr jr_03a_40e2
 
-    call z, Call_000_1c6f
+    db $cc, $6f, $1c
     ld [hl], b
     ret nz
 

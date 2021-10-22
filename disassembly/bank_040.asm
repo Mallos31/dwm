@@ -4,7 +4,7 @@
 ; https://github.com/mattcurrie/mgbdis
 
 SECTION "ROM Bank $040", ROMX[$4000], BANK[$40]
-
+;Most of this bank is corrupted graphics tiles. There seems to be SOME valid code though. More investigation needed. 
     ld a, [$c6f2]
     rst $28
     ld b, $1b
@@ -153,7 +153,7 @@ jr_040_4096:
 jr_040_40e1:
     call Call_040_40eb
     call Call_040_423f
-    call Call_000_1a1d
+    db $cd, $1d, $1a
     ret
 
 
@@ -256,7 +256,7 @@ jr_040_4124:
 jr_040_416d:
     call Call_040_4177
     call Call_040_423f
-    call Call_000_1a1d
+    db $cd, $1d, $1a		;this might be actual code? I'm unsure. 
     ret
 
 

@@ -4765,7 +4765,7 @@ jr_034_54ba:
     ld a, [hl]
     inc hl
     ei
-    call z, Call_000_1dff
+    db $cc, $ff, $1d
     rst $18
     di
     ld a, [c]

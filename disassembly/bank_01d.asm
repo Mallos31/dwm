@@ -3634,7 +3634,7 @@ jr_01d_4eed:
     rrca
     and c
     nop
-    jp nz, Jump_000_1f08
+    db $c2, $08, $1f
 
     inc c
     ld [hl], $0c

@@ -1544,7 +1544,7 @@ jr_028_46dc:
     inc b
     ld a, [hl-]
     nop
-    call c, Call_000_1e07
+    db $dc, $07, $1e
     inc de
     sbc b
     jr jr_028_4711
@@ -10597,7 +10597,7 @@ jr_028_6d17:
     ld e, d
     ld [c], a
     inc de
-    call c, Call_000_1b22
+    db $dc, $22, $1b
     xor b
     ld c, d
     sub e

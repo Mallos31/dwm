@@ -6030,7 +6030,7 @@ jr_035_5a25:
     ld de, $e05c
     add sp, $00
     ldh a, [$03]
-    jp Jump_000_1e1d
+    db $c3, $1d, $1e
 
 
     rst $20
@@ -7743,7 +7743,7 @@ jr_035_621b:
     dec b
     xor l
     inc bc
-    jp Jump_000_1f1e
+    db $c3, $1e, $1f
 
 
     ldh [$ef], a

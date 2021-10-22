@@ -9510,7 +9510,7 @@ jr_026_68f3:
     rst $18
     ld [hl], c
     rst $38
-    jp nz, Jump_000_1adb
+    db $c2, $db, $1a
 
     ld a, [$fd25]
     ld [bc], a

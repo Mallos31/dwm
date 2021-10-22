@@ -1258,7 +1258,7 @@ jr_013_45f2:
     and h
     add hl, de
     ld a, [de]
-    call nc, Call_000_1a8e
+    db $d4, $8e, $1a
     inc b
     inc b
     dec de

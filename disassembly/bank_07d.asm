@@ -3757,7 +3757,7 @@ jr_07d_4fe7:
     ld e, $be
     inc a
     inc e
-    call c, Call_000_1c5c
+    db $dc, $5c, $1c
     db $fc
     ld a, b
     inc a

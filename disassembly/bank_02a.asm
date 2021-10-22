@@ -7494,7 +7494,7 @@ jr_02a_6310:
     jr jr_02a_6301
 
     dec l
-    jp nc, Jump_000_1ee1
+    db $d2, $e1, $1e
 
 jr_02a_631e:
     ld l, h

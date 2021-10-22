@@ -8195,8 +8195,7 @@ jr_015_6fc1:
     cp a
     ld h, c
     ld a, a
-    jp Jump_000_1cef
-
+    db $c3, $ef, $1c
 
     rst $38
     inc c

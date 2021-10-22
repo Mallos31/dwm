@@ -3653,7 +3653,7 @@ jr_05b_4f96:
 
     ld de, $00a4
     inc a
-    jp Jump_000_1ce1
+    db $c3, $e1, $1c
 
 
     rlca
@@ -5618,7 +5618,7 @@ jr_05b_57f2:
     db $fc
     ldh a, [$f0]
     dec b
-    call nc, Call_000_2000
+    db $d4, $00, $20
     dec b
     ld sp, hl
     dec b
@@ -14065,7 +14065,7 @@ jr_05b_7abc:
     ret z
 
     rst $38
-    call nz, Call_000_1b05
+    db $c4, $05, $1b
     ld de, $ff13
     add hl, bc
     rst $38
@@ -14126,7 +14126,7 @@ jr_05b_7abc:
     db $10
     inc h
     rst $38
-    call z, Call_000_1b05
+    db $cc, $05, $1b
     db $10
     ld a, a
     rst $38

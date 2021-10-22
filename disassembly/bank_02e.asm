@@ -2345,7 +2345,7 @@ jr_02e_4b34:
     call z, $b874
 
 jr_02e_4b9e:
-    call c, Call_000_1e68
+    db $dc, $68, $1e
     add hl, bc
     inc e
     dec bc

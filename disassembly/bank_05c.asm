@@ -11753,7 +11753,7 @@ jr_05c_7581:
     jr nz, @-$0e
 
 jr_05c_7592:
-    call c, Call_000_2000
+    db $dc, $00, $20
     ld hl, sp-$0c
     inc de
     jr nz, jr_05c_7592

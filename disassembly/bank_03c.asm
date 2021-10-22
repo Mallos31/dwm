@@ -295,7 +295,7 @@ jr_03c_4122:
     ld h, c
     and c
     ld h, c
-    jp c, Jump_000_1f61
+    db $da, $61, $1f
 
     ld h, d
     ld l, d
@@ -427,7 +427,7 @@ jr_03c_4122:
     ld [hl], e
     add [hl]
     ld [hl], e
-    call c, Call_000_1e73
+    db $dc, $73, $1e
     ld [hl], h
     ld l, l
     ld [hl], h

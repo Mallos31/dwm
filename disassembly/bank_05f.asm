@@ -4435,7 +4435,7 @@ jr_05f_577c:
     ld d, [hl]
     dec d
     ld d, [hl]
-    call z, Call_000_1e55
+    db $cc, $55, $1e
     ld d, [hl]
     daa
     ld d, [hl]
