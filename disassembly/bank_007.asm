@@ -4643,7 +4643,7 @@ jr_007_5d8d:
 
     ld a, [wPLAN_selection]
     and $7f
-    ld [$c8ee], a
+    ld [$c8ee], a   ;c8ee current text speed
     ld a, $59
     call Call_000_1b2c
     call Call_007_6a8f
