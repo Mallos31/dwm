@@ -124,7 +124,7 @@ Call_000_0062:
     
     inc a
     ld [$c984], a
-    call $ff90
+    call $ff90  ;DMA
     call Call_000_0ef7
     add b
     ld b, $0a
