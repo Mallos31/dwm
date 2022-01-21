@@ -5,7 +5,7 @@
 
 SECTION "ROM Bank $004", ROMX[$4000], BANK[$4]
 
-    inc b
+  db $04 ;ROM Bank
 
 jr_004_4001:
     rrca
@@ -26,7 +26,7 @@ jr_004_4001:
     ret
 
 
-    ld de, $401d
+    ld de, $401d        ; start of code
     call Call_004_40cd
     ret
 
@@ -107,61 +107,63 @@ jr_004_4001:
     ld [$1108], sp
     nop
     add b
-    ldh a, [$c7]
-    cp $90
-    jr nc, jr_004_409e
 
-    cp $10
-    jr nc, jr_004_4095
+                        ;4081
+    ldh a, [$c7]        ; load(h) the contents of ffc7 into a
+    cp $90              ; compare $90 to a (ffc7)
+    jr nc, jr_004_409e  ; jump if a(ffc7) >= $90
+
+    cp $10              ; compare $10 to a(ffc7)
+    jr nc, jr_004_4095  ; jump if a(ffc7) >= $10
 
     call Call_004_4126
-    ld de, $4137
+    ld de, $4137        ; load 4137 into de
     call $0d91
     ret
 
 
 jr_004_4095:
-    sub $10
-    ldh [$c7], a
-    ld hl, $1000
-    rst $10
+    sub $10            ; subreact $10 from a(ffc7)
+    ldh [$c7], a       ; load(h) a(ffc7 -$10) into the contents of ffc7
+    ld hl, $1000       ; load 1000 into hl
+    rst $10            ; call bank $10 func 4005
     ret
 
 
 jr_004_409e:
-    sub $90
-    ldh [$c7], a
-    ld hl, $1100
-    rst $10
+    sub $90            ; subtract $90 from a(ffc7)
+    ldh [$c7], a       ; load(h) a(ffc7 -$90) into the contents of ffc7 
+    ld hl, $1100       ; load 1100 into hl
+    rst $10            ; call bank ff10 func 4005
     ret
 
 
-    ldh a, [$c7]
-    cp $90
-    jr nc, jr_004_40c4
+    ldh a, [$c7]       ; load(h) the contents of ffc7 into a
+    cp $90             ; compare $90 to a (ffc7)
+    jr nc, jr_004_40c4 ; jump if a(ffc7) >= $90
 
-    cp $10
-    jr nc, jr_004_40bb
+    cp $10             ; compare $10 to a(ffc7)
+    jr nc, jr_004_40bb ; jump if a(ffc7) >= $10
 
     call Call_004_4126
-    ld de, $4137
+    ld de, $4137       ;  load 4137 into de
     call Call_004_40cd
     ret
 
 
 jr_004_40bb:
-    sub $10
-    ldh [$c7], a
-    ld hl, $1001
-    rst $10
+    sub $10            ; subreact $10 from a(ffc7)
+    ldh [$c7], a       ; load(h) a(ffc7 -$10) into the contents of ffc7
+    ld hl, $1001       ; load 1000 into hl
+    rst $10            ; call bank $10 func 4005
     ret
 
 
 jr_004_40c4:
-    sub $90
-    ldh [$c7], a
-    ld hl, $1101
-    rst $10
+    sub $90            ; subtract $90 from a(ffc7)
+    ldh [$c7], a       ; load(h) a(ffc7 -$90) into the contents of ffc7 
+    ld hl, $1101       ; load 1100 into hl
+    rst $10            ; call bank $10 func 4005
     ret
 
 
@@ -170,47 +172,47 @@ Call_004_40cd:
     push bc
     push de
     push hl
-    ldh a, [$cb]
-    cp $28
-    jr nc, jr_004_4121
+    ldh a, [$cb]       ; load(h) the contents of ffcb into a
+    cp $28             ; compare $28 to a
+    jr nc, jr_004_4121 ; jump if a(ffcb) >= $28
 
-    ldh a, [$c7]
-    ld l, a
-    ld h, $00
-    add hl, hl
-    add hl, de
-    ld e, [hl]
-    inc hl
-    ld d, [hl]
-    ldh a, [$c8]
-    ld l, a
-    ld h, $00
-    add hl, hl
-    add hl, de
-    ld e, [hl]
-    inc hl
-    ld d, [hl]
-    ldh a, [$cb]
-    sla a
-    sla a
-    ld l, a
-    ld h, $c0
+    ldh a, [$c7]       ; load(h)ffc7 into a
+    ld l, a            ; load a into l
+    ld h, $00          ; load $00 into h
+    add hl, hl         ; x2 hl
+    add hl, de         ; de + hl (hl x2)
+    ld e, [hl]         ; load the contents of hl(hlx2+de) into e
+    inc hl             ; +1 to hl(hlx2+de)
+    ld d, [hl]         ; load the contents of hl(hlx2+de+1) into d
+    ldh a, [$c8]       ; load(h) the contents of ffc8 into a
+    ld l, a            ; load a(ffc8) into l
+    ld h, $00          ; load $00 into h
+    add hl, hl         ; x2 hl
+    add hl, de         ; add de to hl([hlx2+de+1] x2)
+    ld e, [hl]         ; load the contents of hl ([hlx2+de+1]x2 +de) into e
+    inc hl             ; +1 to hl([hlx2+de+1] x2 +de)
+    ld d, [hl]         ; load the contents of hl([hlx2+de+1] x2 +de +1) into d
+    ldh a, [$cb]       ; load(h) ffcb into a
+    sla a              ; x2 a(ffcb)
+    sla a              ; x2 a(ffcbx2)
+    ld l, a            ; load a((ffcbx2) x2) into a 
+    ld h, $c0          ; load $c0 into h
 
 jr_004_40f4:
-    ld a, [de]
-    inc de
-    cp $80
-    jr z, jr_004_4121
+    ld a, [de]         ; load the contents of de(hlx2+1) into a
+    inc de             ; +1 to de
+    cp $80             ; compare $80 to a
+    jr z, jr_004_4121  ; jump to 4121 if not 0
 
-    ld b, a
-    ldh a, [$c5]
-    add b
-    add $10
-    ld [hl+], a
-    ld a, [de]
-    inc de
-    ld b, a
-    ldh a, [$c3]
+    ld b, a            ; load a(hlx2+1) into b
+    ldh a, [$c5]       ; load(h) the contents of ffc5 into a
+    add b              ; add b(hlx2+1) to a(ffc5)
+    add $10            ; +$10 to a
+    ld [hl+], a        ; load a(ffc5 + $10) into hl and +1
+    ld a, [de]         ; load the contents of de(hlx2+2) into a
+    inc de             ; +1 to de
+    ld b, a            ; load a(hlx2+2) into b
+    ldh a, [$c3]       ; 
     add b
     add $08
     ld [hl+], a
@@ -5322,16 +5324,16 @@ jr_004_5aef:
     ld [$d8d6], a
 
     call Call_004_71ef
-    pop hl
-    ld a, [$d8d5]
+    pop hl               ; pop hl (unknown)
+    ld a, [$d8d5]        ; inc unknown counter
     add $01
     ld [$d8d5], a
     ld a, [$d8d6]
     adc $00
     ld [$d8d6], a
-    ld a, [hl]
-    cp c
-    jp nz, Jump_004_55f5
+    ld a, [hl]           ; load the contents of hl (unknown) into a
+    cp c                 ; compare c to a
+    jp nz, Jump_004_55f5 ; jump if a >= c
 
     call Call_004_71ef
     jp Jump_004_7212
@@ -8824,12 +8826,12 @@ jr_004_71cf:
 
 
 Call_004_71ef:
-    ld a, [$d8d3]       ; load d8d3 into a
-    cp $06              ; check to see if a is greater than 6
+    ld a, [$d8d3]       ; load the contents of d8d3 into a
+    cp $06              ; compare $06 to a
     jr nc, jr_004_71fb
 
     ld hl, $0c00        ; load 0c00 (rom bank c ram bank 0) into hl
-    rst $10             ; unknown
+    rst $10             ; push current address then go to address 10 bank 0
     ret
 
 
