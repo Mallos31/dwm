@@ -263,13 +263,13 @@ jr_00d_410e:
     ret z
 
     di
-    call Call_000_1aa6
+    db $cd, $a6, $1a
     ld a, $01
     ldh [rVBK], a
     ei
     call Call_00d_4075
     di
-    call Call_000_1aa6
+    db $cd, $a6, $1a
     ld a, $00
     ldh [rVBK], a
     ei
@@ -357,7 +357,7 @@ jr_00d_41b6:
     ld a, $7c
     ld a, [$2241]
     ld c, l
-    jp c, Jump_000_1256
+    db $da, $56, $12
 
     ld e, l
     add sp, $61
@@ -592,7 +592,7 @@ jr_00d_424a:
     ld [de], a
     rst $38
     or h
-    jp z, Jump_000_0001
+    db $ca, $01, $00
 
     inc bc
     rst $38
@@ -774,7 +774,7 @@ jr_00d_4346:
     ld [de], a
     rst $38
     or h
-    jp z, Jump_000_0002
+    db $ca, $02, $00
 
     inc bc
     rst $38
@@ -833,8 +833,7 @@ jr_00d_4346:
     ld [de], a
     rst $38
     or h
-    jp z, Jump_000_0003
-
+    db $ca, $03, $00
     inc bc
     rst $38
     ld [hl-], a
@@ -926,7 +925,7 @@ jr_00d_4346:
     add hl, de
     ld bc, $ff12
     or h
-    jp z, Jump_000_0004
+    db $ca, $04, $00
 
     inc bc
     rst $38
@@ -1172,7 +1171,7 @@ jr_00d_44d2:
     ld [de], a
     rst $38
     or h
-    jp z, Jump_000_0006
+    db $ca, $06, $00
 
     inc bc
     rst $38
@@ -1259,7 +1258,7 @@ jr_00d_44d2:
     ld [de], a
     rst $38
     or h
-    jp z, Jump_000_0007
+    db $ca, $07, $00
 
     inc bc
     rst $38
@@ -2093,7 +2092,7 @@ jr_00d_472e:
     rlca
     rst $38
     rst $38
-    call z, Call_000_1507
+    db $cc, $07, $15
     rst $38
     inc a
     ret z
@@ -2146,7 +2145,7 @@ jr_00d_472e:
     nop
     rst $38
     rst $38
-    jp nc, Jump_000_1507
+    db $d2, $07, $15
 
     rst $38
     inc a
@@ -2154,7 +2153,7 @@ jr_00d_472e:
 
     ld bc, $7800
     ld c, c
-    call nc, Call_000_0908
+    db $d4, $08, $09
     rst $38
     inc b
     nop
@@ -4132,7 +4131,7 @@ jr_00d_527e:
     add $52
     ld bc, $37ff
     nop
-    jp nz, Jump_000_0152
+    db $c2, $52, $01
 
     rst $38
     dec e
@@ -4864,7 +4863,7 @@ jr_00d_5632:
     sub $56
     ld bc, $1dff
     nop
-    jp nc, Jump_000_0156
+    db $d2, $56, $01
 
     rst $38
     ld [hl-], a
@@ -5526,13 +5525,13 @@ jr_00d_58ee:
     sbc e
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc h
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc l
@@ -5570,13 +5569,13 @@ jr_00d_58ee:
     sbc e
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc h
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc l
@@ -5614,13 +5613,13 @@ jr_00d_58ee:
     sbc e
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc h
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc l
@@ -5786,13 +5785,13 @@ jr_00d_5a64:
     sbc e
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc h
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc l
@@ -6267,7 +6266,7 @@ jr_00d_5a64:
     sbc h
     ret z
 
-    jp nc, Jump_000_1200
+    db $d2, $00, $12
 
     rst $38
     sbc d
@@ -6370,7 +6369,7 @@ jr_00d_5cc8:
     ld h, c
     or d
     ld h, c
-    call nc, Call_000_1561
+    db $d4, $61, $15
     rst $38
     push hl
     reti
@@ -6516,7 +6515,7 @@ jr_00d_5cc8:
     ld e, l
     inc d
     rst $38
-    call z, Call_000_075d
+    db $cc, $5d, $07
     rlca
     pop af
     ld b, $4e
@@ -7069,7 +7068,7 @@ jr_00d_5f60:
     nop
     ld a, [hl-]
     ld h, b
-    jp Jump_000_1501
+    db $c3, $01, $15
 
 
     rst $38
@@ -7634,7 +7633,7 @@ jr_00d_5f60:
 
     ld bc, $3c00
     ld h, e
-    jp z, Jump_000_1504
+    db $ca, $04, $15
 
     rst $38
     inc a
@@ -7663,7 +7662,7 @@ jr_00d_5f60:
 
     ld bc, $3c00
     ld h, e
-    jp z, Jump_000_1504
+    db $ca, $04, $15
 
     rst $38
     inc a
@@ -7709,7 +7708,7 @@ jr_00d_5f60:
     nop
     ld [hl], d
     ld h, e
-    call z, Call_000_1501
+    db $cc, $01, $15
     rst $38
     inc a
     ret z
@@ -7782,7 +7781,7 @@ jr_00d_5f60:
     rst $38
     ld bc, $f1ff
     nop
-    jp c, Jump_000_0163
+    db $da, $63, $01
 
     rst $38
     dec h
@@ -7790,7 +7789,7 @@ jr_00d_5f60:
     sub $63
     ld bc, $35ff
     nop
-    jp nc, Jump_000_0163
+    db $d2, $63, $01
 
     rst $38
     dec e
@@ -8327,7 +8326,7 @@ jr_00d_5f60:
     ld h, [hl]
     inc a
     ld h, a
-    call c, Call_000_0067
+    db $dc, $67, $00
     rst $38
     ld [hl], $00
     ld l, [hl]
@@ -8385,7 +8384,7 @@ jr_00d_5f60:
     sbc $66
     ld bc, $1dff
     nop
-    jp c, Jump_000_0166
+    db $da, $66, $01
 
     rst $38
     ld [hl-], a
@@ -9133,7 +9132,7 @@ jr_00d_698d:
     dec d
     rst $38
     adc l
-    jp z, Jump_000_0001
+    db $ca, $01, $00
 
     ld b, [hl]
     ld l, d
@@ -9340,7 +9339,7 @@ jr_00d_6a8e:
     ld l, e
     ld c, h
     ld l, e
-    jp nc, Jump_000_246b
+    db $d2, $6b, $24
 
     ld l, h
     rst $38
@@ -10787,7 +10786,7 @@ jr_00d_7105:
     ld bc, $ffff
     sbc a
     ld bc, $ffff
-    jp c, Jump_000_1501
+    db $da, $01, $15
 
     rst $38
     inc a
@@ -11496,7 +11495,7 @@ Jump_00d_7460:
     rst $38
     xor b
     nop
-    jp z, Jump_000_0177
+    db $ca, $77, $01
 
     rst $38
     add hl, sp
@@ -11576,7 +11575,7 @@ jr_00d_75a5:
     rst $38
     ld c, c
     nop
-    call z, Call_000_0176
+    db $cc, $76, $01
     rst $38
     ld a, [hl+]
     ld bc, $76c4
@@ -11939,7 +11938,7 @@ jr_00d_7797:
     rst $38
     dec sp
     ld bc, $ffff
-    call c, Call_000_2c04
+    db $dc, $04, $2c
     rst $38
     call c, $e877
     rlca
@@ -12348,7 +12347,7 @@ jr_00d_7862:
     ld a, d
     ld bc, $67ff
     nop
-    call nz, Call_000_017a
+    db $c4, $7a, $01
     rst $38
     ld h, [hl]
     nop

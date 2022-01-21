@@ -35,7 +35,7 @@ SECTION "ROM Bank $024", ROMX[$4000], BANK[$24]
     ld e, h
     di
     ld e, h
-    jp c, Jump_000_195d
+    db $da, $5d, $19
 
     ld h, d
     nop
@@ -586,7 +586,7 @@ jr_024_4267:
     nop
     add b
     cp $b5
-    call c, Call_000_1597
+    db $dc, $97, $15
     sbc h
     jr nz, jr_024_425f
 
@@ -6552,7 +6552,7 @@ jr_024_5c5a:
     ld e, b
     ld e, c
     ld a, [de]
-    jp nz, Jump_000_1a02
+    db $c2, $02, $1a
 
     ld d, d
     ld c, $1a
@@ -6641,7 +6641,7 @@ jr_024_5c86:
     ld a, [de]
     add $04
     ld a, [de]
-    jp nz, Jump_000_1a12
+    db $c2, $12, $1a
 
     sub $0e
     ld a, [de]
@@ -6751,7 +6751,7 @@ jr_024_5d41:
     ld e, b
     ld e, c
     ld a, [de]
-    jp nz, Jump_000_1a02
+    db $c2, $02, $1a
 
     ld d, d
     ld c, $1a
@@ -6840,7 +6840,7 @@ jr_024_5d6d:
     ld a, [de]
     add $04
     ld a, [de]
-    jp nz, Jump_000_1a12
+    db $c2, $12, $1a
 
     sub $0e
     ld a, [de]
@@ -6925,7 +6925,7 @@ jr_024_5e2d:
     nop
     nop
     cp $fe
-    call Call_000_0923
+    db $cd, $23, $09
     rst $20
 
 jr_024_5e36:
@@ -7306,7 +7306,7 @@ jr_024_5fd6:
     db $fc
     adc $d0
     dec sp
-    jp nz, Jump_000_0ee9
+    db $c2, $e9, $0e
 
     xor h
     inc sp
@@ -7319,7 +7319,7 @@ jr_024_5fd6:
     push af
     ld a, [hl]
     or a
-    call c, Call_000_1cf7
+    db $dc, $f7, $1c
     rst $30
     inc e
     sub a
@@ -7431,7 +7431,7 @@ jr_024_6065:
 jr_024_6069:
     push af
     cp $17
-    call c, Call_000_1c17
+    db $dc, $17, $1c
     rla
     inc e
     push af
@@ -8356,7 +8356,7 @@ Call_024_63db:
     ld de, $02c9
     add $22
     dec hl
-    jp c, Jump_000_01e6
+    db $da, $e6, $01
 
     ld e, l
 
@@ -9020,7 +9020,7 @@ jr_024_666b:
     dec bc
     ld a, [bc]
     dec b
-    jp Jump_000_0a01
+    db $c3, $01, $0a
 
 
     dec bc
@@ -9120,7 +9120,7 @@ jr_024_666b:
     inc de
     add hl, bc
     ld [$0501], sp
-    call z, Call_000_0b02
+    db $cc, $02, $0b
     dec b
     rst $00
     nop
@@ -10751,7 +10751,7 @@ jr_024_6f17:
     jr nc, jr_024_6f4e
 
     dec c
-    jp c, Jump_000_08da
+    db $da, $da, $08
 
     ld l, b
     add [hl]
@@ -11930,7 +11930,7 @@ jr_024_7437:
     ld hl, sp+$0c
     rrca
     ld [$1508], sp
-    call nc, Call_000_1415
+    db $d4, $15, $14
     db $fd
     db $fc
     dec h
@@ -12281,7 +12281,7 @@ jr_024_7616:
     inc d
     jr z, jr_024_7637
 
-    call nz, Call_000_1600
+    db $c4, $00, $16
     inc h
     jr z, jr_024_763d
 
@@ -12495,7 +12495,7 @@ Jump_024_76cb:
     db $e4
     ld de, $23f6
     db $ec
-    jp nz, Jump_000_00fd
+    db $c2, $fd, $00
 
     rst $38
     ld b, $f9

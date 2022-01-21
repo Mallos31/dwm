@@ -4008,7 +4008,7 @@ jr_017_4ae7:
     reti
 
 
-    jp c, Jump_000_1d3c
+    db $da, $3c, $1d
 
     ld h, b
     sbc b
@@ -4023,7 +4023,7 @@ jr_017_4ae7:
     reti
 
 
-    call c, Call_000_1d3c
+    db $dc, $3c, $1d
     ld h, b
     sbc b
     reti
@@ -4708,7 +4708,7 @@ jr_017_52e4:
     dec a
     and a
     dec a
-    jp nz, Jump_000_003d
+    db $c2, $3d, $00
 
     dec a
     nop
@@ -4739,7 +4739,7 @@ jr_017_52e4:
     dec a
     or e
     dec a
-    jp Jump_000_003d
+    db $c3, $3d, $00
 
 
     dec a
@@ -5544,7 +5544,7 @@ jr_017_57fb:
     inc b
     rst $38
     ld l, e
-    jp c, Jump_000_003a
+    db $da, $3a, $00
 
     nop
     inc l
@@ -6518,7 +6518,7 @@ jr_017_5c11:
     jr z, @+$01
 
     ld l, e
-    call Call_000_0041
+    db $cd, $41, $00
     nop
     ld d, b
     nop
@@ -7956,7 +7956,7 @@ jr_017_621a:
     nop
     pop bc
     ld bc, $6bff
-    call Call_000_0003
+    db $cd, $03, $00
     nop
     dec c
     inc l
@@ -7980,7 +7980,7 @@ jr_017_621a:
     nop
     pop bc
     ld bc, $6bff
-    call Call_000_0003
+    db $cd, $03, $00
     nop
     xor $04
     rst $38
@@ -9439,7 +9439,7 @@ jr_017_68a5:
     ld [hl], c
     rst $38
     ld l, e
-    call nz, Call_000_007e
+    db $c4, $7e, $00
     nop
     rst $18
     ld [bc], a

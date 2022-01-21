@@ -7147,14 +7147,14 @@ jr_01c_5c46:
     inc b
     and b
     inc c
-    jp nz, Jump_000_1710
+    db $c2, $10, $17
 
     inc b
     rla
     inc b
     rla
     inc b
-    jp Jump_000_1701
+    db $c3, $01, $17
 
 
     inc c
@@ -7339,7 +7339,7 @@ jr_01c_5ce7:
     inc b
     and b
     dec c
-    jp nz, Jump_000_1215
+    db $c2, $15, $12
 
     ld b, $a0
     ld a, [bc]
@@ -7575,7 +7575,7 @@ jr_01c_5de8:
 
 jr_01c_5dee:
     dec c
-    jp nz, Jump_000_1710
+    db $c2, $10, $17
 
     inc b
     rla
@@ -7598,7 +7598,7 @@ jr_01c_5df5:
     inc c
     and b
     dec c
-    jp nz, Jump_000_1010
+    db $c2, $10, $10
 
     inc b
     db $10
@@ -7619,7 +7619,7 @@ jr_01c_5df5:
     inc c
     and b
     dec c
-    jp nz, Jump_000_1510
+    db $c2, $10, $15
 
     inc b
     dec d
@@ -10269,7 +10269,7 @@ jr_01c_6aa0:
     db $fc
     ld h, d
     nop
-    call nz, Call_000_1a15
+    db $c4, $15, $1a
     inc c
     dec h
     ld b, $2a
@@ -11951,7 +11951,7 @@ jr_01c_72b1:
     db $10
     and e
     dec b
-    call nz, Call_000_1f0a
+    db $c4, $0a, $1f
     ld [$0840], sp
     ret nz
 

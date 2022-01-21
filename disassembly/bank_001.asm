@@ -5,32 +5,37 @@
 
 SECTION "ROM Bank $001", ROMX[$4000], BANK[$1]
 
-    ld bc, $401d
-    db $d3
-    ld c, l
-    inc e
-    ld b, d
-    ld c, [hl]
-    ld c, b
-    ld b, l
-    ld c, b
-    or $46
-    add [hl]
-    ld b, [hl]
-    ld e, b
-    ld c, h
-    ld [hl], d
-    ld e, d
-    pop bc
-    ld c, e
-    ld l, l
-    ld e, l
-    ld a, $68
-    ret z
+    db $01
 
-    ld l, c
-    pop hl
-    ld l, c
+    db $1d, $40
+
+    db $d3, $4d
+
+    db $1c, $42
+
+    db $4e, $48
+
+    db $45, $48
+
+    db $f6, $46
+
+    db $86, $46
+
+    db $58, $4c
+
+    db $72, $5a
+
+    db $c1, $4b
+
+    db $6d, $5d
+
+    db $3e, $68
+
+    db $c8, $69
+
+    db $e1, $69
+    
+    
     ld hl, sp+$00
     ld a, l
     ld [$da7b], a
@@ -367,7 +372,7 @@ jr_001_4291:
     ld [wCurrGoldMid], a
     ld a, $00
     ld [wCurrGoldHi], a
-    ld hl, $ca51
+    ld hl, wInventory
     ld bc, $0014
     ld a, $ff
     call Call_000_12c7
@@ -2341,7 +2346,7 @@ jr_001_4bab:
     ld l, $0c
     ld l, $21
     pop bc
-    jp z, Jump_000_1406
+    db $ca, $06, $14
 
 jr_001_4bc6:
     push hl
@@ -2536,7 +2541,7 @@ jr_001_4cc0:
     ld a, $01
     ld [wCurrGoldHi], a
     ld a, $01
-    ld [$ca51], a
+    ld [wInventory], a
     ld a, $02
     ld [$ca52], a
     ld a, $03
@@ -3496,7 +3501,7 @@ jr_001_52bc:
     ld [hl+], a
     ldh a, [$a4]
     adc [hl]
-    ld [hl+], a
+    ld [hl+], a		;breaks when updating playing position. 
     ld a, b
     adc [hl]
     ld [hl], a
@@ -5072,7 +5077,7 @@ jr_001_5b22:
     jr jr_001_5b57
 
 Jump_001_5b43:
-    ld de, $ca51
+    ld de, wInventory
     ld b, $14
 
 jr_001_5b48:
@@ -5168,7 +5173,7 @@ jr_001_5bc3:
     ld [$c917], a
     ld a, h
     ld [$c918], a
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
 
 jr_001_5beb:
@@ -11358,7 +11363,7 @@ Call_001_79d1:
     call Call_000_07e8
     ld bc, $fe00
     call $0552
-    call Call_000_01cf
+    db $cd, $cf, $01
     ld b, h
     ld c, l
     ld hl, $c0c0

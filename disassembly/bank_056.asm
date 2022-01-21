@@ -5,7 +5,8 @@
 
 SECTION "ROM Bank $056", ROMX[$4000], BANK[$56]
 
-    db $56, $01, $49, $08, $49, $0f, $49, $16, $49, $46, $4a, $85, $44, $c7, $44, $3f
+    db $56 ;rom bank 
+    db $01, $49, $08, $49, $0f, $49, $16, $49, $46, $4a, $85, $44, $c7, $44, $3f
     db $40, $64, $40, $67, $68, $82, $68, $a3, $68, $c6, $68, $71, $6a, $c7, $6b, $a8
     db $6c, $0f, $6d, $7d, $6d, $de, $6d, $30, $6e, $96, $6e, $d6, $6e, $25, $6f, $8a
     db $6f, $da, $6f, $0c, $70, $5e, $70, $c1, $70, $37, $71, $b0, $71, $18, $72
@@ -4804,7 +4805,7 @@ jr_056_6d20:
     rst $38
     inc b
     rst $38
-    call nz, Call_000_00ff
+    db $c4, $ff, $00
     rst $38
     add b
     rst $38
@@ -4996,7 +4997,7 @@ jr_056_6e17:
     nop
     rst $38
     adc a
-    ld bc, HeaderNewLicenseeCode
+    ld bc, $0144
     adc a
     rst $38
     ld a, [bc]
@@ -5483,7 +5484,7 @@ jr_056_705d:
     nop
     rst $38
     ld [$14ff], sp
-    ld bc, HeaderNewLicenseeCode
+    ld bc, $0144
     ld a, $01
     inc b
     ld bc, $ff00

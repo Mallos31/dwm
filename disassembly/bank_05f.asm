@@ -2699,7 +2699,7 @@ jr_05f_5030:
     jr nc, jr_05f_5030
 
     add a
-    jp c, Jump_000_0fe6
+    db $da, $e6, $0f
 
     jr nz, jr_05f_504b
 
@@ -2871,7 +2871,7 @@ Call_05f_50f4:
     nop
     pop bc
     nop
-    call Call_000_1100
+    db $cd, $00, $11
     ld d, c
     dec [hl]
     ld d, c
@@ -4435,7 +4435,7 @@ jr_05f_577c:
     ld d, [hl]
     dec d
     ld d, [hl]
-    call z, Call_000_1e55
+    db $cc, $55, $1e
     ld d, [hl]
     daa
     ld d, [hl]

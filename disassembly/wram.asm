@@ -102,5 +102,21 @@ wCurrGoldMid::
 wCurrGoldHi::
   ds 1 ;ca4d
   
-wRamRest::
-  ds $5B0
+wca4e::
+  ds 1
+  
+wca4f::
+  ds 1
+  
+wca50::
+  ds 1
+
+;the 60 slots of the player's inventory.   
+wInventory::
+  ds 60	;ca51
+  
+  
+section "WRAM Bank1", wramx[$D000], bank[1]
+
+wram1Start::
+  ds 1  

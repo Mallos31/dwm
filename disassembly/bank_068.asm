@@ -2710,7 +2710,7 @@ jr_068_4b57:
     db $fc
     inc b
     add $83
-    call nz, Call_000_00fc
+    db $c4, $fc, $00
     rlca
     rst $38
     add c
@@ -2989,7 +2989,7 @@ jr_068_4cfc:
     add c
     rrca
     ld [de], a
-    jp nc, Jump_000_0f81
+    db $d2, $81, $0f
 
     inc c
     rst $38

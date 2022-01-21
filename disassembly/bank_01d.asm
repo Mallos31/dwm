@@ -3218,7 +3218,7 @@ jr_01d_4cf3:
     inc c
     and c
     nop
-    jp nz, Jump_000_1706
+    db $c2, $06, $17
 
     inc c
 
@@ -3634,7 +3634,7 @@ jr_01d_4eed:
     rrca
     and c
     nop
-    jp nz, Jump_000_1f08
+    db $c2, $08, $1f
 
     inc c
     ld [hl], $0c
@@ -7086,7 +7086,7 @@ jr_01d_5ded:
     jr @-$5e
 
     inc c
-    jp nz, Jump_000_1915
+    db $c2, $15, $19
 
     inc c
     daa

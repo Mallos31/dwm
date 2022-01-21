@@ -5115,7 +5115,7 @@ jr_006_5710:
     nop
     nop
     nop
-    call nz, Call_000_1100
+    db $c4, $00, $11
     ld e, d
     rst $38
     rst $38
@@ -8979,7 +8979,7 @@ jr_006_6a25:
     ld [wCurrGoldMid], a
     ld a, e
     ld [wCurrGoldHi], a
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
 
 jr_006_6a8b:
@@ -9080,7 +9080,7 @@ Call_006_6ad7:
     ld b, c
     ld bc, $0142
     ld b, e
-    ld bc, HeaderNewLicenseeCode
+    ld bc, $0144
     ld b, h
     ld bc, $1521
     ret
@@ -10904,7 +10904,7 @@ jr_006_7464:
     ld a, [hl]
     ld a, [hl]
     inc a
-    call c, Call_000_183d
+    db $dc, $3d, $18
     adc b
     inc bc
     rlca

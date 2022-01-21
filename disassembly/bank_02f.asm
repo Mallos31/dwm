@@ -1343,7 +1343,7 @@ Jump_02f_45fe:
     xor $6a
     ld a, $fa
     db $fc
-    call nc, Call_000_14fc
+    db $d4, $fc, $14
     ld hl, sp-$08
     db $fc
     inc a
@@ -1398,7 +1398,7 @@ jr_02f_4625:
     pop af
     rra
     cp $3a
-    call nc, Call_000_18f4
+    db $d4, $f4, $18
     ld hl, sp-$38
     ld hl, sp+$38
     ld hl, sp+$08
@@ -1422,7 +1422,7 @@ jr_02f_4655:
     ld [bc], a
     cp h
     nop
-    call nc, Call_000_10f4
+    db $d4, $f4, $10
     ldh a, [$c8]
     ld hl, sp+$3e
     cp $01
@@ -1958,7 +1958,7 @@ jr_02f_48c3:
     ld e, $17
     add hl, bc
     rrca
-    jp nc, Jump_000_00dd
+    db $d2, $dd, $00
 
     nop
     ldh [$e0], a
@@ -2473,7 +2473,7 @@ jr_02f_4b0f:
     db $fc
     db $f4
     db $fc
-    call nz, Call_000_08fc
+    db $c4, $fc, $08
     dec b
     ld a, e
     ld bc, $ffbf
@@ -4108,7 +4108,7 @@ jr_02f_522e:
     ld [de], a
     di
     ld e, $02
-    jp nc, Jump_000_1e0f
+    db $d2, $0f, $1e
 
     jr z, @+$01
 
@@ -4160,7 +4160,7 @@ jr_02f_52fe:
     ld a, a
     ldh a, [rIF]
     ld hl, sp+$02
-    jp nc, Jump_000_0d0f
+    db $d2, $0f, $0d
 
     ldh a, [$1f]
     db $fc
@@ -4854,7 +4854,7 @@ jr_02f_560f:
     ld b, $ff
     inc sp
     rst $20
-    call z, Call_000_1bad
+    db $cc, $ad, $1b
     rst $08
     ld a, [bc]
     dec e
@@ -4963,7 +4963,7 @@ jr_02f_560f:
     rra
     pop hl
     ccf
-    jp nz, Jump_000_027e
+    db $c2, $7e, $02
 
     ldh [$03], a
     rlca
@@ -5071,7 +5071,7 @@ jr_02f_5698:
 
     ld h, d
     rlca
-    call nz, Call_000_181f
+    db $c4, $1f, $18
     ld a, a
     ld h, b
     ld [bc], a
@@ -5936,7 +5936,7 @@ jr_02f_598e:
     ld e, $f3
     ld [de], a
     dec b
-    jp nc, Jump_000_1d0f
+    db $d2, $0f, $1d
 
     rst $28
     jr z, @+$01
@@ -5999,7 +5999,7 @@ jr_02f_5b3a:
     rst $38
     inc bc
     dec b
-    jp nc, Jump_000_0002
+    db $d2, $02, $00
 
     jr c, jr_02f_5b78
 
@@ -6935,7 +6935,7 @@ jr_02f_5f6a:
     rst $38
     dec c
     inc c
-    jp z, Jump_000_0c00
+    db $ca, $00, $0c
 
     ld [c], a
     nop
@@ -12847,7 +12847,7 @@ Jump_02f_7a53:
     rst $38
     ld h, $bf
     rrca
-    call c, Call_000_1a07
+    db $dc, $07, $1a
     and e
     dec b
     ret

@@ -11230,7 +11230,7 @@ Jump_005_74e6:
 
 
     rst $30
-    jp Jump_000_00ff
+    db $c3, $ff, $00
 
 
     ld a, h

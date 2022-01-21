@@ -685,7 +685,7 @@ Call_04c_42b1:
     ld h, a
     cp l
     ld h, a
-    call z, Call_000_0d67
+    db $cc, $67, $0d
     ld l, b
     ld e, h
     ld l, b
@@ -11845,7 +11845,7 @@ jr_04c_71af:
     ret
 
 
-    call z, Call_000_00ff
+    db $cc, $ff, $00
     rst $38
     rst $38
     nop

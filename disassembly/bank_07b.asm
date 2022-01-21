@@ -554,7 +554,7 @@ jr_07b_4225:
     rst $38
     nop
     nop
-    jp Jump_000_00ff
+    db $c3, $ff, $00
 
 
     rst $38
@@ -946,7 +946,7 @@ jr_07b_440b:
     sub b
     jr nz, jr_07b_43bc
 
-    jp Jump_000_0d66
+    db $c3, $66, $0d
 
 
     rla
@@ -1946,7 +1946,7 @@ jr_07b_489b:
     sub b
     jr nz, jr_07b_4830
 
-    jp Jump_000_0d66
+    db $c3, $66, $0d
 
 
     rla
@@ -2813,7 +2813,7 @@ jr_07b_4c4f:
     add b
     ret nz
 
-    jp Jump_000_00c2
+    db $c3, $c2, $00
 
 
 jr_07b_4c68:

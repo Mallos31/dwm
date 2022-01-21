@@ -395,7 +395,7 @@ jr_02e_4189:
     ld sp, hl
     ldh [$db], a
     ld bc, $0201
-    call c, Call_000_0101
+    db $dc, $01, $01
     ld bc, $f401
     ld hl, sp-$20
     pop hl
@@ -418,7 +418,7 @@ jr_02e_4233:
     ld sp, hl
     ldh [$db], a
     ld bc, $0201
-    call c, Call_000_0101
+    db $dc, $01, $01
     ld bc, $f401
     ld hl, sp-$20
 
@@ -2345,7 +2345,7 @@ jr_02e_4b34:
     call z, $b874
 
 jr_02e_4b9e:
-    call c, Call_000_1e68
+    db $dc, $68, $1e
     add hl, bc
     inc e
     dec bc
@@ -5595,7 +5595,7 @@ jr_02e_5a32:
     add $00
     ld sp, hl
     nop
-    jp nz, Jump_000_1900
+    db $c2, $00, $19
 
     nop
     ld hl, sp+$00
@@ -5673,7 +5673,7 @@ jr_02e_5aeb:
 
     db $e4
     rst $18
-    call nc, Call_000_00fa
+    db $d4, $fa, $00
     db $fd
     nop
     ld [hl], a
@@ -5699,7 +5699,7 @@ Call_02e_5b05:
     ld [hl], l
     ld d, $fc
     inc hl
-    call nz, Call_000_0184
+    db $c4, $84, $01
     inc bc
     inc h
     rlca
@@ -6068,7 +6068,7 @@ Call_02e_5b05:
     rst $38
     xor e
     xor e
-    jp nz, Jump_000_0ccb
+    db $c2, $cb, $0c
 
     adc $7e
     cp $00
@@ -6799,7 +6799,7 @@ jr_02e_5fac:
     rst $38
     nop
     ldh a, [rP1]
-    jp Jump_000_0e00
+    db $c3, $00, $0e
 
 
     nop
@@ -6922,7 +6922,7 @@ jr_02e_6054:
     nop
     ld hl, sp+$00
     ldh [rP1], a
-    jp nz, Jump_000_00ff
+    db $c2, $ff, $00
 
     rst $38
     nop
@@ -7289,7 +7289,7 @@ jr_02e_61bd:
     nop
     add [hl]
     nop
-    call c, Call_000_00ff
+    db $dc, $ff, $00
     ccf
     nop
     ldh a, [rDIV]
@@ -8017,7 +8017,7 @@ jr_02e_6473:
     ld b, b
     ld [hl], h
     nop
-    call Call_000_1a00
+    db $cd, $00, $1a
     nop
     rst $38
     ld a, [$60ff]
@@ -9383,7 +9383,7 @@ jr_02e_6aba:
     nop
     ld h, [hl]
     db $fd
-    jp z, Jump_000_0a8b
+    db $ca, $8b, $0a
 
     db $eb
     ld c, $cf
@@ -10150,7 +10150,7 @@ jr_02e_6df7:
     rst $38
     xor e
     xor e
-    jp nz, Jump_000_0ccb
+    db $c2, $cb, $0c
 
     adc $08
     nop

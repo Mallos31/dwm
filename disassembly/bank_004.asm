@@ -6000,7 +6000,7 @@ jr_004_5fda:
     adc $00
     ld [$d8d6], a
     call Call_004_71ef
-    ld hl, $ca51        ;first inventory slot
+    ld hl, wInventory
     ld b, $14
 
 jr_004_5ff3:
@@ -6103,7 +6103,7 @@ jr_004_604c:
     ld a, [$d8d6]
     adc $00
     ld [$d8d6], a
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
     ld c, $00
 
@@ -6701,7 +6701,7 @@ jr_004_63a3:
     ld b, c
     ld bc, $0142
     ld b, e
-    ld bc, HeaderNewLicenseeCode
+    ld bc, $0144
     ld b, h
     ld bc, $d5fa
     ret c
@@ -6720,7 +6720,7 @@ jr_004_63a3:
     adc h
     ld h, a
     ld c, [hl]
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
 
 jr_004_6424:
@@ -7706,7 +7706,7 @@ jr_004_6abc:
     call Call_000_1dfb
     inc a
     ld c, a
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
 
 jr_004_6ade:
@@ -7733,7 +7733,7 @@ jr_004_6aed:
     jp Jump_004_55f5
 
 
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
     ld c, $00
 
@@ -7760,7 +7760,7 @@ jr_004_6b0e:
     ld b, a
     ld a, c
     call Call_000_1dfb
-    ld hl, $ca51
+    ld hl, wInventory
     add l
     ld l, a
     ld a, $00
@@ -7816,7 +7816,7 @@ jr_004_6b0e:
     call Call_000_1dfb
     add $13
     ld c, a
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
 
 jr_004_6b84:
@@ -8415,7 +8415,7 @@ Call_004_6f35:
     ld h, $08
     ld de, $c180
     call Call_000_097a
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
 
 jr_004_6f75:
@@ -10346,7 +10346,7 @@ jr_004_78bd:
     ld a, a
     call nz, $2018
     ld a, h
-    call nz, Call_000_0089
+    db $c4, $89, $00
     ret nz
 
     jr nc, jr_004_78d9
@@ -11235,7 +11235,7 @@ jr_004_7c8e:
     rst $38
     cp c
     dec hl
-    call nz, Call_000_0205
+    db $c4, $05, $02
     nop
     ld bc, $ff20
     jr jr_004_7cc0

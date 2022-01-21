@@ -44,7 +44,7 @@ SECTION "ROM Bank $01b", ROMX[$4000], BANK[$1b]
     ld b, h
     ld d, l
     ld b, l
-    jp Jump_000_1645
+    db $c3, $45, $16
 
 
     ld b, [hl]
@@ -264,7 +264,7 @@ SECTION "ROM Bank $01b", ROMX[$4000], BANK[$1b]
     ld [hl], e
     dec de
     ld [hl], h
-    call z, Call_000_1174
+    db $cc, $74, $11
     rlca
     ld b, b
     call Call_000_05b6

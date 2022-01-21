@@ -4446,7 +4446,7 @@ jr_054_53a6:
     add b
     ld a, a
     ld [$db4c], a
-    ld hl, $ca51
+    ld hl, wInventory
     add l
     ld l, a
     ld a, $00

@@ -1093,7 +1093,7 @@ jr_012_4581:
     ld c, d
     sbc d
     ld c, d
-    jp nz, Jump_000_1e4a
+    db $c2, $4a, $1e
 
     ld c, e
     ld l, e
@@ -7053,7 +7053,7 @@ jr_012_6a9f:
     ld l, h
     ld a, [de]
     ld l, l
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
     ld c, $00
 

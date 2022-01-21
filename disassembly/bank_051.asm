@@ -4867,7 +4867,7 @@ jr_051_5c23:
     ld h, e
     add b
     ld h, e
-    jp nz, Jump_000_0163
+    db $c2, $63, $01
 
     ld h, h
     ld l, h

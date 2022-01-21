@@ -4,7 +4,7 @@
 ; https://github.com/mattcurrie/mgbdis
 
 SECTION "ROM Bank $02d", ROMX[$4000], BANK[$2d]
-
+;All invalid jumps to external bank removed. 
     dec l
     dec sp
     ld b, b
@@ -426,7 +426,7 @@ jr_02d_41bc:
     cp a
     rst $30
     rst $38
-    call z, Call_000_08ed
+    db $cc, $ed, $08
     add hl, bc
     sbc h
     sbc [hl]
@@ -774,7 +774,7 @@ jr_02d_4327:
     db $10
     sbc b
     nop
-    jp c, Jump_000_2200
+    db $da, $00, $22
 
     nop
     dec b
@@ -895,7 +895,7 @@ jr_02d_43af:
     rst $30
     add d
     rst $30
-    call nc, Call_000_0a76
+    db $d4, $76, $0a
     and b
     ld b, b
     ld d, h
@@ -1053,7 +1053,7 @@ Jump_02d_4473:
     ld a, [hl-]
     ld a, [hl-]
     dec l
-    call nz, Call_000_1d00
+    db $c4, $00, $1d
     ld e, $2d
     or d
     inc c
@@ -1076,7 +1076,7 @@ Jump_02d_4473:
     or d
     inc c
     dec l
-    call nz, Call_000_3200
+    db $c4, $00, $32
     inc sp
     dec sp
     inc a
@@ -1144,7 +1144,7 @@ jr_02d_44d7:
     jr nz, jr_02d_4503
 
     dec l
-    jp nz, Jump_000_2d11
+    db $c2, $11, $2d
 
     add $10
     dec l
@@ -1481,7 +1481,7 @@ jr_02d_4609:
     ld [hl], d
     ld [c], a
     ld [c], a
-    jp nz, Jump_000_12c2
+    db $c2, $c2, $12
 
     ld b, [hl]
     ld b, $12
@@ -1919,7 +1919,7 @@ jr_02d_4838:
     dec b
     ld b, h
     ld d, $05
-    jp nc, Jump_000_260e
+    db $d2, $0e, $26
 
     daa
     inc c
@@ -2629,7 +2629,7 @@ jr_02d_4b6f:
     ld [bc], a
     ld d, [hl]
     ld bc, $0a57
-    call nc, Call_000_0a06
+    db $d4, $06, $0a
     and h
     ld [$ac0a], sp
     inc b
@@ -2970,7 +2970,7 @@ jr_02d_4cb4:
     xor l
     ld a, [c]
     dec c
-    jp nz, Jump_000_0a3d
+    db $c2, $3d, $0a
 
     ld c, d
     ld [hl-], a
@@ -3387,7 +3387,7 @@ jr_02d_4e90:
     ld h, $57
     ld a, [$03fb]
     ld a, [c]
-    jp Jump_000_0522
+    db $c3, $22, $05
 
 
     inc b
@@ -3679,7 +3679,7 @@ jr_02d_501f:
     ld l, h
     ld bc, $092c
     ld h, d
-    jp z, Jump_000_16c9
+    db $ca, $c9, $16
 
     ld [hl], b
     ld bc, $0ff7
@@ -4567,14 +4567,14 @@ jr_02d_53de:
     xor [hl]
     sbc [hl]
     ld h, c
-    call z, Call_000_02c3
+    db $cc, $c3, $02
     push hl
     add d
     ld a, c
     rlca
     db $f4
     rrca
-    call z, Call_000_3437
+    db $cc, $37, $34
 
 jr_02d_53fd:
     add a
@@ -5128,7 +5128,7 @@ jr_02d_566a:
     pop hl
     rra
     xor $12
-    call z, Call_000_1836
+    db $cc, $36, $18
     ld [$1af0], a
     ldh [rNR41], a
     ret nz
@@ -6019,7 +6019,7 @@ jr_02d_5a2b:
     ld h, $57
     ld a, [$03fb]
     ld a, [c]
-    jp Jump_000_0522
+    db $c3, $22, $05
 
 
     inc b
@@ -6403,7 +6403,7 @@ jr_02d_5baf:
 
 jr_02d_5c11:
     db $fc
-    call Call_000_1414
+    db $cd, $14, $14
     jr z, @+$16
 
     ldh [rIE], a
@@ -6844,7 +6844,7 @@ jr_02d_5daf:
     ld h, $57
     ld a, [$03fb]
     ld a, [c]
-    jp Jump_000_0522
+    db $c3, $22, $05
 
 
     inc b
@@ -7448,7 +7448,7 @@ jr_02d_5f62:
     ld [bc], a
     ld [de], a
     ld a, [de]
-    jp nc, Jump_000_320e
+    db $d2, $0e, $32
 
     inc sp
     ld [hl+], a
@@ -8498,7 +8498,7 @@ jr_02d_64b1:
     ld h, $57
     ld a, [$03fb]
     ld a, [c]
-    jp Jump_000_0522
+    db $c3, $22, $05
 
 
     inc b
@@ -10398,7 +10398,7 @@ jr_02d_6cce:
 jr_02d_6cf9:
     ld a, [$03fb]
     ld a, [c]
-    jp Jump_000_0522
+    db $c3, $22, $05
 
 
     inc b
@@ -10626,7 +10626,7 @@ jr_02d_6d98:
     ld l, h
     ld bc, $092c
     ld h, d
-    jp z, Jump_000_16c9
+    db $ca, $c9, $16
 
     ld [hl], b
     ld bc, $0ff7
@@ -11467,7 +11467,7 @@ jr_02d_7177:
     cp c
     ld sp, hl
     xor $7e
-    call nz, Call_000_2dec
+    db $c4, $ec, $2d
     dec a
     rst $38
     rst $38
@@ -12142,7 +12142,7 @@ jr_02d_73ea:
     dec l
     inc d
     dec e
-    call nc, Call_000_14dd
+    db $d4, $dd, $14
     push af
     inc d
     push de
@@ -12288,7 +12288,7 @@ jr_02d_74b4:
     ld e, a
     ld a, b
     ld a, d
-    call nz, Call_000_24c1
+    db $c4, $c1, $24
     ld bc, $2a1e
     ld [hl-], a
     nop
@@ -12524,7 +12524,7 @@ Call_02d_75ff:
 
     ld a, [hl-]
     ld [hl], $cd
-    call z, Call_000_262e
+    db $cc, $2e, $26
     db $76
     ld h, b
     and l

@@ -4,7 +4,7 @@
 ; https://github.com/mattcurrie/mgbdis
 
 SECTION "ROM Bank $031", ROMX[$4000], BANK[$31]
-
+;Removed all invalid calls to bank 0
     ld sp, $4087
     ld [hl-], a
     ld b, c
@@ -923,7 +923,7 @@ jr_031_443a:
     db $fc
     db $fc
     ld hl, sp-$08
-    call nz, Call_000_0e3c
+    db $c4, $3c, $0e
     ld a, [$3801]
     inc b
     ld bc, $ffa0
@@ -1834,7 +1834,7 @@ Call_031_47c7:
     cp $fe
     ld hl, sp-$08
     nop
-    call nc, Call_000_0f00
+    db $d4, $00, $0f
     ld sp, hl
     cp $fe
     ld a, b
@@ -2264,7 +2264,7 @@ jr_031_4aa5:
 jr_031_4aaa:
     db $fc
     db $fc
-    call z, Call_000_0cfc
+    db $cc, $fc, $0c
     db $f4
     ret z
 
@@ -2605,7 +2605,7 @@ jr_031_4c30:
     rst $38
     ld l, e
     cp a
-    jp Jump_000_101f
+    db $c3, $1f, $10
 
 
     rra
@@ -3826,7 +3826,7 @@ jr_031_51bb:
     adc b
     ld hl, sp+$34
     db $fc
-    call z, Call_000_32fc
+    db $cc, $fc, $32
     cp $f6
     cp $fa
     ld e, [hl]
@@ -4214,7 +4214,7 @@ jr_031_5391:
     ld e, $17
     add hl, bc
     rrca
-    jp nc, Jump_000_00dd
+    db $d2, $dd, $00
 
     nop
     ldh [$e0], a
@@ -4572,7 +4572,7 @@ jr_031_54d4:
     sub d
     sbc [hl]
     and $fe
-    call z, Call_000_3d02
+    db $cc, $02, $3d
     inc bc
     ld [bc], a
     db $e3
@@ -4985,7 +4985,7 @@ jr_031_570e:
     ldh a, [$e8]
     ld hl, sp-$08
     cp b
-    call c, Call_000_09e4
+    db $dc, $e4, $09
     rrca
     pop de
     rst $18
@@ -5082,7 +5082,7 @@ jr_031_575f:
     ld b, b
     ld a, a
     dec c
-    jp nc, Jump_000_2100
+    db $d2, $00, $21
 
     ccf
     rra
@@ -6476,7 +6476,7 @@ jr_031_5daa:
     rrca
     ld c, $f3
     inc a
-    call nz, Call_000_18f8
+    db $c4, $f8, $18
     ldh [$60], a
     add b
     add b
@@ -6866,7 +6866,7 @@ jr_031_5f86:
     dec [hl]
     ccf
     add sp, -$01
-    call c, Call_000_03ff
+    db $dc, $ff, $03
     ld [bc], a
     ld [bc], a
     inc bc
@@ -7507,7 +7507,7 @@ jr_031_60bd:
     ld [hl], c
     ld a, [hl+]
     dec sp
-    jp nc, Jump_000_34ff
+    db $d2, $ff, $34
 
     rst $38
     ld e, l
@@ -10017,7 +10017,7 @@ jr_031_6d9e:
 
     rst $38
     inc b
-    jp z, Jump_000_0002
+    db $ca, $02, $00
 
     nop
     rst $18
@@ -10727,7 +10727,7 @@ jr_031_70c8:
     rst $30
     daa
     rst $20
-    jp nc, Jump_000_34f3
+    db $d2, $f3, $34
 
     rst $10
     db $fc
@@ -12153,7 +12153,7 @@ jr_031_7754:
     db $fc
     ld d, h
     cp $2a
-    call c, Call_000_08bc
+    db $dc, $bc, $08
     rrca
     ld [$0c0f], sp
     rrca
@@ -12623,7 +12623,7 @@ jr_031_79b1:
 
     and h
     ld a, h
-    jp c, Jump_000_3a66
+    db $da, $66, $3a
 
     add $e2
     ld e, $8c

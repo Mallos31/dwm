@@ -1607,11 +1607,11 @@ jr_007_4a59:
     ld hl, $c90e
     inc [hl]
     call Call_007_4b99
-    ld a, [$c90f]
+    ld a, [$c90f]	;load number of filled inv slots into a
     or a
-    ret nz
+    ret nz		;check to see if it's 0
 
-    ld a, $0c
+    ld a, $0c		;may have something to do with the "Empty" text in the bag.
     ld [$c90e], a
     ret
 
@@ -1652,7 +1652,7 @@ jr_007_4a59:
 
 
 Call_007_4b21:
-    ld de, $ca51
+    ld de, wInventory
     ld a, [wPLAN_selection]
     ld b, a
     add a
@@ -1674,7 +1674,7 @@ Call_007_4b21:
 Call_007_4b46:
     push de
     push hl
-    ld a, [de]
+    ld a, [de]		;load item ID into a and check if the slot is empty
     cp $ff
     jr nz, jr_007_4b4f
 
@@ -1699,7 +1699,7 @@ jr_007_4b4f:
 
 
 Call_007_4b69:
-    ld hl, $ca51
+    ld hl, wInventory
     ld a, [wPLAN_selection]
     ld b, a
     add a
@@ -1714,7 +1714,7 @@ Call_007_4b69:
     ld a, $00
     adc h
     ld h, a
-    ld a, [hl]
+    ld a, [hl]		;check if inventory slot is empty
     cp $ff
     jr nz, jr_007_4b87
 
@@ -1729,27 +1729,27 @@ jr_007_4b87:
     call Call_007_69b6
     ret
 
-
-Call_007_4b99:
-    ld hl, $ca51
-    ld b, $14
-    ld c, $00
+;Possible name: CountFilledInvSlots
+Call_007_4b99:			;checks for first empty inventory slot. Places the number of full slots in reg c
+    ld hl, wInventory
+    ld b, $14			;num inventroy slots
+    ld c, $00			;number of filled inv slots
 
 jr_007_4ba0:
     ld a, [hl+]
     cp $00
-    jr z, jr_007_4bad
+    jr z, jr_007_4bad		;if item ID is 0, skip next check
 
     cp $ff
-    jr z, jr_007_4bad
+    jr z, jr_007_4bad		;if inv slot is blank, skip next code block
 
-    inc c
+    inc c			;if slot was not empty, increment c and loop again. 
     dec b
     jr nz, jr_007_4ba0
 
 jr_007_4bad:
     ld a, c
-    ld [$c90f], a
+    ld [$c90f], a		;c90f is used for total number of items in inventory. May be others. 
     ret
 
 
@@ -1829,7 +1829,7 @@ jr_007_4c27:
 
 
 Call_007_4c28:
-    ld hl, $ca51
+    ld hl, wInventory
     ld b, $14
 
 jr_007_4c2d:
@@ -1847,7 +1847,7 @@ jr_007_4c33:
     ld c, $14
 
 jr_007_4c39:
-    ld hl, $ca51
+    ld hl, wInventory
     ld de, $ca52
     ld b, $13
 
@@ -1949,7 +1949,7 @@ jr_007_4cef:
     bit 0, a
     jp z, Jump_007_4d4a
 
-    ld hl, $ca51
+    ld hl, wInventory
     ld a, [wPLAN_selection]
     ld b, a
     add a
@@ -1964,10 +1964,11 @@ jr_007_4cef:
     ld a, $00
     adc h
     ld h, a
-    ld a, [hl]
+    ld a, [hl]		;loads selected item's ID into a
     ld [$da5e], a
     ld hl, $0302
     rst $10
+    
     ld a, $59
     call Call_000_1b2c
     ld hl, $c90e
@@ -1999,13 +2000,8 @@ Jump_007_4d4a:
 jr_007_4d4a:
     ret
 
-
-    ld h, c
-    nop
-    and c
-    nop
-    rst $38
-    rst $38
+    db $61, $00, $a1, $00, $ff, $ff
+        
     ld a, [$da66]
     cp $02
     jr z, jr_007_4d6b
@@ -2063,7 +2059,7 @@ Call_007_4da6:
     ld a, [wOPTN_and_Item_selection]
     and $7f
     add b
-    ld hl, $ca51
+    ld hl, wInventory
     add l
     ld l, a
     ld a, $00
@@ -2272,7 +2268,7 @@ jr_007_4ef4:
     ld a, [wOPTN_and_Item_selection]
     and $7f
     add b
-    ld hl, $ca51
+    ld hl, wInventory
     add l
     ld l, a
     ld a, $00
@@ -2813,7 +2809,7 @@ jr_007_5279:
     ld a, [wOPTN_and_Item_selection]
     and $7f
     add b
-    ld hl, $ca51
+    ld hl, wInventory
     add l
     ld l, a
     ld a, $00
@@ -2915,7 +2911,7 @@ jr_007_5330:
     ld a, [wOPTN_and_Item_selection]
     and $7f
     add b
-    ld hl, $ca51
+    ld hl, wInventory
     add l
     ld l, a
     ld a, $00
@@ -4522,7 +4518,7 @@ jr_007_5c7e:
     ld h, e
     ld c, a
     ld h, e
-    jp Jump_000_1163
+    db $c3, $63, $11
 
 
     dec c
@@ -4647,7 +4643,7 @@ jr_007_5d8d:
 
     ld a, [wPLAN_selection]
     and $7f
-    ld [$c8ee], a
+    ld [$c8ee], a   ;c8ee current text speed
     ld a, $59
     call Call_000_1b2c
     call Call_007_6a8f
@@ -10872,7 +10868,7 @@ jr_007_7e33:
     ld b, d
     sbc c
     adc d
-    jp Jump_000_0089
+    db $c3, $89, $00
 
 
     nop

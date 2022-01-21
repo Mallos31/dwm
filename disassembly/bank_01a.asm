@@ -166,7 +166,7 @@ jr_01a_4071:
     ld d, h
     adc l
     ld d, h
-    jp nz, Jump_000_0154
+    db $c2, $54, $01
 
     ld d, l
     inc l
@@ -12540,7 +12540,7 @@ jr_01a_7648:
     inc e
     cp a
     ld b, d
-    jp nc, Jump_000_1154
+    db $d2, $54, $11
 
     sbc b
     ld c, a
@@ -12549,7 +12549,7 @@ jr_01a_7648:
     sbc b
     ld c, b
     sbc b
-    jp nc, Jump_000_1145
+    db $d2, $45, $11
 
     adc h
     ld b, a
@@ -12561,7 +12561,7 @@ jr_01a_7648:
     ld d, c
     and b
     or h
-    jp nc, Jump_000_1154
+    db $d2, $54, $11
 
     sbc b
     ld c, a
@@ -12593,7 +12593,7 @@ jr_01a_7648:
     ld c, a
     sbc b
     or h
-    jp nc, Jump_000_1154
+    db $d2, $54, $11
 
     adc h
     jp nc, $d298
@@ -12627,7 +12627,7 @@ jr_01a_7648:
     ld a, c
     or e
     ld d, $79
-    jp nc, Jump_000_1154
+    db $d2, $54, $11
 
     sbc b
     ld c, a
@@ -12712,7 +12712,7 @@ jr_01a_7648:
     sbc b
     ld b, e
     sbc b
-    jp nc, Jump_000_1141
+    db $d2, $41, $11
 
     adc h
     ld b, e
@@ -12752,7 +12752,7 @@ jr_01a_7648:
 
     sbc b
     or h
-    jp nc, Jump_000_114d
+    db $d2, $4d, $11
 
     adc h
     jp nc, $d298
@@ -12858,7 +12858,7 @@ jr_01a_7a2c:
     dec h
     cp a
     ld e, [hl]
-    jp nc, Jump_000_163c
+    db $d2, $3c, $16
 
     xor h
     jp nc, $d28c
@@ -12867,7 +12867,7 @@ jr_01a_7a2c:
     ld d, $ac
     jp nc, $b48c
 
-    jp nc, Jump_000_163c
+    db $d2, $3c, $16
 
     xor h
     jp nc, $b48c
@@ -12884,7 +12884,7 @@ jr_01a_7a2c:
     or e
     ld c, h
     ld a, d
-    jp nc, Jump_000_1637
+    db $d2, $37, $16
 
     adc h
     jp nc, $d298
@@ -12918,7 +12918,7 @@ jr_01a_7a66:
 
 jr_01a_7a80:
     ld a, d
-    jp nc, Jump_000_1637
+    db $d2, $37, $16
 
     adc h
     jp nc, $d298

@@ -511,7 +511,7 @@ jr_04d_41fc:
     ld d, a
     xor c
     ld d, a
-    call nc, Call_000_0057
+    db $d4, $57, $00
     ld e, b
     jr nc, jr_04d_4299
 

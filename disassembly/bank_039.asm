@@ -229,7 +229,7 @@ jr_039_40e8:
     ldh a, [$e8]
     ld hl, sp-$08
     cp b
-    call c, Call_000_09e4
+    db $dc, $e4, $09
     rrca
     pop de
     rst $18
@@ -775,7 +775,7 @@ jr_039_4319:
     ld [c], a
     rst $38
     db $fc
-    call c, Call_000_10f0
+    db $dc, $f0, $10
     nop
     nop
     db $10
@@ -4670,7 +4670,7 @@ jr_039_5535:
     sbc a
     ld bc, $0014
     rst $08
-    call z, Call_000_1f1b
+    db $cc, $1b, $1f
     ld bc, $021a
     nop
 
@@ -4787,7 +4787,7 @@ jr_039_5580:
     ld d, d
     ld a, [bc]
     inc [hl]
-    call c, Call_000_1f12
+    db $dc, $12, $1f
     ld e, $1f
     add hl, bc
     rrca
@@ -7910,7 +7910,7 @@ jr_039_6399:
     jr jr_039_6412
 
     ld [bc], a
-    call nz, Call_000_1f04
+    db $c4, $04, $1f
     rra
     ld a, a
     ld a, a
@@ -8875,7 +8875,7 @@ jr_039_680d:
     nop
     inc c
     ld [bc], a
-    jp Jump_000_1f05
+    db $c3, $05, $1f
 
 
     rra

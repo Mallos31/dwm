@@ -84,7 +84,7 @@ Call_029_4007:
     ld a, e
     or d
     ld a, e
-    call nz, Call_000_007e
+    db $c4, $7e, $00
     ld [bc], a
     add hl, bc
     ld h, $09
@@ -3258,7 +3258,7 @@ jr_029_4eb9:
     rst $18
     ld [hl], c
     rst $38
-    jp nz, Jump_000_1adb
+    db $c2, $db, $1a
 
     ld a, [$fd25]
     ld [bc], a
@@ -3520,7 +3520,7 @@ jr_029_4f63:
     ld b, b
     xor $11
     dec c
-    call c, Call_000_0d30
+    db $dc, $30, $0d
     add b
     ld [bc], a
     and l
@@ -4603,7 +4603,7 @@ jr_029_55a3:
     jp z, $d5b5
 
     xor d
-    jp z, Jump_000_13b5
+    db $ca, $b5, $13
 
     adc c
     nop
@@ -5068,7 +5068,7 @@ jr_029_5796:
     inc de
     xor h
     ld [bc], a
-    call nz, Call_000_13c4
+    db $c4, $c4, $13
     and h
 
 jr_029_57a5:
@@ -5354,7 +5354,7 @@ jr_029_58c7:
     ld d, b
     xor a
     dec l
-    jp nc, Jump_000_1fef
+    db $d2, $ef, $1f
 
     sub b
     ld d, a
@@ -6894,7 +6894,7 @@ jr_029_5f41:
     jp nc, Jump_000_32c3
 
     rlca
-    call nz, Call_000_1e19
+    db $c4, $19, $1e
     cp $e1
     rst $30
     ld e, b
@@ -6993,7 +6993,7 @@ Jump_029_5ff0:
     di
     ld [hl+], a
     di
-    call nz, Call_000_18f7
+    db $c4, $f7, $18
     rst $18
     rst $20
     sbc b
@@ -7043,7 +7043,7 @@ Jump_029_6040:
     ld a, [$1ffa]
     rra
     add [hl]
-    call c, Call_000_0031
+    db $dc, $31, $00
     rst $38
     rst $38
     rst $20
@@ -8908,7 +8908,7 @@ jr_029_6906:
 
     ld [hl], c
     nop
-    jp nz, Jump_000_0014
+    db $c2, $14, $00
 
     inc d
     ld a, [bc]
@@ -11373,7 +11373,7 @@ jr_029_72b5:
     rrca
     ld a, [hl]
     ld a, [hl]
-    call Call_000_1fcd
+    db $cd, $cd, $1f
     rra
     inc e
     rra
@@ -12016,8 +12016,8 @@ jr_029_7665:
     db $e4
     ld [$d918], a
     sbc b
-    call nz, Call_000_1206
-    nop
+    db $c4, $06, $12, $00
+
     add b
     ret nz
 
@@ -12335,7 +12335,7 @@ jr_029_77dc:
     cpl
     or h
     ld [hl], a
-    call nc, Call_000_08df
+    db $d4, $df, $08
     dec bc
     inc b
     ld a, c
@@ -12648,13 +12648,13 @@ jr_029_7994:
     rrca
     ld c, l
     inc b
-    jp nc, Jump_000_1b0f
+    db $d2, $0f, $1b
 
     inc b
     ld b, [hl]
     nop
     inc b
-    call nz, Call_000_090f
+    db $c4, $0f, $09
     inc b
     ld h, [hl]
     nop
@@ -13786,7 +13786,7 @@ jr_029_7e4a:
     cpl
     or h
     ld [hl], a
-    call nc, Call_000_08df
+    db $d4, $df, $08
     dec c
     inc d
     ld de, $da25

@@ -318,7 +318,7 @@ jr_033_409b:
     or $9f
     ld a, [c]
     rst $38
-    call z, Call_000_1ef7
+    db $cc, $f7, $1e
     rst $38
     dec bc
     cp $0b
@@ -10661,7 +10661,7 @@ jr_033_6eec:
 
     inc sp
     inc sp
-    jp nc, Jump_000_14d2
+    db $d2, $d2, $14
 
     inc d
     ld a, [de]
@@ -11318,7 +11318,7 @@ jr_033_716a:
 
     adc h
     adc h
-    jp Jump_000_0ec3
+    db $c3, $c3, $0e
 
 
     cp $fc
@@ -13244,7 +13244,7 @@ jr_033_7acb:
     ldh [$a8], a
     ld a, [hl]
     ldh [$a7], a
-    call Call_000_140f
+    db $cd, $0f, $14
     and a
     jr nz, jr_033_7af1
 

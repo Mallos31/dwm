@@ -5,18 +5,10 @@
 
 SECTION "ROM Bank $002", ROMX[$4000], BANK[$2]
 
-    ld [bc], a
-    dec c
-    ld b, b
-    sbc a
-    ld c, [hl]
-    inc l
-    ld d, c
-    sub $5f
-    ld a, b
-    ld l, d
-    ld a, [bc]
-    ld l, e
+    db $02
+
+    db $0d, $40, $9f, $4e, $2c, $51, $d6, $5f, $78, $6a, $0a, $6b
+    
     ld a, [$d7b4]
     ld l, a
     ld a, [$d7b5]
@@ -5549,7 +5541,7 @@ Call_002_5fa7:
     ld h, h
     sbc a
     ld h, h
-    call z, Call_000_0d64
+    db $cc, $64, $0d
     ld h, l
     xor e
     ld h, [hl]
@@ -7625,10 +7617,10 @@ jr_002_6d16:
     add b
     db $d3
     call nz, RST_00
-    call nz, Call_000_01ec
+    db $c4, $ec, $01
     nop
     ld a, [c]
-    call z, Call_000_0001
+    db $cc, $01, $00
     call nc, $00ef
     nop
     jp hl
@@ -7645,7 +7637,7 @@ jr_002_6d16:
     nop
     ld [$0115], a
     nop
-    jp Jump_000_000c
+    db $c3, $0c, $00
 
 
     nop

@@ -922,7 +922,7 @@ jr_065_43fd:
     adc $ce
 
 jr_065_4407:
-    call z, Call_000_1c8c
+    db $cc, $8c, $1c
     ld a, h
     db $fc
     rra
@@ -1434,7 +1434,7 @@ jr_065_4643:
     rst $38
     ei
     di
-    jp Jump_000_0081
+    db $c3, $81, $00
 
 
     nop
@@ -2093,7 +2093,7 @@ jr_065_47d3:
     db $fc
     db $fc
     db $ec
-    call z, Call_000_10f8
+    db $cc, $f8, $10
     nop
     adc b
     sub b
@@ -2556,7 +2556,7 @@ jr_065_4b04:
     di
     add e
     db $e3
-    jp Jump_000_0ffe
+    db $c3, $fe, $0f
 
 
     rst $38
@@ -2779,7 +2779,7 @@ jr_065_4c26:
     inc c
     ld h, [hl]
     inc bc
-    jp Jump_000_0004
+    db $c3, $04, $00
 
 
     add d

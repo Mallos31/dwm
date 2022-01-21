@@ -3847,7 +3847,7 @@ jr_055_53a5:
     ld a, $01
     ld [wCurrGoldHi], a
     ld a, $01
-    ld [$ca51], a
+    ld [wInventory], a
     ld a, $02
     ld [$ca52], a
     ld a, $03
@@ -5793,7 +5793,7 @@ jr_055_5c71:
     add h
     rst $38
     rst $38
-    jp Jump_000_0a83
+    db $c3, $83, $0a
 
 
     inc bc
@@ -10378,7 +10378,7 @@ jr_055_701d:
 
     sub b
     ld h, c
-    jp Jump_000_0c1c
+    db $c3, $1c, $0c
 
 
 jr_055_7059:
@@ -11872,7 +11872,7 @@ jr_055_7683:
     rlca
     ld c, $3c
     ld hl, sp-$04
-    call c, Call_000_1c1c
+    db $dc, $1c, $1c
     rrca
     dec h
     cp $03

@@ -4,7 +4,7 @@
 ; https://github.com/mattcurrie/mgbdis
 
 SECTION "ROM Bank $040", ROMX[$4000], BANK[$40]
-
+;Most of this bank is corrupted graphics tiles. There seems to be SOME valid code though. More investigation needed. 
     ld a, [$c6f2]
     rst $28
     ld b, $1b
@@ -35,17 +35,17 @@ SECTION "ROM Bank $040", ROMX[$4000], BANK[$40]
     and c
     dec e
     ld a, $42
-    call Call_000_1fb1
-    call Call_000_1273
-    call Call_000_1770
+    db $cd, $b1, $1f
+    db $cd, $73, $12
+    db $cd, $70, $17
     call Call_040_5197
     ld a, $40
     ld [$c6a1], a
     ld hl, $4271
     ld bc, $8000
-    call Call_000_2bcc
-    call Call_000_1721
-    call Call_000_170e
+    db $cd, $cc, $2b
+    db $cd, $21, $17
+    db $cd, $0e, $17
     xor a
     ldh [rSCY], a
     ldh [rSCX], a
@@ -153,7 +153,7 @@ jr_040_4096:
 jr_040_40e1:
     call Call_040_40eb
     call Call_040_423f
-    call Call_000_1a1d
+    db $cd, $1d, $1a
     ret
 
 
@@ -211,9 +211,9 @@ jr_040_4124:
     ret
 
 
-    call Call_000_1fb1
+    db $cd, $b1, $1f
     call Call_040_5197
-    call Call_000_1770
+    db $cd, $70, $17
     xor a
     ld [$c625], a
     call Call_040_51ec
@@ -256,7 +256,7 @@ jr_040_4124:
 jr_040_416d:
     call Call_040_4177
     call Call_040_423f
-    call Call_000_1a1d
+    db $cd, $1d, $1a		;this might be actual code? I'm unsure. 
     ret
 
 
@@ -353,7 +353,7 @@ jr_040_41a5:
     ldh [$a3], a
     ld [$4100], a
     ei
-    jp Init_stack_pointer
+    jp InitGameData
 
 
 jr_040_4218:
@@ -364,7 +364,7 @@ jr_040_4218:
 
     call Call_000_1fb1
     call Call_040_5197
-    call Call_000_1770
+    db $cd, $70, $17
     xor a
     ld [$c625], a
     call Call_040_51dd
@@ -1062,7 +1062,7 @@ jr_040_454f:
     db $fd
     inc bc
     cp $01
-    jp nc, Jump_000_153f
+    db $d2, $3f, $15
 
     rst $38
     cp $ff
@@ -1198,116 +1198,9 @@ jr_040_45fa:
     rst $38
     rst $38
     nop
-    cp e
-    ld a, h
-    ld l, l
-    sbc $f7
-    adc $ff
-    add $df
-    and $6d
-    or $bb
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    jr @+$01
-
-    jr c, jr_040_45fa
-
-    jr c, @+$01
-
-    jr @+$01
-
-    jr @+$01
-
-    jr jr_040_45e0
-
-    ld a, [hl]
-    rst $38
-    nop
-    rst $38
-    ld a, h
-    rst $10
-    xor $7f
-    adc [hl]
-    rst $38
-    inc a
-    rst $30
-    ld a, b
-    rst $28
-    ldh a, [rIE]
-    cp $ff
-    nop
-    rst $38
-    ld a, [hl]
-    rst $38
-    inc c
-    rst $38
-    jr @+$01
-
-    inc a
-    rst $30
-    ld c, $b7
-    adc $ff
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    inc e
-    rst $38
-    inc a
-    rst $38
-    ld l, h
-    rst $38
-    call z, $feff
-    rst $38
-
-jr_040_4651:
-    inc c
-    rst $38
-    inc c
-    rst $38
-    nop
-    rst $38
-    db $fc
-    rst $38
-    ret nz
-
-    rst $38
-    db $fc
-    rst $30
-    ld c, $ff
-    ld b, $b7
-    adc $ff
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    inc a
-    rst $28
-    ld [hl], b
-    rst $18
-    ldh [rIE], a
-    db $fc
-    rst $10
-    xor $d7
-    xor $ff
-    ld a, h
-    rst $38
-    nop
-    rst $38
-    cp $ff
-    add $ef
-    inc e
-    rst $18
-    jr c, @+$01
-
-    jr nc, @+$01
-
-    jr nc, @+$01
-
-    pop de
-    jr nc, @+$01
+  INCBIN "gfx/image_040_4606.2bpp"
+;Research shows this to be garbage data, likely from unitialized ram during assembly time. The 'd1' near the end actually messes up several graphics, as it is not supposed to be there. Removing it makes the tiles look correct. 
+    db $ff, $fe, $ff, $c6, $ef, $1c, $df, $38, $ff, $30, $ff, $30, $ff, $d1, $30, $ff
 
     nop
     rst $38
@@ -1358,7 +1251,7 @@ jr_040_4694:
     ld e, $eb
     inc e
     rst $10
-    jr c, jr_040_4651
+    db $38, $8f
 
     ld [hl], b
     ld l, a

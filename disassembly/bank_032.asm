@@ -2304,7 +2304,7 @@ jr_032_49c8:
     ld d, [hl]
     sbc $a9
     db $fd
-    call Call_000_1fef
+    db $cd, $ef, $1f
     push de
     cp e
     add $7f
@@ -2437,7 +2437,7 @@ Jump_032_4a4b:
     db $e4
 
 jr_032_4aae:
-    call c, Call_000_00ff
+    db $dc, $ff, $00
     rst $38
     add b
     ld a, a
@@ -4028,7 +4028,7 @@ jr_032_51bf:
     add sp, -$17
     ld [hl], l
     sbc a
-    jp c, Jump_000_123b
+    db $da, $3b, $12
 
     rst $10
     push de
@@ -4625,7 +4625,7 @@ jr_032_5433:
     jr jr_032_5433
 
     rst $38
-    call c, Call_000_1bdf
+    db $dc, $df, $1b
     dec de
     inc bc
     db $e3
@@ -5088,7 +5088,7 @@ jr_032_562c:
 jr_032_5644:
     ld [hl+], a
     ld [hl+], a
-    jp nz, Jump_000_01c2
+    db $c2, $c2, $01
 
 jr_032_5649:
     ld sp, $7d09
@@ -5848,7 +5848,7 @@ jr_032_587d:
     rst $30
     pop bc
     push de
-    jp Jump_000_10c6
+    db $c3, $c6, $10
 
 
     ld [hl], e
@@ -6369,7 +6369,7 @@ jr_032_5bcc:
     ld hl, sp+$09
     cp $03
     dec c
-    jp nc, Jump_000_0d01
+    db $d2, $01, $0d
 
     rst $38
     di
@@ -9868,7 +9868,7 @@ jr_032_6b00:
     dec bc
     xor a
     rra
-    jp nz, Jump_000_0163
+    db $c2, $63, $01
 
 jr_032_6b22:
     ld sp, hl
@@ -11674,7 +11674,7 @@ jr_032_7295:
     ld c, $10
     ld b, $90
     ld h, [hl]
-    jp nc, Jump_000_0d6f
+    db $d2, $6f, $0d
 
     dec b
     ret nc
@@ -13010,7 +13010,7 @@ jr_032_77d0:
     ldh [$a7], a
     xor a
     ld [$c6a0], a
-    call Call_000_140f
+    db $cd, $0f, $14
     and a
     jr z, jr_032_7802
 
@@ -14083,7 +14083,7 @@ jr_032_7d3c:
     ldh [$a7], a
     xor a
     ld [$c6a0], a
-    call Call_000_140f
+    db $cd, $0f, $14
     and a
     jr z, jr_032_7d6e
 

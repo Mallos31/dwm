@@ -910,7 +910,7 @@ jr_015_46aa:
     ret
 
 
-    call Call_000_047e
+    call Empty_Func_047e
     ld a, [$c8d2]
     cp $06
     jr z, jr_015_46cc
@@ -3050,7 +3050,7 @@ jr_015_5455:
     ret
 
 
-    call Call_000_047e
+    call Empty_Func_047e
     ld a, [$c8d2]
     cp $06
     jr z, jr_015_5471
@@ -8195,8 +8195,7 @@ jr_015_6fc1:
     cp a
     ld h, c
     ld a, a
-    jp Jump_000_1cef
-
+    db $c3, $ef, $1c
 
     rst $38
     inc c
@@ -8721,7 +8720,7 @@ jr_015_71fc:
     or l
     ld c, e
     ccf
-    jp Jump_000_00ff
+    db $c3, $ff, $00
 
 
     cp $01
@@ -10106,12 +10105,12 @@ jr_015_77ce:
     rst $28
     stop
     inc bc
-    jp Jump_000_0082
+    db $c3, $82, $00
 
 
     nop
     inc bc
-    jp Jump_000_0082
+    db $c3, $82, $00
 
 
     nop
@@ -10835,7 +10834,7 @@ jr_015_7a13:
     inc bc
     ld a, e
     add a
-    call c, Call_000_17e3
+    db $dc, $e3, $17
     rst $28
     add sp, -$09
     dec e

@@ -16,16 +16,16 @@
 
 //0E and 0F are blank
 
-10=[slime]
-11=[dragon]
-12=[beast]
-13=[bird]
-14=[plant]
-15=[bug]
-16=[devil]
-17=[zombie]
-18=[material]
-19=[???]
+;10=[slime]
+;11=[dragon]
+;12=[beast]
+;13=[bird]
+;14=[plant]
+;15=[bug]
+;16=[devil]
+;17=[zombie]
+;18=[material]
+;19=[???]
 
 //20-23 are blank
 

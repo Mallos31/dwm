@@ -117,7 +117,7 @@ jr_028_403b:
     dec h
     dec hl
     ld c, h
-    jp nc, Jump_000_0b94
+    db $d2, $94, $0b
 
     xor l
     ld [hl], l
@@ -760,7 +760,7 @@ jr_028_42ee:
 
     jp c, Jump_028_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rTAC]
@@ -1263,7 +1263,7 @@ jr_028_4546:
 
     jp c, Jump_028_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
 jr_028_45a0:
@@ -1480,7 +1480,7 @@ jr_028_4697:
     nop
     ldh [rNR14], a
     adc h
-    jp Jump_000_1610
+    db $c3, $10, $16
 
 
     ld h, b
@@ -1544,7 +1544,7 @@ jr_028_46dc:
     inc b
     ld a, [hl-]
     nop
-    call c, Call_000_1e07
+    db $dc, $07, $1e
     inc de
     sbc b
     jr jr_028_4711
@@ -2001,7 +2001,7 @@ jr_028_482f:
 
     jp c, Jump_028_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rTAC]
@@ -2367,7 +2367,7 @@ jr_028_4a28:
     ld e, e
     db $db
     db $db
-    call Call_000_12cd
+    db $cd, $cd, $12
     ld l, d
     db $10
     cp $fe
@@ -2882,7 +2882,7 @@ jr_028_4cb1:
 
     jp c, Jump_028_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rNR12]
@@ -3065,7 +3065,7 @@ jr_028_4d20:
     rst $38
     rst $00
     add hl, bc
-    jp Jump_000_0903
+    db $c3, $03, $09
 
 
     ld a, [hl+]
@@ -4207,7 +4207,7 @@ jr_028_51f6:
 
     jp c, Jump_028_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rSC]
@@ -4839,7 +4839,7 @@ jr_028_54bd:
 
     jp c, Jump_028_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rSC]
@@ -5354,7 +5354,7 @@ jr_028_56e1:
 
     jp c, Jump_028_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rTMA]
@@ -5726,7 +5726,7 @@ jr_028_5870:
 
     jp c, Jump_028_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [$0c]
@@ -5804,7 +5804,7 @@ jr_028_5902:
     call c, Call_000_3c07
     dec b
     ld d, $c3
-    jp z, Jump_000_0014
+    db $ca, $14, $00
 
     rlca
     ld a, a
@@ -6476,7 +6476,7 @@ jr_028_5b7d:
 
     jp c, Jump_028_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rNR14]
@@ -6966,7 +6966,7 @@ jr_028_5dcc:
 
     jp c, Jump_028_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rTMA]
@@ -7550,7 +7550,7 @@ jr_028_60a9:
     ld b, $25
     jp z, $88a8
 
-    call z, Call_000_1314
+    db $cc, $14, $13
     inc de
     call c, $b423
     ld [hl-], a
@@ -8477,7 +8477,7 @@ jr_028_6493:
     ld b, $25
     jp z, $88a8
 
-    call z, Call_000_1314
+    db $cc, $14, $13
     inc de
     call c, $b423
     ld [hl-], a
@@ -9427,7 +9427,7 @@ jr_028_681f:
     jp c, Jump_028_7671
 
 jr_028_68ac:
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rTAC]
@@ -10043,7 +10043,7 @@ jr_028_6aac:
 
     jp c, Jump_028_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rTAC]
@@ -10597,7 +10597,7 @@ jr_028_6d17:
     ld e, d
     ld [c], a
     inc de
-    call c, Call_000_1b22
+    db $dc, $22, $1b
     xor b
     ld c, d
     sub e
@@ -10639,7 +10639,7 @@ jr_028_6db2:
     ld b, $25
     jp z, $88a8
 
-    call z, Call_000_1314
+    db $cc, $14, $13
     sub e
     ld e, h
     and e
@@ -10951,7 +10951,7 @@ jr_028_6f17:
 
     jp c, Jump_028_7671
 
-    jp Jump_000_0fcc
+    db $c3, $cc, $0f
 
 
     ldh a, [rNR33]
@@ -11580,7 +11580,7 @@ jr_028_71b8:
     adc $02
     inc c
     ld [$0c00], sp
-    call nc, Call_000_0c0a
+    db $d4, $0a, $0c
     jr nz, jr_028_7201
 
     inc c
@@ -12477,7 +12477,7 @@ jr_028_75de:
     add d
     nop
     inc c
-    call nz, Call_000_0c00
+    db $c4, $00, $0c
     ret nz
 
     nop
@@ -12688,7 +12688,7 @@ jr_028_76cb:
 
     inc b
     inc c
-    call nc, Call_000_160c
+    db $d4, $0c, $16
     rla
     inc c
     ld l, [hl]
@@ -12708,7 +12708,7 @@ jr_028_76f1:
     ld [$0a09], sp
     dec bc
     inc c
-    jp nz, Jump_000_0c00
+    db $c2, $00, $0c
 
     inc d
     ld [$1514], sp
@@ -12762,7 +12762,7 @@ jr_028_771f:
     inc [hl]
     dec [hl]
     inc c
-    call nz, Call_000_0c02
+    db $c4, $02, $0c
     ld [de], a
     rrca
     ld bc, $2f2e
@@ -13055,7 +13055,7 @@ jr_028_786d:
     inc [hl]
     dec [hl]
     inc c
-    jp z, Jump_000_0c00
+    db $ca, $00, $0c
 
     adc [hl]
     nop

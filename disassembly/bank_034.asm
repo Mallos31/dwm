@@ -916,7 +916,7 @@ Jump_034_43cf:
 Call_034_43fd:
     ld l, [hl]
     or a
-    jp c, Jump_000_00ff
+    db $da, $ff, $00
 
     rst $38
     ld bc, $06ff
@@ -1011,7 +1011,7 @@ Call_034_43fd:
     db $ed
     ld [hl-], a
     rst $38
-    call nz, Call_000_08ff
+    db $c4, $ff, $08
     rst $38
     rla
     rst $38
@@ -2854,7 +2854,7 @@ jr_034_4c4f:
     ccf
     ret nz
 
-    jp Jump_000_0f00
+    db $c3, $00, $0f
 
 
     nop
@@ -3264,7 +3264,7 @@ jr_034_4d4a:
     dec c
     db $fc
     dec [hl]
-    call c, Call_000_0a77
+    db $dc, $77, $0a
     inc c
     rlca
     add b
@@ -4765,7 +4765,7 @@ jr_034_54ba:
     ld a, [hl]
     inc hl
     ei
-    call z, Call_000_1dff
+    db $cc, $ff, $1d
     rst $18
     di
     ld a, [c]
@@ -7545,7 +7545,7 @@ jr_034_619b:
     ret z
 
     ld h, a
-    call Call_000_0d63
+    db $cd, $63, $0d
     ld c, $3f
     ld [hl], $19
     rra
@@ -8621,7 +8621,7 @@ Call_034_6567:
     call $33cd
     ld [hl-], a
     rst $08
-    call z, Call_000_0ff3
+    db $cc, $f3, $0f
     call nz, Call_000_063c
     cp $0b
     db $fd
@@ -8935,7 +8935,7 @@ jr_034_6777:
     ld [de], a
     db $10
     rst $00
-    call z, Call_000_1812
+    db $cc, $12, $18
     ld [de], a
     add $67
     adc [hl]
@@ -9070,7 +9070,7 @@ jr_034_67fb:
     ld d, h
     push de
     ld a, [de]
-    jp c, Jump_000_13d3
+    db $da, $d3, $13
 
     call c, $9e1c
     ld d, [hl]
@@ -9144,7 +9144,7 @@ jr_034_68ca:
     rst $38
     rra
     ld [de], a
-    call c, Call_000_1219
+    db $dc, $19, $12
     db $db
     ld de, $0240
     ld bc, $00ff
@@ -11105,7 +11105,7 @@ jr_034_71d1:
     ret nz
 
     dec bc
-    call z, Call_000_0b11
+    db $cc, $11, $0b
     reti
 
 

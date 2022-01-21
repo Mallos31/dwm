@@ -3,8 +3,8 @@
 ; mgbdis v1.5 - Game Boy ROM disassembler by Matt Currie and contributors.
 ; https://github.com/mattcurrie/mgbdis
 
-SECTION "ROM Bank $07c", ROMX[$4000], BANK[$7c]
-
+SECTION "ROM Bank $074", ROMX[$4000], BANK[$74]
+;Empty bank
     nop
     nop
     nop

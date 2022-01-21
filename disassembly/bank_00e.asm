@@ -6403,25 +6403,25 @@ Call_00e_5c00:
     ld e, h
     inc h
     rst $38
-    call nz, Call_000_145c
+    db $c4, $5c, $14
     rst $38
     ld c, [hl]
     ld e, h
     inc h
     rst $38
-    call z, Call_000_145c
+    db $cc, $5c, $14
     rst $38
     ld c, [hl]
     ld e, h
     inc h
     rst $38
-    call nc, Call_000_145c
+    db $d4, $5c, $14
     rst $38
     ld c, [hl]
     ld e, h
     inc h
     rst $38
-    call c, Call_000_145c
+    db $dc, $5c, $14
     rst $38
     ld c, [hl]
     ld e, h
@@ -8307,7 +8307,7 @@ jr_00e_61d7:
     rst $38
     ld bc, $77ff
     nop
-    jp c, Jump_000_0163
+    db $da, $63, $01
 
     rst $38
     ld [hl], l
@@ -8916,7 +8916,7 @@ jr_00e_65f1:
     ld h, [hl]
     call z, Call_00e_7c66
     ld h, [hl]
-    call nc, Call_000_1268
+    db $d4, $68, $12
     rst $38
     dec hl
     reti
@@ -9789,22 +9789,22 @@ jr_00e_69ca:
     inc de
     rst $38
     inc bc
-    jp c, Jump_000_0097
+    db $da, $97, $00
 
     inc de
     rst $38
     dec b
-    jp c, Jump_000_0095
+    db $da, $95, $00
 
     inc de
     rst $38
     rlca
-    jp c, Jump_000_0098
+    db $da, $98, $00
 
     ld [de], a
     rst $38
     ld [bc], a
-    jp c, Jump_000_0002
+    db $da, $02, $00
 
     ld e, e
     rst $38

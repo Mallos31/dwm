@@ -118,7 +118,7 @@ SECTION "ROM Bank $03a", ROMX[$4000], BANK[$3a]
     ld l, [hl]
     jr jr_03a_40e2
 
-    call z, Call_000_1c6f
+    db $cc, $6f, $1c
     ld [hl], b
     ret nz
 
@@ -265,7 +265,7 @@ jr_03a_4113:
     db $fc
     ldh a, [$50]
     ld hl, sp+$78
-    call nc, Call_000_0cdc
+    db $d4, $dc, $0c
     inc c
     ld bc, $f0fc
     ld b, h
@@ -3498,7 +3498,7 @@ jr_03a_5009:
     cp h
     ld [hl], h
     db $fc
-    call nc, Call_000_08f8
+    db $d4, $f8, $08
     ld hl, sp+$08
     ld hl, sp-$28
     ccf
@@ -3870,7 +3870,7 @@ jr_03a_5174:
     rra
     inc e
     inc e
-    jp nz, Jump_000_0e7e
+    db $c2, $7e, $0e
 
     cp $c4
     ld a, h
@@ -4509,7 +4509,7 @@ jr_03a_5410:
 
     or a
     ld hl, sp-$35
-    call z, Call_000_1009
+    db $cc, $09, $10
     inc bc
     db $10
     db $fc
@@ -6806,7 +6806,7 @@ jr_03a_5f12:
     di
     dec l
     di
-    jp z, Jump_000_0ff6
+    db $ca, $f6, $0f
 
     rrca
     dec de
@@ -9425,7 +9425,7 @@ jr_03a_6b2b:
     ldh [$38], a
     ld hl, sp-$54
     db $fc
-    call c, Call_000_00fc
+    db $dc, $fc, $00
     nop
     ld [bc], a
     ld l, b
@@ -10628,7 +10628,7 @@ jr_03a_707e:
     nop
 
 jr_03a_708f:
-    jp nz, Jump_000_0002
+    db $c2, $02, $00
 
     adc b
     inc b
@@ -11153,7 +11153,7 @@ jr_03a_72d5:
     rrca
     dec b
     nop
-    jp z, Jump_000_0006
+    db $ca, $06, $00
 
     ld c, [hl]
     rrca
@@ -12213,7 +12213,7 @@ jr_03a_77a3:
     rra
     inc bc
     ld [bc], a
-    jp z, Jump_000_0006
+    db $ca, $06, $00
 
     ld bc, $9402
     rra
@@ -12318,7 +12318,7 @@ jr_03a_7819:
     ld bc, $4400
     nop
     nop
-    call nz, Call_000_090f
+    db $c4, $0f, $09
     nop
     ld h, h
     nop
@@ -12329,7 +12329,7 @@ jr_03a_7819:
 jr_03a_7831:
     dec bc
     nop
-    call nz, Call_000_0004
+    db $c4, $04, $00
     ld a, [bc]
     rra
     dec b
@@ -12827,7 +12827,7 @@ jr_03a_7a75:
     nop
     ld [hl], d
     ld c, $00
-    jp nz, Jump_000_0002
+    db $c2, $02, $00
 
     add d
     ld [bc], a
@@ -12853,7 +12853,7 @@ jr_03a_7a75:
     ld l, $1f
     rlca
     nop
-    jp nz, Jump_000_0002
+    db $c2, $02, $00
 
     add h
     nop
@@ -13164,7 +13164,7 @@ jr_03a_7bb7:
 
 jr_03a_7bf8:
     nop
-    call nc, Call_000_000c
+    db $d4, $0c, $00
     xor h
     nop
     nop
@@ -13573,7 +13573,7 @@ jr_03a_7dd1:
     jr c, jr_03a_7e11
 
     nop
-    call z, Call_000_0004
+    db $cc, $04, $00
     sub b
     rrca
     inc bc
