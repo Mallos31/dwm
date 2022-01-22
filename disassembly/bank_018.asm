@@ -3610,7 +3610,7 @@ Call_018_5410:
     pop af
     add $04
     ld [$c81f], a
-    ld hl, Jump_000_1706
+    ld hl, $1706
     rst $10
     ld hl, $1708
     rst $10
@@ -8228,7 +8228,7 @@ jr_018_7e23:
     ld d, h
     add e
     or c
-    ld bc, Jump_000_1300
+    ld bc, $1300
     ld a, [hl]
     cp l
     ld [bc], a

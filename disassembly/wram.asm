@@ -42,14 +42,152 @@ wJoypad_Current::
   ds 1 ;c847
   
   
-wRamUnk4::
+wc848::
   ds $42
   
 wGameMode::
   ds 1	;c88a
 
-wRamUnk8::
-  ds $4f
+wc88b::
+  ds 1
+
+wc88c::
+  ds 1
+
+wc88d::
+  ds 1
+
+wc88e::
+  ds 1
+
+wc88f::
+  ds 1
+
+wc890::
+  ds 1
+
+wc891::
+  ds 1
+
+wc892::
+  ds 1
+
+wc893::
+  ds 1
+
+wc894::
+  ds 1
+
+wc895::
+  ds 1
+
+wc896::
+  ds 1
+
+wc897::
+  ds 1
+
+wc898::
+  ds 1
+
+wRNG1:: ;c899
+  ds 1
+
+wRNG2:: ;c89a
+  ds 1
+
+wBGPalette:: ;c89b
+  ds 1
+
+wObj1Palette:: ;c89c
+  ds 1
+
+wObj2Palette:: ;c89d
+  ds 1
+
+wTempBGPal:: ;c89e
+  ds 1
+
+wTempObj1Pal:: ;c89f
+  ds 1
+
+wTempObj2Pal:: ;c8a0
+  ds 1
+
+wc8a1::
+  ds 1
+
+wc8a2::
+  ds 1
+
+wc8a3::
+  ds 1
+
+wc8a4::
+  ds 1
+
+wc8a5::
+  ds 1
+
+wc8a6::
+  ds 1
+
+wc8a7::
+  ds 1
+
+wc8a8::
+  ds 1
+
+wc8a9::
+  ds 1
+
+wc8aa::
+  ds 1
+
+wc8ab::
+  ds 1
+
+wc8ac::
+  ds 1
+
+wc8ad::
+  ds 1
+
+wc8ae::
+  ds 1
+
+wc8af::
+  ds 1
+
+wc8b0::
+  ds 1
+
+wc8b1::
+  ds 1
+
+wc8b2::
+  ds 1
+
+wc8b3::
+  ds 1
+
+wc8b4::
+  ds 1
+
+wCurrPlayingBGM:: ;c8b5
+  ds 1
+
+wc8b6::
+  ds 1
+
+wBGM::
+  ds 1 ;c8b7
+
+wSoundEffect::
+  ds 1 ;c8b8
+
+wc8b9::
+  ds $21
   
 ;Currently selected option in menu.
 ;Menues known to use this byte: Battle, Main, Buy/Sell/Exit, 
@@ -67,7 +205,7 @@ wOPTN_and_Item_selection::
 wPLAN_selection::
   ds 1 ;c8dc
   
-wRamUnk1::
+wc8dd::
   ds $E ;c8dd
 
 ;used to determine current state of the game
@@ -83,13 +221,13 @@ wRamUnk1::
 wGameState::
   ds 1	;c8eb
   
-wRamUnk2::
+wc8ec::
   ds $20
 
 wCursorBlinkTimer::
   ds 1 ;c90c
   
-wRamUnk3::
+wc90d::
   ds $13E 
   
 ;current gold held by Terry. In order Lo Mid Hi maxes out at 9F8601 which reversed is 01869F or 99,999 in decimal  
@@ -111,9 +249,12 @@ wca4f::
 wca50::
   ds 1
 
-;the 60 slots of the player's inventory.   
+;the 20 slots of the player's inventory.   
 wInventory::
-  ds 60	;ca51
+  ds 20	;ca51
+
+wBankSlots::
+  ds 40 ;ca65
   
   
 section "WRAM Bank1", wramx[$D000], bank[1]
