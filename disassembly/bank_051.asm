@@ -580,7 +580,7 @@ jr_051_43e6:
     ret z
 
     ld a, $06
-    ld [$c8ee], a
+    ld [wTextSpeed], a
     ret
 
 

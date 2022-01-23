@@ -27374,6 +27374,7 @@
 00:c8db wOPTN_and_Item_selection
 00:c8dc wPLAN_selection
 00:c8eb wGameState
+00:c8ee wTextSpeed
 00:c90c wCursorBlinkTimer
 00:c935 wGateID
 00:c968 wMapID

@@ -27887,6 +27887,7 @@ WRAM0 bank #0:
            $c8db = wOPTN_and_Item_selection
            $c8dc = wPLAN_selection
            $c8eb = wGameState
+           $c8ee = wTextSpeed
            $c90c = wCursorBlinkTimer
            $c935 = wGateID
            $c968 = wMapID

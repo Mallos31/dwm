@@ -4745,7 +4745,7 @@ jr_054_5587:
 
 
 Call_054_5591:
-    ld a, [$c8ee]
+    ld a, [wTextSpeed]
     cp $07
     jr z, jr_054_55b6
 
@@ -4756,7 +4756,7 @@ Call_054_5591:
     jr jr_054_55b0
 
 Call_054_55a0:
-    ld a, [$c8ee]
+    ld a, [wTextSpeed]
     cp $07
     jr z, jr_054_55b6
 

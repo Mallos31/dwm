@@ -318,7 +318,7 @@ Call_001_421c:
     ld [$d8d7], a
     ld [$d8d8], a
     ld a, $04
-    ld [$c8ee], a
+    ld [wTextSpeed], a
     ld hl, $0064
     ld a, l
     ld [$ca3b], a

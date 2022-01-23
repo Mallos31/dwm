@@ -111,7 +111,7 @@ SECTION "ROM Bank $015", ROMX[$4000], BANK[$15]
     xor a
     call Call_000_12c7
     ld a, $04
-    ld [$c8ee], a
+    ld [wTextSpeed], a
     call Call_015_60df
     ld de, $2e1e
     ld hl, $9000
@@ -185,7 +185,7 @@ Jump_015_413e:
     ld a, $fc
     call Call_000_1688
     ld a, $04
-    ld [$c8ee], a
+    ld [wTextSpeed], a
     call Call_015_60df
     ld de, $2e1e
     ld hl, $9000
@@ -254,7 +254,7 @@ Jump_015_413e:
     ld a, $fc
     call Call_000_1688
     ld a, $04
-    ld [$c8ee], a
+    ld [wTextSpeed], a
     call Call_015_60df
     ld de, $2e1e
     ld hl, $9000
@@ -844,7 +844,7 @@ jr_015_461d:
     xor a
     call Call_000_12c7
     ld a, $04
-    ld [$c8ee], a
+    ld [wTextSpeed], a
     xor a
     ld [$c8ea], a
     ld hl, $c8d2
@@ -4176,7 +4176,7 @@ jr_015_5b93:
     ld de, $c1a0
     call Call_000_097a
     ld a, $04
-    ld [$c8ee], a
+    ld [wTextSpeed], a
     xor a
     ld [$c8ea], a
     xor a

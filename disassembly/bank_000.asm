@@ -284,7 +284,7 @@ InitGameData:
     ld [hl+], a
     ld [hl], a
     ld a, $04
-    ld [$c8ee], a
+    ld [wTextSpeed], a
     ld a, $00
     ld [wGameMode], a
     ld a, $01

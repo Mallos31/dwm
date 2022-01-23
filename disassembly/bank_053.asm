@@ -2756,7 +2756,7 @@ jr_053_4f17:
     rst $38
 
 jr_053_4f32:
-    ld a, [$c8ee]
+    ld a, [wTextSpeed]
     add $03
     ld [$db4c], a
     ld hl, $d9ee

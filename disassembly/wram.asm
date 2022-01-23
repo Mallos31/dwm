@@ -110,7 +110,11 @@ wPLAN_selection:: db ;c8dc
 ;80 = unknown. Blank screen with YES NO when forced.
 wGameState:: db	;c8eb
   
-    ds $20
+    ds $2
+
+wTextSpeed:: db ;c8ee
+
+    ds $1d
 
 wCursorBlinkTimer:: db ;c90c
   

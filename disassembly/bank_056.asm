@@ -1234,7 +1234,7 @@ jr_056_44a2:		;copy blank tile from rom to vram when in vblank
 
     ld hl, $c826
     res 7, [hl]
-    ld a, [$c8ee]
+    ld a, [wTextSpeed]
     cp $07
     jr z, jr_056_4593
 
