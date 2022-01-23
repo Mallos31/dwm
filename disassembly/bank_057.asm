@@ -9322,7 +9322,7 @@ jr_057_718c:
 
 
     call Call_057_7f2c
-    ld a, [$c899]
+    ld a, [wRNG1]
     ret
 
 
@@ -9570,9 +9570,9 @@ Call_057_72ce:
     ld b, a
     call Call_057_7f2c
     push bc
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     ld a, [$c86c]
     or a
@@ -10241,7 +10241,7 @@ jr_057_7695:
 
 Jump_057_769b:
     call Call_057_7f2c
-    ld a, [$c899]
+    ld a, [wRNG1]
     bit 0, a
     jp z, Jump_057_75f5
 
@@ -10333,7 +10333,7 @@ jr_057_7709:
     ld a, $00
     adc h
     ld h, a
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $07
     inc a
     ld [hl], a
@@ -10358,7 +10358,7 @@ jr_057_7724:
     inc hl
 
 jr_057_7739:
-    ld a, [$c89a]
+    ld a, [wRNG2]
     and $07
     inc a
     ld [hl], a
@@ -10998,7 +10998,7 @@ jr_057_7a48:
 
 jr_057_7a4a:
     call Call_057_7f2c
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $3f
 
 jr_057_7a52:
@@ -11065,9 +11065,9 @@ Call_057_7a93:
     push bc
     push af
     call Call_057_7f2c
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     pop af
     call Call_000_1e0d
@@ -11387,7 +11387,7 @@ jr_057_7c0f:
     ld b, $ff
 
 jr_057_7c11:
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp b
     jr z, jr_057_7c33
 
@@ -12023,13 +12023,13 @@ jr_057_7f38:
     ld a, [$c1ee]
     ld h, a
     ld a, l
-    ld [$c899], a
+    ld [wRNG1], a
     ld a, h
-    ld [$c89a], a
+    ld [wRNG2], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     ld a, l
     ld [$c1ed], a

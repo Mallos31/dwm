@@ -252,9 +252,9 @@ Call_013_41a5:
     push de
     push bc
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     pop bc
     push bc
@@ -11258,11 +11258,11 @@ Jump_013_7004:
     push af
     ld [hl], e
     ld b, $4b
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_013_7381
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $30
     jr c, jr_013_7381
 
@@ -11319,7 +11319,7 @@ jr_013_73cb:
     ld hl, $c905
     inc [hl]
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $03
     call Call_000_1dfb

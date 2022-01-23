@@ -1961,7 +1961,7 @@ jr_05f_4c3a:
     ld c, h
     ld a, h
     ld c, h
-    ld hl, $c89b
+    ld hl, wBGPalette
     ld [hl], $00
     inc hl
     ld [hl], $00
@@ -1973,7 +1973,7 @@ jr_05f_4c3a:
 
 
 Call_05f_4c6c:
-    ld hl, $c89b
+    ld hl, wBGPalette
     ld [hl], $d2
     inc hl
     ld [hl], $d2
@@ -2028,7 +2028,7 @@ Call_05f_4c6c:
     ret
 
 
-    ld hl, $c89b
+    ld hl, wBGPalette
     ld [hl], $d2
     inc hl
     ld [hl], $d2
@@ -2062,7 +2062,7 @@ Call_05f_4c6c:
     or $4c
     ld a, [bc]
     ld c, l
-    ld hl, $c89b
+    ld hl, wBGPalette
     ld a, [hl]
     xor $ff
     ld [hl+], a
@@ -2125,7 +2125,7 @@ Call_05f_4c6c:
     ret
 
 
-    ld hl, $c89b
+    ld hl, wBGPalette
     ld [hl], $d2
     inc hl
     ld [hl], $d2
@@ -2218,7 +2218,7 @@ jr_05f_4da1:
     ret
 
 
-    ld hl, $c89b
+    ld hl, wBGPalette
     ld [hl], $d2
     inc hl
     ld [hl], $d2
@@ -2561,7 +2561,7 @@ Call_05f_4f49:
     ld c, a
     adc a
     ld c, a
-    ld hl, $c89b
+    ld hl, wBGPalette
     ld [hl], $00
     inc hl
     ld [hl], $00
@@ -2570,7 +2570,7 @@ Call_05f_4f49:
     ret
 
 
-    ld hl, $c89b
+    ld hl, wBGPalette
     ld [hl], $d2
     inc hl
     ld [hl], $d2
@@ -2741,7 +2741,7 @@ Call_05f_506e:
     inc [hl]
     ld b, $03
     ld c, $00
-    ld hl, $c89b
+    ld hl, wBGPalette
 
 jr_05f_507d:
     ld a, [hl]
@@ -2803,7 +2803,7 @@ Call_05f_50b5:
     inc [hl]
     ld b, $03
     ld c, $00
-    ld hl, $c89b
+    ld hl, wBGPalette
 
 jr_05f_50c4:
     ld a, [hl]
@@ -5804,7 +5804,7 @@ jr_05f_600f:
 
 
 Call_05f_6014:
-    ld hl, $c89b
+    ld hl, wBGPalette
     inc hl
     ld a, $d0
     ld [hl+], a
@@ -5818,7 +5818,7 @@ Call_05f_6014:
     adc h
     ld h, a
     ld a, [hl]
-    ld [$c89c], a
+    ld [wObj1Palette], a
     ld a, [wOPTN_and_Item_selection]
     cp $03
     jr z, jr_05f_6049

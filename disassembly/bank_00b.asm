@@ -24,23 +24,23 @@ SECTION "ROM Bank $00b", ROMX[$4000], BANK[$b]
     jr z, jr_00b_4027
 
     ld a, [$c96d]
-    ld [$c968], a
+    ld [wMapID], a
     ld a, [$c96e]	;Frz at 1 to make any map an overworld map when entering
-    ld [$c969], a	;c969 may be the overworld flag. 
+    ld [wInGateworld], a	;c969 may be the overworld flag. 
 
 jr_00b_4027:
     ld hl, $1605	;set ROM bank to 16, RAM bank to 00, and call function 5b4e.
     rst $10
     
     ld de, $26dd
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr z, jr_00b_4037
 
     ld de, $2a5d
 
 jr_00b_4037:
-    ld a, [$c968]
+    ld a, [wMapID]
     ld l, a
     ld h, $00
     add hl, hl
@@ -54,7 +54,7 @@ jr_00b_4037:
     push hl
     ld hl, $9000
     call Call_000_1577
-    ld a, [$c968]
+    ld a, [wMapID]
     ld a, $08
     jr nz, jr_00b_4076
 
@@ -91,14 +91,14 @@ jr_00b_4076:
 
 
     ld de, $26dd
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr z, jr_00b_4094
 
     ld de, $2a5d
 
 jr_00b_4094:
-    ld a, [$c968]
+    ld a, [wMapID]
     ld l, a
     ld h, $00
     add hl, hl
@@ -112,7 +112,7 @@ jr_00b_4094:
     push hl
     ld hl, $9000
     call Call_000_1577
-    ld a, [$c968]
+    ld a, [wMapID]
     ld a, $08
     jr nz, jr_00b_40c0
 
@@ -382,7 +382,7 @@ jr_00b_41d8:
 
 
 Call_00b_4239:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr z, jr_00b_4244
 
@@ -393,7 +393,7 @@ Call_00b_4239:
 
 jr_00b_4244:
     ld hl, $4b43
-    ld a, [$c968]
+    ld a, [wMapID]
     add a
     add l
     ld l, a
@@ -434,12 +434,12 @@ jr_00b_4244:
 
 
 Call_00b_4274:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_00b_42ac
 
     ld hl, $4b43
-    ld a, [$c968]
+    ld a, [wMapID]
     add a
     add l
     ld l, a
@@ -552,7 +552,7 @@ jr_00b_42b7:
     rst $38
 
 Call_00b_4309:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret z
 
@@ -899,12 +899,12 @@ Call_00b_4452:
     bit 0, a
     ret nz
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret nz
 
     ld hl, $4b43
-    ld a, [$c968]
+    ld a, [wMapID]
     add a
     add l
     ld l, a
@@ -1012,12 +1012,12 @@ jr_00b_4513:
     bit 0, a
     jp nz, Jump_00b_4674
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jp nz, Jump_00b_46a7
 
     ld hl, $4b43
-    ld a, [$c968]
+    ld a, [wMapID]
     add a
     add l
     ld l, a
@@ -1192,11 +1192,11 @@ jr_00b_4601:
     or a
     jr nz, jr_00b_466b
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_00b_4627
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $10
     jr nz, jr_00b_4627
 
@@ -1209,9 +1209,9 @@ jr_00b_4627:
     jr z, jr_00b_465b
 
 jr_00b_462c:
-    ld a, [$c968]
+    ld a, [wMapID]
     ld l, a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     ld h, a
     push hl
     ld a, [$c96d]
@@ -1219,16 +1219,16 @@ jr_00b_462c:
     ld a, [$c96e]
     ld h, a
     ld a, l
-    ld [$c968], a
+    ld [wMapID], a
     ld a, h
-    ld [$c969], a
+    ld [wInGateworld], a
     call Call_000_2652
     pop hl
     push af
     ld a, l
-    ld [$c968], a
+    ld [wMapID], a
     ld a, h
-    ld [$c969], a
+    ld [wInGateworld], a
     pop af
     jr nz, jr_00b_465b
 
@@ -1253,8 +1253,8 @@ jr_00b_466b:
 
 Jump_00b_4674:
 jr_00b_4674:
-    ld a, [$c968]
-    ld a, [$c968]
+    ld a, [wMapID]
+    ld a, [wMapID]
     cp $53
     jr z, jr_00b_46d5
 
@@ -1322,7 +1322,7 @@ jr_00b_46d5:
 
 
 Call_00b_46da:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret z
 
@@ -1389,7 +1389,7 @@ jr_00b_471b:
     ld a, $ff
     ld [$d7d2], a
     call Call_00b_4274
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr z, jr_00b_477e
 
@@ -1788,7 +1788,7 @@ jr_00b_4917:
     ld a, c
     add $80
     ld h, a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr z, jr_00b_492a
 
@@ -1798,7 +1798,7 @@ jr_00b_4917:
     jr jr_00b_493f
 
 jr_00b_492a:
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $08
     jr z, jr_00b_493f
 
@@ -1821,11 +1821,11 @@ jr_00b_493f:
     pop bc
 
 Jump_00b_4945:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_00b_4964
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $08
     jr z, jr_00b_495e
 

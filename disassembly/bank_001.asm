@@ -47,7 +47,7 @@ SECTION "ROM Bank $001", ROMX[$4000], BANK[$1]
     call Call_000_12c7
     call Call_000_3331
     xor a
-    ld [$c8b5], a
+    ld [wCurrPlayingBGM], a
     xor a
     ld [$c88f], a
     call Call_001_43e3
@@ -125,15 +125,15 @@ Call_001_4074:
     ldh a, [$96]
     ldh [$a8], a
     call Call_000_1e31
-    ld a, [$c968]
+    ld a, [wMapID]
     ld [$c96a], a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     ld [$c96b], a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_001_4105
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $5e
     jr nz, jr_001_4105
 
@@ -272,7 +272,7 @@ Jump_001_41dc:
     call Call_001_4dda
     xor a
     ld [$c88f], a
-    ld hl, $c89b
+    ld hl, wBGPalette
     ld a, $d2
     ld [hl+], a
     ld a, $d2
@@ -280,11 +280,11 @@ Jump_001_41dc:
     ld a, $e2
     ld [hl], a
     ld hl, $c89e
-    ld a, [$c89b]
+    ld a, [wBGPalette]
     ld [hl+], a
-    ld a, [$c89c]
+    ld a, [wObj1Palette]
     ld [hl+], a
-    ld a, [$c89d]
+    ld a, [wObj2Palette]
     ld [hl], a
     call Call_000_1660
     ld a, $fd
@@ -309,7 +309,7 @@ Call_001_421c:
     xor a
     ld [$c93e], a
     xor a
-    ld [$ca3f], a
+    ld [wMonsterInfoToggle], a
     xor a
     ld [$c8ec], a
     xor a
@@ -333,11 +333,11 @@ Call_001_421c:
     ld bc, $00c0
     ld a, $00
     call Call_000_12c7
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_001_427d
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $08
     jr z, jr_001_4291
 
@@ -352,7 +352,7 @@ jr_001_427d:
     ld [$ca45], a
 
 jr_001_4291:
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld [$ca4a], a
     ld a, [$c8ab]
     or a
@@ -376,7 +376,7 @@ jr_001_4291:
     ld bc, $0014
     ld a, $ff
     call Call_000_12c7
-    ld hl, $ca65
+    ld hl, wBankSlots
     ld bc, $0028
     ld a, $ff
     call Call_000_12c7
@@ -410,7 +410,7 @@ jr_001_42f6:
     ld [$d9e9], a
     ld hl, $0b00
     rst $10
-    ld a, [$c8b5]
+    ld a, [wCurrPlayingBGM]
     ld b, a
     push bc
     call Call_001_432d
@@ -440,11 +440,11 @@ Call_001_431a:
 
 
 Call_001_432d:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_001_4358
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $50
     jr c, jr_001_4346
 
@@ -459,7 +459,7 @@ Call_001_432d:
 
 jr_001_4346:
     ld hl, $4373
-    ld a, [$c968]
+    ld a, [wMapID]
     add l
     ld l, a
     ld a, $00
@@ -605,9 +605,9 @@ jr_001_43dc:
     inc [hl]
 
 Call_001_43e3:
-    ld a, [$c968]
+    ld a, [wMapID]
     ldh [$d5], a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     ldh [$d6], a
     ld a, [$c96c]
     or a
@@ -706,7 +706,7 @@ jr_001_4464:
     ldh [$8e], a
     ldh [$90], a
     ld [$d7bd], a
-    ld a, [$c968]
+    ld a, [wMapID]
     ld l, a
     ld h, $00
     add hl, hl
@@ -2434,13 +2434,13 @@ Call_001_4c10:
     or a
     ret nz
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_001_4c49
 
     ld a, $00
     ld [$d8d4], a
-    ld a, [$c968]
+    ld a, [wMapID]
     ld [$d8d3], a
     ld hl, $0405
     rst $10
@@ -2563,7 +2563,7 @@ Call_001_4d02:
     push af
     ld [$da14], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $3f
     inc a
     ld [$da12], a
@@ -2602,7 +2602,7 @@ Call_001_4d02:
     call Call_001_4db8
     push af
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $07
     ld c, a
     pop af
@@ -2610,7 +2610,7 @@ Call_001_4d02:
     call Call_001_4db8
     push af
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $07
     ld c, a
     pop af
@@ -2667,7 +2667,7 @@ Call_001_4db8:
     ld e, l
     ld d, h
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $0f
     pop bc
     swap c
@@ -2830,7 +2830,7 @@ Call_001_4eaa:
     jr nz, jr_001_4ed2
 
     ld a, $d2
-    ld [$c89b], a
+    ld [wBGPalette], a
 
 jr_001_4ed2:
     ld a, [wGameState]
@@ -3416,11 +3416,11 @@ jr_001_5253:
 
 
 Call_001_5254:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret nz
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $18
     ret nz
 
@@ -3918,7 +3918,7 @@ Call_001_54c6:
 
 
 Call_001_54eb:
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $53
     ret z
 
@@ -3956,7 +3956,7 @@ Call_001_54eb:
 
 
 Call_001_5510:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_001_551a
 
@@ -4128,7 +4128,7 @@ Call_001_55d7:
     ret z
 
     ld [$d8d4], a
-    ld a, [$c968]
+    ld a, [wMapID]
     ld [$d8d3], a
     xor a
     ld [$d8d7], a
@@ -4197,11 +4197,11 @@ Call_001_565e:
     or a
     jr nz, jr_001_5690
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_001_568c
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $06
     jr z, jr_001_5690
 
@@ -4799,7 +4799,7 @@ jr_001_599c:
 
 
 Call_001_59c4:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret z
 
@@ -4884,7 +4884,7 @@ jr_001_5a20:
 
 
 Call_001_5a29:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret z
 
@@ -4914,7 +4914,7 @@ jr_001_5a37:
 
 
 Call_001_5a4d:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret z
 
@@ -4942,7 +4942,7 @@ Call_001_5a66:
     or a
     ret nz
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret z
 
@@ -5008,12 +5008,12 @@ jr_001_5aab:
     cp $01
     jr nz, jr_001_5ae0
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $0d
     call Call_000_1dfb
     add $07
-    ld [$d791], a
+    ld [wGroundItemData], a
     xor a
     ld [$d792], a
     jr jr_001_5b22
@@ -5022,12 +5022,12 @@ jr_001_5ae0:
     cp $02
     jr nz, jr_001_5af8
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $1e
     call Call_000_1dfb
     add $28
-    ld [$d791], a
+    ld [wGroundItemData], a
     xor a
     ld [$d792], a
     jr jr_001_5b22
@@ -5040,7 +5040,7 @@ jr_001_5af8:
     inc a
     call Call_000_1dbe
     push hl
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $32
     call Call_000_1dfb
@@ -5050,12 +5050,12 @@ jr_001_5af8:
     ld a, $64
     call Call_000_1e1e
     ld a, l
-    ld [$d791], a
+    ld [wGroundItemData], a
     ld a, h
     ld [$d792], a
 
 jr_001_5b22:
-    ld hl, $d791
+    ld hl, wGroundItemData
     ld a, [wCurrGoldLo]
     add [hl]
     ld e, a
@@ -5135,7 +5135,7 @@ jr_001_5b87:
     xor a
     ld [$c915], a
     ld [$c916], a
-    ld a, [$d791]
+    ld a, [wGroundItemData]
     ldh [$d5], a
     ld a, [$d792]
     ldh [$d6], a
@@ -5148,7 +5148,7 @@ jr_001_5b87:
     ld [$c917], a
     ld a, h
     ld [$c918], a
-    ld a, [$d791]
+    ld a, [wGroundItemData]
     ld l, a
     ld a, [$d792]
     ld h, a
@@ -5240,7 +5240,7 @@ jr_001_5c39:
     xor a
     ld [$c915], a
     ld [$c916], a
-    ld a, [$d791]
+    ld a, [wGroundItemData]
     ldh [$d5], a
     ld a, [$d792]
     ldh [$d6], a
@@ -5257,7 +5257,7 @@ jr_001_5c39:
 
 
 Call_001_5c65:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_001_5c6f
 
@@ -5387,7 +5387,7 @@ Call_001_5cd3:
     ld a, $08
     ld [$c8a8], a
     ld a, $2d
-    ld [$c89b], a
+    ld [wBGPalette], a
     ret
 
 
@@ -5426,7 +5426,7 @@ Call_001_5d33:
     ld a, $08
     ld [$c8a8], a
     ld a, $2d
-    ld [$c89b], a
+    ld [wBGPalette], a
     ret
 
 
@@ -5462,7 +5462,7 @@ Call_001_5d6d:
 
 Call_001_5d9c:
 jr_001_5d9c:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret nz
 
@@ -5556,7 +5556,7 @@ jr_001_5e08:
 
 
 Call_001_5e19:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_001_5e23
 
@@ -5588,7 +5588,7 @@ jr_001_5e23:
     cp $0e
     jr nz, jr_001_5e7c
 
-    ld a, [$c968]
+    ld a, [wMapID]
     ld hl, $5e7d
     add l
     ld l, a
@@ -5613,7 +5613,7 @@ jr_001_5e23:
     ld a, $08
     ld [$c8a8], a
     ld a, $2d
-    ld [$c89b], a
+    ld [wBGPalette], a
     call Call_000_2518
     call Call_000_25f1
 
@@ -5833,7 +5833,7 @@ Call_001_5f8b:
     ret z
 
 jr_001_5fa6:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret z
 
@@ -6149,7 +6149,7 @@ Call_001_60e7:
     or a
     ret nz
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret nz
 
@@ -6180,7 +6180,7 @@ Call_001_60e7:
     ret z
 
 jr_001_6115:
-    ld a, [$c968]
+    ld a, [wMapID]
     rst $00
     ld sp, hl
     ld h, c
@@ -6444,7 +6444,7 @@ jr_001_618d:
     adc h
     ld h, a
     ld a, [hl]
-    ld [$c89b], a
+    ld [wBGPalette], a
     ret
 
 
@@ -6484,7 +6484,7 @@ jr_001_6260:
     adc h
     ld h, a
     ld a, [hl]
-    ld [$c89b], a
+    ld [wBGPalette], a
     ret
 
 
@@ -7112,7 +7112,7 @@ Call_001_6611:
     or a
     ret nz
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret nz
 
@@ -7120,7 +7120,7 @@ Call_001_6611:
     or a
     ret nz
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $08
     ret nz
 
@@ -7717,9 +7717,9 @@ Call_001_696c:
 Call_001_6989:
     push hl		
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     ld a, $64
     call Call_000_1e0d
@@ -7787,7 +7787,7 @@ Call_001_69ad:
 
 
 Call_001_69e1:
-    ld a, [$c935]
+    ld a, [wGateID]
     ld hl, $6a22
     add l
     ld l, a
@@ -7796,7 +7796,7 @@ Call_001_69e1:
     ld h, a
     ld a, [hl]
     push af
-    ld a, [$c935]
+    ld a, [wGateID]
     add a
     ld hl, $6a42
     add l

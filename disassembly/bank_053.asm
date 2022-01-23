@@ -1054,7 +1054,7 @@ jr_053_45ca:
     bit 5, [hl]
     jr z, jr_053_45f9
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp $40
     jr nc, jr_053_45f9
 
@@ -1955,7 +1955,7 @@ jr_053_4b04:
     ld b, $ff
 
 jr_053_4b06:
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp b
     jr z, jr_053_4b28
 
@@ -2140,7 +2140,7 @@ Call_053_4be3:
 
 jr_053_4beb:
     call Call_053_4e33
-    ld a, [$c899]
+    ld a, [wRNG1]
     bit 1, a
     jr nz, jr_053_4c1b
 
@@ -2155,7 +2155,7 @@ jr_053_4beb:
     cp $04
     jr c, jr_053_4c23
 
-    ld a, [$c89a]
+    ld a, [wRNG2]
     and $07
     add $9a
     cp $a1
@@ -2178,7 +2178,7 @@ jr_053_4c1f:
     jr jr_053_4c32
 
 jr_053_4c23:
-    ld a, [$c89a]
+    ld a, [wRNG2]
     cp $55
     jr c, jr_053_4c30
 
@@ -2216,7 +2216,7 @@ Call_053_4c50:
     call Call_053_44a0
     pop af
     ld [$db89], a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     cp $40
     jr c, jr_053_4c87
 
@@ -2414,7 +2414,7 @@ jr_053_4d75:
 
 jr_053_4d7e:
     call Call_053_4e33
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $0f
     or a
     jr z, jr_053_4d91
@@ -2550,13 +2550,13 @@ jr_053_4e3d:
     ld a, [$c1ee]
     ld h, a
     ld a, l
-    ld [$c899], a
+    ld [wRNG1], a
     ld a, h
-    ld [$c89a], a
+    ld [wRNG2], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     ld a, l
     ld [$c1ed], a
@@ -2955,7 +2955,7 @@ jr_053_5048:
     and $04
     xor $04
     ld d, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     and $02
     ld c, a
     or d
@@ -2976,7 +2976,7 @@ jr_053_5048:
 
 Jump_053_506b:
 jr_053_506b:
-    ld a, [$c89a]
+    ld a, [wRNG2]
     and $01
     inc a
     ld d, a
@@ -3013,7 +3013,7 @@ Jump_053_5091:
     ld a, [$db89]
     ld c, a
     call Call_053_4e33
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp $33
     jr c, jr_053_5112
 
@@ -3029,7 +3029,7 @@ Jump_053_5091:
     ld a, c
     and $04
     ld b, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     and $01
     ld d, a
     ld a, c
@@ -3120,7 +3120,7 @@ jr_053_5112:
     jr jr_053_516e
 
 jr_053_5130:
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp $55
     jp c, Jump_053_5021
 
@@ -4137,7 +4137,7 @@ jr_053_5763:
     bit 1, [hl]
     jr z, jr_053_5785
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp $a0
     jr nc, jr_053_5785
 
@@ -4153,7 +4153,7 @@ jr_053_5785:
     and $03
     jr z, jr_053_579e
 
-    ld a, [$c89a]
+    ld a, [wRNG2]
     cp $60
     jr nc, jr_053_579e
 
@@ -4180,7 +4180,7 @@ jr_053_579e:
     and $0c
     jr z, jr_053_57c8
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $01
     jp z, Jump_053_57f1
 
@@ -4207,7 +4207,7 @@ jr_053_57e9:
     ld b, $08
 
 jr_053_57eb:
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp b
     jr nc, jr_053_57f5
 
@@ -5177,9 +5177,9 @@ Call_053_5d73:
     jr jr_053_5db0
 
 jr_053_5d82:
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld c, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld b, a
     ld a, b
     and $03
@@ -5245,9 +5245,9 @@ Call_053_5db1:
 
 jr_053_5dc8:
     push hl
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
 
 jr_053_5dd1:
@@ -5481,7 +5481,7 @@ jr_053_5eee:
 
 jr_053_5f0f:
     ld b, a
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp b
     ret
 
@@ -5524,7 +5524,7 @@ jr_053_5f52:
     ld b, $aa
 
 jr_053_5f54:
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp b
     jr nc, jr_053_5f66
 
@@ -6896,7 +6896,7 @@ jr_053_67a8:
     cp $02
     jr c, jr_053_67db
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp $c0
     jr nc, jr_053_6858
 
@@ -6908,7 +6908,7 @@ jr_053_67db:
     ld [$db56], a
     ld a, h
     ld [$db57], a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     cp $7f
     jr c, jr_053_6832
 
@@ -7166,7 +7166,7 @@ jr_053_6944:
     ld [$db56], a
     ld a, h
     ld [$db57], a
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp $7f
     jr c, jr_053_69d7
 

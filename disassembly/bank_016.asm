@@ -182,7 +182,7 @@ jr_016_40d9:
     ld a, $00
     adc h
     ld h, a
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp [hl]
     jr z, jr_016_4169
 
@@ -645,9 +645,9 @@ Call_016_4444:
     push bc
     push af
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     pop af
     call Call_000_1e0d
@@ -782,14 +782,14 @@ jr_016_44c7:
     jr z, jr_016_450f
 
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp $03
     ret nc
 
     ld b, $c8
     ld d, $d7
     call Call_016_453d
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld b, a
     ld a, c
     or a
@@ -812,14 +812,14 @@ jr_016_44c7:
 
 jr_016_450f:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp $0e
     ret nc
 
     ld b, $00
     ld d, $c8
     call Call_016_453d
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld b, a
     ld a, c
     or a
@@ -1314,9 +1314,9 @@ jr_016_4805:
     push bc
     push de
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     ld a, $64
     call Call_000_1e0d
@@ -1710,7 +1710,7 @@ jr_016_4857:
     db $f8, $3a, $00, $bd, $00, $f8, $41, $00, $bd, $00, $f8, $42, $00, $bd, $00, $f8
     db $7f, $00, $c5, $00, $f8, $81, $00, $c5, $00, $ff
 ;5b4e
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret z
 
@@ -1722,19 +1722,19 @@ jr_016_4857:
     inc [hl]
     xor a
     ld [$c93e], a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     bit 7, a
     jr nz, jr_016_5b72
 
-    ld a, [$c968]
-    ld [$c935], a
+    ld a, [wMapID]
+    ld [wGateID], a
     xor a
     ld [$c939], a
 
 jr_016_5b72:
     ld hl, $010c
     rst $10
-    ld a, [$c935]
+    ld a, [wGateID]
     add a
     add a
     add a
@@ -1766,11 +1766,11 @@ jr_016_5b72:
     cp [hl]
     jr z, jr_016_5be1
 
-    ld a, [$c935]
+    ld a, [wGateID]
     or a
     jr z, jr_016_5bbf
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     bit 4, a
     jr z, jr_016_5bbf
 
@@ -1794,14 +1794,14 @@ jr_016_5bbf:
     call Call_016_5fc0
     ld [$c936], a
     ld a, [$c936]
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $01
-    ld [$c969], a
+    ld [wInGateworld], a
     ret
 
 
 jr_016_5be1:
-    ld a, [$c935]
+    ld a, [wGateID]
     add a
     add a
     add a
@@ -1812,9 +1812,9 @@ jr_016_5be1:
     adc h
     ld h, a
     ld a, [hl+]
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld a, [hl+]
     swap a
     ld b, a
@@ -1868,7 +1868,7 @@ jr_016_5c1c:
     call Call_016_6db0
 
 Call_016_5c45:
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $03
     call Call_000_1dfb
@@ -1879,9 +1879,9 @@ Call_016_5c45:
     jr z, jr_016_5c98
 
     ld a, $5a
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld hl, $0048
     ld a, l
     ld [$c96f], a
@@ -1897,9 +1897,9 @@ Call_016_5c45:
 
 jr_016_5c77:
     ld a, $5b
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld hl, $0048
     ld a, l
     ld [$c96f], a
@@ -1915,9 +1915,9 @@ jr_016_5c77:
 
 jr_016_5c98:
     ld a, $5c
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld hl, $0068
     ld a, l
     ld [$c96f], a
@@ -1941,9 +1941,9 @@ jr_016_5c98:
 
 
     ld a, $53
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld hl, $0048
     ld a, l
     ld [$c96f], a
@@ -1958,9 +1958,9 @@ jr_016_5c98:
 
 
     ld a, $51
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld hl, $0048
     ld a, l
     ld [$c96f], a
@@ -1975,9 +1975,9 @@ jr_016_5c98:
 
 
     ld a, $50
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld hl, $0048
     ld a, l
     ld [$c96f], a
@@ -2048,9 +2048,9 @@ jr_016_5c98:
     ld hl, $d7ca
     call Call_016_5dc6
     ld a, $52
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld hl, $0068
     ld a, l
     ld [$c96f], a
@@ -2227,7 +2227,7 @@ jr_016_5ea7:
 Call_016_5ec9:
     push hl
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, l
     call Call_000_1dfb
@@ -2236,7 +2236,7 @@ Call_016_5ec9:
     ret
 
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $03
     call Call_000_1dfb
@@ -2247,9 +2247,9 @@ Call_016_5ec9:
     jr z, jr_016_5f2b
 
     ld a, $57
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld hl, $00f8
     ld a, l
     ld [$c96f], a
@@ -2265,9 +2265,9 @@ Call_016_5ec9:
 
 jr_016_5f0a:
     ld a, $58
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld hl, $0018
     ld a, l
     ld [$c96f], a
@@ -2283,9 +2283,9 @@ jr_016_5f0a:
 
 jr_016_5f2b:
     ld a, $59
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld hl, $0018
     ld a, l
     ld [$c96f], a
@@ -2299,7 +2299,7 @@ jr_016_5f2b:
     ret
 
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $03
     call Call_000_1dfb
@@ -2310,9 +2310,9 @@ jr_016_5f2b:
     jr z, jr_016_5f9f
 
     ld a, $54
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld hl, $00d8
     ld a, l
     ld [$c96f], a
@@ -2328,9 +2328,9 @@ jr_016_5f2b:
 
 jr_016_5f7e:
     ld a, $55
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld hl, $0048
     ld a, l
     ld [$c96f], a
@@ -2346,9 +2346,9 @@ jr_016_5f7e:
 
 jr_016_5f9f:
     ld a, $56
-    ld [$c968], a
+    ld [wMapID], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld hl, $00e8
     ld a, l
     ld [$c96f], a
@@ -2365,9 +2365,9 @@ jr_016_5f9f:
 Call_016_5fc0:
     push hl
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     ld a, $64
     call Call_000_1e0d
@@ -2394,7 +2394,7 @@ jr_016_5fe2:
 
 
     call Call_016_6e14
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_016_6002
 
@@ -2451,7 +2451,7 @@ jr_016_6002:
     ret nc
 
     ld [de], a
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $05
     call Call_000_1dfb
@@ -2476,7 +2476,7 @@ jr_016_6002:
     jr nz, jr_016_60b9
 
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $15
     call Call_000_1dfb
@@ -2519,7 +2519,7 @@ jr_016_60b9:
     ld bc, $0000
     jr nc, jr_016_60d8
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
 
 jr_016_60d1:
@@ -2635,7 +2635,7 @@ jr_016_614a:
     jr z, jr_016_6162
 
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $0c
     call Call_000_1dfb
@@ -2808,7 +2808,7 @@ jr_016_6266:
 
 jr_016_627e:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     bit 0, a
     jr z, jr_016_62cf
 
@@ -2823,7 +2823,7 @@ jr_016_628a:
     ld a, $00
     adc h
     ld h, a
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp [hl]
     jr c, jr_016_62b5
 
@@ -2841,13 +2841,13 @@ jr_016_629f:
 
 jr_016_62b5:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $05
     call Call_000_1dfb
     ld [$c92c], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $03
     ld [$c92b], a
 
@@ -2941,7 +2941,7 @@ jr_016_62f1:
     ld h, a
     ld a, [hl+]
     push af
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, [hl+]
     inc a
@@ -2999,7 +2999,7 @@ jr_016_63ac:
 
 Call_016_63af:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
 
 jr_016_63b6:
@@ -3031,7 +3031,7 @@ jr_016_63b6:
 
 jr_016_63e1:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $08
     call Call_000_1dfb
@@ -3049,7 +3049,7 @@ jr_016_63e1:
     ld a, h
     ldh [$a6], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $06
     call Call_000_1dfb
@@ -3097,9 +3097,9 @@ Call_016_6432:
     call Call_016_5fc0
     ld [$c0ae], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     ld a, $64
     call Call_000_1e0d
@@ -3296,7 +3296,7 @@ jr_016_6564:
 
 Call_016_6585:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
 
 Jump_016_658c:
@@ -3331,7 +3331,7 @@ jr_016_658c:
 
 jr_016_65bb:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $08
     call Call_000_1dfb
@@ -3349,7 +3349,7 @@ jr_016_65bb:
     ld a, h
     ldh [$a6], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $06
     call Call_000_1dfb
@@ -3391,7 +3391,7 @@ jr_016_65bb:
 
 Call_016_661b:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
 
 Jump_016_6622:
@@ -3426,7 +3426,7 @@ jr_016_6622:
 
 jr_016_6651:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $08
     call Call_000_1dfb
@@ -3444,7 +3444,7 @@ jr_016_6651:
     ld a, h
     ldh [$a6], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $06
     call Call_000_1dfb
@@ -3483,7 +3483,7 @@ jr_016_6651:
 
 Call_016_66ae:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
 
 Jump_016_66b5:
@@ -3518,7 +3518,7 @@ jr_016_66b5:
 
 jr_016_66e4:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $06
     call Call_000_1dfb
@@ -3536,7 +3536,7 @@ jr_016_66e4:
     ld a, h
     ldh [$a6], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $04
     call Call_000_1dfb
@@ -3842,9 +3842,9 @@ jr_016_6884:
 jr_016_689a:
     push bc
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     pop af
     or a
@@ -4738,7 +4738,7 @@ Call_016_6dc1:
 
 Call_016_6ddb:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $03
     ld hl, $d9cf
     add l
@@ -4750,7 +4750,7 @@ Call_016_6ddb:
     push de
     push hl
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $0f
     pop hl
     pop de
@@ -4782,9 +4782,9 @@ Call_016_6ddb:
 
 Call_016_6e14:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     ld a, $65
     call Call_000_1e0d
@@ -5058,7 +5058,7 @@ jr_016_6f02:
     nop
     ld [hl], b
     rla
-    ld a, [$c8eb]
+    ld a, [wGameState]
     bit 2, a
     ret nz
 
@@ -5076,12 +5076,12 @@ jr_016_6f02:
     bit 1, a
     ret nz
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_016_6f39
 
     ld bc, $0050
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $54
     jr z, jr_016_6f62
 
@@ -5096,7 +5096,7 @@ jr_016_6f02:
 
 jr_016_6f39:
     ld hl, $6fab
-    ld a, [$c968]
+    ld a, [wMapID]
     add a
     add a
     add a
@@ -5161,7 +5161,7 @@ jr_016_6f62:
 
     ld hl, $010b
     rst $10
-    ld hl, $c8eb
+    ld hl, wGameState
     set 6, [hl]
     xor a
     ld [$c905], a

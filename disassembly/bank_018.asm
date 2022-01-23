@@ -2239,7 +2239,7 @@ jr_018_4cd8:
     or a
     ret nz
 
-    ld hl, $c88a
+    ld hl, wGameMode
     ld a, $00
     ld [hl+], a
     ld a, $01

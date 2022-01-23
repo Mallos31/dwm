@@ -448,9 +448,9 @@ jr_050_4288:
     inc de
     ld a, [de]
     ld [hl+], a
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld [hl+], a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld [hl+], a
     ld a, [wMenu_selection]
     ld [hl+], a
@@ -604,9 +604,9 @@ jr_050_4361:
     bit 1, a
     jr nz, jr_050_438a
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld [$c1ed], a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld [$c1ee], a
     ld a, [wMenu_selection]
     ld [$c1ef], a
@@ -616,9 +616,9 @@ jr_050_4361:
 
 jr_050_438a:
     ld a, [$c1ed]
-    ld [$c899], a
+    ld [wRNG1], a
     ld a, [$c1ee]
-    ld [$c89a], a
+    ld [wRNG2], a
     ld a, [wMenu_selection]
     ld [$c1f0], a
     ld a, [wMenu_selection]
@@ -3933,7 +3933,7 @@ jr_050_57cd:
     ld b, $c0
 
 jr_050_57cf:
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp b
     jr c, jr_050_5808
 
@@ -4962,12 +4962,12 @@ Call_050_5d29:
     or a
     jr nz, jr_050_5d46
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $1f
     cp $1f
     jr z, jr_050_5d4c
 
-    ld a, [$c89a]
+    ld a, [wRNG2]
     and $1f
     cp $1f
     jr z, jr_050_5d71
@@ -4990,7 +4990,7 @@ jr_050_5d4c:
 
 jr_050_5d5c:
     ld c, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     and $01
     ld b, a
     add a
@@ -5019,7 +5019,7 @@ jr_050_5d71:
 
 jr_050_5d8a:
     ld c, a
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $01
     ld b, a
     add a
@@ -5578,13 +5578,13 @@ jr_050_6067:
     ld a, [$c1ee]
     ld h, a
     ld a, l
-    ld [$c899], a
+    ld [wRNG1], a
     ld a, h
-    ld [$c89a], a
+    ld [wRNG2], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     ld a, l
     ld [$c1ed], a
@@ -5627,7 +5627,7 @@ jr_050_60d6:
     or a
     ret nz
 
-    ld hl, $c89b
+    ld hl, wBGPalette
     ld a, $d2
     ld [hl+], a
     ld a, $d2
@@ -6210,7 +6210,7 @@ Jump_050_640a:
     ld [$c88d], a
     ld hl, $c88e
     inc [hl]
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $5d
     jp nz, Jump_050_64e0
 
@@ -6304,7 +6304,7 @@ jr_050_64af:
 
 
 Jump_050_64e0:
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $52
     jr nz, jr_050_64f5
 
@@ -7474,9 +7474,9 @@ Call_050_6bc4:
     call Call_000_2f45
     jr c, jr_050_6c01
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     ld a, $0b
     call Call_000_1e0d
@@ -7490,9 +7490,9 @@ jr_050_6be7:
     call Call_000_2f45
     jr c, jr_050_6c01
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     ld a, $06
     call Call_000_1e0d

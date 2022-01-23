@@ -5344,7 +5344,7 @@ jr_004_5aef:
     ret
 
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $2f
     jr nz, jr_004_5c04
 
@@ -7084,7 +7084,7 @@ jr_004_668d:
     adc $00
     ld [$d8d6], a
     call Call_004_71ef
-    ld a, [$c8b5]
+    ld a, [wCurrPlayingBGM]
     ld [$c8b6], a
     ld a, c
     call Call_000_1ae1
@@ -7102,9 +7102,9 @@ jr_004_668d:
     ld [$c8f7], a
     ld a, b
     ld [$c8f8], a
-    ld a, [$c968]
+    ld a, [wMapID]
     ld c, a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     ld b, a
     ld a, c
     ld [$c8fb], a
@@ -7371,9 +7371,9 @@ Jump_004_6838:
     ret
 
 
-    ld a, [$c968]
+    ld a, [wMapID]
     ld c, a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     ld b, a
     ld a, c
     ld [$c8fb], a
@@ -7534,7 +7534,7 @@ jr_004_69cd:
     call GenerateRNG
     pop hl
     push hl
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $0f
     add l
     ld l, a
@@ -7550,7 +7550,7 @@ jr_004_69cd:
     call GenerateRNG
     pop hl
     push hl
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $0f
     add l
     ld l, a
@@ -7566,7 +7566,7 @@ jr_004_69cd:
     call GenerateRNG
     pop hl
     push hl
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $0f
     add l
     ld l, a
@@ -7700,7 +7700,7 @@ jr_004_6abc:
     jp Jump_004_55f5
 
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $25
     call Call_000_1dfb
@@ -7756,7 +7756,7 @@ jr_004_6b0e:
     or a
     jp z, Jump_004_55f5
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, c
     call Call_000_1dfb
@@ -7810,7 +7810,7 @@ jr_004_6b0e:
     jp Jump_004_55f5
 
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $05
     call Call_000_1dfb
@@ -8200,7 +8200,7 @@ jr_004_6d9e:
 jr_004_6e1a:
     push hl
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $0f
     pop hl
     add l
@@ -8373,7 +8373,7 @@ jr_004_6f13:
 Call_004_6f35:
     push hl
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, l
     call Call_000_1dfb

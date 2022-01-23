@@ -282,7 +282,7 @@ jr_014_4264:
     ld de, $da33
     call Call_014_4793
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $05
     call Call_000_1dfb
@@ -332,7 +332,7 @@ jr_014_4264:
     ld a, $00
     adc h
     ld h, a
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp [hl]
     jr z, jr_014_42fe
 
@@ -1155,7 +1155,7 @@ jr_014_47f8:
 Call_014_47fd:
     push hl
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $34
     call Call_000_1dfb
@@ -1180,7 +1180,7 @@ Call_014_47fd:
 Call_014_4821:
     push hl
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $34
     call Call_000_1dfb
@@ -13196,7 +13196,7 @@ jr_014_7cea:
 
 
 Jump_014_7cf5:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret nz
 
@@ -13264,7 +13264,7 @@ Call_014_7d03:
 
 Jump_014_7d55:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $0b
     call Call_000_1dfb
@@ -13278,7 +13278,7 @@ Jump_014_7d55:
 
 Jump_014_7d6d:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $10
     call Call_000_1dfb
@@ -13323,7 +13323,7 @@ Call_014_7db7:
     ret nz
 
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $1f
     call Call_000_1dfb
@@ -13376,7 +13376,7 @@ jr_014_7e1d:
 
 
 Jump_014_7e1e:
-    ld a, [$c899]
+    ld a, [wRNG1]
     bit 0, a
     jr nz, jr_014_7e47
 

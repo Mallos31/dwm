@@ -4947,9 +4947,9 @@ Call_054_5683:
 
     push hl
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     ld a, $5b
     call Call_000_1e0d
@@ -4961,9 +4961,9 @@ Call_054_5683:
     jr c, jr_054_56c7
 
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
     ld a, $64
     call Call_000_1e0d

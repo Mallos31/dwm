@@ -2616,7 +2616,7 @@ jr_007_512a:
 Call_007_5160:
 jr_007_5160:
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $08
     call Call_000_1dfb
@@ -2634,7 +2634,7 @@ jr_007_5160:
     ld a, h
     ldh [$a6], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $06
     call Call_000_1dfb
@@ -5014,11 +5014,11 @@ jr_007_5fc9:
 jr_007_6004:
     ld hl, $0103
     rst $10
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_007_6039
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $06
     jr nz, jr_007_6039
 
@@ -5075,11 +5075,11 @@ Call_007_604d:
     ret
 
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_007_6090
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $60
     jr z, jr_007_6090
 
@@ -6846,7 +6846,7 @@ Call_007_6aba:
     res 1, [hl]
     xor a
     ld [$c90d], a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret z
 

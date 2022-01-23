@@ -938,7 +938,7 @@ Jump_006_448f:
     adc $00
     ld h, a
     ld [hl], $04
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $c0
     jr nz, jr_006_4540
 
@@ -956,7 +956,7 @@ jr_006_4524:
     ldh a, [$d6]
     adc $00
     ld h, a
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $03
     ld [hl], a
 
@@ -1227,7 +1227,7 @@ Call_006_467c:
     cp $02
     jr z, jr_006_46e1
 
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $c0
     jr nz, jr_006_46f1
 
@@ -1238,7 +1238,7 @@ jr_006_46e1:
     ldh a, [$d6]
     adc $00
     ld h, a
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $03
     ld [hl], a
 
@@ -2378,7 +2378,7 @@ jr_006_4cd7:
     bit 2, a
     jr z, jr_006_4cea
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_006_4cea
 
@@ -2533,7 +2533,7 @@ jr_006_4d86:
     ld a, c
     add $80
     ld h, a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr z, jr_006_4d99
 
@@ -2543,7 +2543,7 @@ jr_006_4d86:
     jr jr_006_4dae
 
 jr_006_4d99:
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $08
     jr z, jr_006_4dae
 
@@ -7262,11 +7262,11 @@ jr_006_606b:
     or a
     jr z, jr_006_60ac
 
-    ld a, [$ca3f]
+    ld a, [wMonsterInfoToggle]
     xor $01
 
 jr_006_60ac:
-    ld [$ca3f], a
+    ld [wMonsterInfoToggle], a
     call Call_000_2518
     call Call_000_25f1
     jp Jump_006_6284
@@ -7282,11 +7282,11 @@ jr_006_60b8:
     and $04
     jr z, jr_006_611d
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_006_60e7
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $61
     jr z, jr_006_60e7
 
@@ -7414,9 +7414,9 @@ jr_006_611d:
 
 jr_006_618e:
     ld [$d8d4], a
-    ld a, [$c968]
+    ld a, [wMapID]
     ld [$d8d3], a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr z, jr_006_61a2
 
@@ -7465,7 +7465,7 @@ jr_006_61b7:
     ld [$c916], a
 
 Jump_006_61e9:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jp z, Jump_006_6247
 
@@ -8331,7 +8331,7 @@ jr_006_6682:
     ret
 
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_006_66c2
 
@@ -8346,7 +8346,7 @@ jr_006_66c2:
 
     ld hl, $c91e
     inc [hl]
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ret nz
 
@@ -8356,7 +8356,7 @@ jr_006_66c2:
 
     ld a, $00
     ld [$d8d4], a
-    ld a, [$c968]
+    ld a, [wMapID]
     ld [$d8d3], a
     ld hl, $0405
     rst $10
@@ -8691,11 +8691,11 @@ jr_006_6882:
     ld de, $01a0
 
 jr_006_6893:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_006_68a7
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $08
     jr z, jr_006_68a4
 
@@ -9146,11 +9146,11 @@ Jump_006_6b87:
     or a
     jr nz, jr_006_6ba7
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_006_6ba2
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $50
     jr c, jr_006_6ba7
 
@@ -9462,7 +9462,7 @@ jr_006_6d3a:
     adc h
     ld h, a
     ld a, [hl]
-    ld [$c89b], a
+    ld [wBGPalette], a
     call Call_006_6ca3
     ret
 
@@ -9478,11 +9478,11 @@ jr_006_6d3a:
     ld a, $28
     ld [$c906], a
     ld a, $00
-    ld [$c89b], a
+    ld [wBGPalette], a
     ld a, $00
-    ld [$c89c], a
+    ld [wObj1Palette], a
     ld a, $00
-    ld [$c89d], a
+    ld [wObj2Palette], a
     ld a, $01
     ld [$c8ec], a
     ld a, [$c96e]
@@ -9525,7 +9525,7 @@ jr_006_6d3a:
 
 
     ld a, $00
-    ld [$c89b], a
+    ld [wBGPalette], a
     di
     ld a, $02
     ldh [rLYC], a
@@ -9559,7 +9559,7 @@ jr_006_6dd5:
     adc h
     ld h, a
     ld a, [hl]
-    ld [$c89b], a
+    ld [wBGPalette], a
     call Call_006_6ca3
     ret
 
@@ -9595,7 +9595,7 @@ jr_006_6e0f:
     ld a, $01
     ld [$c892], a
     ei
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr z, jr_006_6e26
 

@@ -575,7 +575,7 @@ jr_015_4422:
     rst $10
     jr jr_015_44d7
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr z, jr_015_44d7
 
@@ -852,10 +852,10 @@ jr_015_461d:
     xor a
     ld [$d8d7], a
     ld a, $2f
-    ld [$c968], a
+    ld [wMapID], a
     ld [$c96a], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld [$c96b], a
     ld a, $00
     ld [$ca8d], a
@@ -4184,10 +4184,10 @@ jr_015_5b93:
     xor a
     ld [wGameState], a
     ld a, $08
-    ld [$c968], a
+    ld [wMapID], a
     ld [$c96a], a
     ld a, $00
-    ld [$c969], a
+    ld [wInGateworld], a
     ld [$c96b], a
     ld a, $00
     ld [$ca8d], a

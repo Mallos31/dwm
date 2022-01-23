@@ -34,7 +34,7 @@ jr_019_4015:
     ld a, [hl+]
     ld h, [hl]
     ld l, a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     ld a, $f0
     jr z, jr_019_4047
@@ -96,7 +96,7 @@ jr_019_4047:
     ld bc, $0185
     adc d
     ld bc, $018f
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jp z, Jump_019_413e
 

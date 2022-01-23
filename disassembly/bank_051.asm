@@ -67,13 +67,13 @@ Call_051_4027:
     jr z, jr_051_4073
 
     ld a, $ff
-    ld [$c8b7], a
-    ld [$c8b8], a
+    ld [wBGM], a
+    ld [wSoundEffect], a
     call Call_000_3331
 
 jr_051_4073:
     ld b, $27
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $5d
     jp nz, Jump_051_408b
 
@@ -1613,7 +1613,7 @@ jr_051_4972:
     pop de
     pop bc
     pop af
-    ld a, [$c899]
+    ld a, [wRNG1]
     cp b
     jr c, jr_051_4986
 
@@ -1836,9 +1836,9 @@ Call_051_4a61:
     sbc h
     ld b, a
     push hl
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld l, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld h, a
 
 jr_051_4a7f:

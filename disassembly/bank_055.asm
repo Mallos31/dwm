@@ -2321,9 +2321,9 @@ jr_055_4a47:
     ld [$c823], a
     call Call_055_4b1a
     ld hl, wDebug_main_menu_option
-    ld a, [$c969]
+    ld a, [wInGateworld]
     ld [hl+], a
-    ld a, [$c968]
+    ld a, [wMapID]
     ld [hl+], a
     ld a, [$ca8d]
     ld [hl+], a
@@ -2566,19 +2566,19 @@ jr_055_4bdc:			;Likely inits data for the title screen
     ld a, $59				
     call Call_000_1b2c
     call GenerateRNG
-    ld a, [$c899]			;possible RNG? Otherwise just some timer. 
+    ld a, [wRNG1]			;possible RNG? Otherwise just some timer. 
     inc a
     ld [$da03], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     inc a
     ld [$da05], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     inc a
     ld [$da07], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld b, a
     ld a, $03
     call Call_000_1dfb
@@ -2840,9 +2840,9 @@ Jump_055_4dba:
     call Call_000_1b2c
     ld hl, wDebug_main_menu_option
     ld a, [hl+]
-    ld [$c969], a
+    ld [wInGateworld], a
     ld a, [hl+]
-    ld [$c968], a
+    ld [wMapID], a
     ld a, [hl+]
     ld [$ca8d], a
     ld a, [hl+]
@@ -2855,16 +2855,16 @@ Jump_055_4dba:
     ldh [$d5], a
     ld a, [hl]
     ld [$c8ab], a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     ld [$c8ea], a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     ld [$c96c], a
-    ld a, [$c968]
+    ld a, [wMapID]
     ld [$c96d], a
-    ld a, [$c969]
+    ld a, [wInGateworld]
     ld [$c96e], a
     xor a
-    ld [$c935], a
+    ld [wGateID], a
     ld hl, $c88e
     inc [hl]
     xor a
@@ -3875,7 +3875,7 @@ Call_055_53f6:
     push af
     ld [$da14], a
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $3f
     inc a
     ld [$da12], a
@@ -3914,7 +3914,7 @@ Call_055_53f6:
     call Call_055_54ac
     push af
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $07
     ld c, a
     pop af
@@ -3922,7 +3922,7 @@ Call_055_53f6:
     call Call_055_54ac
     push af
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $07
     ld c, a
     pop af
@@ -3979,7 +3979,7 @@ Call_055_54ac:
     ld e, l
     ld d, h
     call GenerateRNG
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $0f
     pop bc
     swap c

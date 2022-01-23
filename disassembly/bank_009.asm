@@ -1382,7 +1382,7 @@ jr_009_46de:
     call Call_009_45e5
     ld hl, $c906
     inc [hl]
-    ld a, [$c968]
+    ld a, [wMapID]
     ld hl, $478c
     cp $50
     jr z, jr_009_4754
@@ -2133,7 +2133,7 @@ Call_009_4bc8:
     ld l, a
     ld a, [$da64]
     ld h, a
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $50
     ret z
 
@@ -2946,7 +2946,7 @@ Jump_009_5104:
     ld hl, $0005
     jr z, jr_009_5158
 
-    ld hl, $ca65
+    ld hl, wBankSlots
     ld b, $28
     call Call_009_51f2
     ld a, c
@@ -3275,7 +3275,7 @@ jr_009_5348:
     ld bc, $0162
     rst $38
     rst $38
-    ld hl, $ca65
+    ld hl, wBankSlots
     ld b, $28
     call Call_009_51f2
     ld a, [$c8de]
@@ -3549,7 +3549,7 @@ jr_009_54f7:
     ld d, a
     ld a, h
     ld d, a
-    ld hl, $ca65
+    ld hl, wBankSlots
     ld b, $28
     call Call_009_51f2
     ld a, c
@@ -3617,7 +3617,7 @@ Call_009_5598:
     ld bc, $0028
     xor a
     call Call_000_12c7
-    ld de, $ca65
+    ld de, wBankSlots
     ld b, $28
 
 jr_009_55b4:
@@ -4435,7 +4435,7 @@ jr_009_5ad3:
 
 Call_009_5aea:
     ld hl, $d665
-    ld de, $ca65
+    ld de, wBankSlots
     ld b, $28
 
 jr_009_5af2:
@@ -4445,12 +4445,12 @@ jr_009_5af2:
     dec b
     jr nz, jr_009_5af2
 
-    ld hl, $ca65
+    ld hl, wBankSlots
     ld bc, $0028
     ld a, $ff
     call Call_000_12c7
     ld hl, $d665
-    ld de, $ca65
+    ld de, wBankSlots
     ld b, $28
 
 jr_009_5b0b:
@@ -4479,7 +4479,7 @@ Call_009_5b1a:
     cp $ff
     ret z
 
-    ld hl, $ca65
+    ld hl, wBankSlots
     ld b, $28
 
 jr_009_5b28:
@@ -4513,7 +4513,7 @@ Call_009_5b40:
     cp $ff
     ret z
 
-    ld hl, $ca65
+    ld hl, wBankSlots
     ld b, $28
 
 jr_009_5b4e:
@@ -6496,7 +6496,7 @@ jr_009_6812:
     rst $10
     call Call_000_2518
     call Call_000_25f1
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_009_6832
 
@@ -6572,7 +6572,7 @@ jr_009_68aa:
     rst $10
     ld a, [$da33]
     ld c, a
-    ld a, [$c899]
+    ld a, [wRNG1]
     and $07
     swap c
     or c

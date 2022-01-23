@@ -6566,49 +6566,49 @@ jr_002_67d9:
     ld hl, $c0fd
     inc [hl]
     ld a, $00
-    ld [$c89b], a
+    ld [wBGPalette], a
     ld a, $ff
-    ld [$c89c], a
+    ld [wObj1Palette], a
     ld a, [$c0fd]
     cp $06
     ret c
 
     ld a, $c1
-    ld [$c89b], a
+    ld [wBGPalette], a
     ld a, $d2
-    ld [$c89c], a
+    ld [wObj1Palette], a
     ld a, [$c0fd]
     cp $0c
     ret c
 
     ld a, $00
-    ld [$c89b], a
+    ld [wBGPalette], a
     ld a, $ff
-    ld [$c89c], a
+    ld [wObj1Palette], a
     ld a, [$c0fd]
     cp $12
     ret c
 
     ld a, $c1
-    ld [$c89b], a
+    ld [wBGPalette], a
     ld a, $d2
-    ld [$c89c], a
+    ld [wObj1Palette], a
     ld a, [$c0fd]
     cp $18
     ret c
 
     ld a, $00
-    ld [$c89b], a
+    ld [wBGPalette], a
     ld a, $ff
-    ld [$c89c], a
+    ld [wObj1Palette], a
     ld a, [$c0fd]
     cp $1e
     ret c
 
     ld a, $c1
-    ld [$c89b], a
+    ld [wBGPalette], a
     ld a, $d2
-    ld [$c89c], a
+    ld [wObj1Palette], a
     xor a
     ld [$c0fd], a
     ld hl, $c0fc

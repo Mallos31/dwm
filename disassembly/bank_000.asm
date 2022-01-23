@@ -304,8 +304,8 @@ InitGameData:
     ld a, $01
     ld [$c81c], a
     ld a, $ff
-    ld [$c8b7], a
-    ld [$c8b8], a
+    ld [wBGM], a
+    ld [wSoundEffect], a
     call Call_000_3331
     xor a
     ld [$c8c7], a
@@ -3778,7 +3778,7 @@ jr_000_1240:
 Call_000_124c:
     ld hl, $1703
     rst $10
-    ld hl, $c89b
+    ld hl, wBGPalette
     ld a, [hl+]
     ldh [rBGP], a
     ld a, [hl+]
@@ -3888,9 +3888,9 @@ jr_000_12c8:
 GenerateRNG:
     push hl
     push de
-    ld a, [$c899]
+    ld a, [wRNG1]
     ld h, a
-    ld a, [$c89a]
+    ld a, [wRNG2]
     ld l, a
     ld d, h
     ld e, l
@@ -3900,9 +3900,9 @@ GenerateRNG:
     ld de, $1357
     add hl, de
     ld a, h
-    ld [$c899], a
+    ld [wRNG1], a
     ld a, l
-    ld [$c89a], a
+    ld [wRNG2], a
     pop de
     pop hl
     ret
@@ -4087,7 +4087,7 @@ jr_000_13e3:
 
 
 Call_000_13ef:
-    ld hl, $c89b
+    ld hl, wBGPalette
     ld a, $d2
     ld [hl+], a
 
@@ -4097,11 +4097,11 @@ Call_000_13f5:
     ld a, $e2
     ld [hl], a
     ld hl, $c89e
-    ld a, [$c89b]
+    ld a, [wBGPalette]
     ld [hl+], a
-    ld a, [$c89c]
+    ld a, [wObj1Palette]
     ld [hl+], a
-    ld a, [$c89d]
+    ld a, [wObj2Palette]
     ld [hl], a
     ret
 
@@ -4641,11 +4641,11 @@ Call_000_1659:
 
 Call_000_1660:
     ld hl, $c853
-    ld a, [$c89b]
+    ld a, [wBGPalette]
     ld [hl+], a
-    ld a, [$c89c]
+    ld a, [wObj1Palette]
     ld [hl+], a
-    ld a, [$c89d]
+    ld a, [wObj2Palette]
     ld [hl], a
     jr jr_000_1671
 
@@ -4786,11 +4786,11 @@ Jump_000_173f:
     ld a, b
     ld [$c850], a
     ld hl, $c853
-    ld a, [$c89b]
+    ld a, [wBGPalette]
     ld [hl+], a
-    ld a, [$c89c]
+    ld a, [wObj1Palette]
     ld [hl+], a
-    ld a, [$c89d]
+    ld a, [wObj2Palette]
     ld [hl], a
     ld a, $00
     ld [$c856], a
@@ -4812,7 +4812,7 @@ jr_000_1772:
     ld [$c857], a
     ld [$c858], a
     ld a, $00
-    ld hl, $c89b
+    ld hl, wBGPalette
     ld [hl+], a
     ld [hl+], a
     ld [hl], a
@@ -4826,11 +4826,11 @@ jr_000_1792:
     ld a, b
     ld [$c850], a
     ld hl, $c853
-    ld a, [$c89b]
+    ld a, [wBGPalette]
     ld [hl+], a
-    ld a, [$c89c]
+    ld a, [wObj1Palette]
     ld [hl+], a
-    ld a, [$c89d]
+    ld a, [wObj2Palette]
     ld [hl], a
     ld a, $00
     ld [$c856], a
@@ -4852,7 +4852,7 @@ jr_000_17be:
     ld [$c857], a
     ld [$c858], a
     ld a, $ff
-    ld hl, $c89b
+    ld hl, wBGPalette
     ld [hl+], a
     ld [hl+], a
     ld [hl], a
@@ -5188,7 +5188,7 @@ Call_000_19ba:
     ld a, [$c851]
     bit 0, a
     ld a, [$c853]
-    ld hl, $c89b
+    ld hl, wBGPalette
     call nz, Call_000_19e0
     ld a, [$c851]
     bit 1, a
@@ -5293,7 +5293,7 @@ Call_000_1a50:
     ld a, [$c851]
     bit 0, a
     ld a, [$c853]
-    ld hl, $c89b
+    ld hl, wBGPalette
     call nz, Call_000_1a76
     ld a, [$c851]
     bit 1, a
@@ -5423,15 +5423,15 @@ jr_000_1acf:
 
 
 Call_000_1ae1:
-    ld [$c8b7], a
+    ld [wBGM], a
     ret
 
 
 Call_000_1ae5:
-    ld [$c8b5], a
+    ld [wCurrPlayingBGM], a
     di
     call Call_000_3331
-    ld a, [$c8b5]
+    ld a, [wCurrPlayingBGM]
     or a
     jr z, jr_000_1b2a
 
@@ -5486,7 +5486,7 @@ jr_000_1b2a:
 
 
 Call_000_1b2c:
-    ld [$c8b8], a
+    ld [wSoundEffect], a
     ret
 
 
@@ -5598,7 +5598,7 @@ jr_000_1ba7:
 
 
 Call_000_1bb1:
-    ld a, [$c8b7]
+    ld a, [wBGM]
     cp $ff
     jr z, jr_000_1bc4
 
@@ -5607,16 +5607,16 @@ Call_000_1bb1:
 
     call Call_000_1ae5
     ld a, $ff
-    ld [$c8b7], a
+    ld [wBGM], a
 
 jr_000_1bc4:
-    ld a, [$c8b8]
+    ld a, [wSoundEffect]
     cp $ff
     jr z, jr_000_1bd3
 
     call Call_000_1b30
     ld a, $ff
-    ld [$c8b8], a
+    ld [wSoundEffect], a
 
 jr_000_1bd3:
     ret
@@ -6173,14 +6173,14 @@ Call_000_1e96:
     ld a, [hl]
     ldh [$aa], a
     ld de, $26e3
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr z, jr_000_1ebf
 
     ld de, $2a63
 
 jr_000_1ebf:
-    ld a, [$c968]
+    ld a, [wMapID]
     ld l, a
     ld h, $00
     add hl, hl
@@ -7612,7 +7612,7 @@ Jump_000_2542:
 
 Call_000_255f:
     ldh [$d5], a
-    ld a, [$ca3f]
+    ld a, [wMonsterInfoToggle]
     or a
     jr nz, jr_000_25a0
 
@@ -7813,18 +7813,18 @@ Call_000_263f:
 
 
 Call_000_2652:
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jr nz, jr_000_266c
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $5d
     jr z, jr_000_266a
 
     cp $5e
     jr z, jr_000_266a
 
-    ld a, [$c968]
+    ld a, [wMapID]
     cp $30
     jr nc, jr_000_266c
 
@@ -10473,7 +10473,7 @@ Call_000_3103:
 Call_000_310c:
     ret z
 
-    ld hl, $c89b
+    ld hl, wBGPalette
 
 Jump_000_3110:
     inc hl
@@ -10489,7 +10489,7 @@ Jump_000_3110:
     adc h
     ld h, a
     ld a, [hl]
-    ld [$c89c], a
+    ld [wObj1Palette], a
     ld a, [$da81]
 
 Call_000_312a:

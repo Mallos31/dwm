@@ -40,12 +40,12 @@ SECTION "ROM Bank $017", ROMX[$4000], BANK[$17]
     or a
     ret z
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jp nz, Jump_017_4064
 
     ld hl, $476f
-    ld a, [$c968]
+    ld a, [wMapID]
     add a
     add l
     ld l, a
@@ -114,7 +114,7 @@ jr_017_4071:
     ld d, [hl]
     ld e, a
     ld hl, $51f5
-    ld a, [$c968]
+    ld a, [wMapID]
     add a
     add l
     ld l, a
@@ -129,12 +129,12 @@ jr_017_4071:
     call Call_017_46a1
     jr jr_017_4102
 
-    ld a, [$c969]
+    ld a, [wInGateworld]
     or a
     jp nz, Jump_017_40da
 
     ld hl, $476f
-    ld a, [$c968]
+    ld a, [wMapID]
     add a
     add l
     ld l, a
@@ -444,7 +444,7 @@ Call_017_4265:
     ret z
 
     ld hl, $c89e
-    ld a, [$c89b]
+    ld a, [wBGPalette]
     cp [hl]
     jp z, Jump_017_4341
 
@@ -460,14 +460,14 @@ Call_017_4265:
     call Call_017_42ac
     call Call_017_42ac
     call Call_017_42ac
-    ld a, [$c89b]
+    ld a, [wBGPalette]
     ld [$c89e], a
     jp Jump_017_4341
 
 
 Call_017_42ac:
     push hl
-    ld a, [$c89b]
+    ld a, [wBGPalette]
     and $03
     ld de, $440c
     add e
@@ -488,7 +488,7 @@ Call_017_42ac:
     ldh [rBCPD], a
     pop hl
     push hl
-    ld a, [$c89b]
+    ld a, [wBGPalette]
     srl a
     srl a
     and $03
@@ -511,7 +511,7 @@ Call_017_42ac:
     ldh [rBCPD], a
     pop hl
     push hl
-    ld a, [$c89b]
+    ld a, [wBGPalette]
     swap a
     and $03
     ld de, $440c
@@ -533,7 +533,7 @@ Call_017_42ac:
     ldh [rBCPD], a
     pop hl
     push hl
-    ld a, [$c89b]
+    ld a, [wBGPalette]
     swap a
     srl a
     srl a
@@ -567,7 +567,7 @@ Call_017_42ac:
 
 Jump_017_4341:
     ld hl, $c89f
-    ld a, [$c89c]
+    ld a, [wObj1Palette]
     cp [hl]
     jp z, Jump_017_440b
 
@@ -583,14 +583,14 @@ Jump_017_4341:
     call Call_017_4376
     call Call_017_4376
     call Call_017_4376
-    ld a, [$c89c]
+    ld a, [wObj1Palette]
     ld [$c89f], a
     jp Jump_017_440b
 
 
 Call_017_4376:
     push hl
-    ld a, [$c89c]
+    ld a, [wObj1Palette]
     and $03
     ld de, $440c
     add e
@@ -611,7 +611,7 @@ Call_017_4376:
     ldh [rOCPD], a
     pop hl
     push hl
-    ld a, [$c89c]
+    ld a, [wObj1Palette]
     srl a
     srl a
     and $03
@@ -634,7 +634,7 @@ Call_017_4376:
     ldh [rOCPD], a
     pop hl
     push hl
-    ld a, [$c89c]
+    ld a, [wObj1Palette]
     swap a
     and $03
     ld de, $440c
@@ -656,7 +656,7 @@ Call_017_4376:
     ldh [rOCPD], a
     pop hl
     push hl
-    ld a, [$c89c]
+    ld a, [wObj1Palette]
     swap a
     srl a
     srl a
