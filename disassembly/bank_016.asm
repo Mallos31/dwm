@@ -174,7 +174,7 @@ jr_016_40d9:
     ld b, $1b
     call Call_016_4227
     call Call_016_4360
-    call Call_000_12d0
+    call GenerateRNG
     ld hl, $44cc
     ld a, [$da36]
     add l
@@ -644,7 +644,7 @@ Call_016_4410:
 Call_016_4444:
     push bc
     push af
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]
@@ -781,7 +781,7 @@ jr_016_44c7:
     cp $ff
     jr z, jr_016_450f
 
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     cp $03
     ret nc
@@ -811,7 +811,7 @@ jr_016_44c7:
 
 
 jr_016_450f:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     cp $0e
     ret nc
@@ -1313,7 +1313,7 @@ Call_016_4805:
 jr_016_4805:
     push bc
     push de
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]
@@ -2226,7 +2226,7 @@ jr_016_5ea7:
 
 Call_016_5ec9:
     push hl
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, l
@@ -2364,7 +2364,7 @@ jr_016_5f9f:
 
 Call_016_5fc0:
     push hl
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]
@@ -2475,7 +2475,7 @@ jr_016_6002:
     cp $02
     jr nz, jr_016_60b9
 
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $15
@@ -2634,7 +2634,7 @@ jr_016_614a:
     cp $01
     jr z, jr_016_6162
 
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $0c
@@ -2807,7 +2807,7 @@ jr_016_6266:
     jr jr_016_628a
 
 jr_016_627e:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     bit 0, a
     jr z, jr_016_62cf
@@ -2815,7 +2815,7 @@ jr_016_627e:
     jr jr_016_629f
 
 jr_016_628a:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c938]
     ld hl, $7886
     add l
@@ -2840,13 +2840,13 @@ jr_016_629f:
     jr jr_016_62cf
 
 jr_016_62b5:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $05
     call Call_000_1dfb
     ld [$c92c], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     and $03
     ld [$c92b], a
@@ -2998,7 +2998,7 @@ jr_016_63ac:
 
 
 Call_016_63af:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
 
@@ -3030,7 +3030,7 @@ jr_016_63b6:
     ldh [$bc], a
 
 jr_016_63e1:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $08
@@ -3048,7 +3048,7 @@ jr_016_63e1:
     ldh [$a5], a
     ld a, h
     ldh [$a6], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $06
@@ -3096,7 +3096,7 @@ Call_016_6432:
     ld h, a
     call Call_016_5fc0
     ld [$c0ae], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]
@@ -3295,7 +3295,7 @@ jr_016_6564:
 
 
 Call_016_6585:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
 
@@ -3330,7 +3330,7 @@ jr_016_658c:
     ldh [$d5], a
 
 jr_016_65bb:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $08
@@ -3348,7 +3348,7 @@ jr_016_65bb:
     ldh [$a5], a
     ld a, h
     ldh [$a6], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $06
@@ -3390,7 +3390,7 @@ jr_016_65bb:
 
 
 Call_016_661b:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
 
@@ -3425,7 +3425,7 @@ jr_016_6622:
     ldh [$d5], a
 
 jr_016_6651:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $08
@@ -3443,7 +3443,7 @@ jr_016_6651:
     ldh [$a5], a
     ld a, h
     ldh [$a6], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $06
@@ -3482,7 +3482,7 @@ jr_016_6651:
 
 
 Call_016_66ae:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
 
@@ -3517,7 +3517,7 @@ jr_016_66b5:
     ldh [$d5], a
 
 jr_016_66e4:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $06
@@ -3535,7 +3535,7 @@ jr_016_66e4:
     ldh [$a5], a
     ld a, h
     ldh [$a6], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $04
@@ -3841,7 +3841,7 @@ jr_016_6884:
 
 jr_016_689a:
     push bc
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]
@@ -4737,7 +4737,7 @@ Call_016_6dc1:
 
 
 Call_016_6ddb:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     and $03
     ld hl, $d9cf
@@ -4749,7 +4749,7 @@ Call_016_6ddb:
     ld de, $6e04
     push de
     push hl
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     and $0f
     pop hl
@@ -4781,7 +4781,7 @@ Call_016_6ddb:
     dec h
 
 Call_016_6e14:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]

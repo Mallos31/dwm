@@ -141,7 +141,7 @@ SECTION "ROM Bank $015", ROMX[$4000], BANK[$15]
     ld [$c8d6], a
     ld a, h
     ld [$c8d7], a
-    call Call_015_5e8b
+    call DrawWhiteScreen
     ld a, $24
     call Call_000_1ae1
     ld a, $07
@@ -215,7 +215,7 @@ Jump_015_413e:
     ld [$c8d6], a
     ld a, h
     ld [$c8d7], a
-    call Call_015_5e8b
+    call DrawWhiteScreen
     ld hl, $c0d8
     ld bc, $0017
     ld a, $ff
@@ -284,7 +284,7 @@ Jump_015_413e:
     ld [$c8d6], a
     ld a, h
     ld [$c8d7], a
-    call Call_015_5e8b
+    call DrawWhiteScreen
     ld a, $24
     call Call_000_1ae1
     ld a, $07
@@ -4651,7 +4651,7 @@ jr_015_5e82:
     ret
 
 
-Call_015_5e8b:
+DrawWhiteScreen:
     ld hl, $9800
     ld bc, $0400
 
@@ -4693,7 +4693,7 @@ jr_015_5e91:
     ld a, h
     ld [$c8d7], a
     call Call_015_5e7c
-    call Call_015_5e8b
+    call DrawWhiteScreen
     ld de, $2e0d
     ld hl, $9000
     call Call_000_1577

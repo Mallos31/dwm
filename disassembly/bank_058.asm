@@ -5237,7 +5237,7 @@ jr_058_5c18:
     ld [$c899], a
     ld a, h
     ld [$c89a], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]
@@ -5255,7 +5255,7 @@ Call_058_5c3e:
     or a
     jr nz, jr_058_5c18
 
-    call Call_000_12d0
+    call GenerateRNG
     ret
 
 

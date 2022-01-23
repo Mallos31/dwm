@@ -3811,7 +3811,7 @@ Call_052_5559:
     or a
     jr nz, jr_052_5563
 
-    call Call_000_12d0
+    call GenerateRNG
     ret
 
 
@@ -3825,7 +3825,7 @@ jr_052_5563:
     ld [$c899], a
     ld a, h
     ld [$c89a], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]
@@ -9598,7 +9598,7 @@ jr_052_74f1:
 
 
 Call_052_74fb:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$dd69]
     or a
     jr nz, jr_052_7514

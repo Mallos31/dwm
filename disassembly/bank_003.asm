@@ -9146,7 +9146,7 @@ Call_003_6e11:
     ret
 
 
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $0b
@@ -9176,7 +9176,7 @@ Call_003_6e11:
 
 
 Call_003_6ec4:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $0b
@@ -9219,7 +9219,7 @@ Call_003_6ef2:
     ret
 
 
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $0b
@@ -9555,7 +9555,7 @@ jr_003_712e:
 
 
 Call_003_7134:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]

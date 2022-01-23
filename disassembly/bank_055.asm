@@ -2565,19 +2565,19 @@ jr_055_4bdc:			;Likely inits data for the title screen
 
     ld a, $59				
     call Call_000_1b2c
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]			;possible RNG? Otherwise just some timer. 
     inc a
     ld [$da03], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     inc a
     ld [$da05], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     inc a
     ld [$da07], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $03
@@ -3874,7 +3874,7 @@ jr_055_53a5:
 Call_055_53f6:
     push af
     ld [$da14], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     and $3f
     inc a
@@ -3885,7 +3885,7 @@ Call_055_53f6:
     rst $10
     pop af
     push af
-    call Call_000_12d0
+    call GenerateRNG
     and $7f
     ld [$da31], a
     ld hl, $cad6
@@ -3895,7 +3895,7 @@ Call_055_53f6:
     push af
     pop af
     push af
-    call Call_000_12d0
+    call GenerateRNG
     and $7f
     ld [$da31], a
     ld hl, $cad7
@@ -3913,7 +3913,7 @@ Call_055_53f6:
     ld hl, $cac2
     call Call_055_54ac
     push af
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     and $07
     ld c, a
@@ -3921,7 +3921,7 @@ Call_055_53f6:
     ld hl, $cad8
     call Call_055_54ac
     push af
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     and $07
     ld c, a
@@ -3978,7 +3978,7 @@ Call_055_54ac:
     call Call_000_223b
     ld e, l
     ld d, h
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     and $0f
     pop bc

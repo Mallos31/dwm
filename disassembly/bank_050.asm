@@ -5581,7 +5581,7 @@ jr_050_6067:
     ld [$c899], a
     ld a, h
     ld [$c89a], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]

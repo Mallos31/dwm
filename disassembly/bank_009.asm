@@ -6564,7 +6564,7 @@ Call_009_688e:
 
 
 jr_009_68aa:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c8f4]
     sub $10
     ld [$da31], a

@@ -2615,7 +2615,7 @@ jr_007_512a:
 
 Call_007_5160:
 jr_007_5160:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $08
@@ -2633,7 +2633,7 @@ jr_007_5160:
     ldh [$a5], a
     ld a, h
     ldh [$a6], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $06

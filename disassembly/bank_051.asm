@@ -1608,7 +1608,7 @@ jr_051_4972:
     push bc
     push de
     push hl
-    call Call_000_12d0
+    call GenerateRNG
     pop hl
     pop de
     pop bc

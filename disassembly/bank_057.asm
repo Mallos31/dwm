@@ -12013,7 +12013,7 @@ Call_057_7f2c:
     or a
     jr nz, jr_057_7f38
 
-    call Call_000_12d0
+    call GenerateRNG
     jr jr_057_7f5d
 
 jr_057_7f38:
@@ -12026,7 +12026,7 @@ jr_057_7f38:
     ld [$c899], a
     ld a, h
     ld [$c89a], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]

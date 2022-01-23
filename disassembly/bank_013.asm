@@ -251,7 +251,7 @@ jr_013_41a1:
 Call_013_41a5:
     push de
     push bc
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]
@@ -11318,7 +11318,7 @@ jr_013_73cb:
     ldh [$d3], a
     ld hl, $c905
     inc [hl]
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $03

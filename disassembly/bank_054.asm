@@ -4783,7 +4783,7 @@ jr_054_55b7:
     ret
 
 
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$dd61]
     or a
     jr z, jr_054_5609
@@ -4946,7 +4946,7 @@ Call_054_5683:
     jr z, jr_054_56c7
 
     push hl
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]
@@ -4960,7 +4960,7 @@ Call_054_5683:
     call Call_000_2f45
     jr c, jr_054_56c7
 
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]

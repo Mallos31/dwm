@@ -2562,7 +2562,7 @@ jr_001_4cc0:
 Call_001_4d02:
     push af
     ld [$da14], a
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     and $3f
     inc a
@@ -2573,7 +2573,7 @@ Call_001_4d02:
     rst $10
     pop af
     push af
-    call Call_000_12d0
+    call GenerateRNG
     and $7f
     ld [$da31], a
     ld hl, $cad6
@@ -2583,7 +2583,7 @@ Call_001_4d02:
     push af
     pop af
     push af
-    call Call_000_12d0
+    call GenerateRNG
     and $7f
     ld [$da31], a
     ld hl, $cad7
@@ -2601,7 +2601,7 @@ Call_001_4d02:
     ld hl, $cac2
     call Call_001_4db8
     push af
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     and $07
     ld c, a
@@ -2609,7 +2609,7 @@ Call_001_4d02:
     ld hl, $cad8
     call Call_001_4db8
     push af
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     and $07
     ld c, a
@@ -2666,7 +2666,7 @@ Call_001_4db8:
     call Call_000_223b
     ld e, l
     ld d, h
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     and $0f
     pop bc
@@ -7716,7 +7716,7 @@ Call_001_696c:
 
 Call_001_6989:
     push hl		
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld l, a
     ld a, [$c89a]

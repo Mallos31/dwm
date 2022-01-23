@@ -7531,7 +7531,7 @@ jr_004_69cd:
     ld h, [hl]
     ld l, a
     push hl
-    call Call_000_12d0
+    call GenerateRNG
     pop hl
     push hl
     ld a, [$c899]
@@ -7547,7 +7547,7 @@ jr_004_69cd:
     ld [$da04], a
     pop hl
     push hl
-    call Call_000_12d0
+    call GenerateRNG
     pop hl
     push hl
     ld a, [$c899]
@@ -7563,7 +7563,7 @@ jr_004_69cd:
     ld [$da06], a
     pop hl
     push hl
-    call Call_000_12d0
+    call GenerateRNG
     pop hl
     push hl
     ld a, [$c899]
@@ -8199,7 +8199,7 @@ jr_004_6d9e:
 
 jr_004_6e1a:
     push hl
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     and $0f
     pop hl
@@ -8372,7 +8372,7 @@ jr_004_6f13:
 
 Call_004_6f35:
     push hl
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, l

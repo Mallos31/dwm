@@ -281,7 +281,7 @@ jr_014_4264:
     ld hl, $cacb
     ld de, $da33
     call Call_014_4793
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $05
@@ -324,7 +324,7 @@ jr_014_4264:
     jr nz, jr_014_42fe
 
     ld [hl], $00
-    call Call_000_12d0
+    call GenerateRNG
     ld hl, $459e
     ld a, [$da36]
     add l
@@ -1154,7 +1154,7 @@ jr_014_47f8:
 
 Call_014_47fd:
     push hl
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $34
@@ -1179,7 +1179,7 @@ Call_014_47fd:
 
 Call_014_4821:
     push hl
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $34
@@ -13263,7 +13263,7 @@ Call_014_7d03:
 
 
 Jump_014_7d55:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $0b
@@ -13277,7 +13277,7 @@ Jump_014_7d55:
 
 
 Jump_014_7d6d:
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $10
@@ -13322,7 +13322,7 @@ Call_014_7db7:
     bit 7, a
     ret nz
 
-    call Call_000_12d0
+    call GenerateRNG
     ld a, [$c899]
     ld b, a
     ld a, $1f

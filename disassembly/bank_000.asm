@@ -463,7 +463,7 @@ Call_000_02d9:
 jr_000_02db:
     ld a, [$c86c]
     or a
-    call z, Call_000_12d0
+    call z, GenerateRNG
     ld a, [$c88e]
 
 Call_000_02e5:
@@ -3885,7 +3885,7 @@ jr_000_12c8:
     ret
 
 
-Call_000_12d0:
+GenerateRNG:
     push hl
     push de
     ld a, [$c899]
