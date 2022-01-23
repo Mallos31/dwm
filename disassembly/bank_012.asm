@@ -5,42 +5,31 @@
 
 SECTION "ROM Bank $012", ROMX[$4000], BANK[$12]
 
-    ld [de], a
-    inc bc
-    ld b, b
-    ld a, [$c8ef]
-    rst $00
-    daa
-    ld b, b
-    daa
-    ld b, b
-    daa
-    ld b, b
-    dec l
-    ld b, h
-    daa
-    ld b, b
-    daa
-    ld b, b
-    daa
-    ld b, b
-    daa
-    ld b, b
-    ld h, c
-    ld h, b
-    ld b, d
-    ld l, b
-    cp $6a
-    daa
-    ld b, b
-    daa
-    ld b, b
-    daa
-    ld b, b
-    daa
-    ld b, b
-    daa
-    ld b, b
+INCLUDE "items.inc"
+
+    db $12 ;ROM Bank 
+
+    db $03, $40, $fa, $ef, $c8, $c7
+
+    ;function pointers
+    db $27, $40
+    db $27, $40
+    db $27, $40
+    db $2d, $44
+    db $27, $40
+    db $27, $40
+    db $27, $40
+    db $27, $40
+    db $61, $60
+    db $42, $68
+    db $fe, $6a
+    db $27, $40
+    db $27, $40
+    db $27, $40
+    db $27, $40
+    db $27, $40
+
+
     ret
 
 
@@ -7059,7 +7048,7 @@ jr_012_6a9f:
 
 jr_012_6b15:
     ld a, [hl]
-    cp $1e
+    cp TINY_MEDAL
     jr nz, jr_012_6b1d
 
     ld [hl], $ff
