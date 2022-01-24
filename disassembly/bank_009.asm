@@ -1379,24 +1379,26 @@ jr_009_46de:
 
     inc bc
     nop
+
+
     call Call_009_45e5
     ld hl, $c906
     inc [hl]
     ld a, [wMapID]
-    ld hl, $478c
+    ld hl, GateworldShopInventory
     cp $50
     jr z, jr_009_4754
 
     ld a, [$c925]
-    ld hl, $476b
+    ld hl, BazaarInventory
     cp $00
     jr z, jr_009_4754
 
-    ld hl, $4774
+    ld hl, StarryNightShopInventory
     cp $02
     jr z, jr_009_4754
 
-    ld hl, $477d
+    ld hl, BookstoreInventory
     cp $04
     jr z, jr_009_4754
 
@@ -1422,43 +1424,62 @@ jr_009_4763:
 
     jr jr_009_4763
 
-    ld bc, $0702
-    jr z, jr_009_4783
 
-    inc d
-    dec e
-    ld h, $ff
-    dec b
-    inc b
-    inc bc
-    inc c
-    ld a, [hl+]
-    dec hl
-    dec d
-    ld a, [de]
-    rst $38
-    rra
-    jr nz, @+$23
+BazaarInventory:
+    db HERB
+    db LOVEWATER
+    db ANTIDOTE
+    db REPELLANT
+    db BEEF_JERKY
+    db PORK_CHOP
+    db WARP_WING
+    db BEAST_TAIL
+    db $ff
+    
 
-    ld [hl+], a
-    inc hl
-    inc h
+StarryNightShopInventory:
+    db POTION
+    db WORLD_DEW
+    db SAGE_STONE
+    db WORLD_LEAF
+    db MAP_HERB
+    db BOOK_MARK
+    db RIB
+    db MIST_STAFF
+    db $ff
 
-jr_009_4783:
-    rst $38
-    rla
-    add hl, hl
-    add hl, de
-    dec de
-    jr jr_009_47a6
+BookstoreInventory:
+    db QUEST_BK
+    db HORROR_BK
+    db BENICE_BK
+    db CHEATER_BK
+    db SMART_BK
+    db COMEDY_BK
+    db $ff
 
-    dec h
-    rst $38
-    ld bc, $0702
-    ld [$090b], sp
-    ld a, [bc]
-    inc c
-    rst $38
+
+    db SIRLOIN
+    db SHINY_HARP
+    db WIND_STAFF
+    db LAVA_STAFF
+    db BOLT_STAFF
+    db SNOW_STAFF
+    db FIRE_STAFF
+    db $ff
+
+
+GateworldShopInventory:
+    db HERB
+    db LOVEWATER
+    db ANTIDOTE
+    db MOON_HERB
+    db AWAKE_SAND
+    db SKY_BELL
+    db LAUREL
+    db WORLD_LEAF
+    db $ff
+    
+
     ld a, [$c825]
     or a
     ret nz

@@ -4537,7 +4537,10 @@ ROMX bank #9:
            $46de = jr_009_46de
            $4754 = jr_009_4754
            $4763 = jr_009_4763
-           $4783 = jr_009_4783
+           $476b = BazaarInventory
+           $4774 = StarryNightShopInventory
+           $477d = BookstoreInventory
+           $478c = GateworldShopInventory
            $47a6 = jr_009_47a6
            $47a8 = Call_009_47a8
            $47cd = Call_009_47cd

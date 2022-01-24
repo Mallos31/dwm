@@ -4500,7 +4500,10 @@
 09:46de jr_009_46de
 09:4754 jr_009_4754
 09:4763 jr_009_4763
-09:4783 jr_009_4783
+09:476b BazaarInventory
+09:4774 StarryNightShopInventory
+09:477d BookstoreInventory
+09:478c GateworldShopInventory
 09:47a6 jr_009_47a6
 09:47a8 Call_009_47a8
 09:47cd Call_009_47cd
