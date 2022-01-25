@@ -48,17 +48,17 @@ jr_016_402d:
     call Call_016_41b1
     ld bc, $0095
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $caea
     call Call_016_41b1
     ld bc, $0008
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $caf2
     call Call_016_41b1
     ld bc, $0019
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $cac1
     call Call_016_41b1
     ld [hl], $01
@@ -1213,7 +1213,7 @@ jr_016_4749:
     ld hl, $c0d8
     ld bc, $0019
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $caca
     call Call_016_47e0
     ld a, [hl]
@@ -1934,7 +1934,7 @@ jr_016_5c98:
     ld hl, $d9cf
     ld bc, $0008
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_016_6ddb
     call Call_016_5c45
     ret
@@ -2466,11 +2466,11 @@ jr_016_6002:
     ld hl, $c950
     ld bc, $0010
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c940
     ld bc, $0010
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$c93f]
     cp $02
     jr nz, jr_016_60b9
@@ -2927,7 +2927,7 @@ jr_016_62f1:
     ld hl, $c100
     ld bc, $0010
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$c938]
     ld hl, $732f
     add a
@@ -3774,7 +3774,7 @@ jr_016_6826:
     ld hl, $c0a0
     ld bc, $0005
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c501
 
 jr_016_6837:

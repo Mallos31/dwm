@@ -36,7 +36,7 @@ Jump_014_4000:
     call Call_000_223b
     ld bc, $0095
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $cad6
     ld a, [$da14]
     call Call_000_223b
@@ -48,13 +48,13 @@ Jump_014_4000:
     call Call_000_223b
     ld bc, $0008
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $caf2
     ld a, [$da14]
     call Call_000_223b
     ld bc, $0019
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $cb44
     ld de, $477a
     ld b, $08
@@ -94,7 +94,7 @@ Jump_014_4000:
     call Call_000_223b
     ld bc, $0095
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $cad6
     ld a, [$da14]
     call Call_000_223b
@@ -106,13 +106,13 @@ Jump_014_4000:
     call Call_000_223b
     ld bc, $0008
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $caf2
     ld a, [$da14]
     call Call_000_223b
     ld bc, $0019
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $cb44
     ld de, $477a
     ld b, $08
@@ -13441,7 +13441,7 @@ Jump_014_7e8a:
     ld hl, $c950
     ld bc, $0010
     ld a, $01
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ret
 
 

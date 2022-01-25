@@ -22,11 +22,11 @@ SECTION "ROM Bank $015", ROMX[$4000], BANK[$15]
     xor a
     ld hl, wMenu_selection
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c827
     ld bc, $0012
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $99c1
     ld a, l
     ld [$c83e], a
@@ -35,7 +35,7 @@ SECTION "ROM Bank $015", ROMX[$4000], BANK[$15]
     xor a
     ld hl, $c8d2
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_000_1264
     xor a
     ld [$c8c7], a
@@ -105,11 +105,11 @@ SECTION "ROM Bank $015", ROMX[$4000], BANK[$15]
     ld hl, $ff8a
     ld bc, $0021
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c8ea
     ld bc, $1100
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $04
     ld [wTextSpeed], a
     call Call_015_60df
@@ -131,11 +131,11 @@ SECTION "ROM Bank $015", ROMX[$4000], BANK[$15]
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c8d2
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $9800
     ld a, l
     ld [$c8d6], a
@@ -205,11 +205,11 @@ Jump_015_413e:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c8d2
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $9800
     ld a, l
     ld [$c8d6], a
@@ -219,7 +219,7 @@ Jump_015_413e:
     ld hl, $c0d8
     ld bc, $0017
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $24
     call Call_000_1ae1
     ld a, $07
@@ -274,11 +274,11 @@ Jump_015_413e:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c8d2
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $9800
     ld a, l
     ld [$c8d6], a
@@ -838,11 +838,11 @@ jr_015_461d:
     ld hl, $ff8a
     ld bc, $0021
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c8ea
     ld bc, $1100
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $04
     ld [wTextSpeed], a
     xor a
@@ -1075,7 +1075,7 @@ Call_015_476f:
     ld hl, $c0d8
     ld bc, $0014
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld de, $cac1
     ld b, $14
@@ -1916,7 +1916,7 @@ Call_015_4cec:
     ld hl, $c0d8
     ld bc, $0014
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld de, $cac1
     ld b, $14
@@ -3176,7 +3176,7 @@ Call_015_54e9:
     ld hl, $c0d8
     ld bc, $0014
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld de, $cac1
     ld b, $14
@@ -4669,7 +4669,7 @@ jr_015_5e91:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ldh a, [$bb]
     ld l, a
     ld h, $00

@@ -44,7 +44,7 @@ SECTION "ROM Bank $001", ROMX[$4000], BANK[$1]
     xor a
     ld hl, $c827
     ld bc, $0012
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_000_3331
     xor a
     ld [wCurrPlayingBGM], a
@@ -332,7 +332,7 @@ Call_001_421c:
     ld hl, $d92a
     ld bc, $00c0
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [wInGateworld]
     or a
     jr nz, jr_001_427d
@@ -375,11 +375,11 @@ jr_001_4291:
     ld hl, wInventory
     ld bc, $0014
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, wBankSlots
     ld bc, $0028
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $cac1
     ld b, $14
     ld de, $0095
@@ -1461,7 +1461,7 @@ jr_001_4798:
     ld hl, $c0d8
     ld bc, $0014
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld de, $cac1
     ld b, $14
@@ -1634,7 +1634,7 @@ jr_001_4869:
     ld hl, wDebug_main_menu_option
     ld bc, $0004
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$ca8d]
     or a
     jr z, jr_001_48c1
@@ -2423,7 +2423,7 @@ Call_001_4c10:
     ld hl, $d8e9
     ld bc, $0040
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld [$d9cb], a
     ld [$d9cc], a

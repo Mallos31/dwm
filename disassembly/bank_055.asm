@@ -2185,7 +2185,7 @@ Call_055_4924:
     ld hl, wDebug_main_menu_option
     ld bc, $0010
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld [wMenu_selection], a
     call Call_055_496c
@@ -2269,7 +2269,7 @@ Call_055_496c:
     ld hl, $9800
     ld bc, $0400
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $9887
     ld a, $80
     ld b, $06
@@ -3121,9 +3121,11 @@ Call_055_4f8f:
     ret
 
 
-    ld a, [wJoypad_current_frame]
+
+
+    ld a, [wJoypad_current_frame]   ;check if start is pressed
     and $08
-    jr z, jr_055_4fd2
+    jr z, jr_055_4fd2              
 
     ld a, [wMenu_selection]
     or a
@@ -3264,11 +3266,11 @@ jr_055_506f:
     pop bc
     push bc
     ld a, c
-    ld bc, $50d4
+    ld bc, SE_IDS
     cp $02
     jr nz, jr_055_507c
 
-    ld bc, $50b4
+    ld bc, BGM_IDS
 
 jr_055_507c:
     ld a, [de]
@@ -3324,103 +3326,109 @@ jr_055_50b2:
     ret
 
 
-    ld [bc], a
-    ld b, $09
-    inc c
-    rrca
-    ld [de], a
-    dec d
-    jr jr_055_50d8
+    BGM_IDS:
+    db $02 
+    db $06
+    db $09
+    db $0c
+    db $0f
+    db $12
+    db $15
+    db $18
+    db $1b
+    db $1e
+    db $21
+    db $24
+    db $27
+    db $2b
+    db $2e
+    db $31
+    db $34
+    db $37
+    db $3a
+    db $3c
+    db $3f
+    db $41
+    db $44
+    db $47
+    db $49
+    db $4b
+    db $4d
+    db $4f
+    db $9f
+    db $00
+    db $00
+    db $00
 
-    ld e, $21
-    inc h
-    daa
-    dec hl
-    ld l, $31
-    inc [hl]
-    scf
-    ld a, [hl-]
-    inc a
-    ccf
-    ld b, c
-    ld b, h
-    ld b, a
-    ld c, c
-    ld c, e
-    ld c, l
-    ld c, a
-    sbc a
-    nop
-    nop
-    nop
-    nop
-    ld d, c
-    ld d, d
-    ld d, e
-
-jr_055_50d8:
-    ld d, h
-    ld d, l
-    ld d, [hl]
-    ld d, a
-    ld e, c
-    ld e, d
-    ld e, e
-    ld e, h
-    ld e, l
-    ld e, a
-    ld h, b
-    ld h, c
-    ld h, h
-    ld h, l
-    ld h, [hl]
-    ld h, a
-    ld l, b
-    ld l, c
-    ld l, e
-    ld l, h
-    ld l, l
-    ld l, [hl]
-    ld l, a
-    ld [hl], b
-    ld [hl], c
-    ld [hl], d
-    ld [hl], e
-    ld [hl], h
+SE_IDS:
+    db $00
+    db $51
+    db $52
+    db $53
+    db $54
+    db $55
+    db $56
+    db $57
+    db $59
+    db $5a
+    db $5b
+    db $5c
+    db $5d
+    db $5f
+    db $60
+    db $61
+    db $64
+    db $65
+    db $66
+    db $67
+    db $68
+    db $69
+    db $6b
+    db $6c
+    db $6d
+    db $6e
+    db $6f
+    db $70
+    db $71
+    db $72
+    db $73
+    db $74
     db $76
-    ld a, b
-    ld a, d
-    ld a, e
-    ld a, h
-    ld a, [hl]
-    ld a, a
-    add b
-    add c
-    add d
-    add e
-    add h
-    add l
-    add [hl]
-    adc b
-    adc c
-    adc d
-    adc h
-    adc l
-    adc [hl]
-    adc a
-    sub b
-    sub d
-    sub e
-    sub h
-    sub l
-    sub [hl]
-    sub a
-    sbc c
-    sbc e
-    sbc h
-    sbc l
-    nop
-    nop
+    db $78
+    db $7a
+    db $7b
+    db $7c
+    db $7e
+    db $7f
+    db $80
+    db $81
+    db $82
+    db $83
+    db $84
+    db $85
+    db $86
+    db $88
+    db $89
+    db $8a
+    db $8c
+    db $8d
+    db $8e
+    db $8f
+    db $90
+    db $92
+    db $93
+    db $94
+    db $95
+    db $96
+    db $97
+    db $99
+    db $9b
+    db $9c
+    db $9d
+    db $00
+    db $00
+
+   
     ld a, [wJoypad_current_frame]
     and $08
     jr z, jr_055_5162

@@ -159,7 +159,7 @@ Call_051_4107:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_051_419f
     ld a, $04
     ld [$db89], a
@@ -224,7 +224,7 @@ jr_051_4174:
     xor a
     ld hl, $d9f4
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $9800
     ld a, l
     ld [$d9f8], a
@@ -365,23 +365,23 @@ jr_051_4257:
     xor a
     ld hl, $db00
     ld bc, $0073
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $dd1b
     ld bc, $0008
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $db8b
     ld bc, $00d9
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $dc3c
     ld bc, $0008
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $ff
     ld hl, $dd03
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$db74]
     or a
     jr z, jr_051_42ae
@@ -391,27 +391,27 @@ jr_051_4257:
     xor a
     ld hl, $dd03
     push bc
-    call Call_000_12c7
+    call FillNBytesWithRegA
     pop bc
     ld hl, $c876
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
 
 jr_051_42ae:
     ld hl, $d9fc
     ld bc, $0006
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$d929]
     ld [$d9fd], a
     xor a
     ld hl, $dd0b
     ld bc, $0010
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $ff
     ld hl, $dc64
     ld bc, $0080
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $ff
     ld hl, $c1ca
     ld [hl+], a
@@ -445,11 +445,11 @@ jr_051_42ee:
     ld a, $ff
     ld hl, $dce4
     ld bc, $0018
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $dcfc
     ld bc, $0007
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $ffff
     ld a, l
     ld [$db77], a
@@ -458,7 +458,7 @@ jr_051_42ee:
     xor a
     ld hl, $db4c
     ld bc, $0027
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $000a
     ld a, l
     ld [$db83], a
@@ -480,7 +480,7 @@ jr_051_42ee:
     ld c, a
     or a
     ld a, $00
-    call nz, Call_000_12c7
+    call nz, FillNBytesWithRegA
 
 jr_051_4358:
     call Call_051_499f
@@ -531,17 +531,17 @@ jr_051_4393:
     ld hl, wMenu_selection
     ld bc, $0008
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c1c0
     ld bc, $000f
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $00
     ld [$c1c2], a
     ld hl, $c1cd
     ld bc, $0008
     ld a, $80
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_051_548c
     call Call_051_5507
     ld hl, $d9ed
@@ -3640,7 +3640,7 @@ Call_051_548c:
     ld hl, $da33
     ld bc, $002b
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     pop hl
     pop bc
     ret
@@ -3659,11 +3659,11 @@ Call_051_549b:
     ld hl, $c500
     ld bc, $00c0
     ld a, $e0
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $db02
     ld bc, $0040
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$ca8d]
     ld [$db74], a
     ld [$c1d9], a
@@ -3711,7 +3711,7 @@ Call_051_5507:
     ld a, $ff
     ld hl, $da0a
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ret
 
 
@@ -3866,11 +3866,11 @@ jr_051_55b7:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $d9f4
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $9800
     ld a, l
     ld [$d9f8], a
@@ -4074,7 +4074,7 @@ jr_051_572e:
     ld hl, $c0d8
     ld bc, $0028
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$cac0]
     ld hl, $caea
     call Call_000_223b
@@ -4228,7 +4228,7 @@ Call_051_580d:
     ld hl, wDebug_main_menu_option
     ld bc, $0028
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld de, wDebug_main_menu_option
     ld b, $28
@@ -4934,11 +4934,11 @@ jr_051_5cb8:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $d9f4
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $9800
     ld a, l
     ld [$d9f8], a
@@ -5068,7 +5068,7 @@ jr_051_5dbc:
     ld hl, wOPTN_and_Item_selection
     ld bc, $0007
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
 
 jr_051_5de3:
     ret
@@ -5194,7 +5194,7 @@ jr_051_5ea5:
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, wOPTN_and_Item_selection
     set 7, [hl]
     inc hl
@@ -5306,7 +5306,7 @@ Call_051_5f64:
     ld hl, $c0d8
     ld bc, $0014
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld de, $cac1
     ld b, $14
@@ -6140,7 +6140,7 @@ Call_051_64ac:
     ld hl, $c0d8
     ld bc, $0004
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld a, [$ca8e]
     cp $ff

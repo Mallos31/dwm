@@ -52,7 +52,7 @@ Call_050_4017:
     xor a
     ld hl, $d9f4
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $9800
     ld a, l
     ld [$d9f8], a
@@ -236,7 +236,7 @@ jr_050_412d:
     ld hl, wOPTN_and_Item_selection
     ld bc, $0007
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [wMenu_selection]
     and $0f
     cp $01
@@ -5036,7 +5036,7 @@ Call_050_5d9f:
     ld a, $ff
     ld hl, $db79
     ld bc, $000a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld b, $08
     ld c, $00
     ld h, $00
@@ -5077,11 +5077,11 @@ jr_050_5dc8:
     xor a
     ld hl, wMenu_selection
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c827
     ld bc, $0012
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $99c1
     ld a, l
     ld [$c83e], a
@@ -5090,11 +5090,11 @@ jr_050_5dc8:
     xor a
     ld hl, $d9ec
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $d9f4
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld [$d9ed], a
     ld [$dd62], a
@@ -5430,7 +5430,7 @@ jr_050_5fa3:
     ld hl, $db42
     ld bc, $0008
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$db74]
     ld b, a
     ld c, $00

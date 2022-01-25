@@ -8745,7 +8745,7 @@ jr_057_6e50:
     ld hl, $dce4
     ld bc, $0008
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$db88]
     ld hl, $dd13
     add l
@@ -8760,7 +8760,7 @@ jr_057_6e50:
     ld hl, $dcfc
     ld bc, $0007
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld [$db50], a
     ld [$db51], a

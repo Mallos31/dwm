@@ -1230,7 +1230,7 @@ Call_009_45e5:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ldh a, [$bb]
     ld l, a
     ld h, $00
@@ -1324,11 +1324,11 @@ jr_009_46ad:
     ld hl, wOPTN_and_Item_selection
     ld bc, $0007
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     jr jr_009_46de
 
 jr_009_46de:
@@ -1386,43 +1386,43 @@ jr_009_46de:
     inc [hl]
     ld a, [wMapID]
     ld hl, GateworldShopInventory
-    cp $50
-    jr z, jr_009_4754
+    cp $50  ;ID for gateworld shop map
+    jr z, .clear_shop_inventory
 
     ld a, [$c925]
     ld hl, BazaarInventory
     cp $00
-    jr z, jr_009_4754
+    jr z, .clear_shop_inventory
 
     ld hl, StarryNightShopInventory
     cp $02
-    jr z, jr_009_4754
+    jr z, .clear_shop_inventory
 
     ld hl, BookstoreInventory
     cp $04
-    jr z, jr_009_4754
+    jr z, .clear_shop_inventory
 
-    ld hl, $4784
+    ld hl, RareItemShopInventory
     cp $05
-    jr z, jr_009_4754
+    jr z, .clear_shop_inventory
 
-jr_009_4754:
+.clear_shop_inventory:
     push hl
-    ld hl, $c0d8
-    ld bc, $0014
+    ld hl, $c0d8 ;shop inventory
+    ld bc, $0014 
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     pop hl
     ld de, $c0d8
 
-jr_009_4763:
+.fill_inventory_loop:
     ld a, [hl+]
     ld [de], a
     inc de
     cp $ff
     ret z
 
-    jr jr_009_4763
+    jr .fill_inventory_loop
 
 
 BazaarInventory:
@@ -1457,7 +1457,7 @@ BookstoreInventory:
     db COMEDY_BK
     db $ff
 
-
+RareItemShopInventory:
     db SIRLOIN
     db SHINY_HARP
     db WIND_STAFF
@@ -1984,11 +1984,11 @@ jr_009_4ac2:
     ld hl, wOPTN_and_Item_selection
     ld bc, $0007
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $00
     ld [$c906], a
     ret
@@ -2216,11 +2216,11 @@ Call_009_4c24:
     ld hl, $d665
     ld bc, $0030
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld bc, $0014
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld de, wInventory
     ld b, $14
 
@@ -2618,11 +2618,11 @@ jr_009_4eb4:
     ld hl, wOPTN_and_Item_selection
     ld bc, $0007
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $00
     ld [$c906], a
     ret
@@ -2668,7 +2668,7 @@ jr_009_4eb4:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ldh a, [$bb]
     ld l, a
     ld h, $00
@@ -2785,7 +2785,7 @@ jr_009_4fdc:
     ld hl, wOPTN_and_Item_selection
     ld bc, $0007
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $0003
     ld a, [wMenu_selection]
     and $7f
@@ -2895,11 +2895,11 @@ jr_009_50b8:
     ld hl, wPLAN_selection
     ld bc, $0006
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
 
 jr_009_50e7:
     ret
@@ -3024,11 +3024,11 @@ Call_009_5199:
     ld hl, $d665
     ld bc, $0030
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld bc, $0028
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld de, wInventory
     ld b, $14
 
@@ -3333,11 +3333,11 @@ jr_009_5375:
     ld hl, wPLAN_selection
     ld bc, $0006
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $00
     ld [$c906], a
     ret
@@ -3633,11 +3633,11 @@ Call_009_5598:
     ld hl, $d665
     ld bc, $0030
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld bc, $0028
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld de, wBankSlots
     ld b, $28
 
@@ -3911,11 +3911,11 @@ jr_009_5753:
     ld hl, wPLAN_selection
     ld bc, $0006
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $00
     ld [$c906], a
     ret
@@ -4469,7 +4469,7 @@ jr_009_5af2:
     ld hl, wBankSlots
     ld bc, $0028
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $d665
     ld de, wBankSlots
     ld b, $28
@@ -4576,7 +4576,7 @@ jr_009_5b5e:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ldh a, [$bb]
     ld l, a
     ld h, $00
@@ -4620,11 +4620,11 @@ jr_009_5b5e:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$cab4]
     and $03
     ld [$c8e2], a
@@ -4681,7 +4681,7 @@ Call_009_5c28:
     ld hl, $c0d8
     ld bc, $0008
     ld a, $90
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$cab4]
     or a
     ret z
@@ -5110,7 +5110,7 @@ jr_009_5ea0:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ldh a, [$bb]
     ld l, a
     ld h, $00
@@ -5350,7 +5350,7 @@ Call_009_604d:
     ld hl, $c0d8
     ld bc, $0010
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld de, $609e
     ld b, $00
@@ -5562,12 +5562,12 @@ jr_009_6155:
     ld hl, $c0c8
     ld bc, $0010
     ld a, $9f
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_009_621f
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ldh a, [$bb]
     ld l, a
     ld h, $00
@@ -6481,7 +6481,7 @@ jr_009_67d6:
     ld h, a
     ld bc, $0008
     ld a, $f0
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$c8f2]
     ld l, a
     ld a, [$c8f3]

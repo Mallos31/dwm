@@ -652,7 +652,7 @@ jr_007_43f6:
     ld hl, $c5a0
     ld bc, $0100
     ld a, $e0
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_007_690d
     call Call_007_405c
     call Call_007_690d
@@ -688,7 +688,7 @@ jr_007_442c:
     ld hl, wOPTN_and_Item_selection
     ld bc, $0007
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_007_4469
 
 jr_007_445c:
@@ -5142,22 +5142,22 @@ jr_007_60a5:
     call Call_007_6880
     ld bc, $0011
     ld a, $e0
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $0041
     call Call_007_6880
     ld bc, $0011
     ld a, $e0
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $0061
     call Call_007_6880
     ld bc, $0011
     ld a, $e0
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $0081
     call Call_007_6880
     ld bc, $0011
     ld a, $e0
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $0044
     call Call_007_6880
     ld b, $0a
@@ -6783,7 +6783,7 @@ jr_007_6aa4:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
 
 Call_007_6aba:
     ld hl, $ffb7

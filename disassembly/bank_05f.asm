@@ -37,7 +37,7 @@ SECTION "ROM Bank $05f", ROMX[$4000], BANK[$5f]
     ld hl, $9800
     ld bc, $0400
     ld a, $e0
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$c88b]
     rst $00
     add hl, sp
@@ -62,7 +62,7 @@ SECTION "ROM Bank $05f", ROMX[$4000], BANK[$5f]
     ld bc, $0028
 
 jr_05f_4067:
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_05f_439d
     call Call_05f_43ba
     ld a, $fc
@@ -87,7 +87,7 @@ jr_05f_4067:
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $8800
     ld bc, $0800
     call Call_05f_40eb
@@ -700,11 +700,11 @@ Call_05f_43ba:
     xor a
     ld hl, $9800
     ld bc, $0400
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld de, $560e
     ld hl, $9000
     call Call_000_14cf
@@ -735,11 +735,11 @@ jr_05f_4469:
     xor a
     ld hl, $9800
     ld bc, $0400
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld de, $560c
     ld hl, $9000
     call Call_000_14cf
@@ -768,11 +768,11 @@ jr_05f_4469:
     xor a
     ld hl, $9800
     ld bc, $0400
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld de, $5b1f
     ld hl, $9000
     call Call_000_14cf
@@ -798,11 +798,11 @@ jr_05f_4469:
     xor a
     ld hl, $9800
     ld bc, $0400
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $ff
     ld hl, $9000
     ld bc, $0010
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld de, $5b18
     ld hl, $8000
     call Call_000_1577
@@ -825,7 +825,7 @@ jr_05f_4469:
     ld a, [$c81d]
     or a
     ld a, $00
-    call nz, Call_000_12c7
+    call nz, FillNBytesWithRegA
     ld a, $00
     ldh [rVBK], a
     ret
@@ -834,11 +834,11 @@ jr_05f_4469:
     xor a
     ld hl, $9800
     ld bc, $0400
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld de, $5b20
     ld hl, $9000
     call Call_000_14cf
@@ -867,11 +867,11 @@ jr_05f_4469:
     xor a
     ld hl, $9800
     ld bc, $0400
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld de, $5b20
     ld hl, $9000
     call Call_000_1577
@@ -1711,7 +1711,7 @@ jr_05f_4ae8:
     xor a
     ld hl, $da82
     ld bc, $0006
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld b, $03
     ld a, [$c863]
     bit 1, a
@@ -1736,7 +1736,7 @@ jr_05f_4b0b:
     xor a
     ld hl, $da82
     ld bc, $0006
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $04
     ld [$da83], a
     ret
@@ -5127,11 +5127,11 @@ jr_05f_5bb0:
     xor a
     ld hl, wMenu_selection
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c827
     ld bc, $0012
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_000_1264
     ld hl, $c817
     ld [hl], $00
@@ -5142,11 +5142,11 @@ jr_05f_5bb0:
     ld a, $e0
     ld hl, $c500
     ld bc, $0240
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $da82
     ld bc, $0006
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld de, $ff00
     ld hl, $9000
     ld bc, $0120
@@ -5538,7 +5538,7 @@ Jump_05f_5e87:
     xor a
     ld hl, $da82
     ld bc, $0006
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$c8e1]
     ld [$da83], a
     jr jr_05f_5e27
@@ -6395,7 +6395,7 @@ Call_05f_633d:
     xor a
     ld hl, $db4f
     ld bc, $0003
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ret
 
 

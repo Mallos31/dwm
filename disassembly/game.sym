@@ -479,7 +479,7 @@
 00:1288 Call_000_1288
 00:1296 Call_000_1296
 00:12a5 Call_000_12a5
-00:12c7 Call_000_12c7
+00:12c7 FillNBytesWithRegA
 00:12c8 jr_000_12c8
 00:12d0 GenerateRNG
 00:12ee Call_000_12ee
@@ -4498,11 +4498,12 @@
 09:465a Call_009_465a
 09:46ad jr_009_46ad
 09:46de jr_009_46de
-09:4754 jr_009_4754
-09:4763 jr_009_4763
+09:4754 jr_009_46de.clear_shop_inventory
+09:4763 jr_009_46de.fill_inventory_loop
 09:476b BazaarInventory
 09:4774 StarryNightShopInventory
 09:477d BookstoreInventory
+09:4784 RareItemShopInventory
 09:478c GateworldShopInventory
 09:47a6 jr_009_47a6
 09:47a8 Call_009_47a8
@@ -22066,7 +22067,8 @@
 55:5098 Call_055_5098
 55:50ab jr_055_50ab
 55:50b2 jr_055_50b2
-55:50d8 jr_055_50d8
+55:50b4 BGM_IDS
+55:50d4 SE_IDS
 55:5139 jr_055_5139
 55:5139 Jump_055_5139
 55:5162 jr_055_5162

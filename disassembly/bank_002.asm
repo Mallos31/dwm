@@ -3218,7 +3218,7 @@ jr_002_4bf3:
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $02
     ld [$c81e], a
     ld hl, $170b
@@ -3279,11 +3279,11 @@ jr_002_4bf3:
     ld a, $ff
     ld hl, $9c00
     ld bc, $0040
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $03
     ld [$c81e], a
     ld hl, $170b
@@ -3337,11 +3337,11 @@ jr_002_4bf3:
     ld a, $ff
     ld hl, $9c00
     ld bc, $0040
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $03
     ld [$c81e], a
     ld hl, $170b
@@ -3395,11 +3395,11 @@ jr_002_4bf3:
     ld a, $ff
     ld hl, $9c00
     ld bc, $0040
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $04
     ld [$c81e], a
     ld hl, $170b
@@ -5513,7 +5513,7 @@ Call_002_5fa7:
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_002_6a37
     call Call_002_6a3d
     call Call_002_6a43

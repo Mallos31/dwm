@@ -1840,11 +1840,11 @@ Call_056_490f:
     ld hl, wDebug_main_menu_option
     ld bc, $0010
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $9c00
     ld bc, $0400
     ld a, $1f
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $9c00
     ld bc, $1204
     ld a, $80
@@ -1979,7 +1979,7 @@ Call_056_4a23:
     ld hl, $9800
     ld bc, $0400
     ld a, $1f
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ret
 
 

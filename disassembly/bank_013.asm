@@ -11274,7 +11274,7 @@ jr_013_7381:
     xor a
     ld hl, $c905
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $ffb7
     call Call_013_774f
     ld hl, $ffbb
@@ -11282,7 +11282,7 @@ jr_013_7381:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ldh a, [$bb]
     ld l, a
     ld h, $00

@@ -276,7 +276,7 @@ InitGameData:
     ld hl, $8000
     ld bc, $1c00
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, wGameMode ;c88a
     xor a
     ld [hl+], a
@@ -3529,7 +3529,7 @@ Call_000_10e5:
     ld hl, $8800
     ld bc, $1000
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     pop de
     ld a, $e4
     ldh [rBGP], a
@@ -3839,13 +3839,13 @@ Call_000_1288:
     ld hl, $c000
     ld bc, $1e00
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
 
 Call_000_1296:
     ld hl, $ff8a
     ld bc, $0074
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     pop af
     ld [$c81d], a
     ret
@@ -3855,7 +3855,7 @@ Call_000_12a5:
     ld hl, $9800
     ld bc, $0800
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$c81d]
     or a
     ret z
@@ -3865,13 +3865,13 @@ Call_000_12a5:
     ld hl, $9800
     ld bc, $0800
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $00
     ldh [rVBK], a
     ret
 
 
-Call_000_12c7:
+FillNBytesWithRegA:
     ld d, a
 
 jr_000_12c8:
@@ -4124,7 +4124,7 @@ Call_000_1417:
     ldh [$cb], a
     ld hl, $c000
     ld bc, $00a0
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ret
 
 
@@ -6204,7 +6204,7 @@ Call_000_1ed5:
     ld hl, $c777
     ld bc, $0020
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, $20
     ld [$c777], a
     ld a, $00
@@ -7564,7 +7564,7 @@ Call_000_2518:
     ld hl, $c1c0
     ld bc, $0040
     ld a, $dc
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ret
 
 
@@ -7576,7 +7576,7 @@ Call_000_252d:
 
 Jump_000_2530:
     ld a, $e0
-    call Call_000_12c7
+    call FillNBytesWithRegA
 
 Call_000_2535:
 Jump_000_2535:

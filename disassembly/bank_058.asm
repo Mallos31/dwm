@@ -437,7 +437,7 @@ SECTION "ROM Bank $058", ROMX[$4000], BANK[$58]
     ld hl, $db56
     ld bc, $0008
     xor a
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_058_654d
     ret z
 
@@ -3767,15 +3767,15 @@ Call_058_54ce:
     ld hl, $db79
     ld bc, $0009
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $db4c
     ld bc, $0009
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $db61
     ld bc, $0010
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld [$db82], a
     ld [$db55], a

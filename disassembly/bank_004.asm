@@ -8446,7 +8446,7 @@ jr_004_6f82:
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     jp Jump_004_55f5
 
 

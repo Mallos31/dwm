@@ -73,7 +73,7 @@ jr_00b_4037:
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
 
 jr_00b_4076:
     pop hl
@@ -1384,7 +1384,7 @@ jr_00b_471b:
     ld hl, $d7d2
     ld bc, $0101
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_00b_482b
     ld a, $ff
     ld [$d7d2], a

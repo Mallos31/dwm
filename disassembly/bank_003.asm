@@ -9496,7 +9496,7 @@ Call_003_6ef2:
     ld hl, $c950
     ld bc, $0010
     ld a, $01
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_003_7134
     ret
 
@@ -9595,7 +9595,7 @@ jr_003_7168:
     ld hl, wInventory
     ld bc, $0014
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld de, wInventory
     ld b, $14

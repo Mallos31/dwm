@@ -654,7 +654,7 @@ Call_019_4357:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ldh a, [$bb]
     ld l, a
     ld h, $00

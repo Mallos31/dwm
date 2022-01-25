@@ -18,15 +18,15 @@ SECTION "ROM Bank $018", ROMX[$4000], BANK[$18]
     xor a
     ld hl, $c8da
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c827
     ld bc, $0012
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c8d2
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $9800
     ld a, l
     ld [$c8d6], a
@@ -49,7 +49,7 @@ SECTION "ROM Bank $018", ROMX[$4000], BANK[$18]
     ld hl, $9800
     ld bc, $0400
     ld a, $e0
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld de, $3f03
     ld hl, $8800
     call jr_000_14cf
@@ -1317,7 +1317,7 @@ Call_018_471e:
     ld hl, $c0d8
     ld bc, $0014
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld de, $cac1
     ld b, $00

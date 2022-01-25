@@ -873,7 +873,7 @@ Call_012_441f:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ldh a, [$bb]
     ld l, a
     ld h, $00
@@ -980,11 +980,11 @@ jr_012_4500:
     ld hl, wOPTN_and_Item_selection
     ld bc, $0007
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     jr jr_012_4531
 
 jr_012_4531:
@@ -2144,7 +2144,7 @@ Call_012_4ce5:
     ld hl, $c0d8
     ld bc, $0014
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld de, $cac1
     ld b, $14
@@ -3517,7 +3517,7 @@ jr_012_562d:
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c906
     inc [hl]
 
@@ -3602,7 +3602,7 @@ Call_012_56a6:
     ld hl, $c0d8
     ld bc, $0014
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld de, $cac1
     ld b, $14
@@ -4174,7 +4174,7 @@ jr_012_5a55:
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_012_5a75
     ld hl, $c906
     inc [hl]
@@ -4276,7 +4276,7 @@ Call_012_5aee:
     ld hl, $c0d8
     ld bc, $0014
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c0d8
     ld de, $cac1
     ld b, $14
@@ -5158,7 +5158,7 @@ Call_012_6052:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ldh a, [$bb]
     ld l, a
     ld h, $00
@@ -5210,11 +5210,11 @@ Call_012_6052:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ret
 
 
@@ -5336,7 +5336,7 @@ Call_012_61a0:
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_012_6242
     call Call_012_62ce
     ld de, $7935
@@ -5394,7 +5394,7 @@ jr_012_6205:
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c906
     inc [hl]
 
@@ -5432,7 +5432,7 @@ Call_012_6242:
     ld hl, $c0d8
     ld bc, $0020
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [wOPTN_and_Item_selection]
     ld b, a
     add a
@@ -6617,7 +6617,7 @@ jr_012_6835:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ldh a, [$bb]
     ld l, a
     ld h, $00
@@ -6662,11 +6662,11 @@ jr_012_6835:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $c8e2
     ld bc, $0008
     ld a, $00
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ret
 
 
@@ -6722,7 +6722,7 @@ Call_012_690a:
     ld hl, $c0d8
     ld bc, $0014
     ld a, $ff
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld a, [$ca8e]
     ld [$c0d8], a
     ld a, [$ca8f]

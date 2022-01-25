@@ -28,23 +28,23 @@ SECTION "ROM Bank $059", ROMX[$4000], BANK[$59]
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, wMenu_selection
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $ffc3
     ld bc, $0012
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $dd62
     ld bc, $0006
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c500
     ld bc, $0240
-    call Call_000_12c7
+    call FillNBytesWithRegA
     call Call_000_1264
     ld hl, $c817
     ld [hl], $00
@@ -1086,11 +1086,11 @@ jr_059_453f:
     xor a
     ld hl, $c827
     ld bc, $0012
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $99c1
     ld a, l
     ld [$c83e], a
@@ -1464,23 +1464,23 @@ jr_059_453f:
     xor a
     ld hl, $c827
     ld bc, $0012
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c0d8
     ld bc, $0028
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $d9f4
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, wMenu_selection
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     xor a
     ld hl, $c8e2
     ld bc, $0008
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ld hl, $99c1
     ld a, l
     ld [$c83e], a
@@ -5269,7 +5269,7 @@ Call_059_5d4f:
     ld a, $e0
     ld hl, $c500
     ld bc, $0240
-    call Call_000_12c7
+    call FillNBytesWithRegA
     ret
 
 
