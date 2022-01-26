@@ -3655,7 +3655,7 @@ jr_053_5411:
     ld hl, $4c00
     rst $10
     ld a, $6f
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -3975,7 +3975,7 @@ jr_053_563c:
     rst $10
     call Call_053_583a
     ld a, $6f
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -4103,7 +4103,7 @@ jr_053_5731:
     ld hl, $4c00
     rst $10
     ld a, $6f
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_053_5746:
     ret
@@ -4229,7 +4229,7 @@ Call_053_57f7:
     rst $10
     call Call_053_583a
     ld a, $6f
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -4260,7 +4260,7 @@ jr_053_582a:
     ld hl, $4c00
     rst $10
     ld a, $6f
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 Call_053_583a:
     ld a, $05
@@ -4365,7 +4365,7 @@ jr_053_58d1:
     ld hl, $4c00
     rst $10
     ld a, $6e
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $d9ee
     inc [hl]
     jr jr_053_58fb
@@ -4804,7 +4804,7 @@ jr_053_5b79:
     jr nz, jr_053_5ba8
 
     ld a, $6d
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_053_5ba8:
     ld hl, $4c00
@@ -6595,7 +6595,7 @@ Call_053_6593:
     ld [$c823], a
     call Call_053_66fa
     ld a, $72
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [$db89]
     ld hl, $db08
     call Call_000_2f6c
@@ -6647,7 +6647,7 @@ jr_053_661a:
     ld [$c823], a
     call Call_053_66fa
     ld a, $72
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [$db89]
     ld hl, $db08
     call Call_000_2f6c
@@ -6676,7 +6676,7 @@ jr_053_667b:
     ld hl, $4c00
     rst $10
     ld a, $84
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -6972,7 +6972,7 @@ jr_053_6846:
     cp $ff
     ret z
 
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -7234,7 +7234,7 @@ jr_053_69f2:
     cp $ff
     ret z
 
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -7517,7 +7517,7 @@ jr_053_6b78:
 
 jr_053_6baa:
     ld a, [$db5c]
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_053_6bb0:
     ld a, [$db89]

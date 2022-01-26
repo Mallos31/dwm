@@ -1,4 +1,4 @@
-; Disassembly of "baserom.gbc"
+    ; Disassembly of "baserom.gbc"
 ; This file was created with:
 ; mgbdis v1.5 - Game Boy ROM disassembler by Matt Currie and contributors.
 ; https://github.com/mattcurrie/mgbdis
@@ -134,7 +134,7 @@ jr_003_40b8:
 
 Jump_003_40c8:
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, $00
     ld [$c841], a
     ld a, $01
@@ -167,7 +167,7 @@ Jump_003_40c8:
 
 Jump_003_4107:
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, $00
     ld [$c841], a
     ld a, $01
@@ -9510,7 +9510,7 @@ Call_003_6ef2:
     call Call_000_2128
     ei
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld h, $0d
     ld l, $2f
     call Call_000_096d

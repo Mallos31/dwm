@@ -633,7 +633,7 @@
 00:1b22 jr_000_1b22
 00:1b27 jr_000_1b27
 00:1b2a jr_000_1b2a
-00:1b2c Call_000_1b2c
+00:1b2c PlaySoundEffect
 00:1b30 Call_000_1b30
 00:1b9d jr_000_1b9d
 00:1ba7 jr_000_1ba7
@@ -22091,7 +22091,7 @@
 55:52fc Call_055_52fc
 55:52fc jr_055_52fc
 55:5304 Call_055_5304
-55:5315 Call_055_5315
+55:5315 DrawDebugIndexNumber
 55:5326 Call_055_5326
 55:5338 jr_055_5338
 55:5341 jr_055_5341

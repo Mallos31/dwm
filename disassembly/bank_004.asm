@@ -4804,7 +4804,7 @@ jr_004_5700:
     ret z
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -5765,7 +5765,7 @@ Call_004_5e10:
     ld [$d8d6], a
     call Call_004_71ef
     ld a, c
-    call Call_000_1b2c
+    call PlaySoundEffect
     jp Jump_004_55f5
 
 

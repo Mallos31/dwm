@@ -332,7 +332,7 @@ jr_05f_4173:
     call Call_000_2128
     ei
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $0257
 
 jr_05f_423c:
@@ -1082,7 +1082,7 @@ Jump_05f_4685:
     jr nz, jr_05f_472a
 
     ld a, $5d
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_05f_472a:
     ld a, $01
@@ -1167,7 +1167,7 @@ jr_05f_4777:
     jr nz, jr_05f_47bb
 
     ld a, $5d
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_05f_47bb:
     ld a, $01
@@ -1252,7 +1252,7 @@ jr_05f_4808:
     jr nz, jr_05f_484c
 
     ld a, $5d
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_05f_484c:
     ld a, $01
@@ -1372,7 +1372,7 @@ jr_05f_4899:
     jr nz, jr_05f_4918
 
     ld a, $5d
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_05f_4918:
     ld a, $01
@@ -1759,7 +1759,7 @@ jr_05f_4b0b:
     jr nz, jr_05f_4b40
 
     ld a, $6c
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, $ff
     ld [$db54], a
     ret

@@ -1192,7 +1192,7 @@ jr_018_4672:
     jp z, Jump_018_468f
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [$c8de]
     cp $81
     jr z, jr_018_466b
@@ -1918,7 +1918,7 @@ jr_018_4abd:
     jp z, Jump_018_4aeb
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     xor a
     ld [$c8df], a
     ld a, [$c8e3]
@@ -2039,7 +2039,7 @@ jr_018_4b80:
     jp z, Jump_018_4bb7
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [$c8df]
     cp $81
     jr z, jr_018_4ba2
@@ -2321,7 +2321,7 @@ jr_018_4d76:
     jp z, Jump_018_4d8f
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, $11
     ld [$c8d2], a
     xor a

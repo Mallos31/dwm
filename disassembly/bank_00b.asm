@@ -26,7 +26,7 @@ SECTION "ROM Bank $00b", ROMX[$4000], BANK[$b]
     ld a, [$c96d]
     ld [wMapID], a
     ld a, [$c96e]	;Frz at 1 to make any map an overworld map when entering
-    ld [wInGateworld], a	;c969 may be the overworld flag. 
+    ld [wInGateworld], a
 
 jr_00b_4027:
     ld hl, $1605	;set ROM bank to 16, RAM bank to 00, and call function 5b4e.
@@ -1242,7 +1242,7 @@ jr_00b_465b:
     ld hl, $c88f
     inc [hl]
     ld a, $51
-    call Call_000_1b2c
+    call PlaySoundEffect
     jr jr_00b_4674
 
 jr_00b_466b:

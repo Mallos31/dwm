@@ -88,7 +88,7 @@ Call_055_404a:
     cp $ff
     ret z
 
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -2512,7 +2512,7 @@ jr_055_4b72:
 jr_055_4ba6:
     ld [wDebug_main_menu_option], a
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 Prep_Debug_Menu_OAM_tile_ID:
     ld a, [wDebug_main_menu_option]
@@ -2532,7 +2532,7 @@ Prep_Debug_Menu_OAM_tile_ID:
     ret z			;if not, return
 
     ld a, $59			;if so, load $59 into a and jump to that thing I don't know what it does that doesn't have a $59 as a switch case. 
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [wDebug_main_menu_option]
     cp $05			;compares debug main menu option to "-  RETURN  -"
     jr z, jr_055_4bdc		;if A was pressed on this option, jump to 4bdc below
@@ -2564,7 +2564,7 @@ jr_055_4bdc:			;Likely inits data for the title screen
     jr z, jr_055_4c52			;if no, skip next code block and check other buttons. 
 
     ld a, $59				
-    call Call_000_1b2c
+    call PlaySoundEffect
     call GenerateRNG
     ld a, [wRNG1]			;possible RNG? Otherwise just some timer. 
     inc a
@@ -2624,7 +2624,7 @@ Menu_option_wrap_around:
     and $03			;clever way of resetting to 0 (top of the menu) if selection is larger than $03
     ld [wMenu_selection], a
     ld a, $59
-    call Call_000_1b2c		;loads a into c8b8. Unknown what this does yet. 
+    call PlaySoundEffect		;loads a into c8b8. Unknown what this does yet. 
 
 jr_055_4c74:
     ld a, [wMenu_selection]		
@@ -2657,7 +2657,7 @@ jr_055_4c92:
 
 jr_055_4c9b:
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 Return_to_debug_main_menu:
     ld a, [wJoypad_current_frame]
@@ -2665,7 +2665,7 @@ Return_to_debug_main_menu:
     jr z, jr_055_4cb5
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     xor a
     ld [$c88b], a
     ld hl, $c88e
@@ -2699,7 +2699,7 @@ jr_055_4cbf:
 
 jr_055_4cda:
     ld a, [de]
-    call Call_055_5315
+    call DrawDebugIndexNumber
 
 jr_055_4cde:
     pop bc
@@ -2742,7 +2742,7 @@ jr_055_4cfa:
     jr z, jr_055_4d24
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     xor a
     ld [$c88b], a
     ld hl, $c88e
@@ -2770,7 +2770,7 @@ jr_055_4d31:
 jr_055_4d3c:
     ld [wMenu_selection], a
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 Call_055_4d44:
     ld a, [wMenu_selection]
@@ -2837,7 +2837,7 @@ jr_055_4da3:
 
 Jump_055_4dba:
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, wDebug_main_menu_option
     ld a, [hl+]
     ld [wInGateworld], a
@@ -2895,7 +2895,7 @@ jr_055_4e22:
     and $07
     ld [wMenu_selection], a
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_055_4e2c:
     ld a, [wMenu_selection]
@@ -2928,7 +2928,7 @@ jr_055_4e4a:
 
 jr_055_4e53:
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [wMenu_selection]
     ld b, $02
     cp $00
@@ -3153,7 +3153,7 @@ jr_055_4fbe:
     adc h
     ld h, a
     ld a, [hl]
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -3178,7 +3178,7 @@ jr_055_4fea:
     and $01
     ld [wMenu_selection], a
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_055_4ff4:
     ld a, [wMenu_selection]
@@ -3211,7 +3211,7 @@ jr_055_5012:
 
 jr_055_501b:
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [wMenu_selection]
     ld b, $20
     cp $00
@@ -3226,7 +3226,7 @@ jr_055_5031:
     jr z, jr_055_5046
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     xor a
     ld [$c88b], a
     ld hl, $c88e
@@ -3253,35 +3253,36 @@ jr_055_5050:
     bit 3, a
     jr nz, jr_055_506b
 
+;draw blank tiles and skip drawing the index number. 
     xor a
     call Write_gfx_tile_and_inc_HL
     call Write_gfx_tile_and_inc_HL
     jr jr_055_506f
 
 jr_055_506b:
-    ld a, [de]
-    call Call_055_5315
+    ld a, [de]                  ;load debug menu option (BGM selected) into a
+    call DrawDebugIndexNumber
 
 jr_055_506f:
-    pop bc
+    pop bc                  ;bc was set to $0102 above
     push bc
-    ld a, c
-    ld bc, SE_IDS
-    cp $02
+    ld a, c                 ;load $02 into a
+    ld bc, SE_IDS           ;and the sound effect ID pointer into bc
+    cp $02                  ;This should alwasy be the case since $02 is loaded into a just above. 
     jr nz, jr_055_507c
 
     ld bc, BGM_IDS
 
 jr_055_507c:
-    ld a, [de]
-    add c
+    ld a, [de]              ;load selected BGM index into a again
+    add c                   ;add 2
     ld c, a
     ld a, $00
     adc b
     ld b, a
     ld a, [bc]
     inc hl
-    call Call_055_5315
+    call DrawDebugIndexNumber
     pop bc
     pop hl
     pop de
@@ -3450,7 +3451,7 @@ SE_IDS:
 Jump_055_5139:
 jr_055_5139:
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, wDebug_main_menu_option
     ld a, [hl+]
     ld [$da02], a
@@ -3492,7 +3493,7 @@ jr_055_517a:
     and $07
     ld [wMenu_selection], a
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_055_5184:
     ld a, [wMenu_selection]
@@ -3525,7 +3526,7 @@ jr_055_51a2:
 
 jr_055_51ab:
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [wMenu_selection]
     ld b, $03
     cp $00
@@ -3731,7 +3732,7 @@ Call_055_5304:
     ret
 
 
-Call_055_5315:
+DrawDebugIndexNumber:
     ld c, a
     swap a
     and $0f

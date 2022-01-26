@@ -3029,7 +3029,7 @@ Jump_052_50f8:
     ld a, $04
     ld [$d9ef], a
     ld a, $6f
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -3070,7 +3070,7 @@ Call_052_515d:
     ld hl, $d9ef
     inc [hl]
     ld a, $6f
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -3087,7 +3087,7 @@ Call_052_515d:
     ld hl, $d9ef
     inc [hl]
     ld a, $6f
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -4885,7 +4885,7 @@ Call_052_5bc4:
     jr nc, jr_052_5bd0
 
     ld a, $70
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_052_5bd0:
     ret
@@ -10064,7 +10064,7 @@ jr_052_775e:
     call Call_000_1ae1
     pop bc
     ld a, c
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, $00
     ld [$db4e], a
     ld a, $0a

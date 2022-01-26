@@ -458,7 +458,7 @@ jr_015_4380:
     jr z, jr_015_43a9
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_015_43a9:
     ld hl, $c8d2
@@ -806,7 +806,7 @@ jr_015_45ef:
     jr z, jr_015_460e
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c8d2
     inc [hl]
     jr jr_015_461d
@@ -881,7 +881,7 @@ jr_015_461d:
 
 jr_015_4689:
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     xor a
     ld [$c86d], a
     ld a, $04
@@ -902,7 +902,7 @@ jr_015_4689:
 
 jr_015_46aa:
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     xor a
     ld [$c86d], a
     ld a, $04
@@ -1460,7 +1460,7 @@ jr_015_49d4:
     jp z, Jump_015_4a02
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     xor a
     ld [wPLAN_selection], a
     ld a, [wOPTN_and_Item_selection]
@@ -1553,7 +1553,7 @@ jr_015_4a71:
     jp z, Jump_015_4af4
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [wPLAN_selection]
     cp $81
     jr z, jr_015_4a93
@@ -1693,7 +1693,7 @@ Call_015_4afb:
     ret nz
 
     ld a, $5c
-    call Call_000_1b2c
+    call PlaySoundEffect
     call Call_015_4b80
     call Call_015_5dc0
     ld hl, $c8d2
@@ -1734,7 +1734,7 @@ jr_015_4bb0:
     jp z, Jump_015_4be2
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [$c8dd]
     cp $81
     jr z, jr_015_4ba9
@@ -1775,7 +1775,7 @@ Jump_015_4be2:
     ret nz
 
     ld a, $5c
-    call Call_000_1b2c
+    call PlaySoundEffect
     call Call_015_4c12
     call Call_015_5dc0
     ld hl, $c8d2
@@ -1825,7 +1825,7 @@ jr_015_4c5c:
     jp z, Jump_015_4be2
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [$c8de]
     cp $81
     jr z, jr_015_4c3b
@@ -2116,7 +2116,7 @@ jr_015_4e1b:
     jp z, Jump_015_4e4c
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     xor a
     ld [wPLAN_selection], a
     ld [$c8dd], a
@@ -2210,7 +2210,7 @@ jr_015_4ebb:
     jp z, Jump_015_4f0d
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [wPLAN_selection]
     cp $81
     jr z, jr_015_4edd
@@ -2474,7 +2474,7 @@ jr_015_508c:
     jp z, Jump_015_50da
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [$c8dd]
     cp $80
     jr z, jr_015_50c6
@@ -3378,7 +3378,7 @@ Jump_015_561e:
     jp z, Jump_015_564c
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     xor a
     ld [wPLAN_selection], a
     ld a, [wOPTN_and_Item_selection]
@@ -3471,7 +3471,7 @@ jr_015_56bb:
     jp z, Jump_015_5728
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [wPLAN_selection]
     cp $81
     jr z, jr_015_56dd
@@ -3747,7 +3747,7 @@ jr_015_58a2:
     jp z, Jump_015_58e0
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [$c8dd]
     cp $80
     jr z, jr_015_58c8
@@ -3920,7 +3920,7 @@ Jump_015_58e0:
     ret nz
 
     ld a, $5c
-    call Call_000_1b2c
+    call PlaySoundEffect
     call Call_015_5e7c
     call Call_015_59f9
     call Call_015_5dc0
@@ -3979,7 +3979,7 @@ jr_015_5a52:
     jp z, Jump_015_5a74
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [$c8de]
     cp $81
     jr z, jr_015_5a3b

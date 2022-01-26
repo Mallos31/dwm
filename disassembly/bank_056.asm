@@ -1214,7 +1214,7 @@ jr_056_44a2:		;copy blank tile from rom to vram when in vblank
 
     call Call_000_0954
     call Call_000_0d78
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -1693,7 +1693,7 @@ Jump_056_4855:
     ld hl, $c826
     res 7, [hl]
     ld a, $5c
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $0000
     call Call_000_0d11
     ld de, $c500
@@ -2211,7 +2211,7 @@ jr_056_4b82:
     ld [$df02], a
     ld [$df00], a
     ld a, $0c
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 

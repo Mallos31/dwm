@@ -3766,7 +3766,7 @@ jr_001_5425:
     ret nz
 
     ld a, $54
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, $80
     ldh [$91], a
     ldh [$94], a
@@ -5106,7 +5106,7 @@ jr_001_5b57:
     inc hl
     ld [hl], $20
     ld a, $53
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_001_5b68:
     ld a, [$d78f]
@@ -5205,7 +5205,7 @@ Jump_001_5bfd:
 
     set 5, [hl]
     ld a, $53
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_001_5c09:
     ld hl, wGameState
@@ -5232,7 +5232,7 @@ jr_001_5c09:
 
     set 5, [hl]
     ld a, $53
-    call Call_000_1b2c
+    call PlaySoundEffect
 
 jr_001_5c39:
     ld hl, wGameState
@@ -5383,7 +5383,7 @@ Call_001_5cd3:
     ld hl, $0001
     call Call_000_22f0
     ld a, $6c
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, $08
     ld [$c8a8], a
     ld a, $2d
@@ -5422,7 +5422,7 @@ Call_001_5d33:
     ld hl, $0001
     call Call_000_22be
     ld a, $6c
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, $08
     ld [$c8a8], a
     ld a, $2d
@@ -5609,7 +5609,7 @@ jr_001_5e23:
     ld a, $02
     call Call_001_5e8d
     ld a, $6c
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, $08
     ld [$c8a8], a
     ld a, $2d

@@ -675,7 +675,7 @@ jr_007_442c:
     jr z, jr_007_445c
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c90d
     inc [hl]
     call Call_007_6a8f
@@ -956,7 +956,7 @@ jr_007_4620:
     jp z, Jump_007_4631
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c90e
     inc [hl]
 
@@ -1235,7 +1235,7 @@ jr_007_481b:
     jp z, Jump_007_482c
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c90e
     inc [hl]
 
@@ -1341,7 +1341,7 @@ jr_007_48d4:
     jp z, Jump_007_48e5
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c90e
     inc [hl]
 
@@ -1529,7 +1529,7 @@ jr_007_4a45:
     jp z, Jump_007_4a56
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c90e
     inc [hl]
 
@@ -1800,7 +1800,7 @@ jr_007_4bf4:
     jp z, Jump_007_4c07
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c90e
     inc [hl]
     jr jr_007_4c27
@@ -1811,7 +1811,7 @@ Jump_007_4c07:
     jp z, Jump_007_4c27
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     call Call_007_4c28
     xor a
     ld [wOPTN_and_Item_selection], a
@@ -1970,7 +1970,7 @@ jr_007_4cef:
     rst $10
     
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c90e
     inc [hl]
     ld a, [$c8dd]
@@ -2236,7 +2236,7 @@ jr_007_4ee3:
     jp z, Jump_007_4ef4
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c90e
     inc [hl]
 
@@ -2316,7 +2316,7 @@ jr_007_4f68:
     ret nz
 
     ld a, $57
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -2791,7 +2791,7 @@ Call_007_51cb:
     jr z, jr_007_5279
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     call Call_007_6a8f
     ld a, $01
     ld [$c90d], a
@@ -2822,7 +2822,7 @@ jr_007_5279:
     ld hl, $0201
     call Call_000_096d
     ld a, $5c
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld de, $2e07
     call Call_007_68dc
     ld de, $7a3c
@@ -2878,7 +2878,7 @@ jr_007_5309:
     jp z, Jump_007_5330
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [$c8df]
     cp $81
     jr z, jr_007_52d7
@@ -3042,7 +3042,7 @@ jr_007_541a:
     jr nz, jr_007_5442
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     xor a
     ld [wPLAN_selection], a
     ld hl, $c90e
@@ -3353,7 +3353,7 @@ jr_007_5635:
     jp z, Jump_007_56a3
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c90e
     inc [hl]
     ld hl, $caea
@@ -4055,7 +4055,7 @@ jr_007_59b6:
     ld hl, $c190
     call Call_000_0c80
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c90e
     inc [hl]
 
@@ -4137,7 +4137,7 @@ jr_007_5a58:
     ld hl, $c90e
     inc [hl]
     ld a, $65
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -4571,7 +4571,7 @@ jr_007_5d16:
     jp z, Jump_007_5d42
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld b, $02
     ld a, [wOPTN_and_Item_selection]
     cp $80
@@ -4645,7 +4645,7 @@ jr_007_5d8d:
     and $7f
     ld [wTextSpeed], a   ;c8ee current text speed
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     call Call_007_6a8f
     ld a, $01
     ld [$c90d], a
@@ -4929,7 +4929,7 @@ jr_007_5f64:
     jp z, Jump_007_6044
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [$c90f]
     ld c, a
     ld a, [$c913]
@@ -5126,7 +5126,7 @@ jr_007_6090:
 
 jr_007_60a5:
     ld a, $5c
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld de, $7bca
     call Call_007_68dc
     ld de, $7c44
@@ -5459,7 +5459,7 @@ jr_007_630b:
     jr nz, jr_007_6321
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     jr jr_007_62ed
 
 jr_007_6321:
@@ -5467,7 +5467,7 @@ jr_007_6321:
     call Call_000_2128
     ei
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c90e
     inc [hl]
 
@@ -5597,7 +5597,7 @@ jr_007_63fc:
     jr z, jr_007_644b
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [$c8df]
     and $03
     swap a
@@ -5755,7 +5755,7 @@ jr_007_64f2:
     jp z, Jump_007_6503
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c90e
     inc [hl]
 
@@ -5852,7 +5852,7 @@ jr_007_6573:
     jp z, Jump_007_6584
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c90e
     inc [hl]
 

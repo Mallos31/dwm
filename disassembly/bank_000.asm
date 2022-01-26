@@ -1445,7 +1445,7 @@ Jump_000_06fd:
 
 Call_000_06ff:
 Jump_000_06ff:
-    call Call_000_1b2c
+    call PlaySoundEffect
     jr jr_000_070e
 
 jr_000_0704:
@@ -1675,7 +1675,7 @@ Jump_000_0811:
     jr z, jr_000_0853
 
     ld a, [$c840]
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c826
     set 1, [hl]
     jr jr_000_0853
@@ -5485,7 +5485,7 @@ jr_000_1b2a:
     ret
 
 
-Call_000_1b2c:
+PlaySoundEffect:
     ld [wSoundEffect], a
     ret
 

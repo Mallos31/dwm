@@ -226,7 +226,7 @@ jr_050_412d:
     jr z, jr_050_419a
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $d9f4
     inc [hl]
     xor a
@@ -780,7 +780,7 @@ jr_050_4487:
     res 7, a
     ld [$d9fc], a
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $d9f5
     inc [hl]
     ld a, [$db61]
@@ -995,7 +995,7 @@ jr_050_45f5:
     jp z, Jump_050_4714
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [$da01]
     ld hl, $d9fc
     add l
@@ -1485,7 +1485,7 @@ jr_050_48d5:
     jp z, Jump_050_496c
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, [$c8de]
     and $03
     swap a
@@ -1741,7 +1741,7 @@ jr_050_4a65:
     jp z, Jump_050_4b97
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $c8df
     res 7, [hl]
     ld a, [$c8e0]
@@ -2261,7 +2261,7 @@ jr_050_4d68:
 jr_050_4d84:
     call Call_050_4f95
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     call Call_050_4f45
     ld a, $0b
     ld [$d9f7], a
@@ -2394,7 +2394,7 @@ jr_050_4e6b:
 
     call Call_050_4f95
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     call Call_050_4f45
     ld a, $0b
     ld [$d9f7], a
@@ -2880,7 +2880,7 @@ jr_050_50f4:
     ld a, [$db4d]
     ld [$db78], a
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $5509
     rst $10
     ld a, [$db77]
@@ -3045,7 +3045,7 @@ jr_050_5227:
     jp z, Jump_050_5287
 
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $550a
     rst $10
     ld a, $80
@@ -3189,7 +3189,7 @@ jr_050_5323:
     ld a, c
     ld [$db77], a
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $d9f5
     inc [hl]
     ld hl, $d9f5
@@ -3696,7 +3696,7 @@ jr_050_5656:
     ld a, c
     ld [$db77], a
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $d9f5
     inc [hl]
 
@@ -3867,7 +3867,7 @@ jr_050_5738:
     ld hl, $d9f5
     inc [hl]
     ld a, $6d
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 
@@ -4032,7 +4032,7 @@ jr_050_5808:
     ld a, $ff
     ld [$db78], a
     ld a, $6d
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld a, $01
     ld [$d9f5], a
     ret
@@ -4938,7 +4938,7 @@ jr_050_5d0b:
     ld a, $02
     call Call_000_1ae1
     ld a, [$dd72]
-    call Call_000_1b2c
+    call PlaySoundEffect
     ret
 
 

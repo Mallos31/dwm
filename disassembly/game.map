@@ -634,7 +634,7 @@ ROM0 bank #0:
            $1b22 = jr_000_1b22
            $1b27 = jr_000_1b27
            $1b2a = jr_000_1b2a
-           $1b2c = Call_000_1b2c
+           $1b2c = PlaySoundEffect
            $1b30 = Call_000_1b30
            $1b9d = jr_000_1b9d
            $1ba7 = jr_000_1ba7
@@ -22432,7 +22432,7 @@ ROMX bank #85:
            $52fc = Call_055_52fc
            $52fc = jr_055_52fc
            $5304 = Call_055_5304
-           $5315 = Call_055_5315
+           $5315 = DrawDebugIndexNumber
            $5326 = Call_055_5326
            $5338 = jr_055_5338
            $5341 = jr_055_5341

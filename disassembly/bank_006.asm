@@ -7332,7 +7332,7 @@ jr_006_60e7:
     ldh [$c2], a
     call Call_006_62b7
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     jp Jump_006_6284
 
 
@@ -7556,7 +7556,7 @@ Jump_006_6247:
     ld [$c90f], a
     ld [$c910], a
     ld a, $59
-    call Call_000_1b2c
+    call PlaySoundEffect
     jp Jump_006_6284
 
 
@@ -9220,7 +9220,7 @@ jr_006_6ba7:
     call Call_000_1ae1
     call Call_000_3331
     ld a, $52
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $ffb7
     call Call_006_6e4f
     ld hl, $ffbb
@@ -9704,7 +9704,7 @@ jr_006_6e9d:
 
 
     ld a, $55
-    call Call_000_1b2c
+    call PlaySoundEffect
     ld hl, $ffb7
     call Call_006_6e4f
     ld hl, $ffbb
