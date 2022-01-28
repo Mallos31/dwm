@@ -5,43 +5,33 @@
 
 SECTION "ROM Bank $00a", ROMX[$4000], BANK[$a]
 
-    ld a, [bc]
-    inc bc
-    ld b, b
+    db $0a ;rom BANK
+
+    dw label4003
+
+label4003:
     ld a, [$c8ef]
     rst $00
-    daa
-    ld b, b
-    daa
-    ld b, b
-    daa
-    ld b, b
-    daa
-    ld b, b
-    daa
-    ld b, b
-    dec l
-    ld b, h
-    jp $954b
 
 
-    ld h, b
-    daa
-    ld b, b
-    daa
-    ld b, b
-    daa
-    ld b, b
-    ld h, [hl]
-    ld l, c
-    daa
-    ld b, b
-    daa
-    ld b, b
-    daa
-    ld b, b
-    daa
-    ld b, b
+    dw EmptyFunc4027
+    dw EmptyFunc4027
+    dw EmptyFunc4027
+    dw EmptyFunc4027
+    dw EmptyFunc4027
+    dw label442d
+    dw label4bc3
+    dw label6095
+    dw EmptyFunc4027
+    dw EmptyFunc4027
+    dw EmptyFunc4027
+    dw label6966
+    dw EmptyFunc4027
+    dw EmptyFunc4027
+    dw EmptyFunc4027
+    dw EmptyFunc4027
+
+EmptyFunc4027:
     ret
 
 
@@ -864,17 +854,18 @@ Call_00a_441f:
     call Call_000_0ad9
     ret
 
-
+label442d:
     ld a, [$c905]
     rst $00
-    dec sp
-    ld b, h
-    adc d
-    ld b, h
-    or [hl]
-    ld b, h
-    ld c, $45
-    ld d, $45
+
+
+    dw label443b
+    dw label448a
+    dw label44b6
+    dw label450e
+    dw label4516
+
+label443b:    
     ld hl, $ffb7
     call Call_00a_4028
     ld hl, $ffbb
@@ -916,7 +907,7 @@ Call_00a_441f:
     inc [hl]
     ret
 
-
+label448a:
     ld hl, $c905
     inc [hl]
     ld a, $5c
@@ -938,7 +929,7 @@ Call_00a_449d:
     call Call_00a_43e2
     ret
 
-
+label44b6:
     ld de, $4508
     ld hl, wMenu_selection
     ld b, $02
@@ -986,11 +977,15 @@ jr_00a_4507:
     ld bc, $016f
     rst $38
     rst $38
+
+label450e:    
     ld a, [$c907]
     rst $00
-    jr c, jr_00a_4559
 
-    ld d, $45
+    dw label4538
+    dw label4516
+
+label4516:    
     call Call_00a_41ef
     ld de, $2e07
     call Call_00a_40b4
@@ -1007,43 +1002,31 @@ jr_00a_4507:
     rst $10
     ret
 
-
+label4538:
     ld a, [$c906]
     rst $00
-    ld e, [hl]
-    ld b, l
-    jp nc, $9d45
 
-    ld b, a
-    dec hl
-    ld c, b
-    ld [hl], $48
-    ld a, l
-    ld c, b
-    ld a, [de]
-    ld c, c
-    dec h
-    ld c, c
-    ld c, c
-    ld c, c
-    adc [hl]
-    ld c, c
-    xor e
-    ld c, c
-    rst $08
-    ld c, c
-    db $10
-    ld c, d
-    db $d3
-    ld c, d
-    dec de
 
-jr_00a_4559:
-    ld c, e
-    ld b, [hl]
-    ld c, e
-    add c
-    ld c, e
+    dw label455e
+    dw label45d2
+    dw label479d
+    dw label482b
+    dw label4836
+    dw label487d
+    dw label491a
+    dw label4925
+    dw label4949
+    dw label498e
+    dw label49ab
+    dw label49cf
+    dw label4a10
+    dw label4ad3
+    dw label4b1b
+    dw label4b46
+    dw label4b81
+
+
+label455e:
     call Call_00a_4572
     call Call_00a_459c
     call Call_00a_4ba2
@@ -1136,7 +1119,7 @@ jr_00a_45c4:
 
     ret
 
-
+label45d2:
     ld a, [$c825]
     or a
     ret nz
@@ -1421,7 +1404,7 @@ jr_00a_4793:
     ld [hl], a
     ret
 
-
+label479d:
     ld a, [$c825]
     or a
     ret nz
@@ -1509,13 +1492,15 @@ jr_00a_481e:
     nop
     ld hl, $ff01
     rst $38
+
+label482b:
     ld hl, $0005
     call Call_00a_441f
     ld hl, $c906
     inc [hl]
     ret
 
-
+label4836:
     ld a, [$c825]
     or a
     ret nz
@@ -1549,7 +1534,7 @@ Call_00a_4843:
     call Call_00a_40e5
     ret
 
-
+label487d:
     ld de, $4914
     ld hl, wPLAN_selection
     ld b, $02
@@ -1639,13 +1624,15 @@ jr_00a_4913:
     nop
     rst $38
     rst $38
+
+label491a:
     ld hl, $0006
     call Call_00a_441f
     ld hl, $c906
     inc [hl]
     ret
 
-
+label4925:
     ld a, [$c825]
     or a
     ret nz
@@ -1664,6 +1651,7 @@ jr_00a_4913:
     ret
 
 
+label4949:
     ld de, $4988
     ld hl, $c8de
     ld b, $02
@@ -1705,6 +1693,9 @@ jr_00a_4987:
     ld bc, $016f
     rst $38
     rst $38
+
+
+label498e:    
     ld de, $748d
     call Call_00a_40b4
     ld de, $2e07
@@ -1717,7 +1708,7 @@ jr_00a_4987:
     inc [hl]
     ret
 
-
+label49ab:
     ld a, [$c825]
     or a
     ret nz
@@ -1735,7 +1726,7 @@ jr_00a_4987:
     inc [hl]
     ret
 
-
+label49cf:
     ld de, $4a0a
     ld hl, $c8df
     ld b, $02
@@ -1775,6 +1766,8 @@ jr_00a_4a09:
     ld bc, $016f
     rst $38
     rst $38
+
+label4a10:
     ld de, $2e07
     call Call_00a_40b4
     call Call_00a_40e5
@@ -1863,7 +1856,7 @@ jr_00a_4a09:
     ld [wGameState], a
     ret
 
-
+label4ad3:
     ld a, [$c825]
     or a
     ret nz
@@ -1900,6 +1893,7 @@ jr_00a_4a09:
     ret
 
 
+label4b1b:
     ld hl, $c0d8
     ld a, l
     ld [$c930], a
@@ -1922,7 +1916,7 @@ jr_00a_4a09:
     ld [$c8ec], a
     ret
 
-
+label4b46:
     ld a, [$c8e2]
     and $80
     ld b, a
@@ -1948,7 +1942,7 @@ jr_00a_4a09:
     ld [$c906], a
     ret
 
-
+label4b81:
     ld a, [$c825]
     or a
     ret nz
@@ -1987,19 +1981,19 @@ Call_00a_4ba2:
     call Call_000_097a
     ret
 
-
+label4bc3:
     ld a, [$c905]
     rst $00
-    pop de
-    ld c, e
-    inc a
-    ld c, h
-    add c
-    ld c, h
-    db $d3
-    ld c, h
-    ld [c], a
-    ld c, h
+
+
+    dw label4bd1
+    dw label4c3c
+    dw label4c81
+    dw label4cd3
+    dw label4ce2
+
+
+label4bd1:
     ld hl, $ffb7
     call Call_00a_4028
     ld hl, $ffbb
@@ -2051,7 +2045,7 @@ Call_00a_4ba2:
     inc [hl]
     ret
 
-
+label4c3c:
     ld hl, $c905
     inc [hl]
     call Call_00a_41ef
@@ -2082,7 +2076,7 @@ Call_00a_4c4a:
     call Call_00a_43e2
     ret
 
-
+label4c81:
     ld de, $4ccb
     ld hl, wMenu_selection
     ld b, $03
@@ -2128,20 +2122,22 @@ jr_00a_4cca:
     nop
     rst $38
     rst $38
+
+label4cd3:
     ld a, [$c907]
     rst $00
-    inc b
-    ld c, l
-    rlca
-    ld e, c
-    db $dd
-    ld c, h
+
+
+    dw label4d04
+    dw label5907
+    dw jr_00a_4cdd
 
 jr_00a_4cdd:
     ld a, [$c825]
     or a
     ret nz
 
+label4ce2:
     call Call_00a_41ef
     ld de, $2e07
     call Call_00a_40b4
@@ -2158,54 +2154,41 @@ jr_00a_4cdd:
     rst $10
     ret
 
-
+label4d04:
     ld a, [$c906]
     rst $00
-    inc a
-    ld c, l
-    xor l
-    ld c, l
-    inc d
-    ld c, a
-    or h
-    ld c, a
-    cp a
-    ld c, a
-    ld b, $50
-    and b
-    ld d, b
-    jr nz, @+$53
 
-    ld sp, $e952
-    ld d, d
-    db $f4
-    ld d, d
-    dec sp
-    ld d, e
-    dec h
-    ld d, h
-    rst $00
-    ld d, l
-    pop de
-    ld d, l
-    ldh [rHDMA5], a
-    db $fd
-    ld d, l
-    ld hl, $5f56
-    ld d, [hl]
-    ld a, $57
-    cp c
-    ld d, a
-    db $e4
-    ld d, a
-    ld c, [hl]
-    ld e, b
-    ld l, b
-    ld e, b
-    sub e
-    ld e, b
-    db $ed
-    ld e, b
+
+    dw label4d3c
+    dw label4dad
+    dw label4f14
+    dw label4fb4
+    dw label4fbf
+    dw label5006
+    dw label50a0
+    dw label5120
+    dw label5231
+    dw label52e9
+    dw label52f4
+    dw label533b
+    dw label5425
+    dw label55c7
+    dw label55d1
+    dw label55e0
+    dw label55fd
+    dw label5621
+    dw label565f
+    dw label573e
+    dw label57b9
+    dw label57e4
+    dw label584e
+    dw label5868
+    dw label5893
+    dw label58ed
+
+
+
+label4d3c:
     call Call_00a_4d4d
     call Call_00a_4d77
     ld hl, $0003
@@ -2297,7 +2280,7 @@ jr_00a_4d9f:
 
     ret
 
-
+label4dad:
     ld a, [$c825]
     or a
     ret nz
@@ -2519,7 +2502,7 @@ Call_00a_4ed3:
     ld [hl], a
     ret
 
-
+label4f14:
     ld a, [$c825]
     or a
     ret nz
@@ -2613,13 +2596,15 @@ jr_00a_4fa7:
     nop
     ld hl, $6101
     ld bc, $ffff
+
+label4fb4:    
     ld hl, $0005
     call Call_00a_441f
     ld hl, $c906
     inc [hl]
     ret
 
-
+label4fbf:
     ld a, [$c825]
     or a
     ret nz
@@ -2653,7 +2638,7 @@ Call_00a_4fcc:
     call Call_00a_40e5
     ret
 
-
+label5006:
     ld de, $509a
     ld hl, wPLAN_selection
     ld b, $02
@@ -2742,6 +2727,8 @@ jr_00a_5099:
     nop
     rst $38
     rst $38
+
+label50a0:    
     call Call_00a_50b1
     call Call_00a_50e4
     ld hl, $0004
@@ -2843,7 +2830,7 @@ jr_00a_5112:
 
     ret
 
-
+label5120:
     ld a, [$c825]
     or a
     ret nz
@@ -2996,7 +2983,7 @@ jr_00a_51f0:
     ld [hl], a
     ret
 
-
+label5231:
     ld a, [$c825]
     or a
     ret nz
@@ -3102,13 +3089,15 @@ jr_00a_52dc:
     nop
     ld hl, $6101
     ld bc, $ffff
+
+label52e9:
     ld hl, $0005
     call Call_00a_441f
     ld hl, $c906
     inc [hl]
     ret
 
-
+label52f4:
     ld a, [$c825]
     or a
     ret nz
@@ -3143,6 +3132,7 @@ Call_00a_5301:
     ret
 
 
+label533b:
     ld de, $541f
     ld hl, $c8dd
     ld b, $02
@@ -3277,6 +3267,8 @@ jr_00a_541e:
     nop
     rst $38
     rst $38
+
+label5425:    
     ld a, [$c8e8]
     ld hl, $cac2
     call Call_000_223b
@@ -3453,10 +3445,10 @@ jr_00a_54bf:
     ld bc, $0101
     ld bc, $0101
     ld bc, $0101
-    ld bc, $fa01
-    dec h
-    ret z
+    dw $0101
 
+label55c7:
+    ld a, [$c825]
     or a
     ret nz
 
@@ -3464,7 +3456,7 @@ jr_00a_54bf:
     inc [hl]
     ret
 
-
+label55d1:
     xor a
     ld [$c8df], a
     ld hl, $c906
@@ -3474,6 +3466,8 @@ jr_00a_54bf:
 
     ld hl, $6101
     ld bc, $ffff
+
+label55e0:    
     ld de, $748d
     call Call_00a_40b4
     ld de, $2e07
@@ -3486,7 +3480,7 @@ jr_00a_54bf:
     inc [hl]
     ret
 
-
+label55fd:
     ld a, [$c825]
     or a
     ret nz
@@ -3504,7 +3498,7 @@ jr_00a_54bf:
     inc [hl]
     ret
 
-
+label5621:
     ld de, $5659
     ld hl, $c8df
     ld b, $02
@@ -3541,6 +3535,8 @@ jr_00a_5658:
 
     ld hl, $6101
     ld bc, $ffff
+
+label565f:    
     ld de, $2e07
     call Call_00a_40b4
     call Call_00a_40e5
@@ -3637,7 +3633,7 @@ jr_00a_5658:
     ld [wGameState], a
     ret
 
-
+label573e:
     ld a, [$c825]
     or a
     ret nz
@@ -3704,7 +3700,7 @@ jr_00a_57b2:
 
     ret
 
-
+label57b9:
     ld hl, $c0d8
     ld a, l
     ld [$c930], a
@@ -3727,7 +3723,7 @@ jr_00a_57b2:
     ld [$c8ec], a
     ret
 
-
+label57e4:
     ld a, [$c8e2]
     and $80
     ld b, a
@@ -3773,7 +3769,7 @@ jr_00a_57b2:
     ld [$c8ec], a
     ret
 
-
+label584e:
     ld a, [$c825]
     or a
     ret nz
@@ -3787,7 +3783,7 @@ jr_00a_57b2:
     ld [$c906], a
     ret
 
-
+label5868:
     ld hl, $c0d8
     ld a, l
     ld [$c930], a
@@ -3810,7 +3806,7 @@ jr_00a_57b2:
     ld [$c8ec], a
     ret
 
-
+label5893:
     ld a, [$c8e4]
     and $80
     ld b, a
@@ -3847,7 +3843,7 @@ jr_00a_57b2:
     ld [$c8ec], a
     ret
 
-
+label58ed:
     ld a, [$c825]
     or a
     ret nz
@@ -3861,9 +3857,11 @@ jr_00a_57b2:
     ld [$c906], a
     ret
 
-
+label5907:
     ld a, [$c906]
     rst $00
+
+
     daa
     ld e, c
     and a
@@ -5030,9 +5028,11 @@ jr_00a_6083:
     ld [de], a
     ret
 
-
+label6095:
     ld a, [$c905]
     rst $00
+
+
     and e
     ld h, b
     xor $60
@@ -6431,9 +6431,11 @@ jr_00a_68f7:
     ld [$c8ec], a
     ret
 
-
+label6966:
     ld a, [$c905]
     rst $00
+
+
     ld [hl], h
     ld l, c
     pop de
