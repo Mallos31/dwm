@@ -14,7 +14,7 @@ RST_00::
     adc h
     ld h, a
 
-RST_08::		;called by RST10. Jumps to address at second and third bytes of ROM bank. 
+RST_08::		;called by RST10. Jumps to address at second and third bytes of ROM bank.
     ld a, [hl+]
     ld h, [hl]
     ld l, a
@@ -26,7 +26,7 @@ RST_08::		;called by RST10. Jumps to address at second and third bytes of ROM ba
     ret
 
 ;loads ROM bank H and jumps to the start of code found at addresses 4001 and 4002 at the beginning of each bank.
-RST_10::		
+RST_10::
     ld a, [$4000] 	;load current rom bank number into reg a
     push af
     ld a, h		;load new rom bank passed with H into A
@@ -34,7 +34,7 @@ RST_10::
 
 RST_18::
     swap a		;swap A to prepare to find correct RAM bank
-    rra			
+    rra
     and $03
     ld [$4100], a	;load ram bank
 
@@ -66,7 +66,7 @@ RST_38::
     ret
 
     db $ff, $ff
-    
+
 VBlankInterrupt::
     di
     jp Jump_000_036e
@@ -121,7 +121,7 @@ Call_000_0062:
     ld a, [$c984]
     or a
     jr nz, jr_000_00ab
-    
+
     inc a
     ld [$c984], a
     call $ff90  ;DMA
@@ -262,7 +262,7 @@ BootMain:
     cp $11
     ld a, $00
     jr nz, jr_000_0157
-    inc a		;make sure a is a non-zero value. This is usually 1 at boot due to the boot rom's code. 
+    inc a		;make sure a is a non-zero value. This is usually 1 at boot due to the boot rom's code.
 
 jr_000_0157:
     ld [$c81d], a
@@ -277,7 +277,7 @@ InitGameData:
     ld bc, $1c00
     xor a
     call FillNBytesWithRegA
-    ld hl, wGameMode ;c88a
+    ld hl, wGameMode
     xor a
     ld [hl+], a
     ld [hl+], a
@@ -334,19 +334,19 @@ jr_000_01d2:
     ld [$c774], a
     ld hl, $0800
     rst $10
-    
+
     call Call_000_1013
     ld a, $02
     ld [$c774], a
     ld hl, $0800
     rst $10
-    
+
     call Call_000_1013
     ld a, $03
     ld [$c774], a
     ld hl, $0800
     rst $10
-    
+
     call Call_000_1013
     ld a, $04
     ld [$c774], a
@@ -358,31 +358,31 @@ jr_000_01d2:
     ld [$c774], a
     ld hl, $0800
     rst $10
-    
+
     call Call_000_1013
     ld a, $06
     ld [$c774], a
     ld hl, $0800
     rst $10
-    
+
     call Call_000_1013
     ld a, $07
     ld [$c774], a
     ld hl, $0800
     rst $10
-    
+
     call Call_000_1013
     ld a, $08
     ld [$c774], a
     ld hl, $0800
     rst $10
-    
+
     call Call_000_1013
     ld a, $09
     ld [$c774], a
     ld hl, $0800
     rst $10
-    
+
     call Call_000_1013
     ld a, $0c
     ld de, $0803
@@ -399,13 +399,13 @@ Jump_000_025f:
     ld [$c774], a
     ld hl, $0800
     rst $10
-    
+
     call Call_000_1013
     ld a, $0a
     ld [$c774], a
     ld hl, $0800
     rst $10
-    
+
     call Call_000_1013
     ld a, $13
     ld [$c774], a
@@ -424,7 +424,7 @@ Jump_000_028b:
     call Call_000_13ef
     call Call_000_140b
     call Call_000_1660
-    
+
     xor a
     ld [$c86a], a
     ld [$c825], a
@@ -434,7 +434,7 @@ Jump_000_028b:
     ld [$c8c9], a
     ld [$df0e], a
     call Call_000_030f
-    
+
     xor a
     ld [$c88e], a
     ld [$c88f], a
@@ -735,7 +735,7 @@ Jump_000_03f8:
     ld a, [wJoypad_current_frame]
 
 Jump_000_03fb:
-    bit 2, a				;checking for the B button the be pressed. If it is not pressed, the code loading the debug menu is skipped. 
+    bit 2, a				;checking for the B button the be pressed. If it is not pressed, the code loading the debug menu is skipped.
     jr z, jr_000_041f
 
 Call_000_03ff:
@@ -1588,7 +1588,7 @@ jr_000_07ab:
     ld l, a
     ld a, [$c82e]
     ld h, a
-    ld a, [hl]			;read character for text box. 
+    ld a, [hl]			;read character for text box.
     cp $8d
     jp z, Jump_000_0822
 
@@ -1597,7 +1597,7 @@ jr_000_07ab:
 Call_000_07bb:
     jp z, Jump_000_0822
 
-    cp $e0			;e0 brings up the YES NO box. 
+    cp $e0			;e0 brings up the YES NO box.
     jp nc, Jump_000_0838
 
     ld a, [$c825]
@@ -1844,7 +1844,7 @@ jr_000_08f6:
     ldh a, [rSTAT]
     bit 1, a
     jr nz, jr_000_08f6
-    
+
     ld a, [de]
     or [hl]
     ld [hl+], a
@@ -2226,7 +2226,7 @@ Call_000_0ad9:
     dec bc
     cp [hl]
     dec bc
-    db $fd	;investigate this one byte that doesn't correspond to an instruction. May be a byte of data? 
+    db $fd	;investigate this one byte that doesn't correspond to an instruction. May be a byte of data?
 
 Call_000_0aea:
 Jump_000_0aea:
@@ -2247,10 +2247,10 @@ Jump_000_0aea:
     ld [$c823], a
     ld hl, $4200
 
-Jump_000_0b01:	;invalid. Needs to be fixed when bank 04 is merged. 
+Jump_000_0b01:	;invalid. Needs to be fixed when bank 04 is merged.
     rst $10
-    
-    ret		;unused. May be from a time when RST10 returned. 
+
+    ret		;unused. May be from a time when RST10 returned.
 
 
 jr_000_0b03:
@@ -2265,7 +2265,7 @@ Jump_000_0b07:
     ld [$c823], a
     ld hl, $4300
     rst $10
-    
+
     ret
 
 
@@ -2286,7 +2286,7 @@ Jump_000_0b07:
     ld [$c823], a
     ld hl, $4300
     rst $10
-    
+
     ret
 
 
@@ -2301,7 +2301,7 @@ jr_000_0b2e:
 
 Call_000_0b3c:
     rst $10
-    
+
     ret
 
 
@@ -2322,7 +2322,7 @@ Call_000_0b3c:
     ld [$c823], a
     ld hl, $4400
     rst $10
-    
+
     ret
 
 
@@ -2336,7 +2336,7 @@ jr_000_0b59:
     ld [$c823], a
     ld hl, $4500
     rst $10
-    
+
     ret
 
 
@@ -2368,7 +2368,7 @@ jr_000_0b83:
     ld [$c823], a
     ld hl, $4700
     rst $10
-    
+
     ret
 
     ld a, e
@@ -2789,7 +2789,7 @@ Call_000_0d78:
 
 
     db $30, $28, $36, $25, $38, $29	;@TEXT "MSGBUF" ;0d8a
-    
+
     ldh a, [$f0]
     set 7, [hl]
     daa
@@ -3366,7 +3366,7 @@ Call_000_1013:
 
     ld de, $1b58
 
-jr_000_101b:		;may just be a .wait? 
+jr_000_101b:		;may just be a .wait?
     nop
     nop
     nop
@@ -3694,12 +3694,12 @@ TurnOffLCD:		;check the LCD status
     bit 7, [hl]
     ret z		;if the LCD is off, return
 
-.LCD_On:		;if the LCD is on, 
+.LCD_On:		;if the LCD is on,
     ldh a, [rLY]	;check for vblank
     cp $91
     jr nz, .LCD_On
 
-    res 7, [hl]		;and once in vblank, turn the LCD off. 
+    res 7, [hl]		;and once in vblank, turn the LCD off.
     ld hl, $c8a1
     res 7, [hl]
     ret
@@ -3875,7 +3875,7 @@ FillNBytesWithRegA:
     ld d, a
 
 jr_000_12c8:
-    ld [hl], d 		;so far: breaks here when point set on inventory slot while opening ITEM option in bank. May just be for clearing or settings blocks of data to a single value. 
+    ld [hl], d 		;so far: breaks here when point set on inventory slot while opening ITEM option in bank. May just be for clearing or settings blocks of data to a single value.
     inc hl		;increment to next inv slot
     dec bc		;decrease counter, which is probably the number of total available inv slots.
     ld a, b		;load b into a to prepare for...
@@ -11163,7 +11163,7 @@ Call_000_33cc:
 Call_000_33cf:
     call Call_000_33d2
 
-Call_000_33d2:		
+Call_000_33d2:
     push bc
     push de
     push hl
