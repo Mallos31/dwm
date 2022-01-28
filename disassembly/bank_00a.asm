@@ -3862,34 +3862,22 @@ label5907:
     rst $00
 
 
-    daa
-    ld e, c
-    and a
-    ld e, c
-    pop af
-    ld e, d
-    ld b, [hl]
-    ld e, e
-    ld a, h
-    ld e, e
-    sbc e
-    ld e, e
-    ld c, h
-    ld e, h
-    ld d, c
-    ld e, h
-    ld d, [hl]
-    ld e, h
-    ld e, e
-    ld e, h
-    sub d
-    ld e, h
-    ld d, c
-    ld e, l
-    ld h, d
-    ld e, l
-    adc l
-    ld e, l
+    dw label5927
+    dw label59a7
+    dw label5af1
+    dw label5b46
+    dw label5b7c
+    dw label5b9b
+    dw label5c4c
+    dw label5c51
+    dw label5c56
+    dw label5c5b
+    dw label5c92
+    dw label5d51
+    dw label5d62
+    dw label5d8d
+
+label5927:
     call Call_00a_5947
     or a
     jr nz, jr_00a_5939
@@ -3993,6 +3981,7 @@ jr_00a_5999:
     ret
 
 
+label59a7:
     ld a, [$c825]
     or a
     ret nz
@@ -4206,7 +4195,7 @@ jr_00a_5ad9:
     inc de
     ret
 
-
+label5af1:
     ld de, $5b3a
     ld hl, $c8e2
     ld a, [$c8e9]
@@ -4263,6 +4252,8 @@ jr_00a_5b39:
 
 jr_00a_5b43:
     ld bc, $ffff
+
+label5b46:    
     ld a, [$c8e3]
     add a
     add a
@@ -4293,7 +4284,7 @@ jr_00a_5b43:
     inc [hl]
     ret
 
-
+label5b7c:
     ld a, [$c825]
     or a
     ret nz
@@ -4309,7 +4300,7 @@ jr_00a_5b43:
     inc [hl]
     ret
 
-
+label5b9b:
     ld de, $5c46
     ld hl, $c8de
     ld b, $02
@@ -4410,21 +4401,23 @@ jr_00a_5c45:
     nop
     rst $38
     rst $38
+
+label5c4c:
     ld hl, $c906
     inc [hl]
     ret
 
-
+label5c51:
     ld hl, $c906
     inc [hl]
     ret
 
-
+label5c56:
     ld hl, $c906
     inc [hl]
     ret
 
-
+label5c5b:
     ld de, $2e07
     call Call_00a_40b4
     call Call_00a_40e5
@@ -4453,7 +4446,7 @@ jr_00a_5c45:
     rst $10
     ret
 
-
+label5c92:
     ld a, [$c825]
     or a
     ret nz
@@ -4536,6 +4529,7 @@ jr_00a_5c45:
     ret
 
 
+label5d51:
     ld a, [$c825]
     or a
     ret nz
@@ -4546,7 +4540,7 @@ jr_00a_5c45:
     ld [$c905], a
     ret
 
-
+label5d62:
     ld hl, $c0d8
     ld a, l
     ld [$c930], a
@@ -4569,7 +4563,7 @@ jr_00a_5c45:
     ld [$c8ec], a
     ret
 
-
+label5d8d:
     ld a, [$c8e2]
     and $80
     ld b, a
