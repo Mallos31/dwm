@@ -6593,6 +6593,7 @@ label6a5a:
 label6a7e:
     ld a, [$c906]
     rst $00
+    
     sbc b
     ld l, d
     nop
