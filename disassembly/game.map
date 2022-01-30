@@ -1604,7 +1604,7 @@ ROMX bank #1:
            $42e4 = Call_001_42e4
            $42f6 = jr_001_42f6
            $431a = Call_001_431a
-           $432d = Call_001_432d
+           $432d = LoadNewBGMIdIntoA
            $4346 = jr_001_4346
            $4358 = jr_001_4358
            $43bd = jr_001_43bd

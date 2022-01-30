@@ -34,8 +34,8 @@ SECTION "ROM Bank $001", ROMX[$4000], BANK[$1]
     db $c8, $69
 
     db $e1, $69
-    
-    
+
+
     ld hl, sp+$00
     ld a, l
     ld [$da7b], a
@@ -413,7 +413,7 @@ jr_001_42f6:
     ld a, [wCurrPlayingBGM]
     ld b, a
     push bc
-    call Call_001_432d
+    call LoadNewBGMIdIntoA
     pop bc
     cp b
     call nz, Call_000_1ae1
@@ -439,22 +439,22 @@ Call_001_431a:
     ret
 
 
-Call_001_432d:
+LoadNewBGMIdIntoA:
     ld a, [wInGateworld]
     or a
     jr nz, jr_001_4358
 
     ld a, [wMapID]
-    cp $50
+    cp ITEMSP
     jr c, jr_001_4346
 
-    cp $52
+    cp COLISUM
     jr z, jr_001_4346
 
-    cp $5d
+    cp BTLDEMO
     jr c, jr_001_4358
 
-    cp $61
+    cp $61 ;maps do not go above 5F. This is unused. 
     jr nc, jr_001_4358
 
 jr_001_4346:
@@ -3501,7 +3501,7 @@ jr_001_52bc:
     ld [hl+], a
     ldh a, [$a4]
     adc [hl]
-    ld [hl+], a		;breaks when updating playing position. 
+    ld [hl+], a		;breaks when updating playing position.
     ld a, b
     adc [hl]
     ld [hl], a
@@ -7541,10 +7541,10 @@ Call_001_67f8:
     call Call_001_69ad
     call Call_001_69ad
     call Call_001_69ad
-    
+
     ;initialize enemy monster slots
     ld a, $ff
-    ld [$da03], a		
+    ld [$da03], a
     ld [$da05], a
     ld [$da07], a
     ld hl, $c0d8
@@ -7715,7 +7715,7 @@ Call_001_696c:
 
 
 Call_001_6989:
-    push hl		
+    push hl
     call GenerateRNG
     ld a, [wRNG1]
     ld l, a

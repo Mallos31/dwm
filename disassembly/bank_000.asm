@@ -5,6 +5,8 @@
 
 SECTION "ROM Bank $000", ROM0[$0]
 
+INCLUDE "maps.inc"
+
 RST_00::
     pop hl
     add a
