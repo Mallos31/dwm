@@ -7820,14 +7820,14 @@ Call_000_2652:
     jr nz, jr_000_266c
 
     ld a, [wMapID]
-    cp $5d
+    cp BTLDEMO
     jr z, jr_000_266a
 
-    cp $5e
+    cp CSLBG
     jr z, jr_000_266a
 
     ld a, [wMapID]
-    cp $30
+    cp OLDWELL
     jr nc, jr_000_266c
 
 jr_000_266a:

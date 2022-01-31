@@ -134,7 +134,7 @@ Call_001_4074:
     jr nz, jr_001_4105
 
     ld a, [wMapID]
-    cp $5e
+    cp CSLBG
     jr nz, jr_001_4105
 
     ld hl, $5605
@@ -338,7 +338,7 @@ Call_001_421c:
     jr nz, jr_001_427d
 
     ld a, [wMapID]
-    cp $08
+    cp NEST
     jr z, jr_001_4291
 
 jr_001_427d:
@@ -454,7 +454,7 @@ LoadNewBGMIdIntoA:
     cp BTLDEMO
     jr c, jr_001_4358
 
-    cp $61 ;maps do not go above 5F. This is unused. 
+    cp $61 ;maps do not go above 5F. This is unused. w
     jr nc, jr_001_4358
 
 jr_001_4346:
@@ -3421,7 +3421,7 @@ Call_001_5254:
     ret nz
 
     ld a, [wMapID]
-    cp $18
+    cp IN_WELL
     ret nz
 
     ldh a, [$95]
@@ -3919,7 +3919,7 @@ Call_001_54c6:
 
 Call_001_54eb:
     ld a, [wMapID]
-    cp $53
+    cp MAZEWOD
     ret z
 
     cp $61
@@ -3934,22 +3934,22 @@ Call_001_54eb:
     cp $64
     ret z
 
-    cp $54
+    cp SLDFLR1
     ret z
 
-    cp $55
+    cp SLDFLR2
     ret z
 
-    cp $56
+    cp SLDFLR3
     ret z
 
-    cp $57
+    cp MAZE1
     ret z
 
-    cp $58
+    cp MAZE2
     ret z
 
-    cp $59
+    cp MAZE3
     ret z
 
     ret
@@ -4202,10 +4202,10 @@ Call_001_565e:
     jr nz, jr_001_568c
 
     ld a, [wMapID]
-    cp $06
+    cp BATTLE1 ;arena entrance
     jr z, jr_001_5690
 
-    cp $5d
+    cp BTLDEMO
     jr z, jr_001_5690
 
     ld a, [$d92b]

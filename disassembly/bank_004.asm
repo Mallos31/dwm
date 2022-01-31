@@ -132,7 +132,7 @@ jr_004_4095:
 
 jr_004_409e:
     sub $90            ; subtract $90 from a(ffc7)
-    ldh [$c7], a       ; load(h) a(ffc7 -$90) into the contents of ffc7 
+    ldh [$c7], a       ; load(h) a(ffc7 -$90) into the contents of ffc7
     ld hl, $1100       ; load 1100 into hl
     rst $10            ; call bank ff10 func 4005
     ret
@@ -161,7 +161,7 @@ jr_004_40bb:
 
 jr_004_40c4:
     sub $90            ; subtract $90 from a(ffc7)
-    ldh [$c7], a       ; load(h) a(ffc7 -$90) into the contents of ffc7 
+    ldh [$c7], a       ; load(h) a(ffc7 -$90) into the contents of ffc7
     ld hl, $1101       ; load 1100 into hl
     rst $10            ; call bank $10 func 4005
     ret
@@ -195,7 +195,7 @@ Call_004_40cd:
     ldh a, [$cb]       ; load(h) ffcb into a
     sla a              ; x2 a(ffcb)
     sla a              ; x2 a(ffcbx2)
-    ld l, a            ; load a((ffcbx2) x2) into a 
+    ld l, a            ; load a((ffcbx2) x2) into a
     ld h, $c0          ; load $c0 into h
 
 jr_004_40f4:
@@ -212,7 +212,7 @@ jr_004_40f4:
     ld a, [de]         ; load the contents of de(hlx2+2) into a
     inc de             ; +1 to de
     ld b, a            ; load a(hlx2+2) into b
-    ldh a, [$c3]       ; 
+    ldh a, [$c3]       ;
     add b
     add $08
     ld [hl+], a
@@ -4493,70 +4493,45 @@ jr_004_5613:
 
     ld a, c
     rst $00
-    ld de, $4057
-    ld d, a
-    ld l, a
-    ld d, a
-    adc b
-    ld d, a
-    and c
-    ld d, a
-    db $eb
-    ld d, a
-    add hl, de
-    ld e, b
-    inc h
-    ld e, b
-    ld b, d
-    ld e, b
-    ld b, e
-    ld e, b
-    ld h, b
-    ld e, b
-    sbc b
-    ld e, b
-    ret nc
 
-    ld e, b
-    ld l, b
-    ld e, c
-    jp nc, $0259
+    dw label5711
+    dw label5740
+    dw label576f
+    dw label5788
+    dw label57a1
+    dw label57eb
+    dw label5819
+    dw label5824
+    dw label5842
+    dw label5843
+    dw label5860
+    dw label5898
+    dw label58d0
+    dw label5968
+    dw label59d2
+    dw label5a02
+    dw label5a6f
+    dw label5ac5
+    dw label5b1b
+    dw label5b49
+    dw label5b79
+    dw label5b8f
+    dw label5bd4
+    dw label5bdb
+    dw label5c14
+    dw label5c6d
+    dw label5c86
+    dw label5ccf
+    dw label5d1a
+    dw label5d4b
+    dw label5d53
+    dw label5d5b
+    dw label5e5e
+    dw label5e6d
 
-    ld e, d
-    ld l, a
-    ld e, d
-    push bc
-    ld e, d
-    dec de
-    ld e, e
-    ld c, c
-    ld e, e
-    ld a, c
-    ld e, e
-    adc a
-    ld e, e
-    call nc, $db5b
-    ld e, e
-    inc d
-    ld e, h
-    ld l, l
-    ld e, h
-    add [hl]
-    ld e, h
-    rst $08
-    ld e, h
-    ld a, [de]
-    ld e, l
-    ld c, e
-    ld e, l
-    ld d, e
-    ld e, l
-    ld e, e
-    ld e, l
-    ld e, [hl]
-    ld e, [hl]
-    ld l, l
-    ld e, [hl]
+
+
+  
     add a
     ld e, [hl]
     adc a
@@ -4682,11 +4657,11 @@ jr_004_5613:
     ld [hl], b
     push de
     ld [hl], b
-    jp nc, $2171
+    db $d2, $71
 
-    rst $10
-    ret c
 
+LAB_rom4__56ec:
+    ld hl, $d8d7
     set 1, [hl]
     ld a, c
     ld [$d8d9], a
@@ -4709,7 +4684,7 @@ jr_004_5700:
     call Call_000_0ad9
     ret
 
-
+label5711:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4729,7 +4704,7 @@ jr_004_5700:
     call Call_004_71ef
     jp Jump_004_7212
 
-
+label5740:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4749,7 +4724,7 @@ jr_004_5700:
     call Call_004_71ef
     jp Jump_004_7212
 
-
+label576f:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4760,7 +4735,7 @@ jr_004_5700:
     call Call_000_26a6
     jp Jump_004_55f5
 
-
+label5788:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4771,7 +4746,7 @@ jr_004_5700:
     call Call_000_26a0
     jp Jump_004_55f5
 
-
+label57a1:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4808,6 +4783,7 @@ jr_004_5700:
     ret
 
 
+label57eb:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4830,6 +4806,7 @@ jr_004_5700:
     ret
 
 
+label5819:
     ld a, [wGameState]
     bit 0, a
     ret z
@@ -4838,7 +4815,7 @@ jr_004_5700:
     inc [hl]
     ret
 
-
+label5824:
     ld a, [wGameState]
     bit 0, a
     ret nz
@@ -4855,10 +4832,10 @@ jr_004_5700:
     ld [$c916], a
     ret
 
-
+label5842:
     ret
 
-
+label5843:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4872,7 +4849,7 @@ jr_004_5700:
     set 2, [hl]
     ret
 
-
+label5860:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4897,7 +4874,7 @@ jr_004_5700:
     set 3, [hl]
     ret
 
-
+label5898:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4922,7 +4899,7 @@ jr_004_5700:
     set 3, [hl]
     ret
 
-
+label58d0:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4955,7 +4932,7 @@ Jump_004_58fa:
     ldh [$8e], a
     jp Jump_004_55f5
 
-
+label590d:
 jr_004_590d:
     cp $01
     jr nz, jr_004_5920
@@ -4968,7 +4945,7 @@ jr_004_590d:
     ldh [$8e], a
     jp Jump_004_55f5
 
-
+label5920:
 jr_004_5920:
     cp $02
     jr nz, jr_004_5933
@@ -4981,7 +4958,7 @@ jr_004_5920:
     ldh [$8e], a
     jp Jump_004_55f5
 
-
+label5933:
 jr_004_5933:
     ld a, $00
     ldh [$8d], a
@@ -4991,7 +4968,7 @@ jr_004_5933:
     ldh [$8e], a
     jp Jump_004_55f5
 
-
+label5942:
 jr_004_5942:
     dec a
     swap a
@@ -5014,7 +4991,7 @@ jr_004_5942:
     ld [hl], c
     jp Jump_004_55f5
 
-
+label5968:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5071,7 +5048,7 @@ jr_004_59b9:
     ld [hl], c
     jp Jump_004_55f5
 
-
+label59d2:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5092,7 +5069,7 @@ jr_004_59b9:
     call Call_004_71ef
     jp Jump_004_7212
 
-
+label5a02:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5140,7 +5117,7 @@ jr_004_59b9:
     ld [$c825], a
     ret
 
-
+label5a6f:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5191,7 +5168,7 @@ jr_004_5a99:
     set 3, [hl]
     ret
 
-
+label5ac5:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5243,7 +5220,7 @@ jr_004_5aef:
     ret
 
                         ; begining of function relating to tresure chests
-                        ; inc unknown counter
+label5b1b:                        ; inc unknown counter
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5267,7 +5244,7 @@ jr_004_5aef:
     ld [hl], c          ; load c (chests id bit) into the contents of hl (opened chest bit plane)
     jp Jump_004_55f5
 
-
+label5b49:
     ld a, [$d8d5]       ; inc unknown counter
     add $01
     ld [$d8d5], a
@@ -5276,7 +5253,7 @@ jr_004_5aef:
     ld [$d8d6], a
 
     call Call_004_71ef
-    ld l, c             ; load c into l 
+    ld l, c             ; load c into l
     ld h, b             ; load b into h
     push hl             ; push hl (unknown)
     ld a, [$d8d5]       ; inc unknown counter
@@ -5293,7 +5270,7 @@ jr_004_5aef:
     ld [hl], b          ; loads b into the contents of hl (unknown)
     jp Jump_004_55f5
 
-
+label5b79:
     ld a, [$d8d5]       ; inc unknown counter
     add $01
     ld [$d8d5], a
@@ -5304,7 +5281,7 @@ jr_004_5aef:
     call Call_004_71ef
     jp Jump_004_7212
 
-
+label5b8f:
     ld a, [$d8d5]       ; inc unknown counter
     add $01
     ld [$d8d5], a
@@ -5338,12 +5315,12 @@ jr_004_5aef:
     call Call_004_71ef
     jp Jump_004_7212
 
-
+label5bd4:
     call Call_000_2518
     call Call_000_25f1
     ret
 
-
+label5bdb:
     ld a, [wMapID]
     cp $2f
     jr nz, jr_004_5c04
@@ -5387,7 +5364,7 @@ jr_004_5c05:
 
     ret
 
-
+label5c14:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5424,7 +5401,7 @@ jr_004_5c48:
     ld a, c
     ld [$da14], a
     ld hl, $1402
-    rst $10
+    rst $10   ;calls function at 14:4005
     ld a, [$ca8d]
     cp $03
     jr z, jr_004_5c68
@@ -5445,7 +5422,7 @@ jr_004_5c68:
     rst $10
     ret
 
-
+label5c6d:
     ld a, [$d8d7]
     bit 4, a
     jp z, Jump_004_55f5
@@ -5458,7 +5435,7 @@ jr_004_5c68:
     ld [$d8d6], a
     ret
 
-
+label5c86:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5499,7 +5476,7 @@ jr_004_5c68:
     set 4, [hl]
     jp Jump_004_55f5
 
-
+label5ccf:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5542,7 +5519,7 @@ jr_004_5c68:
     set 4, [hl]
     jp Jump_004_55f5
 
-
+label5d1a:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5571,17 +5548,17 @@ jr_004_5c68:
     set 4, [hl]
     jp Jump_004_55f5
 
-
+label5d4b:
     ld hl, $d8d7
     set 5, [hl]
     jp Jump_004_55f5
 
-
+label5d53:
     ld hl, $d8d7
     res 5, [hl]
     jp Jump_004_55f5
 
-
+label5d5b:
     ld a, [$d9ce]
     ld b, a
     add a
@@ -5745,10 +5722,11 @@ Call_004_5e10:
     nop
     ld [$0800], sp
     nop
-    ld [$2100], sp
-    db $eb
-    ret z
+    db $08, $00
 
+
+label5e5e:
+    ld hl, $c8eb
     set 6, [hl]
     xor a
     ld [$c905], a
@@ -5756,7 +5734,7 @@ Call_004_5e10:
     ld [$da09], a
     ret
 
-
+label5e6d:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
