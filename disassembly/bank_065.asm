@@ -1535,7 +1535,7 @@ jr_065_46a5:
     ld h, c
     nop
     ld b, b
-    jp Jump_000_03ef
+    db $c3, $ef, $03
 
 
     rst $38

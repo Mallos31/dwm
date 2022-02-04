@@ -6699,8 +6699,7 @@ jr_02a_5f56:
     ld [hl+], a
 
 jr_02a_5fa7:
-    db $d3
-    jp nz, Jump_000_0433
+    db $d3, $c2, $33, $04
 
     rst $00
     jr jr_02a_5fcb
@@ -11012,7 +11011,7 @@ jr_02a_74e3:
     nop
     daa
     db $c2, $08, $12
-    
+
     ld de, $3427
     ld a, [bc]
     daa

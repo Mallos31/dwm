@@ -6970,7 +6970,7 @@ jr_027_5ece:
 
     nop
     inc b
-    jp nz, Jump_000_0418
+    db $c2, $18, $04
 
     ld [de], a
     inc c
@@ -10475,8 +10475,7 @@ jr_027_6d3a:
     rrca
     rlca
     inc b
-    jp nz, Jump_000_040a
-
+    db $c2, $0a, $04
     db $D2, $0E, $04
 
     ld [c], a
@@ -12501,7 +12500,7 @@ jr_027_7665:
     jr nc, jr_027_76a9
 
     inc b
-    call nz, Call_000_0406
+    db $c4, $06, $04
     adc h
     nop
     inc b
@@ -13221,8 +13220,7 @@ jr_027_7982:
     ld d, b
     db $10
     inc b
-    jp nz, Jump_000_0414
-
+    db $c2, $14, $04
     ld c, $0f
     ld bc, $7004
     db $10

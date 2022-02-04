@@ -3576,7 +3576,7 @@ jr_024_4f1a:
     ei
     inc b
     dec bc
-    call nz, Call_000_042b
+    db $c4, $2b, $04
     dec hl
     inc b
     xor e
@@ -4929,7 +4929,7 @@ jr_024_54cb:
     ei
     inc b
     dec bc
-    call nz, Call_000_042b
+    db $c4, $2b, $04
     dec hl
     inc b
     xor e
@@ -7220,7 +7220,7 @@ jr_024_5f0e:
     ld a, $42
     ei
     or d
-    jp z, Jump_000_03fb
+    db $ca, $fb, $03
 
     ld bc, $05e1
     rst $30

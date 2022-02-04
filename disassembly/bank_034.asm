@@ -7834,7 +7834,7 @@ jr_034_62a5:
     ld a, [$0eff]
     rst $38
     ld e, $ff
-    jp z, Jump_000_03ff
+    db $ca, $ff, $03
 
     inc b
     ld a, $09

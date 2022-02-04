@@ -115,7 +115,7 @@ Call_000_0062:
     push bc
     push de
     push hl
-    ld hl, $ff40
+    ld hl, rLCDC
     res 0, [hl]
     res 1, [hl]
     ld hl, $ddc2
@@ -126,7 +126,7 @@ Call_000_0062:
 
     inc a
     ld [$c984], a
-    call $ff90  ;DMA
+    call $ff90
     call Call_000_0ef7
     add b
     ld b, $0a
@@ -444,7 +444,6 @@ Jump_000_028b:
     ld [$c740], a
     ld [$c741], a
 
-Call_000_02c3:
 Jump_000_02c3:
     ld [$c8a2], a
     ld [$c8a4], a
@@ -709,11 +708,7 @@ Call_000_03d9:
 jr_000_03d9:
     ld a, [$c842]			;checks if A B Start and Select are pressed
     and $0f
-
-Call_000_03de:
     cp $0f
-
-Call_000_03e0:
     jr nz, jr_000_03e9
 
     ld a, [$c86c]
@@ -723,51 +718,33 @@ Call_000_03e0:
 jr_000_03e9:
     ld a, [$c86c]
     or a
-
-Call_000_03ed:
     jr nz, jr_000_044d
 
-Jump_000_03ef:
     ld a, [$c842]
     and $03				;check if A and B are being pressed
     cp $03
     jr jr_000_044d			;@BUG not really a bug, more than likely purposefully changed from jr nz, 044d to jr 044d to disable the debug menu.
 
-Jump_000_03f8:
     ld a, [wJoypad_current_frame]
-
-Jump_000_03fb:
     bit 2, a				;checking for the B button the be pressed. If it is not pressed, the code loading the debug menu is skipped.
     jr z, jr_000_041f
 
-Call_000_03ff:
-Jump_000_03ff:
     ld hl, $c8ad
 
 Call_000_0402:
     ld a, [wGameMode]
     ld [hl+], a
 
-Call_000_0406:
 Jump_000_0406:
     ld a, [$c88b]
     ld [hl+], a
-
-Call_000_040a:
-Jump_000_040a:
     ld a, [$c88c]
     ld [hl+], a
-
-Jump_000_040e:
     ld a, [$c88d]
     ld [hl], a
     ld a, $07			;loads 7 into a preparing to load the debug menu
-
-Jump_000_0414:
     ld [wGameMode], a
     xor a
-
-Jump_000_0418:
     ld [$c88b], a
     ld hl, $c88e
     inc [hl]
@@ -780,29 +757,17 @@ jr_000_041f:
 Call_000_0426:
     ld a, [wJoypad_current_frame]
     bit 2, a
-
-Call_000_042b:
     jr z, jr_000_044d
 
-Jump_000_042d:
     ld hl, $c8ad
     ld a, [wGameMode]
-
-Jump_000_0433:
     ld [hl+], a
     ld a, [$c88b]
     ld [hl+], a
-
-Call_000_0438:
     ld a, [$c88c]
     ld [hl+], a
     ld a, [$c88d]
-
-Call_000_043f:
-Jump_000_043f:
     ld [hl], a
-
-Jump_000_0440:
     ld a, $0c
     ld [wGameMode], a
     xor a
@@ -826,8 +791,6 @@ jr_000_0452:
 
 Jump_000_045c:
     call Call_000_1240
-
-Call_000_045f:
     ld a, [$c8b9]
     or a
     jr nz, jr_000_0468
@@ -856,8 +819,6 @@ jr_000_047a:
 
 Empty_Func_047e:
     ld a, [$c86c]
-
-Jump_000_0481:
     or a
     ret z
 

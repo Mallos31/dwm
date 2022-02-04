@@ -11763,7 +11763,7 @@ jr_028_72a8:
     ld hl, $8404
     ld [bc], a
     inc b
-    call nc, Call_000_040a
+    db $d4, $0a, $04
     and h
     nop
     inc b

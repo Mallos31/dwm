@@ -926,7 +926,7 @@ jr_07d_43df:
     ld a, a
     add b
     inc c
-    call z, Call_000_03e0
+    db $cc, $e0, $03
     nop
     sbc b
     add b

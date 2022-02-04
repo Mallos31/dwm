@@ -9968,7 +9968,7 @@ jr_04c_6993:
 
 
     dec [hl]
-    jp nz, Jump_000_0440
+    db $c2, $40, $04
 
     nop
     add h

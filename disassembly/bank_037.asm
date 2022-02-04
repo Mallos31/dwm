@@ -8425,7 +8425,7 @@ jr_037_643a:
     inc a
     dec a
     inc b
-    jp nz, Jump_000_040a
+    db $c2, $0a, $04
 
     sub d
     inc c

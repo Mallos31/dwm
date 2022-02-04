@@ -2428,7 +2428,7 @@ jr_055_4b33:
     ld d, b
 
 jr_055_4b35:
-    ld [hl+], a			     	;load tile ID into vram. 
+    ld [hl+], a			     	;load tile ID into vram.
     inc a
     dec b
     jr nz, jr_055_4b35
@@ -2450,10 +2450,10 @@ jr_055_4b35:
 
 
     ld a, [wJoypad_current_frame]
-    bit 2, a				
+    bit 2, a
     jr z, jr_055_4b72			;if select was not pressed, jump over next code block
 
-    xor a				;if select was pressed, rest a and put it in a bunch of addresses. 
+    xor a				;if select was pressed, rest a and put it in a bunch of addresses.
     ld [$df0b], a
     ld [$df0c], a
     ld [$df02], a
@@ -2464,9 +2464,9 @@ jr_055_4b35:
     ld [wGameMode], a			;load B into the current menu type (message debugger)
     xor a				;reset a
     ld [$c88b], a			;use a to reset current debug menu page (page 1)
-    ld hl, $c88e			
+    ld hl, $c88e
     inc [hl]				;inc c88e to initiate the screen fade and change.
-    reti				;ret and enable interrupts. 
+    reti				;ret and enable interrupts.
 
 
 jr_055_4b72:
@@ -2485,7 +2485,7 @@ jr_055_4b72:
     ld c, a
     ld d, $51
     ;START OF DEBUG MENU DRAW FUNCTION. NO JUMP TO IT.
-    ld a, [wJoypad_Current]		;poll joypad 
+    ld a, [wJoypad_Current]		;poll joypad
     and $90
     jr z, .check_up_and_left
 
@@ -2531,7 +2531,7 @@ Prep_Debug_Menu_OAM_tile_ID:
     and $01			;check is A is pressed
     ret z			;if not, return
 
-    ld a, $59			;if so, load $59 into a and jump to that thing I don't know what it does that doesn't have a $59 as a switch case. 
+    ld a, $59			;if so, load $59 into a and jump to that thing I don't know what it does that doesn't have a $59 as a switch case.
     call PlaySoundEffect
     ld a, [wDebug_main_menu_option]
     cp $05			;compares debug main menu option to "-  RETURN  -"
@@ -2540,11 +2540,11 @@ Prep_Debug_Menu_OAM_tile_ID:
     inc a			;
     ld [$c88b], a		;c88b is the current debug menu ID
     ld hl, $c88e		;when c88e is incremented, the screen fades and loads the menu with the ID stored in c88b
-    inc [hl]	
+    inc [hl]
     ret
 
 
-jr_055_4bdc:			;Likely inits data for the title screen 
+jr_055_4bdc:			;Likely inits data for the title screen
     ld hl, wGameMode
     ld a, [$c8ad]
     ld [hl+], a
@@ -2561,12 +2561,12 @@ jr_055_4bdc:			;Likely inits data for the title screen
     ;ONCE IN THE GOTO PROGRAM MENU
     ld a, [wJoypad_current_frame]
     and $08				;checks if start is pressed
-    jr z, jr_055_4c52			;if no, skip next code block and check other buttons. 
+    jr z, jr_055_4c52			;if no, skip next code block and check other buttons.
 
-    ld a, $59				
+    ld a, $59
     call PlaySoundEffect
     call GenerateRNG
-    ld a, [wRNG1]			;possible RNG? Otherwise just some timer. 
+    ld a, [wRNG1]			;possible RNG? Otherwise just some timer.
     inc a
     ld [$da03], a
     call GenerateRNG
@@ -2608,7 +2608,7 @@ jr_055_4c52:
     bit 6, a			;check if up is pressed
     jr z, jr_055_4c5f
 
-    ld a, [wMenu_selection]	
+    ld a, [wMenu_selection]
     dec a			;move option cursor up
     jr Menu_option_wrap_around
 
@@ -2618,16 +2618,16 @@ jr_055_4c5f:
     jr z, jr_055_4c74
 
     ld a, [wMenu_selection]
-    inc a			;inc menu selection. In this menu, it goes down to the next option. 
+    inc a			;inc menu selection. In this menu, it goes down to the next option.
 
 Menu_option_wrap_around:
     and $03			;clever way of resetting to 0 (top of the menu) if selection is larger than $03
     ld [wMenu_selection], a
     ld a, $59
-    call PlaySoundEffect		;loads a into c8b8. Unknown what this does yet. 
+    call PlaySoundEffect		;loads a into c8b8. Unknown what this does yet.
 
 jr_055_4c74:
-    ld a, [wMenu_selection]		
+    ld a, [wMenu_selection]
     ld c, a
     ld b, $00
     ld hl, wDebug_main_menu_option
@@ -2636,7 +2636,7 @@ jr_055_4c74:
     and $10			;check if right was pushed
     jr z, jr_055_4c88		;if not, skip the next code block
 
-    inc [hl]			;if right was pressed, increment the selected menu option 
+    inc [hl]			;if right was pressed, increment the selected menu option
     jr jr_055_4c9b
 
 jr_055_4c88:
@@ -3125,7 +3125,7 @@ Call_055_4f8f:
 
     ld a, [wJoypad_current_frame]   ;check if start is pressed
     and $08
-    jr z, jr_055_4fd2              
+    jr z, jr_055_4fd2
 
     ld a, [wMenu_selection]
     or a
@@ -3253,7 +3253,7 @@ jr_055_5050:
     bit 3, a
     jr nz, jr_055_506b
 
-;draw blank tiles and skip drawing the index number. 
+;draw blank tiles and skip drawing the index number.
     xor a
     call Write_gfx_tile_and_inc_HL
     call Write_gfx_tile_and_inc_HL
@@ -3268,7 +3268,7 @@ jr_055_506f:
     push bc
     ld a, c                 ;load $02 into a
     ld bc, SE_IDS           ;and the sound effect ID pointer into bc
-    cp $02                  ;This should alwasy be the case since $02 is loaded into a just above. 
+    cp $02                  ;This should alwasy be the case since $02 is loaded into a just above.
     jr nz, jr_055_507c
 
     ld bc, BGM_IDS
@@ -3328,7 +3328,7 @@ jr_055_50b2:
 
 
     BGM_IDS:
-    db $02 
+    db $02
     db $06
     db $09
     db $0c
@@ -3429,7 +3429,7 @@ SE_IDS:
     db $00
     db $00
 
-   
+
     ld a, [wJoypad_current_frame]
     and $08
     jr z, jr_055_5162
@@ -6080,7 +6080,7 @@ jr_055_5cc6:
     ldh a, [$fc]
     add $86
     add d
-    call nz, Call_000_03ff
+    db $c4, $ff, $03
     add b
     adc l
     rst $38
@@ -6301,9 +6301,7 @@ jr_055_5cc6:
     inc bc
     add e
     add e
-    jp Jump_000_0483
-
-
+    db $c3, $83, $04
     inc bc
     add h
     rlca

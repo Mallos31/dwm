@@ -1382,7 +1382,7 @@ jr_013_46c3:
     cp h
     sbc a
     inc bc
-    call c, Call_000_03ed
+    db $dc, $ed, $03
     db $e4
     ccf
     inc b
@@ -6682,7 +6682,7 @@ jr_013_5df7:
     inc c
     or h
     inc bc
-    call c, Call_000_0438
+    db $dc, $38, $04
     ld a, h
     push bc
     inc b

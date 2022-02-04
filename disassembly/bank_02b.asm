@@ -13572,8 +13572,7 @@ jr_02b_7bda:
     inc b
     ld [de], a
     inc b
-    jp nc, Jump_000_040a
-
+    db $d2, $0a, $04
     db $ec
 
 jr_02b_7bee:

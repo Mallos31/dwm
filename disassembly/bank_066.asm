@@ -315,8 +315,7 @@ jr_066_40bf:
     rst $38
     add d
     ld a, a
-    jp nz, Jump_000_043f
-
+    db $c2, $3f, $04
     cp $78
     db $fc
     add b

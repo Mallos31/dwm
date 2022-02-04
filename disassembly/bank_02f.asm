@@ -7889,7 +7889,7 @@ jr_02f_63c1:
     rlca
     ld a, [c]
     dec bc
-    call nz, Call_000_043f
+    db $c4, $3f, $04
     cp $08
     ccf
     ld [$10cf], sp

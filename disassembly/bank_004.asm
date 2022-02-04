@@ -4531,7 +4531,8 @@ jr_004_5613:
 
 
 
-  
+  ;the rest of this, up to the first label, is jumptable.
+  ;needs to be finished
     add a
     ld e, [hl]
     adc a

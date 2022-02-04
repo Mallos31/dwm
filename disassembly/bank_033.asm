@@ -6031,7 +6031,7 @@ jr_033_5a7a:
     pop hl
     sbc a
     cp e
-    call z, Call_000_045f
+    db $cc, $5f, $04
     db $76
     inc bc
     add b
