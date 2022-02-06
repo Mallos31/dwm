@@ -7,8 +7,14 @@ SECTION "ROM Bank $002", ROMX[$4000], BANK[$2]
 
     db $02
 
-    db $0d, $40, $9f, $4e, $2c, $51, $d6, $5f, $78, $6a, $0a, $6b
-    
+    dw label400d
+    dw label4e9f
+    db $2c, $51
+    db $d6, $5f
+    db $78, $6a
+    db $0a, $6b
+
+label400d:
     ld a, [$d7b4]
     ld l, a
     ld a, [$d7b5]
@@ -3164,6 +3170,9 @@ jr_002_4bf3:
     rst $38
     ld bc, $0202
     ld bc, $00fe
+
+
+label4e9f:
     call Call_000_1264
     ld hl, $c817
     ld [hl], $00

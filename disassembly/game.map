@@ -97,12 +97,10 @@ ROM0 bank #0:
            $044d = jr_000_044d
            $0452 = jr_000_0452
            $045c = Jump_000_045c
-           $045f = Call_000_045f
            $0468 = jr_000_0468
            $046b = Call_000_046b
            $047a = jr_000_047a
            $047e = Empty_Func_047e
-           $0481 = Jump_000_0481
            $0483 = Jump_000_0483
            $04b8 = Call_000_04b8
            $04c4 = Call_000_04c4
@@ -1568,6 +1566,7 @@ ROM0 bank #0:
 
 ROMX bank #1:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $001"]
+           $401d = label401d
            $4074 = Call_001_4074
            $4105 = jr_001_4105
            $410b = jr_001_410b
@@ -1700,6 +1699,7 @@ ROMX bank #1:
            $482b = jr_001_482b
            $4834 = jr_001_4834
            $4837 = Call_001_4837
+           $4845 = label4845
            $484e = Call_001_484e
            $4854 = jr_001_4854
            $4859 = jr_001_4859
@@ -1764,17 +1764,20 @@ ROMX bank #1:
            $4b4a = jr_001_4b4a
            $4b5a = jr_001_4b5a
            $4bab = jr_001_4bab
+           $4bc1 = label4bc1
            $4bc6 = jr_001_4bc6
            $4bcb = jr_001_4bcb
            $4c03 = jr_001_4c03
            $4c10 = Call_001_4c10
            $4c49 = jr_001_4c49
+           $4c58 = label4c58
            $4c89 = Call_001_4c89
            $4c95 = Call_001_4c95
            $4cc0 = jr_001_4cc0
            $4d02 = Call_001_4d02
            $4da8 = Call_001_4da8
            $4db8 = Call_001_4db8
+           $4dd3 = label4dd3
            $4dda = Call_001_4dda
            $4df3 = jr_001_4df3
            $4dfc = jr_001_4dfc
@@ -1883,6 +1886,7 @@ ROMX bank #1:
            $5a37 = jr_001_5a37
            $5a4d = Call_001_5a4d
            $5a66 = Call_001_5a66
+           $5a72 = label5a72
            $5a7f = jr_001_5a7f
            $5a93 = jr_001_5a93
            $5aa0 = jr_001_5aa0
@@ -1973,6 +1977,7 @@ ROMX bank #1:
            $668f = Call_001_668f
            $668f = Jump_001_668f
            $67f8 = Call_001_67f8
+           $683e = label683e
            $68ad = jr_001_68ad
            $68c6 = jr_001_68c6
            $68d8 = jr_001_68d8
@@ -1986,6 +1991,7 @@ ROMX bank #1:
            $699e = jr_001_699e
            $69ab = jr_001_69ab
            $69ad = Call_001_69ad
+           $69c8 = label69c8
            $69e1 = Call_001_69e1
            $6a01 = jr_001_6a01
            $6c5e = jr_001_6c5e
@@ -2012,12 +2018,22 @@ ROMX bank #1:
            $78bf = jr_001_78bf
            $78c8 = jr_001_78c8
            $7948 = jr_001_7948
+           $796e = label796e
            $7983 = jr_001_7983
+           $7992 = label7992
            $79c3 = jr_001_79c3
            $79d1 = Call_001_79d1
+           $79fc = label79fc
+           $7a1c = label7a1c
+           $7a34 = label7a34
            $7a37 = jr_001_7a37
+           $7a44 = label7a44
+           $7a49 = label7a49
+           $7a4e = label7a4e
+           $7a69 = label7a69
            $7a90 = jr_001_7a90
            $7abf = jr_001_7abf
+           $7ac5 = label7ac5
            $7ad6 = jr_001_7ad6
            $7b0c = Call_001_7b0c
            $7b1d = Call_001_7b1d
@@ -2032,10 +2048,14 @@ ROMX bank #1:
            $7da9 = Call_001_7da9
            $7da9 = jr_001_7da9
            $7db4 = jr_001_7db4
+           $7dba = label7dba
            $7dbd = jr_001_7dbd
+           $7dc6 = label7dc6
            $7dcf = jr_001_7dcf
            $7dcf = Call_001_7dcf
            $7dd5 = Call_001_7dd5
+           $7dde = label7dde
+           $7de6 = label7de6
            $7e2b = jr_001_7e2b
            $7e30 = jr_001_7e30
            $7e38 = jr_001_7e38
@@ -2053,6 +2073,7 @@ ROMX bank #1:
 
 ROMX bank #2:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $002"]
+           $400d = label400d
            $401e = jr_002_401e
            $4027 = jr_002_4027
            $4028 = Call_002_4028
@@ -2073,6 +2094,7 @@ ROMX bank #2:
            $45aa = jr_002_45aa
            $48b4 = jr_002_48b4
            $4bf3 = jr_002_4bf3
+           $4e9f = label4e9f
            $517e = Call_002_517e
            $5183 = jr_002_5183
            $5188 = jr_002_5188

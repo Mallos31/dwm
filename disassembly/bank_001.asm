@@ -7,35 +7,22 @@ SECTION "ROM Bank $001", ROMX[$4000], BANK[$1]
 
     db $01
 
-    db $1d, $40
+    dw label401d
+    dw label4dd3
+    dw Call_001_421c
+    dw Call_001_484e
+    dw label4845
+    dw Call_001_46f6
+    dw jr_001_4686
+    dw label4c58
+    dw label5a72
+    dw label4bc1
+    dw Call_001_5d6d
+    dw label683e
+    dw label69c8
+    dw Call_001_69e1
 
-    db $d3, $4d
-
-    db $1c, $42
-
-    db $4e, $48
-
-    db $45, $48
-
-    db $f6, $46
-
-    db $86, $46
-
-    db $58, $4c
-
-    db $72, $5a
-
-    db $c1, $4b
-
-    db $6d, $5d
-
-    db $3e, $68
-
-    db $c8, $69
-
-    db $e1, $69
-
-
+label401d:
     ld hl, sp+$00
     ld a, l
     ld [$da7b], a
@@ -1595,7 +1582,7 @@ Call_001_4837:
     ld a, [hl]
     ret
 
-
+label4845:
     ld a, [$ca8d]
     or a
     jr nz, jr_001_4869
@@ -2344,10 +2331,11 @@ jr_001_4bab:
     ld l, $0a
     ld l, $0b
     ld l, $0c
-    ld l, $21
-    pop bc
-    db $ca, $06, $14
+    db $2e
 
+label4bc1:
+    ld hl, $cac1
+    ld b, $14
 jr_001_4bc6:
     push hl
     ld a, [hl]
@@ -2456,7 +2444,7 @@ jr_001_4c49:
     rst $10
     ret
 
-
+label4c58:
     ld a, d
     ld hl, $cb25
     call Call_000_223b
@@ -2678,7 +2666,7 @@ Call_001_4db8:
     pop af
     ret
 
-
+label4dd3:
     ld a, [$c88f]
     or a
     jp nz, Jump_001_4139
@@ -4938,6 +4926,8 @@ Call_001_5a66:
     ldh [$dd], a
     xor a
     ld [$d78f], a
+
+label5a72:
     ld a, [$c850]
     or a
     ret nz
@@ -6182,6 +6172,8 @@ Call_001_60e7:
 jr_001_6115:
     ld a, [wMapID]
     rst $00
+
+;start of massive RST00 jump table.     
     ld sp, hl
     ld h, c
     nop
@@ -6386,6 +6378,8 @@ jr_001_618d:
     ret nc
 
     sub h
+;end of massive RST00 jump table.
+
     call Call_001_65e0
     ret
 
@@ -7507,7 +7501,7 @@ Call_001_67f8:
     ld [$cab5], a
     ret
 
-
+label683e:
     call Call_001_69e1
     ld a, [$ca38]
     ld bc, $001a
@@ -7771,6 +7765,9 @@ Call_001_69ad:
     ld [hl-], a
     ld b, [hl]
     ld h, h
+
+
+label69c8:
     call Call_001_69e1
     ld a, [$ca38]
     ld bc, $001a
@@ -11267,26 +11264,19 @@ jr_001_7948:
     call c, Call_000_036f
     pop af
     rst $00
-    ld l, [hl]
-    ld a, c
-    sub d
-    ld a, c
-    db $fc
-    ld a, c
-    inc e
-    ld a, d
-    inc [hl]
-    ld a, d
-    ld b, h
-    ld a, d
-    ld c, c
-    ld a, d
-    ld c, [hl]
-    ld a, d
-    ld l, c
-    ld a, d
-    push bc
-    ld a, d
+
+    dw label796e
+    dw label7992
+    dw label79fc
+    dw label7a1c
+    dw label7a34
+    dw label7a44
+    dw label7a49
+    dw label7a4e
+    dw label7a69
+    dw label7ac5
+
+  label796e:
     ld e, $02
     ld a, [de]
     and a
@@ -11311,6 +11301,7 @@ jr_001_7983:
     jp Jump_000_3722
 
 
+label7992:
     call Call_001_7b0c
     rst $10
     ret nz
@@ -11371,7 +11362,7 @@ Call_001_79d1:
     ld d, $cc
     jp $07d3
 
-
+label79fc:
     rst $10
     ret nz
 
@@ -11392,7 +11383,7 @@ Call_001_79d1:
     inc [hl]
     ret
 
-
+label7a1c:
     rst $10
     ret nz
 
@@ -11408,7 +11399,7 @@ Call_001_79d1:
     ld a, $01
     jp $07d8
 
-
+label7a34:
     ld bc, $7bbb
 
 jr_001_7a37:
@@ -11422,13 +11413,15 @@ jr_001_7a37:
     call $091e
     jp $050b
 
-
+label7a44:
     ld bc, $7bc0
     jr jr_001_7a37
 
+label7a49:
     ld bc, $7bc5
     jr jr_001_7a37
 
+label7a4e:
     rst $10
     ret nz
 
@@ -11444,6 +11437,7 @@ jr_001_7a37:
     jp Jump_000_0515
 
 
+label7a69:
     call Call_001_6489
     ret z
 
@@ -11493,7 +11487,7 @@ jr_001_7abf:
     ld [$cac1], a
     ret
 
-
+label7ac5:
     ld a, [$c001]
     cp $03
     jr nc, jr_001_7ad6
@@ -11964,11 +11958,11 @@ jr_001_7cf9:
 
     ld a, [$cdaa]
     rst $00
-    cp d
-    ld a, l
-    add $7d
-    sbc $7d
-    and $7d
+
+    dw label7dba
+    dw label7dc6
+    dw label7dde
+    dw label7de6
 
 jr_001_7d9c:
     ld a, [$cda5]
@@ -11993,6 +11987,7 @@ jr_001_7db4:
     call Call_000_15f4
     jr jr_001_7da9
 
+label7dba:
     call Call_001_7dd5
 
 jr_001_7dbd:
@@ -12000,7 +11995,7 @@ jr_001_7dbd:
     ld bc, $98a3
     jp Jump_000_0aea
 
-
+label7dc6:
     call Call_000_1e74
     ld de, $576f
     ld bc, $9912
@@ -12017,11 +12012,12 @@ Call_001_7dd5:
     ld [hl], $04
     ret
 
-
+label7dde:
     ld de, $544d
     ld bc, $990d
     jr jr_001_7dcf
 
+label7de6:
     ld de, $5546
     ld bc, $98ef
     call Call_001_7dcf
