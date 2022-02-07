@@ -7,26 +7,21 @@ SECTION "ROM Bank $004", ROMX[$4000], BANK[$4]
 
   db $04 ;ROM Bank
 
-jr_004_4001:
-    rrca
-    ld b, b
-    ld d, $40
-    add c
-    ld b, b
-    and a
-    ld b, b
-    ld h, a
-    ld b, c
-    db $ec
-    ld d, l
-    ld a, [$1156]
-    dec e
-    ld b, b
+    dw label400f
+    dw label4016
+    dw label4081
+    dw label40a7
+    dw label4167
+    dw label55ec
+    dw label56fa
+
+label400f:
+    ld de, $401d
     call $0d91
     ret
 
-
-    ld de, $401d        ; start of code
+label4016:
+    ld de, $401d
     call Call_004_40cd
     ret
 
@@ -82,7 +77,7 @@ jr_004_4001:
     xor b
     nop
     nop
-    jr nc, jr_004_4001
+    db $30, $a4
 
     nop
     ld [$a530], sp
@@ -108,7 +103,7 @@ jr_004_4001:
     nop
     add b
 
-                        ;4081
+label4081:
     ldh a, [$c7]        ; load(h) the contents of ffc7 into a
     cp $90              ; compare $90 to a (ffc7)
     jr nc, jr_004_409e  ; jump if a(ffc7) >= $90
@@ -137,7 +132,7 @@ jr_004_409e:
     rst $10            ; call bank ff10 func 4005
     ret
 
-
+label40a7:
     ldh a, [$c7]       ; load(h) the contents of ffc7 into a
     cp $90             ; compare $90 to a (ffc7)
     jr nc, jr_004_40c4 ; jump if a(ffc7) >= $90
@@ -304,6 +299,9 @@ Call_004_4126:
     ld [bc], a
     ld [bc], a
     ld [bc], a
+
+
+label4167:
     ld a, [wGameState]
     res 0, a
     res 2, a
@@ -4457,6 +4455,8 @@ Jump_004_55a9:
     nop
     add b
     add b
+
+label55ec:
     xor a
     ld [$d8d5], a
     ld [$d8d6], a
@@ -4670,7 +4670,7 @@ LAB_rom4__56ec:
     ld [$d8da], a
     ret
 
-
+label56fa:
     ld a, [$d8d7]
     bit 1, a
     ret z

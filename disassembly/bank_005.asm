@@ -5,17 +5,18 @@
 
 SECTION "ROM Bank $005", ROMX[$4000], BANK[$5]
 
-    dec b
-    dec b
-    ld b, b
-    rrca
-    ld b, b
+    db $05
+
+    dw label5_4005
+    dw label5_400f
+
+label5_4005:
     call Call_005_406e
     ld de, $407f
     call $0d91
     ret
 
-
+label5_400f:
     call Call_005_406e
     ld de, $407f
     push af

@@ -9,10 +9,10 @@ SECTION "ROM Bank $002", ROMX[$4000], BANK[$2]
 
     dw label400d
     dw label4e9f
-    db $2c, $51
-    db $d6, $5f
-    db $78, $6a
-    db $0a, $6b
+    dw label512c
+    dw label5fd6
+    dw label6a78
+    dw label6b0a
 
 label400d:
     ld a, [$d7b4]
@@ -3443,9 +3443,10 @@ label4e9f:
     ld a, $01
     jp Jump_000_11cb
 
-
+label512c:
     ld a, [$c88b]
     rst $00
+
     jr c, jr_002_5183
 
     ld b, $5d
@@ -5531,7 +5532,7 @@ Call_002_5fa7:
     call Call_002_6a55
     ret
 
-
+label5fd6:
     ld a, [$c0fc]
     rst $00
     ld hl, sp+$5f
@@ -7023,6 +7024,8 @@ Call_002_6a65:
     ld l, l
     ld c, h
     ld l, e
+
+label6a78:
     ld a, [$c0fc]
     ld l, a
     ld a, [$c0fd]
@@ -7141,7 +7144,7 @@ Call_002_6aff:
     ld l, a
     ret
 
-
+label6b0a:
     ld a, [$d7b4]
     ld c, a
     ld a, [$d7b5]

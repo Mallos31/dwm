@@ -7,9 +7,17 @@ SECTION "ROM Bank $003", ROMX[$4000], BANK[$3]
 
     db $03
 
-    db $13, $40, $3f, $44, $80, $69, $a2, $69, $24, $6e, $60, $71, $90, $71, $b6, $71
-    db $34, $71    
-    
+    dw label4013
+    dw label443f
+    dw Call_003_6980
+    dw label69a2
+    dw label6e24
+    dw Call_003_7160
+    dw label7190
+    dw label71b6
+    dw Call_003_7134
+
+label4013:
     ld a, [$c864]
     bit 7, a
     jr z, jr_003_4020
@@ -652,7 +660,7 @@ jr_003_4424:
     ld [$c8c9], a
     ret
 
-;443f
+label443f:
     ld de, $da33
     call Call_003_4446
     ret
@@ -8224,7 +8232,7 @@ jr_003_699b:
 
     ret
 
-;69a2
+label69a2:
     ld a, [$da5e]
     cp $ff
     ret z
@@ -9050,7 +9058,7 @@ Call_003_6e11:
     or a
     ret
 
-
+label6e24:
     ld a, [$da5e]
     cp $ff
     ret z
@@ -9617,7 +9625,7 @@ jr_003_718c:
 
     ret
 
-
+label7190:
     ld a, [$da5e]
     cp $00
     ret z
@@ -9650,7 +9658,7 @@ jr_003_71b1:
     ld [hl], a
     ret
 
-
+label71b6:
     ld a, [$da5e]
     cp $00
     ret z
