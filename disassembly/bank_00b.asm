@@ -5,33 +5,35 @@
 
 SECTION "ROM Bank $00b", ROMX[$4000], BANK[$b]
     db $0b	;rom bank
-    
+
     ;JUMPTABLE
-    db $15, $40 
-    db $88, $40 
-    db $ce, $40 
-    db $13, $42 
-    db $32, $43 
-    db $a4, $43 
-    db $1d, $45 
-    db $0f, $47
-    db $39, $42 
-    db $88, $44
-    
-    
+    dw labelb_4015
+    dw labelb_4088
+    dw labelb_40ce
+    dw labelb_4213
+    dw labelb_4332
+    dw labelb_43a4
+    dw labelb_451d
+    dw labelb_470f
+    dw Call_00b_4239
+    dw labelb_4488
+
+labelb_4015:
     ld a, [$c96c]
     or a
     jr z, jr_00b_4027
 
     ld a, [$c96d]
     ld [wMapID], a
-    ld a, [$c96e]	;Frz at 1 to make any map an overworld map when entering
+    ld a, [$c96e]
     ld [wInGateworld], a
 
 jr_00b_4027:
-    ld hl, $1605	;set ROM bank to 16, RAM bank to 00, and call function 5b4e.
+    ld hl, $1605	;set ROM bank to 16, RAM bank to 00, and call function 16:400b
     rst $10
-    
+
+
+
     ld de, $26dd
     ld a, [wInGateworld]
     or a
@@ -89,7 +91,7 @@ jr_00b_4076:
     rst $10
     ret
 
-
+labelb_4088:
     ld de, $26dd
     ld a, [wInGateworld]
     or a
@@ -135,7 +137,7 @@ jr_00b_40c0:
     ldh [$a0], a
     ret
 
-
+labelb_40ce:
     ldh a, [$95]
     ld l, a
     ldh a, [$96]
@@ -360,7 +362,7 @@ jr_00b_41d8:
     ld [hl], $01
     ret
 
-
+labelb_4213:
     ld hl, $1700
     rst $10
     call Call_00b_4239
@@ -582,7 +584,7 @@ Call_00b_4309:
     ld [hl], a
     ret
 
-
+labelb_4332:
     ld a, $00
     ldh [$d6], a
     ld hl, $d7d2
@@ -679,7 +681,7 @@ jr_00b_43a1:
     ld a, $ff
     ret
 
-
+labelb_43a4:
     ld a, $ff
     ldh [$d5], a
     ldh a, [$90]
@@ -878,7 +880,7 @@ Call_00b_4452:
 
 
 
-;4488
+labelb_4488:
     ld a, [$c850]
     or a
     ret nz
@@ -1004,6 +1006,8 @@ jr_00b_4513:
     ld h, a
     jr jr_00b_44ec
 
+
+labelb_451d:
     ld a, [wGameState]
     bit 0, a
     jp nz, Jump_00b_4674
@@ -1187,7 +1191,7 @@ jr_00b_4601:
     ld a, b
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a	;if c96c is 0, room transitions do not work. The scren fades, but that's it. 
+    ld [$c96c], a	;if c96c is 0, room transitions do not work. The scren fades, but that's it.
     ld a, [$c96e]
     or a
     jr nz, jr_00b_466b
@@ -1370,7 +1374,7 @@ jr_00b_4709:
     ld [$c92d], a
     ret
 
-
+labelb_470f:
     ld a, [$c8ea]
     bit 7, a
     jr z, jr_00b_471b

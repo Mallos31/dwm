@@ -6,10 +6,12 @@
 SECTION "ROM Bank $00c", ROMX[$4000], BANK[$c]
     ;rom bank
     db $0c
-    
+
     ;code jump table
-    db $07, $40, $2F, $40, $10, $41
-    
+    dw Call_00c_4007
+    dw labelc_402f
+    dw labelc_4110
+
 Call_00c_4007:			;jumped to by call_004_71ef's RST10 call.
     ld a, [$d8d3]		;
     ld l, a
@@ -20,7 +22,7 @@ Call_00c_4007:			;jumped to by call_004_71ef's RST10 call.
     ld e, [hl]
     inc hl
     ld d, [hl]
-    
+
     ld a, [$d8d4]
     ld l, a
     ld h, $00
@@ -29,7 +31,7 @@ Call_00c_4007:			;jumped to by call_004_71ef's RST10 call.
     ld e, [hl]
     inc hl
     ld d, [hl]
-    
+
     ld a, [$d8d5]		;unknown counter from rom bank 4
     ld l, a
     ld a, [$d8d6]
@@ -42,7 +44,7 @@ Call_00c_4007:			;jumped to by call_004_71ef's RST10 call.
     dec hl
     ret
 
-
+labelc_402f:
     ld hl, $ffb7	;jump table address 2
     ld a, [hl]
     and $f8
@@ -216,7 +218,7 @@ jr_00c_410e:
     pop hl
     ret
 
-
+labelc_4110:
     ld hl, $ffb7		;jump table address 3
     ld a, [hl]
     and $f8

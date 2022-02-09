@@ -5,27 +5,24 @@
 
 SECTION "ROM Bank $007", ROMX[$4000], BANK[$7]
 
-    rlca
-    add hl, bc
-    ld b, b
-    ld d, [hl]
-    ld h, h
-    ld l, b
-    ld h, h
-    add sp, $56
+    db $07 ;ROM bank
+
+    dw label7_4009
+    dw label7_6456
+    dw label7_6468
+    dw Call_007_56e8
+
+label7_4009:
     ld a, [$c90d]
     rst $00
-    xor a
-    ld l, d
-    rla
-    ld b, b
-    ret z
 
-    ld b, e
-    xor b
-    ld b, h
-    inc b
-    ld l, e
+    dw label7_6aaf
+    dw label7_4017
+    dw label7_43c8
+    dw label7_44a8
+    dw label7_6b04
+
+label7_4017:
     ld hl, $c90d
     inc [hl]
     call Call_007_6a8f
@@ -614,7 +611,7 @@ Call_007_43ab:
     call Call_000_1577
     ret
 
-
+label7_43c8:
     call Call_007_4290
     ld hl, wMenu_selection
     res 7, [hl]
@@ -743,9 +740,11 @@ jr_007_4498:
     call Call_007_69ef
     ret
 
-
+label7_44a8:
     ld a, [wMenu_selection]
     rst $00
+
+
     cp [hl]
     ld b, h
     adc d
@@ -1743,13 +1742,13 @@ jr_007_4ba0:
     cp $ff
     jr z, jr_007_4bad		;if inv slot is blank, skip next code block
 
-    inc c			;if slot was not empty, increment c and loop again. 
+    inc c			;if slot was not empty, increment c and loop again.
     dec b
     jr nz, jr_007_4ba0
 
 jr_007_4bad:
     ld a, c
-    ld [$c90f], a		;c90f is used for total number of items in inventory. May be others. 
+    ld [$c90f], a		;c90f is used for total number of items in inventory. May be others.
     ret
 
 
@@ -1968,7 +1967,7 @@ jr_007_4cef:
     ld [$da5e], a
     ld hl, $0302
     rst $10
-    
+
     ld a, $59
     call PlaySoundEffect
     ld hl, $c90e
@@ -2001,7 +2000,7 @@ jr_007_4d4a:
     ret
 
     db $61, $00, $a1, $00, $ff, $ff
-        
+
     ld a, [$da66]
     cp $02
     jr z, jr_007_4d6b
@@ -5647,6 +5646,9 @@ jr_007_644b:
     ld bc, $0201
     rst $38
     rst $38
+
+
+label7_6456:
     ld hl, $cac0
     ld a, l
     ld [$c930], a
@@ -5655,6 +5657,8 @@ jr_007_644b:
     xor a
     ld [$c932], a
     ld [$c933], a
+
+label7_6468:
     ld a, [$c90e]
     rst $00
     adc b
@@ -6779,7 +6783,7 @@ jr_007_6aa4:
 
     ret
 
-
+label7_6aaf:
     ld hl, wMenu_selection
     ld bc, $0008
     ld a, $00
@@ -6825,7 +6829,7 @@ Call_007_6aba:
     inc [hl]
     ret
 
-
+label7_6b04:
     call Call_007_6a8f
     call Call_007_690d
     ld hl, $170a

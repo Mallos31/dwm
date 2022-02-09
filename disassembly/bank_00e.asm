@@ -5,12 +5,11 @@
 
 SECTION "ROM Bank $00e", ROMX[$4000], BANK[$e]
 
-    ld c, $07
-    ld b, b
-    cpl
-    ld b, b
-    db $10
-    ld b, c
+    db $0e ;ROM BANK
+
+    dw Call_00e_4007
+    dw labele_402f
+    dw labele_4110
 
 Call_00e_4007:
     ld a, [$d8d3]
@@ -42,7 +41,7 @@ Call_00e_4007:
     dec hl
     ret
 
-
+labele_402f:
     ld hl, $ffb7
     ld a, [hl]
     and $f8
@@ -216,7 +215,7 @@ jr_00e_410e:
     pop hl
     ret
 
-
+labele_4110:
     ld hl, $ffb7
     ld a, [hl]
     and $f8

@@ -7,9 +7,13 @@ SECTION "ROM Bank $012", ROMX[$4000], BANK[$12]
 
 INCLUDE "items.inc"
 
-    db $12 ;ROM Bank 
+    db $12 ;ROM Bank
 
-    db $03, $40, $fa, $ef, $c8, $c7
+    dw label12_4003
+
+label12_4003:
+    ld a, [$c8ef]
+    rst $00
 
     ;function pointers
     db $27, $40

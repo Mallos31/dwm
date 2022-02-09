@@ -5,20 +5,17 @@
 
 SECTION "ROM Bank $006", ROMX[$4000], BANK[$6]
 
-    ld b, $1f
-    ld c, e
-    cp h
-    ld c, h
-    rrca
-    ld b, b
-    jr z, jr_006_4049
+    db $06 ;ROM bank
 
-    ld e, d
-    ld c, l
-    sbc d
-    ld c, a
-    inc [hl]
-    ld h, b
+    dw label6_4b1f
+    dw label6_4cbc
+    dw label6_400f
+    dw jr_006_4028
+    dw label6_4d5a
+    dw label6_4f9a
+    dw label6_6034
+
+label6_400f:
     ld a, [wGameState]
     bit 1, a
     ret nz
@@ -2031,6 +2028,8 @@ jr_006_4b09:
 
 jr_006_4b1e:
     nop
+
+label6_4b1f:
     ld hl, $ff90
     res 5, [hl]
     ld hl, $d7d2
@@ -2351,7 +2350,7 @@ jr_006_4c9c:
     ldh [$de], a
     ret
 
-
+label6_4cbc:
     ld a, [$c8ec]
     or a
     ret nz
@@ -2487,7 +2486,7 @@ jr_006_4d58:
     pop bc
     ret
 
-
+label6_4d5a:
     ld hl, $d7be
     ld b, $06
     ld c, $00
@@ -3070,6 +3069,8 @@ jr_006_4f47:
 
 jr_006_4f98:
     ld [hl], $3a
+
+label6_4f9a:
     ld a, [$cac0]
     ld hl, $cb0c
     call Call_000_223b
@@ -7183,6 +7184,9 @@ jr_006_5a30:
     ld b, [hl]
     ld b, a
     rst $38
+
+
+label6_6034:
     ld a, [$c88f]
     or a
     ret nz

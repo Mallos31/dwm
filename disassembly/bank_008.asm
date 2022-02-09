@@ -5,25 +5,21 @@
 
 SECTION "ROM Bank $008", ROMX[$4000], BANK[$8]
 
-    ld [$4015], sp
-    db $e3
-    ld b, c
-    inc l
-    ld b, d
-    ld a, [hl]
-    ld b, h
-    sbc [hl]
-    ld b, h
-    and l
-    ld b, h
-    and l
-    ld d, h
-    and l
-    ld h, h
-    db $dd
-    ld l, b
-    db $dd
-    ld a, b
+    db $08 ;ROM bank
+
+    dw label8_4015
+    dw label8_41e3
+    dw Call_008_422c
+    ;the jumps from here down are all invalid. Find out why they're here. 
+    dw label8_447e
+    dw label8_449e
+    dw label8_44a5
+    dw label8_54a5
+    dw jr_008_64a5
+    dw label8_68dd
+    dw label8_78dd
+
+label8_4015:
     ld a, [$c81c]
     or a
     ret z
@@ -442,6 +438,9 @@ jr_008_413d:
     nop
     nop
     nop
+
+
+label8_41e3:
     ld a, [$c81c]
     or a
     ret z
@@ -1018,6 +1017,8 @@ jr_008_42f0:
     cp $00
     rst $38
     nop
+
+label8_447e: ;this is an invalid function. Why is it being pointed to?
     sbc $6f
     rra
     inc sp
@@ -1046,11 +1047,16 @@ jr_008_42f0:
     ld [de], a
     nop
     nop
+
+
+label8_449e: ;another invalid function.
     ld e, d
     nop
     ld bc, $a001
     rst $38
     ld b, a
+
+label8_44a5:
     nop
     nop
     nop
@@ -4865,7 +4871,11 @@ jr_008_5344:
     ld b, d
     cp l
     cp l
-    db $c3, $c3, $0b
+    db $c3, $c3
+
+
+label8_54a5:
+    db $0b
 
 
     nop
@@ -9820,6 +9830,8 @@ jr_008_68c8:
 
     adc a
     add hl, bc
+
+label8_68dd:
     nop
     nop
     nop
@@ -13681,7 +13693,10 @@ jr_008_77f9:
     rra
     nop
     nop
-    ldh [$80], a
+    db $e0
+
+label8_78dd:
+    add b
     ld [$131b], sp
     ld d, h
     ret nc

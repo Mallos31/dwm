@@ -3364,6 +3364,7 @@ ROMX bank #5:
 
 ROMX bank #6:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $006"]
+           $400f = label6_400f
            $4028 = jr_006_4028
            $402b = jr_006_402b
            $4043 = Call_006_4043
@@ -3437,6 +3438,7 @@ ROMX bank #6:
            $4afb = Jump_006_4afb
            $4b09 = jr_006_4b09
            $4b1e = jr_006_4b1e
+           $4b1f = label6_4b1f
            $4b27 = jr_006_4b27
            $4b40 = jr_006_4b40
            $4b58 = Call_006_4b58
@@ -3452,6 +3454,7 @@ ROMX bank #6:
            $4c6e = jr_006_4c6e
            $4c72 = Call_006_4c72
            $4c9c = jr_006_4c9c
+           $4cbc = label6_4cbc
            $4cd7 = jr_006_4cd7
            $4cea = jr_006_4cea
            $4ced = jr_006_4ced
@@ -3459,6 +3462,7 @@ ROMX bank #6:
            $4d0a = Call_006_4d0a
            $4d54 = jr_006_4d54
            $4d58 = jr_006_4d58
+           $4d5a = label6_4d5a
            $4d61 = jr_006_4d61
            $4d7a = jr_006_4d7a
            $4d86 = jr_006_4d86
@@ -3515,6 +3519,7 @@ ROMX bank #6:
            $4f37 = jr_006_4f37
            $4f47 = jr_006_4f47
            $4f98 = jr_006_4f98
+           $4f9a = label6_4f9a
            $4fa8 = jr_006_4fa8
            $4faa = Jump_006_4faa
            $4fb8 = jr_006_4fb8
@@ -3553,6 +3558,7 @@ ROMX bank #6:
            $5991 = jr_006_5991
            $59c9 = jr_006_59c9
            $5a30 = jr_006_5a30
+           $6034 = label6_6034
            $6059 = jr_006_6059
            $6062 = jr_006_6062
            $606b = jr_006_606b
@@ -3733,6 +3739,8 @@ ROMX bank #6:
 
 ROMX bank #7:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $007"]
+           $4009 = label7_4009
+           $4017 = label7_4017
            $402b = Call_007_402b
            $405c = Call_007_405c
            $40c4 = jr_007_40c4
@@ -3763,6 +3771,7 @@ ROMX bank #7:
            $4398 = jr_007_4398
            $43a5 = jr_007_43a5
            $43ab = Call_007_43ab
+           $43c8 = label7_43c8
            $43e1 = jr_007_43e1
            $43f0 = jr_007_43f0
            $43f6 = jr_007_43f6
@@ -3773,6 +3782,7 @@ ROMX bank #7:
            $4482 = Call_007_4482
            $448b = jr_007_448b
            $4498 = jr_007_4498
+           $44a8 = label7_44a8
            $44e3 = Call_007_44e3
            $451c = jr_007_451c
            $451e = Call_007_451e
@@ -3992,6 +4002,8 @@ ROMX bank #7:
            $6420 = jr_007_6420
            $6441 = jr_007_6441
            $644b = jr_007_644b
+           $6456 = label7_6456
+           $6468 = label7_6468
            $64c9 = Call_007_64c9
            $64e8 = jr_007_64e8
            $64f2 = jr_007_64f2
@@ -4052,7 +4064,9 @@ ROMX bank #7:
            $6a95 = jr_007_6a95
            $6a9e = Call_007_6a9e
            $6aa4 = jr_007_6aa4
+           $6aaf = label7_6aaf
            $6aba = Call_007_6aba
+           $6b04 = label7_6b04
            $6b7f = Call_007_6b7f
            $6bac = jr_007_6bac
            $6bca = jr_007_6bca
@@ -4167,6 +4181,7 @@ ROMX bank #7:
 
 ROMX bank #8:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $008"]
+           $4015 = label8_4015
            $4026 = jr_008_4026
            $4033 = jr_008_4033
            $403a = jr_008_403a
@@ -4174,6 +4189,7 @@ ROMX bank #8:
            $4047 = jr_008_4047
            $404f = jr_008_404f
            $413d = jr_008_413d
+           $41e3 = label8_41e3
            $4208 = jr_008_4208
            $422c = Call_008_422c
            $426a = Call_008_426a
@@ -4183,6 +4199,9 @@ ROMX bank #8:
            $42d0 = jr_008_42d0
            $42e0 = jr_008_42e0
            $42f0 = jr_008_42f0
+           $447e = label8_447e
+           $449e = label8_449e
+           $44a5 = label8_44a5
            $45ab = jr_008_45ab
            $45b5 = jr_008_45b5
            $45f3 = jr_008_45f3
@@ -4241,6 +4260,7 @@ ROMX bank #8:
            $5239 = jr_008_5239
            $527d = jr_008_527d
            $5344 = jr_008_5344
+           $54a5 = label8_54a5
            $54b3 = jr_008_54b3
            $54b5 = jr_008_54b5
            $5566 = jr_008_5566
@@ -4388,6 +4408,7 @@ ROMX bank #8:
            $6860 = jr_008_6860
            $688f = jr_008_688f
            $68c8 = jr_008_68c8
+           $68dd = label8_68dd
            $6907 = jr_008_6907
            $6918 = jr_008_6918
            $691e = jr_008_691e
@@ -4444,6 +4465,7 @@ ROMX bank #8:
            $77d8 = jr_008_77d8
            $77f7 = jr_008_77f7
            $77f9 = jr_008_77f9
+           $78dd = label8_78dd
            $78f2 = jr_008_78f2
            $79c9 = Jump_008_79c9
            $7a87 = jr_008_7a87
@@ -4515,6 +4537,7 @@ ROMX bank #8:
 
 ROMX bank #9:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $009"]
+           $4005 = label9_4005
            $403d = Call_009_403d
            $404a = Call_009_404a
            $4059 = Call_009_4059
@@ -4778,6 +4801,7 @@ ROMX bank #9:
            $60d2 = jr_009_60d2
            $60df = jr_009_60df
            $60f1 = jr_009_60f1
+           $6120 = label9_6120
            $6149 = jr_009_6149
            $6155 = jr_009_6155
            $621f = Call_009_621f
@@ -5399,23 +5423,28 @@ ROMX bank #10:
 
 ROMX bank #11:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $00b"]
+           $4015 = labelb_4015
            $4027 = jr_00b_4027
            $4037 = jr_00b_4037
            $4076 = jr_00b_4076
+           $4088 = labelb_4088
            $4094 = jr_00b_4094
            $40c0 = jr_00b_40c0
+           $40ce = labelb_40ce
            $4134 = jr_00b_4134
            $4165 = jr_00b_4165
            $4168 = jr_00b_4168
            $41b3 = jr_00b_41b3
            $41d5 = jr_00b_41d5
            $41d8 = jr_00b_41d8
+           $4213 = labelb_4213
            $4239 = Call_00b_4239
            $4244 = jr_00b_4244
            $4274 = Call_00b_4274
            $42ac = jr_00b_42ac
            $42b7 = jr_00b_42b7
            $4309 = Call_00b_4309
+           $4332 = labelb_4332
            $433f = Call_00b_433f
            $433f = jr_00b_433f
            $4357 = jr_00b_4357
@@ -5424,6 +5453,7 @@ ROMX bank #11:
            $438d = jr_00b_438d
            $4397 = jr_00b_4397
            $43a1 = jr_00b_43a1
+           $43a4 = labelb_43a4
            $43b8 = Call_00b_43b8
            $43bb = jr_00b_43bb
            $43d8 = jr_00b_43d8
@@ -5435,9 +5465,11 @@ ROMX bank #11:
            $4447 = jr_00b_4447
            $444c = jr_00b_444c
            $4452 = Call_00b_4452
+           $4488 = labelb_4488
            $44ec = jr_00b_44ec
            $4504 = jr_00b_4504
            $4513 = jr_00b_4513
+           $451d = labelb_451d
            $4578 = jr_00b_4578
            $459e = jr_00b_459e
            $45a8 = Jump_00b_45a8
@@ -5456,6 +5488,7 @@ ROMX bank #11:
            $46f4 = jr_00b_46f4
            $4703 = jr_00b_4703
            $4709 = jr_00b_4709
+           $470f = labelb_470f
            $471b = jr_00b_471b
            $477e = jr_00b_477e
            $477e = Call_00b_477e
@@ -5691,6 +5724,7 @@ ROMX bank #11:
 ROMX bank #12:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $00c"]
            $4007 = Call_00c_4007
+           $402f = labelc_402f
            $4075 = Call_00c_4075
            $409a = jr_00c_409a
            $40a0 = jr_00c_40a0
@@ -5702,6 +5736,7 @@ ROMX bank #12:
            $40f6 = jr_00c_40f6
            $410b = jr_00c_410b
            $410e = jr_00c_410e
+           $4110 = labelc_4110
            $4171 = Call_00c_4171
            $4177 = jr_00c_4177
            $4178 = jr_00c_4178
@@ -5754,6 +5789,7 @@ ROMX bank #12:
 ROMX bank #13:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $00d"]
            $4007 = Call_00d_4007
+           $402f = labeld_402f
            $4075 = Call_00d_4075
            $409a = jr_00d_409a
            $40a0 = jr_00d_40a0
@@ -5765,6 +5801,7 @@ ROMX bank #13:
            $40f6 = jr_00d_40f6
            $410b = jr_00d_410b
            $410e = jr_00d_410e
+           $4110 = labeld_4110
            $4171 = Call_00d_4171
            $4177 = jr_00d_4177
            $4178 = jr_00d_4178
@@ -5858,6 +5895,7 @@ ROMX bank #13:
 ROMX bank #14:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $00e"]
            $4007 = Call_00e_4007
+           $402f = labele_402f
            $4075 = Call_00e_4075
            $409a = jr_00e_409a
            $40a0 = jr_00e_40a0
@@ -5869,6 +5907,7 @@ ROMX bank #14:
            $40f6 = jr_00e_40f6
            $410b = jr_00e_410b
            $410e = jr_00e_410e
+           $4110 = labele_4110
            $4171 = Call_00e_4171
            $4177 = jr_00e_4177
            $4178 = jr_00e_4178
@@ -5974,6 +6013,7 @@ ROMX bank #14:
 ROMX bank #15:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $00f"]
            $4007 = Call_00f_4007
+           $402f = labelf_402f
            $4075 = Call_00f_4075
            $409a = jr_00f_409a
            $40a0 = jr_00f_40a0
@@ -5985,6 +6025,7 @@ ROMX bank #15:
            $40f6 = jr_00f_40f6
            $410b = jr_00f_410b
            $410e = jr_00f_410e
+           $4110 = labelf_4110
            $4171 = Call_00f_4171
            $4177 = jr_00f_4177
            $4178 = jr_00f_4178
@@ -6029,6 +6070,8 @@ ROMX bank #15:
 
 ROMX bank #16:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $010"]
+           $4005 = label10_4005
+           $400f = label10_400f
            $403c = jr_010_403c
            $4069 = jr_010_4069
            $406e = Call_010_406e
@@ -6500,6 +6543,8 @@ ROMX bank #16:
 
 ROMX bank #17:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $011"]
+           $4005 = label11_4005
+           $400f = label11_400f
            $403c = jr_011_403c
            $4069 = jr_011_4069
            $406e = Call_011_406e
@@ -6831,6 +6876,7 @@ ROMX bank #17:
 
 ROMX bank #18:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $012"]
+           $4003 = label12_4003
            $4028 = Call_012_4028
            $4035 = Call_012_4035
            $4044 = Call_012_4044

@@ -5,13 +5,15 @@
 
 SECTION "ROM Bank $009", ROMX[$4000], BANK[$9]
 
-    db $09, $05, $40
-    
-    jr nz, @+$63
+    db $09 ;ROM Bank
 
+    dw label9_4005
+    dw label9_6120
+
+label9_4005:
     ld a, [$c8ef]
     rst $00
-    
+
     di
     ld b, l
     inc sp
@@ -499,11 +501,11 @@ Call_009_4256:
     jr jr_009_42b3
 
 jr_009_428c:
-    ld a, [wJoypad_current_frame]	
+    ld a, [wJoypad_current_frame]
     bit 4, a		  ; checking if your pressing right
-    jr z, jr_009_42cf	
+    jr z, jr_009_42cf
 
-    ld a, [$df0d]	;df0d = the current page in the shop, but changing it does not update the page number on screen. 
+    ld a, [$df0d]	;df0d = the current page in the shop, but changing it does not update the page number on screen.
     inc a		;inc a to open the message window
     and $01		;and a with 01 to make sure it's the only bit set
     ld [$df0d], a   ; load the contents of a (mesage window status) into df0d
@@ -511,9 +513,9 @@ jr_009_428c:
     ld a, [hl]  ; load the contents of hl (unknown pointer +1) into a
     inc a   ; add 1 to a
     push af
-    push de     
+    push de
     push bc
-    ld a, b     ; load the contents of b 
+    ld a, b     ; load the contents of b
     ld b, c
     dec b
     call Call_000_1dfb
@@ -548,7 +550,7 @@ jr_009_42b3:
 
     dec a   ; subtract 1 from a
     cp [hl]     ; compare hl (unknown pointer -1) to a
-    jr nc, jr_009_4312 
+    jr nc, jr_009_4312
 
     ld [hl], a  ; load the contents of a ( which must be smaller than hl) into hl
     jr jr_009_4312
@@ -595,7 +597,7 @@ jr_009_42f1:
     jr c, jr_009_4311	; if cary flag is set jump to 4311
 
     dec b		; subtract 1 from the contents of b
-    ld a, b		; load the contents of b ($02) into a 
+    ld a, b		; load the contents of b ($02) into a
     jr jr_009_4311	; jump to 4311
 
 jr_009_4303:
@@ -843,11 +845,11 @@ jr_009_4425:
     call Call_009_43e9
     pop de
     ret
-    
+
 Call_009_442a:
     xor a
     ld [$c90c], a
-    ret 
+    ret
 
 
 Call_009_442f:
@@ -873,7 +875,7 @@ jr_009_4447:
     ld a, [de]  ; load the contents of de (unknown pointer) to a
     ld l, a     ; load the contents of a (unknown pointer) into l
     inc de  ; add 1 to de (unknown pointer)
-    ld a, [de]  ; load the contents of de (unknown pointer +1) into a 
+    ld a, [de]  ; load the contents of de (unknown pointer +1) into a
     ld h, a     ; load the contents of a (unknown pointer +1) into h
     inc de  ; add 1 to de
     and l   ; compares h and l (to set flags)
@@ -881,7 +883,7 @@ jr_009_4447:
     ret z   ; returns to the function that called this one if last resault was 0
 
     ld a, l     ; load the contents of l (unknown pointer) into a
-    ldh [$d5], a    ; 
+    ldh [$d5], a    ;
     ld a, h
     ldh [$d6], a
     push de
@@ -1409,7 +1411,7 @@ jr_009_46de:
 .clear_shop_inventory:
     push hl
     ld hl, $c0d8 ;shop inventory
-    ld bc, $0014 
+    ld bc, $0014
     xor a
     call FillNBytesWithRegA
     pop hl
@@ -1435,7 +1437,7 @@ BazaarInventory:
     db WARP_WING
     db BEAST_TAIL
     db $ff
-    
+
 
 StarryNightShopInventory:
     db POTION
@@ -1478,7 +1480,7 @@ GateworldShopInventory:
     db LAUREL
     db WORLD_LEAF
     db $ff
-    
+
 
     ld a, [$c825]
     or a
@@ -3087,17 +3089,17 @@ Call_009_51f0:		;find how many inv slots are full
     ld b, $28		;load number of inv slots into counter at reg b
 
 Call_009_51f2:
-    ld c, $00		
+    ld c, $00
 
 jr_009_51f4:
     ld a, [hl+]		;loads contents of current inventory slot into reg a and increments to next one
     cp $00		;compares ID to 0
     ret z		;returns if a zero is found (currently unknown what writes 00 to inventory slots.)
 
-    cp $ff		;compares item id to FF (empty slot) 
-    ret z		;return once an empty slot is reached. 
+    cp $ff		;compares item id to FF (empty slot)
+    ret z		;return once an empty slot is reached.
 
-    inc c		;if neither happens, increment c 
+    inc c		;if neither happens, increment c
     dec b
     jr nz, jr_009_51f4
 
@@ -5497,7 +5499,7 @@ jr_009_60f1:
     ld [$c905], a
     ret
 
-
+label9_6120:
     ld a, [$c905]
     cp $09
     jr nc, jr_009_6155
@@ -6297,8 +6299,8 @@ jr_009_6606:
     db $af, $01, $b0, $01, $b1, $01, $b2, $01, $e1, $01, $e2, $01, $e3, $01, $e4, $01
     db $e5, $01, $e6, $01, $e7, $01, $e8, $01, $e9, $01, $ea, $01, $eb, $01, $ec, $01
     db $ed, $01, $ef, $01, $f0, $01, $f1, $01, $f2, $01, $ff, $ff
-    
-    
+
+
     xor a
     ld [wCursorBlinkTimer], a
     call Call_009_69f6
@@ -6474,7 +6476,7 @@ jr_009_67d6:
 
 
     db $2f, $01, $6f, $01, $ff, $ff
-    
+
     ld a, [$c8f2]
     ld l, a
     ld a, [$c8f3]
@@ -6789,7 +6791,7 @@ jr_009_6982:
     db $62, $9f, $9f, $9f, $9f, $9f, $9f, $9f, $62, $62, $9f, $9f, $9f, $9f, $9f, $9f
     db $62, $62, $62, $9f, $9f, $9f, $9f, $9f, $62, $62, $62, $62, $9f, $9f, $9f, $9f
     db $ff
-    
+
 
 Call_009_69f6:
     ld a, [wOPTN_and_Item_selection]
