@@ -5,15 +5,14 @@
 
 SECTION "ROM Bank $015", ROMX[$4000], BANK[$15]
 
-    dec d
-    add hl, bc
-    ld b, b
-    or e
-    ld b, d
-    rst $10
-    ld b, [hl]
-    ld a, h
-    ld d, h
+    db $15 ;ROM BANK
+
+    dw label15_4009
+    dw label15_42b3
+    dw label15_46d7
+    dw label15_547c
+
+label15_4009:
     ld hl, sp+$00
     ld a, l
     ld [$da7b], a
@@ -310,6 +309,7 @@ Jump_015_413e:
     jp Jump_000_11cb
 
 
+label15_42b3:
     ld a, [$c88b]
     rst $00
     ret nz
@@ -932,6 +932,7 @@ jr_015_46cc:
     ret
 
 
+label15_46d7:
     ld a, [$c8d2]
     rst $00
     dec h
@@ -3068,9 +3069,10 @@ jr_015_5471:
     rst $10
     ret
 
-
+label15_547c:
     ld a, [$c8d2]
     rst $00
+    
     or h
     ld d, h
     rra

@@ -5,32 +5,27 @@
 
 SECTION "ROM Bank $014", ROMX[$4000], BANK[$14]
 
-Call_014_4000:
-Jump_014_4000:
-    inc d
-    rrca
-    ld b, b
-    ld d, $40
-    or h
-    ld b, b
-    dec e
-    ld b, b
-    xor h
-    ld a, e
-    ld [de], a
-    ld a, l
-    ld l, c
-    ld c, b
+    db $14 ;ROM Bank
+
+    dw label14_400f
+    dw label14_4016
+    dw label14_40b4
+    dw label14_401d
+    dw label14_7bac
+    dw label14_7d12
+    dw label14_4869
+
+label14_400f:
     ld de, $da18
     call Call_014_4849
     ret
 
-
+label14_4016:
     ld de, $da18
     call Call_014_4849
     ret
 
-
+label14_401d:
     ld hl, $cac1
     ld a, [$da14]
     call Call_000_223b
@@ -88,7 +83,7 @@ Jump_014_4000:
     call Call_014_4849
     jp Jump_014_4158
 
-
+label14_40b4:
     ld hl, $cac1
     ld a, [$da14]
     call Call_000_223b
@@ -1233,7 +1228,7 @@ jr_014_4862:
 
     ret
 
-
+label14_4869:
     ld a, [$da12]
     ld c, a
     ld a, [$da13]
@@ -8968,7 +8963,7 @@ jr_014_69b6:
     ret z
 
     nop
-    call c, Call_014_4000
+    db $dc, $00, $40
     ld bc, $00ff
     ret z
 
@@ -12104,7 +12099,7 @@ jr_014_76ed:
     dec b
     inc e
     db $cc, $00, $12, $00
-    
+
     or c
     nop
     inc l
@@ -12405,7 +12400,7 @@ jr_014_782f:
     ld hl, HeaderDestinationCode
     and l
     nop
-    jp nc, Jump_014_4000
+    db $d2, $00, $40
 
     ld bc, $0118
     or h
@@ -12966,6 +12961,8 @@ jr_014_7b6c:
     rst $38
     rst $38
     rst $38
+
+label14_7bac:
     ld a, [$da5e]
     cp $ff
     ret z
@@ -13218,7 +13215,7 @@ Call_014_7d03:
     ld [$da5e], a
     ret
 
-
+label14_7d12:
     ld a, [$da5e]
     cp $ff
     ret z

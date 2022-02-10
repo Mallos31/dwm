@@ -6877,6 +6877,7 @@ ROMX bank #17:
 ROMX bank #18:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $012"]
            $4003 = label12_4003
+           $4027 = label12_4027
            $4028 = Call_012_4028
            $4035 = Call_012_4035
            $4044 = Call_012_4044
@@ -7266,7 +7267,10 @@ ROMX bank #18:
 
 ROMX bank #19:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $013"]
+           $4009 = label13_4009
            $4044 = Jump_013_4044
+           $4050 = label13_4050
+           $40ae = label13_40ae
            $40e1 = jr_013_40e1
            $411e = Call_013_411e
            $414b = jr_013_414b
@@ -7558,8 +7562,12 @@ ROMX bank #19:
            $66ae = jr_013_66ae
            $66b3 = jr_013_66b3
            $7004 = Jump_013_7004
+           $7366 = label13_7366
+           $7370 = label13_7370
            $7381 = jr_013_7381
            $73cb = jr_013_73cb
+           $73eb = label13_73eb
+           $73f5 = label13_73f5
            $7434 = jr_013_7434
            $7442 = jr_013_7442
            $7466 = jr_013_7466
@@ -7597,8 +7605,10 @@ ROMX bank #19:
 
 ROMX bank #20:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $014"]
-           $4000 = Call_014_4000
-           $4000 = Jump_014_4000
+           $400f = label14_400f
+           $4016 = label14_4016
+           $401d = label14_401d
+           $40b4 = label14_40b4
            $4158 = Jump_014_4158
            $4158 = jr_014_4158
            $425d = jr_014_425d
@@ -7637,6 +7647,7 @@ ROMX bank #20:
            $4821 = Call_014_4821
            $4849 = Call_014_4849
            $4862 = jr_014_4862
+           $4869 = label14_4869
            $4874 = jr_014_4874
            $487e = jr_014_487e
            $488f = jr_014_488f
@@ -7829,6 +7840,7 @@ ROMX bank #20:
            $7a44 = jr_014_7a44
            $7a86 = jr_014_7a86
            $7b6c = jr_014_7b6c
+           $7bac = label14_7bac
            $7bf4 = Jump_014_7bf4
            $7c01 = Call_014_7c01
            $7c1b = Jump_014_7c1b
@@ -7844,6 +7856,7 @@ ROMX bank #20:
            $7cf5 = Jump_014_7cf5
            $7d00 = Call_014_7d00
            $7d03 = Call_014_7d03
+           $7d12 = label14_7d12
            $7d55 = Jump_014_7d55
            $7d6d = Jump_014_7d6d
            $7d85 = Jump_014_7d85
@@ -7865,7 +7878,9 @@ ROMX bank #20:
 
 ROMX bank #21:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $015"]
+           $4009 = label15_4009
            $413e = Jump_015_413e
+           $42b3 = label15_42b3
            $42e6 = jr_015_42e6
            $42ef = jr_015_42ef
            $42f1 = Call_015_42f1
@@ -7894,6 +7909,7 @@ ROMX bank #21:
            $4689 = jr_015_4689
            $46aa = jr_015_46aa
            $46cc = jr_015_46cc
+           $46d7 = label15_46d7
            $4730 = Call_015_4730
            $4737 = jr_015_4737
            $473f = Jump_015_473f
@@ -7987,6 +8003,7 @@ ROMX bank #21:
            $5420 = jr_015_5420
            $5455 = jr_015_5455
            $5471 = jr_015_5471
+           $547c = label15_547c
            $54ab = Call_015_54ab
            $54bf = Call_015_54bf
            $54c6 = jr_015_54c6

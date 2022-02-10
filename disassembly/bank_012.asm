@@ -16,24 +16,24 @@ label12_4003:
     rst $00
 
     ;function pointers
-    db $27, $40
-    db $27, $40
-    db $27, $40
+    dw label12_4027
+    dw label12_4027
+    dw label12_4027
     db $2d, $44
-    db $27, $40
-    db $27, $40
-    db $27, $40
-    db $27, $40
+    dw label12_4027
+    dw label12_4027
+    dw label12_4027
+    dw label12_4027
     db $61, $60
     db $42, $68
     db $fe, $6a
-    db $27, $40
-    db $27, $40
-    db $27, $40
-    db $27, $40
-    db $27, $40
+    dw label12_4027
+    dw label12_4027
+    dw label12_4027
+    dw label12_4027
+    dw label12_4027
 
-
+label12_4027:
     ret
 
 

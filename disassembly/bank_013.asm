@@ -5,15 +5,15 @@
 
 SECTION "ROM Bank $013", ROMX[$4000], BANK[$13]
 
-    inc de
-    add hl, bc
-    ld b, b
-    ld d, b
-    ld b, b
-    xor [hl]
-    ld b, b
-    ld h, [hl]
-    ld [hl], e
+    db $13 ;ROM BANK
+
+    dw label13_4009
+    dw label13_4050
+    dw label13_40ae
+    dw label13_7366
+
+
+label13_4009:
     ld a, [$cac0]
     ld hl, $caca
     call Call_000_223b
@@ -59,7 +59,7 @@ Jump_013_4044:
     ldh [$d7], a
     ret
 
-
+label13_4050:
     ld a, [$cac0]
     ld hl, $cb0c
     call Call_000_223b
@@ -118,7 +118,7 @@ Jump_013_4044:
     ld [hl], a
     ret
 
-
+label13_40ae:
     ld a, [$cac0]
     ld hl, $caca
     call Call_000_223b
@@ -11249,14 +11249,17 @@ Jump_013_7004:
     db $10
     inc d
     ld c, $0e
+
+label13_7366:
     ld a, [$c905]
     rst $00
-    ld [hl], b
-    ld [hl], e
-    db $eb
-    ld [hl], e
-    push af
-    ld [hl], e
+
+    dw label13_7370
+    dw label13_73eb
+    dw label13_73f5
+
+
+label13_7370:
     ld b, $4b
     ld a, [wInGateworld]
     or a
@@ -11326,15 +11329,18 @@ jr_013_73cb:
     ld [$c906], a
     ret
 
-
+label13_73eb:
     ld a, [$c906]
     rst $00
-    jr nz, @+$76
 
+    ;jumptable
+    jr nz, @+$76
     add [hl]
     ld [hl], h
     rst $10
     ld [hl], l
+
+label13_73f5:
     ld hl, wGameState
     res 6, [hl]
     xor a
