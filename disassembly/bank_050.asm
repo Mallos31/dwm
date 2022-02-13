@@ -6248,7 +6248,7 @@ Jump_050_640a:
     ld a, h
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ret
 
 
@@ -6297,7 +6297,7 @@ jr_050_64af:
     ld a, h
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld hl, $c8ea
     res 7, [hl]
     ret
@@ -6398,7 +6398,7 @@ jr_050_6559:
     ld a, h
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld hl, $c8ea
     res 7, [hl]
     ld a, [wCurrGoldLo]

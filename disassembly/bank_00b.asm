@@ -19,7 +19,7 @@ SECTION "ROM Bank $00b", ROMX[$4000], BANK[$b]
     dw labelb_4488
 
 labelb_4015:
-    ld a, [$c96c]
+    ld a, [wIsPlayerChangingMaps]
     or a
     jr z, jr_00b_4027
 
@@ -1191,7 +1191,7 @@ jr_00b_4601:
     ld a, b
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a	;if c96c is 0, room transitions do not work. The scren fades, but that's it.
+    ld [wIsPlayerChangingMaps], a	;if c96c is 0, room transitions do not work. The scren fades, but that's it.
     ld a, [$c96e]
     or a
     jr nz, jr_00b_466b
@@ -1308,7 +1308,7 @@ Jump_00b_46a7:
     jr nz, jr_00b_46d5
 
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld a, $00
     ld [$c96d], a
     ld a, $80

@@ -138,7 +138,7 @@ jr_001_410b:
     xor a
     ld [$c8a8], a
     xor a
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     xor a
     ld [$c740], a
     ld [$c741], a
@@ -596,7 +596,7 @@ Call_001_43e3:
     ldh [$d5], a
     ld a, [wInGateworld]
     ldh [$d6], a
-    ld a, [$c96c]
+    ld a, [wIsPlayerChangingMaps]
     or a
     jr z, jr_001_43fd
 
@@ -664,7 +664,7 @@ Call_001_4429:
     ldh [$a4], a
     ldh [$91], a
     ldh [$94], a
-    ld a, [$c96c]
+    ld a, [wIsPlayerChangingMaps]
     or a
     jr z, jr_001_4464
 
@@ -6173,221 +6173,131 @@ jr_001_6115:
     ld a, [wMapID]
     rst $00
 
-;start of massive RST00 jump table.     
-    ld sp, hl
-    ld h, c
-    nop
-    ld h, d
-    inc b
-    ld h, d
-    rra
-    ld h, d
-    rra
-    ld h, d
-    rra
-    ld h, d
-    rra
-    ld h, d
-    rra
-    ld h, d
-    jr nz, jr_001_618d
+    dw label1_61f9
+    dw label1_6200
+    dw label1_6204
+    dw label1_621f
+    dw label1_621f
+    dw label1_621f
+    dw label1_621f
+    dw label1_621f
+    dw label1_6220
+    dw label1_62b2
+    dw label1_62b3
+    dw label1_62b7
+    dw label1_62b7
+    dw label1_62b7
+    dw label1_62b7
 
-    or d
-    ld h, d
-    or e
-    ld h, d
-    or a
-    ld h, d
-    or a
-    ld h, d
-    or a
-    ld h, d
-    or a
-    ld h, d
+  Jump_001_6137:
+    dw label1_62b7
+    dw label1_62b8
+    dw label1_62b8
+    dw label1_62b8
+    dw label1_62b8
+    dw label1_62b8
+    dw label1_62b8
+    dw label1_62b8
+    dw label1_62b8
+    dw label1_62b8
+    dw label1_62b9
+    dw label1_62b9
+    dw label1_62cd
+    dw label1_62ce
+    dw label1_62e2
+    dw label1_62e3
+    dw label1_62e4
+    dw label1_62e5
+    dw label1_62e5
+    dw label1_62f9
+    dw label1_62fa
+    dw label1_630e
+    dw label1_630f
+    dw label1_6310
+    dw label1_6335
+    dw label1_6336
+    dw label1_633d
+    dw label1_6362
+    dw label1_6376
+    dw label1_6362
+    dw label1_6377
+    dw label1_637e
+    dw label1_639d
+    dw label1_63b1
+    dw label1_63b8
+    dw label1_63b9
+    dw label1_63ba
+    dw label1_63bb
+    dw label1_63bc
+    dw label1_63bd
+    dw label1_63be
+    dw label1_63d2
+    dw label1_63d3
+    dw label1_63d4
+    dw label1_63d5
+    dw label1_63d6
+    dw label1_63dd
+    dw label1_63be
+    dw label1_63e4
+    dw label1_63f8
+    dw label1_63f9
+    dw label1_63fa
+    dw label1_63fb
+    dw label1_63fc
+    dw label1_6422
+    dw label1_6423
+    dw label1_642a
+    dw label1_6449
+    dw label1_645d
+    dw label1_648d
+    dw label1_648e
+    dw label1_64b4
+    dw label1_64b5
+    dw label1_64da
+    dw label1_64db
+    dw label1_64ef
+    dw label1_64ef
+    dw label1_64f0
+    dw label1_6542
+    dw label1_6542
+    dw label1_6542
+    dw label1_6542
+    dw label1_6542
+    dw label1_6542
+    dw label1_6542
+    dw label1_6542
+    dw label1_6542
+    dw label1_6542
+    dw label1_6543
+    dw label1_659e
+    dw label1_659e
+    dw label1_63fa
+    dw label1_6542
+    dw label1_6542
+    dw label1_6542
+    dw label1_6542
+    dw label1_63fa
+    dw label1_63fa
+    dw label1_63fa
+    dw label1_63fa
+    dw label1_63fa
+    dw label1_63fa
+    dw label1_63fa
+    dw label1_63fa
+    dw label1_63fa
+    dw label1_63fa
+    dw label1_63fa
 
-Jump_001_6137:
-    or a
-    ld h, d
-    cp b
-    ld h, d
-    cp b
-    ld h, d
-    cp b
-    ld h, d
-    cp b
-    ld h, d
-    cp b
-    ld h, d
-    cp b
-    ld h, d
-    cp b
-    ld h, d
-    cp b
-    ld h, d
-    cp b
-    ld h, d
-    cp c
-    ld h, d
-    cp c
-    ld h, d
-    call $ce62
-    ld h, d
-    ld [c], a
-    ld h, d
-    db $e3
-    ld h, d
-    db $e4
-    ld h, d
-    push hl
-    ld h, d
-    push hl
-    ld h, d
-    ld sp, hl
-    ld h, d
-    ld a, [$0e62]
-    ld h, e
-    rrca
-    ld h, e
-    db $10
-    ld h, e
-    dec [hl]
-    ld h, e
-    ld [hl], $63
-    dec a
-    ld h, e
-    ld h, d
-    ld h, e
-    db $76
-    ld h, e
-    ld h, d
-    ld h, e
-    ld [hl], a
-    ld h, e
-    ld a, [hl]
-    ld h, e
-    sbc l
-    ld h, e
-    or c
-    ld h, e
-    cp b
-    ld h, e
-    cp c
-    ld h, e
-    cp d
-    ld h, e
-    cp e
-    ld h, e
-    cp h
-    ld h, e
-    cp l
-    ld h, e
-    cp [hl]
-    ld h, e
-    jp nc, $d363
-
-    ld h, e
-
-jr_001_618d:
-    call nc, $d563
-    ld h, e
-    sub $63
-    db $dd
-    ld h, e
-    cp [hl]
-    ld h, e
-    db $e4
-    ld h, e
-    ld hl, sp+$63
-    ld sp, hl
-    ld h, e
-    ld a, [$fb63]
-    ld h, e
-    db $fc
-    ld h, e
-    ld [hl+], a
-    ld h, h
-    inc hl
-    ld h, h
-    ld a, [hl+]
-    ld h, h
-    ld c, c
-    ld h, h
-    ld e, l
-    ld h, h
-    adc l
-    ld h, h
-    adc [hl]
-    ld h, h
-    or h
-    ld h, h
-    or l
-    ld h, h
-    jp c, $db64
-
-    ld h, h
-    rst $28
-    ld h, h
-    rst $28
-    ld h, h
-    ldh a, [$64]
-    ld b, d
-    ld h, l
-    ld b, d
-    ld h, l
-    ld b, d
-    ld h, l
-    ld b, d
-    ld h, l
-    ld b, d
-    ld h, l
-    ld b, d
-    ld h, l
-    ld b, d
-    ld h, l
-    ld b, d
-    ld h, l
-    ld b, d
-    ld h, l
-    ld b, d
-    ld h, l
-    ld b, e
-    ld h, l
-    sbc [hl]
-    ld h, l
-    sbc [hl]
-    ld h, l
-    ld a, [$4263]
-    ld h, l
-    ld b, d
-    ld h, l
-    ld b, d
-    ld h, l
-    ld b, d
-    ld h, l
-    ld a, [$fa63]
-    ld h, e
-    ld a, [$fa63]
-    ld h, e
-    ld a, [$fa63]
-    ld h, e
-    ld a, [$fa63]
-    ld h, e
-    ld a, [$fa63]
-    ld h, e
-    ld a, [$2163]
-    ret nc
-
-    sub h
-;end of massive RST00 jump table.
-
+label1_61f9:
+    ld hl, $94d0
     call Call_001_65e0
     ret
 
-
+label1_6200:
     call Call_001_659f
     ret
 
-
+label1_6204:
     ret
 
 
@@ -6404,10 +6314,10 @@ jr_001_618d:
     call Call_001_668f
     ret
 
-
+label1_621f:
     ret
 
-
+label1_6220:
     ld a, [$d9cb]
     cp $02
     jp z, $62b1
@@ -6442,13 +6352,7 @@ jr_001_618d:
     ret
 
 
-    jp nc, $d2d2
-
-    pop de
-    pop bc
-    pop bc
-    pop bc
-    pop de
+    db $d2, $d2, $d2, $d1, $c1, $c1, $c1, $d1
 
 jr_001_6260:
     ld a, [$c8a6]
@@ -6482,46 +6386,27 @@ jr_001_6260:
     ret
 
 
-    rst $20
-    rst $20
-    rst $20
-    rst $20
-    rst $20
-    rst $20
-    rst $20
-    and $e6
-    and $d2
-    jp nc, $d1d2
+    db $e7, $e7, $e7, $e7, $e7, $e7, $e7, $e6, $e6, $e6, $d2, $d2, $d2, $d1, $d1, $d1
+    db $c1, $c1, $c1, $c1, $c1, $c1, $c1, $d1, $d1, $d1, $d2, $d2, $d2, $e6, $e6, $e6
 
-    pop de
-    pop de
-    pop bc
-    pop bc
-    pop bc
-    pop bc
-    pop bc
-    pop bc
-    pop bc
-    pop de
-    pop de
-    pop de
-    jp nc, $d2d2
 
-    and $e6
-    and $c9
+label1_b2b1:
     ret
 
+label1_62b2:
+    ret
 
+label1_62b3:
     call Call_001_659f
     ret
 
-
+label1_62b7:
     ret
 
-
+label1_62b8:
     ret
 
-
+label1_62b9:
     ld a, [$c8a6]
     and $1f
     cp $03
@@ -6533,10 +6418,10 @@ jr_001_6260:
     call Call_001_6602
     ret
 
-
+label1_62cd:
     ret
 
-
+label1_62ce:
     ld a, [$c8a6]
     and $1f
     cp $03
@@ -6548,16 +6433,16 @@ jr_001_6260:
     call Call_001_6602
     ret
 
-
+label1_62e2:
     ret
 
-
+label1_62e3:
     ret
 
-
+label1_62e4:
     ret
 
-
+label1_62e5:
     ld a, [$c8a6]
     and $1f
     cp $03
@@ -6569,10 +6454,10 @@ jr_001_6260:
     call Call_001_6602
     ret
 
-
+label1_62f9:
     ret
 
-
+label1_62fa:
     ld a, [$c8a6]
     and $1f
     cp $03
@@ -6584,13 +6469,13 @@ jr_001_6260:
     call Call_001_6602
     ret
 
-
+label1_630e:
     ret
 
-
+label1_630f:
     ret
 
-
+label1_6310:
     ld hl, $9240
     call Call_001_65e0
     ld a, [$c8a6]
@@ -6608,15 +6493,15 @@ jr_001_6260:
     call Call_001_6602
     ret
 
-
+label1_6335:
     ret
 
-
+label1_6336:
     ld hl, $9250
     call Call_001_65e0
     ret
 
-
+label1_633d:
     ld hl, $90a0
     call Call_001_65e0
     ld a, [$c8a6]
@@ -6634,7 +6519,7 @@ jr_001_6260:
     call Call_001_6602
     ret
 
-
+label1_6362:
     ld a, [$c8a6]
     and $1f
     cp $03
@@ -6646,15 +6531,15 @@ jr_001_6260:
     call Call_001_6602
     ret
 
-
+label1_6376:
     ret
 
-
+label1_6377:
     ld hl, $9180
     call Call_001_65e0
     ret
 
-
+label1_637e:
     ld a, [$c8a6]
     and $1f
     cp $03
@@ -6670,7 +6555,7 @@ jr_001_6260:
     call Call_001_6602
     ret
 
-
+label1_639d:
     ld a, [$c8a6]
     and $1f
     cp $03
@@ -6682,30 +6567,30 @@ jr_001_6260:
     call Call_001_6602
     ret
 
-
+label1_63b1:
     ld hl, $91e0
     call Call_001_65e0
     ret
 
-
+label1_63b8:
     ret
 
-
+label1_63b9:
     ret
 
-
+label1_63ba:
     ret
 
-
+label1_63bb:
     ret
 
-
+label1_63bc:
     ret
 
-
+label1_63bd:
     ret
 
-
+label1_63be:
     ld a, [$c8a6]
     and $1f
     cp $03
@@ -6717,29 +6602,29 @@ jr_001_6260:
     call Call_001_6602
     ret
 
-
+label1_63d2:
     ret
 
-
+label1_63d3:
     ret
 
-
+label1_63d4:
     ret
 
-
+label1_63d5:
     ret
 
-
+label1_63d6:
     ld hl, $9560
     call Call_001_65e0
     ret
 
-
+label1_63dd:
     ld hl, $90a0
     call Call_001_65e0
     ret
 
-
+label1_63e4:
     ld a, [$c8a6]
     and $1f
     cp $03
@@ -6751,19 +6636,19 @@ jr_001_6260:
     call Call_001_6602
     ret
 
-
+label1_63f8:
     ret
 
-
+label1_63f9:
     ret
 
-
+label1_63fa:
     ret
 
-
+label1_63fb:
     ret
 
-
+label1_63fc:
     ld a, [$c8a6]
     and $3f
     cp $03
@@ -6782,15 +6667,15 @@ jr_001_6260:
     call Call_001_6602
     ret
 
-
+label1_6422:
     ret
 
-
+label1_6423:
     ld hl, $9460
     call Call_001_65e0
     ret
 
-
+label1_642a:
     ld a, [$c8a6]
     and $1f
     cp $03
@@ -6806,7 +6691,7 @@ jr_001_6260:
     call Call_001_6602
     ret
 
-
+label1_6449:
     ld a, [$c8a6]
     and $1f
     cp $03
@@ -6820,7 +6705,7 @@ Call_001_6457:
     call Call_001_6602
     ret
 
-
+label1_645d:
     ld hl, $9310
     call Call_001_65e0
     ld a, [$c8a6]
@@ -6844,10 +6729,10 @@ Call_001_6489:
     call Call_001_6602
     ret
 
-
+label1_648d:
     ret
 
-
+label1_648e:
     ld a, [$c8a6]
     and $1f
     cp $03
@@ -6866,10 +6751,10 @@ Call_001_6489:
     call Call_001_6602
     ret
 
-
+label1_64b4:
     ret
 
-
+label1_64b5:
     ld hl, $9340
     call Call_001_65e0
     ld a, [$c8a6]
@@ -6887,10 +6772,10 @@ Call_001_6489:
     call Call_001_6602
     ret
 
-
+label1_64da:
     ret
 
-
+label1_64db:
     ld a, [$c8a6]
     and $1f
     cp $03
@@ -6902,10 +6787,10 @@ Call_001_6489:
     call Call_001_6602
     ret
 
-
+label1_64ef:
     ret
 
-
+label1_64f0:
     ld a, [$c8a6]
     ld l, a
     ld a, [$c8a7]
@@ -6954,10 +6839,10 @@ jr_001_651e:
 jr_001_6541:
     ret
 
-
+label1_6542:
     ret
 
-
+label1_6543:
     ld a, [$c8a6]
     and $07
     ret nz
@@ -7009,7 +6894,7 @@ jr_001_6584:
 jr_001_659d:
     ret
 
-
+label1_659e:
     ret
 
 

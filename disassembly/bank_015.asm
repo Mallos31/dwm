@@ -586,7 +586,7 @@ jr_015_4422:
     ld a, $01
     ld [$c8ea], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld a, $00
     ld [$c96d], a
     ld [$c96e], a

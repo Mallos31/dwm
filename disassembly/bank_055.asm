@@ -2858,7 +2858,7 @@ Jump_055_4dba:
     ld a, [wInGateworld]
     ld [$c8ea], a
     ld a, [wInGateworld]
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld a, [wMapID]
     ld [$c96d], a
     ld a, [wInGateworld]

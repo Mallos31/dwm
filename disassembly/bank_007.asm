@@ -2451,7 +2451,7 @@ jr_007_5012:
     ld a, h
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld hl, wGameState
     res 1, [hl]
     ld a, $01

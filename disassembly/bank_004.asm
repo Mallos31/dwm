@@ -5105,7 +5105,7 @@ label5a02:
     ld a, b
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld a, $03
     call Call_000_1688
     ld hl, $c88f
@@ -6869,7 +6869,7 @@ jr_004_648f:
     ld a, h
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld a, $02
     ld [$d951], a
     xor a
@@ -6958,7 +6958,7 @@ jr_004_6599:
     ld a, b
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld hl, wGameState
     set 5, [hl]
     xor a
@@ -7144,7 +7144,7 @@ jr_004_668d:
     ld a, b
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld a, $03
     call Call_000_1688
     ld hl, $c88f
@@ -7404,7 +7404,7 @@ Jump_004_6838:
     ld a, b
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld a, $03
     call Call_000_1688
     ld hl, $c88f
@@ -7841,7 +7841,7 @@ jr_004_6b93:
 
 jr_004_6bb9:
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld a, $00
     ld [$c96d], a
     ld a, $80

@@ -865,7 +865,7 @@ label442d:
     dw label450e
     dw label4516
 
-label443b:    
+label443b:
     ld hl, $ffb7
     call Call_00a_4028
     ld hl, $ffbb
@@ -978,14 +978,14 @@ jr_00a_4507:
     rst $38
     rst $38
 
-label450e:    
+label450e:
     ld a, [$c907]
     rst $00
 
     dw label4538
     dw label4516
 
-label4516:    
+label4516:
     call Call_00a_41ef
     ld de, $2e07
     call Call_00a_40b4
@@ -1695,7 +1695,7 @@ jr_00a_4987:
     rst $38
 
 
-label498e:    
+label498e:
     ld de, $748d
     call Call_00a_40b4
     ld de, $2e07
@@ -1881,7 +1881,7 @@ label4ad3:
     ld a, h
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld a, $04
     ld [$d951], a
     xor a
@@ -2597,7 +2597,7 @@ jr_00a_4fa7:
     ld hl, $6101
     ld bc, $ffff
 
-label4fb4:    
+label4fb4:
     ld hl, $0005
     call Call_00a_441f
     ld hl, $c906
@@ -2728,7 +2728,7 @@ jr_00a_5099:
     rst $38
     rst $38
 
-label50a0:    
+label50a0:
     call Call_00a_50b1
     call Call_00a_50e4
     ld hl, $0004
@@ -3268,7 +3268,7 @@ jr_00a_541e:
     rst $38
     rst $38
 
-label5425:    
+label5425:
     ld a, [$c8e8]
     ld hl, $cac2
     call Call_000_223b
@@ -3467,7 +3467,7 @@ label55d1:
     ld hl, $6101
     ld bc, $ffff
 
-label55e0:    
+label55e0:
     ld de, $748d
     call Call_00a_40b4
     ld de, $2e07
@@ -3536,7 +3536,7 @@ jr_00a_5658:
     ld hl, $6101
     ld bc, $ffff
 
-label565f:    
+label565f:
     ld de, $2e07
     call Call_00a_40b4
     call Call_00a_40e5
@@ -3658,7 +3658,7 @@ label573e:
     ld a, h
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld a, $00
     ld [$d951], a
     xor a
@@ -4253,7 +4253,7 @@ jr_00a_5b39:
 jr_00a_5b43:
     ld bc, $ffff
 
-label5b46:    
+label5b46:
     ld a, [$c8e3]
     add a
     add a
@@ -4517,7 +4517,7 @@ label5c92:
     ld a, h
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld a, $02
     ld [$d951], a
     xor a
@@ -5975,7 +5975,7 @@ jr_00a_6652:
     ld hl, $6101
     ld bc, $ffff
 
-label6659:    
+label6659:
     ld a, [$c8e3]
     add a
     add a
@@ -6072,7 +6072,7 @@ jr_00a_66ef:
 
     ld a, [$c906]
     rst $00
-    
+
     dw label670f
     dw label672f
     dw label6764
@@ -6194,7 +6194,7 @@ jr_00a_67b0:
 jr_00a_67ba:
     ld bc, $ffff
 
-label67bd:    
+label67bd:
     ld a, [$c8e3]
     add a
     add a
@@ -6334,7 +6334,7 @@ jr_00a_68a7:
     ld hl, $6101
     ld bc, $ffff
 
-label68ae:    
+label68ae:
     ld hl, $c8e4
     ld a, [wCurrGoldLo]
     sub [hl]
@@ -6593,7 +6593,7 @@ label6a5a:
 label6a7e:
     ld a, [$c906]
     rst $00
-    
+
     sbc b
     ld l, d
     nop

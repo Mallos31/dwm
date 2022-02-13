@@ -5172,7 +5172,7 @@ jr_002_5d75:
     ld a, h
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     xor a
     ldh [$90], a
     xor a

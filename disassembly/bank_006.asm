@@ -8966,7 +8966,7 @@ jr_006_6a25:
     ld a, h
     ld [$c972], a
     ld a, $01
-    ld [$c96c], a
+    ld [wIsPlayerChangingMaps], a
     ld hl, $c8ea
     res 7, [hl]
     ld a, [wCurrGoldLo]

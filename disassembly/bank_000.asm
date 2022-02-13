@@ -27,12 +27,14 @@ RST_08::		;called by RST10. Jumps to address at second and third bytes of ROM ba
     ld l, a
     ret
 
-;loads ROM bank H and jumps to the start of code found at addresses 4001 and 4002 at the beginning of each bank.
+;Argument passed H is the new ROM bank, and L is doubled and 0x4001 added to
+;find the address of the new function in a jump table. These jump tables are
+;found at the top of each valid ROM bank that contains code.
 RST_10::
-    ld a, [$4000] 	;load current rom bank number into reg a
+    ld a, [$4000]
     push af
-    ld a, h		;load new rom bank passed with H into A
-    ld [$2100], a	;load value from h as the new rom bank
+    ld a, h
+    ld [$2100], a
 
 RST_18::
     swap a		;swap A to prepare to find correct RAM bank
