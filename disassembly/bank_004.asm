@@ -25,83 +25,14 @@ label4016:
     call Call_004_40cd
     ret
 
+    db $23, $40, $2a, $40, $3d, $40, $25, $40, $00, $00, $00, $00, $80, $2c, $40, $00
+    db $00, $00, $10, $00, $08, $01, $10, $08, $00, $02, $10, $08, $08, $03, $10, $80
+    db $45, $40, $4e, $40, $63, $40, $70, $40, $00, $00, $90, $00, $08, $00, $91, $00
+    db $80, $00, $00, $a6, $00, $00, $08, $a7, $00, $00, $10, $a8, $00, $00, $30, $a4
+    db $00, $08, $30, $a5, $00, $80, $f8, $08, $00, $00, $00, $00, $01, $00, $00, $08
+    db $02, $00, $80, $00, $00, $00, $00, $00, $08, $01, $00, $08, $00, $10, $00, $08
+    db $08, $11, $00, $80
 
-    inc hl
-    ld b, b
-    ld a, [hl+]
-    ld b, b
-    dec a
-    ld b, b
-    dec h
-    ld b, b
-    nop
-    nop
-    nop
-    nop
-    add b
-    inc l
-    ld b, b
-    nop
-    nop
-    nop
-    stop
-    ld [$1001], sp
-    ld [$0200], sp
-    db $10
-    ld [$0308], sp
-    db $10
-    add b
-    ld b, l
-    ld b, b
-    ld c, [hl]
-    ld b, b
-    ld h, e
-    ld b, b
-    ld [hl], b
-    ld b, b
-    nop
-    nop
-    sub b
-    nop
-    ld [$9100], sp
-    nop
-    add b
-    nop
-    nop
-    and [hl]
-    nop
-    nop
-    ld [$00a7], sp
-    nop
-    db $10
-    xor b
-    nop
-    nop
-    db $30, $a4
-
-    nop
-    ld [$a530], sp
-    nop
-    add b
-    ld hl, sp+$08
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    ld [$0002], sp
-    add b
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld [$0001], sp
-    ld [$1000], sp
-    nop
-    ld [$1108], sp
-    nop
-    add b
 
 label4081:
     ldh a, [$c7]        ; load(h) the contents of ffc7 into a
@@ -120,8 +51,8 @@ label4081:
 jr_004_4095:
     sub $10            ; subreact $10 from a(ffc7)
     ldh [$c7], a       ; load(h) a(ffc7 -$10) into the contents of ffc7
-    ld hl, $1000       ; load 1000 into hl
-    rst $10            ; call bank $10 func 4005
+    ld hl, $1000
+    rst $10
     ret
 
 
@@ -250,55 +181,12 @@ Call_004_4126:
     ldh [$ca], a
     ret
 
+data_4137:
+    db $37, $72, $38, $77, $38, $77, $38, $77, $38, $77, $38, $77, $38, $77, $38, $77
+    db $38, $77, $38, $77, $38, $77, $38, $77, $38, $77, $38, $77, $38, $77, $38, $77
 
-    scf
-    ld [hl], d
-    jr c, @+$79
-
-    jr c, @+$79
-
-    jr c, @+$79
-
-    jr c, @+$79
-
-    jr c, @+$79
-
-    jr c, jr_004_41bc
-
-    jr c, @+$79
-
-    jr c, @+$79
-
-    jr c, @+$79
-
-    jr c, jr_004_41c4
-
-    jr c, @+$79
-
-    jr c, jr_004_41c8
-
-    jr c, @+$79
-
-    jr c, @+$79
-
-    jr c, @+$79
-
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
+data_4157:
+    db $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02
 
 
 label4167:
@@ -1329,75 +1217,17 @@ jr_004_4767:
     ret
 
 
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    add b
-    add b
+    db $fd, $ff, $fd, $ff, $fe, $ff, $ff, $ff, $ff, $ff, $00, $00, $00, $00, $01, $00
+    db $01, $00, $02, $00, $03, $00, $03, $00, $80, $80
 
 Jump_004_478a:
     ld bc, $4790
     jp Jump_004_4745
 
 
-    ei
-    rst $38
-    ei
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0200
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    add b
-    add b
+    db $fb, $ff, $fb, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fd, $ff, $fd, $ff
+    db $fd, $ff, $fe, $ff, $fe, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $00, $00, $00, $00
+    db $01, $00, $01, $00, $01, $00, $02, $00, $02, $00, $03, $00, $80, $80
 
 Jump_004_47be:
     ld bc, $47d9
@@ -1417,165 +1247,23 @@ Jump_004_47be:
     jp Jump_004_454b
 
 
-    cp $ff
-    cp $ff
-    cp $ff
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    add b
-    add b
+    db $fe, $ff, $fe, $ff, $fe, $ff, $fd, $ff, $fd, $ff, $fc, $ff, $fc, $ff, $fc, $ff
+    db $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff
+    db $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $04, $00, $04, $00
+    db $04, $00, $04, $00, $04, $00, $04, $00, $04, $00, $04, $00, $80, $80
 
 Jump_004_4857:
     ld bc, $485d
     jp Jump_004_4745
 
 
-    db $fc
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc b
-    nop
-    add b
-    add b
+    db $fc, $ff, $fd, $ff, $fd, $ff, $fe, $ff, $fe, $ff, $ff, $ff, $ff, $ff, $00, $00
+    db $00, $00, $01, $00, $01, $00, $02, $00, $02, $00, $03, $00, $03, $00, $04, $00
+    db $80, $80
 
 Jump_004_487f:
     ld bc, $4892
@@ -1591,77 +1279,11 @@ Jump_004_487f:
     ret
 
 
-    ei
-    rst $38
-    ei
-    rst $38
-    ei
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    ld a, [$fcff]
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    inc b
-    nop
-    ld b, $00
-    add b
-    add b
+    db $fb, $ff, $fb, $ff, $fb, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fd, $ff, $fd, $ff
+    db $fe, $ff, $ff, $ff, $ff, $ff, $00, $00, $00, $00, $00, $00, $01, $00, $01, $00
+    db $02, $00, $02, $00, $02, $00, $03, $00, $03, $00, $03, $00, $04, $00, $04, $00
+    db $04, $00, $fa, $ff, $fc, $ff, $fd, $ff, $fe, $ff, $ff, $ff, $ff, $ff, $00, $00
+    db $00, $00, $01, $00, $01, $00, $02, $00, $03, $00, $04, $00, $06, $00, $80, $80
 
 Jump_004_48e2:
     ldh a, [$d7]
@@ -1742,62 +1364,10 @@ Jump_004_4931:
     ret
 
 
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    cp $ff
-    cp $ff
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    add b
-    add b
+    db $fc, $ff, $fc, $ff, $fd, $ff, $fd, $ff, $fe, $ff, $fe, $ff, $fe, $ff, $fe, $ff
+    db $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $01, $00, $01, $00, $01, $00, $01, $00, $02, $00
+    db $02, $00, $02, $00, $02, $00, $03, $00, $03, $00, $04, $00, $04, $00, $80, $80
 
 Jump_004_498c:
     ldh a, [$d7]
@@ -1892,146 +1462,28 @@ Jump_004_49d2:
     jp Jump_004_454b
 
 
-    db $fc
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc b
-    nop
-    add b
-    add b
+    db $fc, $ff, $fd, $ff, $fd, $ff, $fe, $ff, $fe, $ff, $ff, $ff, $ff, $ff, $00, $00
+    db $00, $00, $01, $00, $01, $00, $02, $00, $02, $00, $03, $00, $03, $00, $04, $00
+    db $80, $80
 
 Jump_004_4a2c:
     ld bc, $4a32
     jp Jump_004_4745
 
 
-    ei
-    rst $38
-    ei
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    add b
-    add b
+    db $fb, $ff, $fb, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fd, $ff, $fd, $ff, $fd, $ff
+    db $fe, $ff, $fe, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $00, $00, $00, $00, $80, $80
 
 Jump_004_4a52:
     ld bc, $4a58
     jp Jump_004_4745
 
 
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ei
-    rst $38
-    ei
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    add b
-    add b
+    db $fc, $ff, $fc, $ff, $fc, $ff, $fd, $ff, $fd, $ff, $fd, $ff, $fe, $ff, $fe, $ff
+    db $ff, $ff, $ff, $ff, $ff, $ff, $00, $00, $00, $00, $01, $00, $01, $00, $02, $00
+    db $02, $00, $02, $00, $00, $00, $00, $00, $00, $00, $fb, $ff, $fb, $ff, $fc, $ff
+    db $fc, $ff, $fc, $ff, $fd, $ff, $fd, $ff, $fd, $ff, $fe, $ff, $fe, $ff, $ff, $ff
+    db $ff, $ff, $ff, $ff, $00, $00, $00, $00, $80, $80
 
 Jump_004_4aa2:
     ld bc, $4ab5
@@ -2047,100 +1499,14 @@ Jump_004_4aa2:
     ret
 
 
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    add b
-    add b
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00
+    db $01, $00, $01, $00, $01, $00, $01, $00, $02, $00, $01, $00, $02, $00, $01, $00
+    db $02, $00, $01, $00, $02, $00, $01, $00, $02, $00, $02, $00, $02, $00, $02, $00
+    db $02, $00, $02, $00, $02, $00, $02, $00, $02, $00, $03, $00, $02, $00, $03, $00
+    db $80, $80
 
 Jump_004_4b27:
     ldh a, [$d7]
@@ -2208,415 +1574,65 @@ Jump_004_4b6d:
     jp Jump_004_4745
 
 
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    add b
-    add b
+    db $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
+    db $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
+    db $80, $80
 
 Jump_004_4b9b:
     ld bc, $4ba1
     jp Jump_004_4745
 
 
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0200
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    add b
-    add b
+    db $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff
+    db $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff
+    db $fd, $ff, $fd, $ff, $fd, $ff, $fe, $ff, $fe, $ff, $ff, $ff, $ff, $ff, $ff, $ff
+    db $00, $00, $00, $00, $01, $00, $01, $00, $01, $00, $02, $00, $02, $00, $03, $00
+    db $03, $00, $03, $00, $80, $80
 
 Jump_004_4be7:
     ld bc, $4bed
     jp Jump_004_4745
 
 
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0200
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    add b
-    add b
+    db $fd, $ff, $fd, $ff, $fd, $ff, $fe, $ff, $fe, $ff, $ff, $ff, $ff, $ff, $ff, $ff
+    db $00, $00, $00, $00, $01, $00, $01, $00, $01, $00, $02, $00, $02, $00, $03, $00
+    db $03, $00, $03, $00, $04, $00, $04, $00, $04, $00, $04, $00, $04, $00, $04, $00
+    db $04, $00, $04, $00, $04, $00, $04, $00, $04, $00, $04, $00, $04, $00, $04, $00
+    db $04, $00, $04, $00, $80, $80
 
 Jump_004_4c33:
     ld bc, $4c39
     jp Jump_004_4745
 
 
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc b
-    nop
-    add b
-    add b
+    db $03, $00, $03, $00, $03, $00, $03, $00, $03, $00, $03, $00, $03, $00, $03, $00
+    db $03, $00, $03, $00, $03, $00, $03, $00, $03, $00, $03, $00, $03, $00, $03, $00
+    db $03, $00, $03, $00, $03, $00, $03, $00, $04, $00, $80, $80
 
 Jump_004_4c65:
     ld bc, $4c6b
     jp Jump_004_4745
 
 
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0200
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    dec b
-    nop
-    dec b
-    nop
-    dec b
-    nop
-    dec b
-    nop
-    add b
-    add b
+    db $fd, $ff, $fd, $ff, $fd, $ff, $fe, $ff, $fe, $ff, $ff, $ff, $ff, $ff, $ff, $ff
+    db $00, $00, $00, $00, $01, $00, $01, $00, $01, $00, $02, $00, $02, $00, $03, $00
+    db $03, $00, $03, $00, $04, $00, $04, $00, $04, $00, $05, $00, $05, $00, $05, $00
+    db $05, $00, $80, $80
 
 Jump_004_4c9f:
     ld bc, $4ca5
     jp Jump_004_4745
 
 
-    cp $ff
-    cp $ff
-    cp $ff
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    add b
-    add b
+    db $fe, $ff, $fe, $ff, $fe, $ff, $fd, $ff, $fd, $ff, $fc, $ff, $fc, $ff, $fc, $ff
+    db $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff
+    db $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $fc, $ff, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $04, $00, $04, $00
+    db $04, $00, $04, $00, $04, $00, $04, $00, $04, $00, $04, $00, $04, $00, $04, $00
+    db $80, $80
 
 Jump_004_4d27:
     call Call_004_4d5c
@@ -2770,576 +1786,47 @@ jr_004_4ddd:
     ret
 
 
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    ld bc, $0200
-    nop
-    ld [bc], a
-    nop
-    add b
-    add b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    add b
-    add b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    add b
-    add b
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    inc b
-    nop
-    inc bc
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    add b
-    add b
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $00, $00, $00
+    db $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00
+    db $01, $00, $01, $00, $01, $00, $01, $00, $02, $00, $01, $00, $02, $00, $02, $00
+    db $80, $80, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $00
+    db $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $01, $00
+    db $01, $00, $01, $00, $01, $00, $02, $00, $01, $00, $02, $00, $01, $00, $02, $00
+    db $01, $00, $02, $00, $01, $00, $02, $00, $01, $00, $02, $00, $02, $00, $02, $00
+    db $03, $00, $80, $80, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00
+    db $01, $00, $00, $00, $01, $00, $01, $00, $01, $00, $01, $00, $02, $00, $01, $00
+    db $02, $00, $01, $00, $02, $00, $01, $00, $02, $00, $01, $00, $02, $00, $02, $00
+    db $02, $00, $02, $00, $02, $00, $02, $00, $02, $00, $03, $00, $02, $00, $03, $00
+    db $03, $00, $03, $00, $80, $80, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $00, $00, $00, $01, $00
+    db $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $01, $00
+    db $01, $00, $01, $00, $01, $00, $02, $00, $01, $00, $02, $00, $01, $00, $02, $00
+    db $01, $00, $02, $00, $02, $00, $02, $00, $02, $00, $02, $00, $02, $00, $02, $00
+    db $02, $00, $03, $00, $02, $00, $02, $00, $03, $00, $02, $00, $03, $00, $04, $00
+    db $03, $00, $04, $00, $04, $00, $80, $80
 
 Jump_004_507b:
     ldh a, [$d7]
@@ -3486,750 +1973,63 @@ jr_004_510b:
     ret
 
 
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    add b
-    add b
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    add b
-    add b
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0100
-    nop
-    add b
-    add b
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0100
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $8000
-    add b
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0100
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    add b
-    add b
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0100
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    add b
-    add b
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0100
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    add b
-    add b
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0100
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    add b
-    add b
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0100
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    add b
-    add b
-    inc bc
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0200
-    nop
-    ld bc, $0100
-    nop
-    ld bc, $0100
-    nop
-    nop
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    ld bc, $0000
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    add b
-    add b
+    db $03, $00, $03, $00, $03, $00, $02, $00, $03, $00, $02, $00, $02, $00, $02, $00
+    db $80, $80, $03, $00, $03, $00, $03, $00, $02, $00, $03, $00, $02, $00, $02, $00
+    db $02, $00, $02, $00, $02, $00, $02, $00, $02, $00, $01, $00, $02, $00, $01, $00
+    db $02, $00, $80, $80, $03, $00, $03, $00, $03, $00, $02, $00, $03, $00, $02, $00
+    db $02, $00, $02, $00, $02, $00, $02, $00, $02, $00, $02, $00, $01, $00, $02, $00
+    db $01, $00, $02, $00, $01, $00, $02, $00, $01, $00, $02, $00, $01, $00, $01, $00
+    db $01, $00, $01, $00, $80, $80, $03, $00, $03, $00, $03, $00, $02, $00, $03, $00
+    db $02, $00, $02, $00, $02, $00, $02, $00, $02, $00, $02, $00, $02, $00, $01, $00
+    db $02, $00, $01, $00, $02, $00, $01, $00, $02, $00, $01, $00, $02, $00, $01, $00
+    db $01, $00, $01, $00, $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00
+    db $01, $00, $00, $00, $01, $00, $80, $80, $03, $00, $03, $00, $03, $00, $02, $00
+    db $03, $00, $02, $00, $02, $00, $02, $00, $02, $00, $02, $00, $02, $00, $02, $00
+    db $01, $00, $02, $00, $01, $00, $02, $00, $01, $00, $02, $00, $01, $00, $02, $00
+    db $01, $00, $01, $00, $01, $00, $01, $00, $00, $00, $01, $00, $00, $00, $01, $00
+    db $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $80, $80, $03, $00, $03, $00, $03, $00
+    db $02, $00, $03, $00, $02, $00, $02, $00, $02, $00, $02, $00, $02, $00, $02, $00
+    db $02, $00, $01, $00, $02, $00, $01, $00, $02, $00, $01, $00, $02, $00, $01, $00
+    db $02, $00, $01, $00, $01, $00, $01, $00, $01, $00, $00, $00, $01, $00, $00, $00
+    db $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $80, $80, $03, $00, $03, $00
+    db $03, $00, $02, $00, $03, $00, $02, $00, $02, $00, $02, $00, $02, $00, $02, $00
+    db $02, $00, $02, $00, $01, $00, $02, $00, $01, $00, $02, $00, $01, $00, $02, $00
+    db $01, $00, $02, $00, $01, $00, $01, $00, $01, $00, $01, $00, $00, $00, $01, $00
+    db $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $80, $80, $03, $00
+    db $03, $00, $03, $00, $02, $00, $03, $00, $02, $00, $02, $00, $02, $00, $02, $00
+    db $02, $00, $02, $00, $02, $00, $01, $00, $02, $00, $01, $00, $02, $00, $01, $00
+    db $02, $00, $01, $00, $02, $00, $01, $00, $01, $00, $01, $00, $01, $00, $00, $00
+    db $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $80, $80
+    db $03, $00, $03, $00, $03, $00, $02, $00, $03, $00, $02, $00, $02, $00, $02, $00
+    db $02, $00, $02, $00, $02, $00, $02, $00, $01, $00, $02, $00, $01, $00, $02, $00
+    db $01, $00, $02, $00, $01, $00, $02, $00, $01, $00, $01, $00, $01, $00, $01, $00
+    db $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $01, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $80, $80, $03, $00, $03, $00, $03, $00, $02, $00, $03, $00, $02, $00, $02, $00
+    db $02, $00, $02, $00, $02, $00, $02, $00, $02, $00, $01, $00, $02, $00, $01, $00
+    db $02, $00, $01, $00, $02, $00, $01, $00, $02, $00, $01, $00, $01, $00, $01, $00
+    db $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00, $01, $00, $00, $00
+    db $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    db $00, $00, $80, $80
 
 Jump_004_54c8:
     ld a, [$d8e3]
@@ -4334,75 +2134,11 @@ Jump_004_5546:
     ret
 
 
-    ld a, [$fcff]
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    inc b
-    nop
-    ld b, $00
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fc
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    cp $ff
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    inc b
-    nop
-    dec b
-    nop
-    dec b
-    nop
-    dec b
-    nop
-    add b
-    add b
+    db $fa, $ff, $fc, $ff, $fd, $ff, $fe, $ff, $ff, $ff, $ff, $ff, $00, $00, $00, $00
+    db $01, $00, $01, $00, $02, $00, $03, $00, $04, $00, $06, $00, $fc, $ff, $fc, $ff
+    db $fc, $ff, $fd, $ff, $fd, $ff, $fd, $ff, $fe, $ff, $fe, $ff, $fe, $ff, $ff, $ff
+    db $ff, $ff, $00, $00, $00, $00, $00, $00, $01, $00, $01, $00, $02, $00, $03, $00
+    db $03, $00, $04, $00, $04, $00, $04, $00, $05, $00, $05, $00, $05, $00, $80, $80
 
 Jump_004_55a9:
     ld bc, $55ca
@@ -4425,36 +2161,9 @@ Jump_004_55a9:
     jp Jump_004_454b
 
 
-    db $fc
-    rst $38
-    db $fd
-    rst $38
-    db $fd
-    rst $38
-    cp $ff
-    cp $ff
-    rst $38
-    rst $38
-    rst $38
-    rst $38
-    nop
-    nop
-    nop
-    nop
-    ld bc, $0100
-    nop
-    ld [bc], a
-    nop
-    ld [bc], a
-    nop
-    inc bc
-    nop
-    inc bc
-    nop
-    inc b
-    nop
-    add b
-    add b
+    db $fc, $ff, $fd, $ff, $fd, $ff, $fe, $ff, $fe, $ff, $ff, $ff, $ff, $ff, $00, $00
+    db $00, $00, $01, $00, $01, $00, $02, $00, $02, $00, $03, $00, $03, $00, $04, $00
+    db $80, $80
 
 label55ec:
     xor a
@@ -4525,140 +2234,77 @@ jr_004_5613:
     dw label5d1a
     dw label5d4b
     dw label5d53
-    dw label5d5b
-    dw label5e5e
-    dw label5e6d
-
-
-
-  ;the rest of this, up to the first label, is jumptable.
-  ;needs to be finished
-    add a
-    ld e, [hl]
-    adc a
-    ld e, [hl]
-    inc de
-    ld e, a
-    ld [hl], $5f
-    ld d, d
-    ld e, a
-    ld e, h
-    ld e, a
-    ld h, a
-    ld e, a
-    sbc d
-    ld e, a
-    db $db
-    ld e, a
-    ld [bc], a
-    ld h, b
-    ld h, h
-    ld h, b
-    sub e
-    ld h, b
-    ldh [$61], a
-    ld a, [hl-]
-    ld h, d
-    ld d, e
-    ld h, d
-    xor e
-    ld h, d
-    db $dd
-    ld h, d
-    ld [hl-], a
-    ld h, e
-    ld c, a
-    ld h, e
-    cp e
-    ld h, e
-    add $63
-    ld bc, $3f64
-    ld h, h
-    and a
-    ld h, h
-    jp nz, $ab64
-
-    ld h, l
-    jr jr_004_5700
-
-    jr nz, @+$68
-
-    jr z, @+$68
-
-    ld [hl-], a
-    ld h, [hl]
-    ld b, [hl]
-    ld h, [hl]
-    sbc l
-    ld h, [hl]
-    cp l
-    ld h, [hl]
-    inc hl
-    ld h, a
-    ld l, a
-    ld h, a
-    or c
-    ld h, a
-    db $fd
-    ld h, a
-    ld [hl+], a
-    ld l, b
-    ld c, l
-    ld l, b
-    ld h, [hl]
-    ld l, b
-    ld a, a
-    ld l, b
-    sbc b
-    ld l, b
-    and c
-    ld l, b
-    cp d
-    ld l, b
-    rst $10
-    ld l, b
-    dec bc
-    ld l, c
-    ld d, a
-    ld l, c
-    ld l, h
-    ld l, c
-    xor c
-    ld l, c
-    ld h, c
-    ld l, d
-    adc $6a
-    ld a, [$3a6a]
-    ld l, e
-    ld [hl], e
-    ld l, e
-    and b
-    ld l, e
-    rst $18
-    ld l, e
-    ld d, [hl]
-    ld l, l
-    add h
-    ld l, l
-    sub e
-    ld l, l
-    ld h, h
-    ld l, a
-    adc c
-    ld l, a
-    sbc e
-    ld l, a
-    ei
-    ld l, a
-    jr c, @+$72
-
-    ld e, e
-    ld [hl], b
-    ld a, a
-    ld [hl], b
-    push de
-    ld [hl], b
-    db $d2, $71
+    dw label4_5d5b
+    dw label4_5e5e
+    dw label4_5e6d
+    dw label4_5e87
+    dw label4_5e8f
+    dw label4_5f13
+    dw label4_5f36
+    dw label4_5f52
+    dw label4_5f5c
+    dw label4_5f67
+    dw label4_5f9a
+    dw label4_5fdb
+    dw label4_6002
+    dw $6064
+    dw $6093
+    dw $61e0
+    dw $623a
+    dw $6253
+    dw $62ab
+    dw $62dd
+    dw $6332
+    dw $634f
+    dw $63bb
+    dw $63c6
+    dw $6401
+    dw $643f
+    dw $64a7
+    dw $64c2
+    dw $65ab
+    dw $6618
+    dw $6620
+    dw $6628
+    dw $6632
+    dw $6646
+    dw $669d
+    dw $66bd
+    dw $6723
+    dw $676f
+    dw $67b1
+    dw $67fd
+    dw $6822
+    dw $684d
+    dw $6866
+    dw $687f
+    dw $6898
+    dw $68a1
+    dw $68ba
+    dw $68d7
+    dw $690b
+    dw $6957
+    dw $696c
+    dw $69a9
+    dw $6a61
+    dw $6ace
+    dw $6afa
+    dw $6b3a
+    dw $6b73
+    dw $6ba0
+    dw $6bdf
+    dw $6d56
+    dw $6d84
+    dw $6d93
+    dw $6f64
+    dw $6f89
+    dw $6f9b
+    dw $6ffb
+    dw $7038
+    dw $705b
+    dw $707f
+    dw $70d5
+    dw $71d2
 
 
 LAB_rom4__56ec:
@@ -5559,7 +3205,7 @@ label5d53:
     res 5, [hl]
     jp Jump_004_55f5
 
-label5d5b:
+label4_5d5b:
     ld a, [$d9ce]
     ld b, a
     add a
@@ -5726,7 +3372,7 @@ Call_004_5e10:
     db $08, $00
 
 
-label5e5e:
+label4_5e5e:
     ld hl, $c8eb
     set 6, [hl]
     xor a
@@ -5735,7 +3381,7 @@ label5e5e:
     ld [$da09], a
     ret
 
-label5e6d:
+label4_5e6d:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5747,12 +3393,12 @@ label5e6d:
     call PlaySoundEffect
     jp Jump_004_55f5
 
-
+label4_5e87:
     ld hl, $d8d7
     set 6, [hl]
     jp Jump_004_55f5
 
-
+label4_5e8f:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5833,7 +3479,7 @@ jr_004_5efb:
     call Call_004_71ef
     jp Jump_004_7212
 
-
+label4_5f13:
     ld a, [$d8d3]
     cp $06
     jr nc, jr_004_5f1f
@@ -5866,7 +3512,7 @@ jr_004_5f31:
     rst $10
     ret
 
-
+label4_5f36:
     ld a, [$d8e1]
     ld hl, $cac1
     call Call_000_2229
@@ -5879,21 +3525,21 @@ jr_004_5f31:
     call Call_000_25f1
     jp Jump_004_55f5
 
-
+label4_5f52:
     ld a, $03
     call Call_000_1688
     ld hl, $c88f
     inc [hl]
     ret
 
-
+label4_5f5c:
     ld hl, $0109
     rst $10
     ld hl, $0103
     rst $10
     jp Jump_004_55f5
 
-
+label4_5f67:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5927,7 +3573,7 @@ jr_004_5f8e:
     call Call_004_71ef
     jp Jump_004_7212
 
-
+label4_5f9a:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5971,7 +3617,7 @@ jr_004_5fce:
 jr_004_5fda:
     ret
 
-
+label4_5fdb:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -6001,7 +3647,7 @@ jr_004_6000:
     ld [hl], c  ;loads item into empty inventory slot from treasure chest [MAY BE MORE]
     ret
 
-
+label4_6002:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
