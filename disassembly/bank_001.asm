@@ -7,22 +7,22 @@ SECTION "ROM Bank $001", ROMX[$4000], BANK[$1]
 
     db $01
 
-    dw label401d
-    dw label4dd3
+    dw label1_401d
+    dw label1_4dd3
     dw Call_001_421c
     dw Call_001_484e
-    dw label4845
+    dw label1_4845
     dw Call_001_46f6
     dw jr_001_4686
-    dw label4c58
-    dw label5a72
-    dw label4bc1
+    dw label1_4c58
+    dw label1_5a72
+    dw label1_4bc1
     dw Call_001_5d6d
-    dw label683e
-    dw label69c8
+    dw label1_683e
+    dw label1_69c8
     dw Call_001_69e1
 
-label401d:
+label1_401d:
     ld hl, sp+$00
     ld a, l
     ld [$da7b], a
@@ -403,7 +403,7 @@ jr_001_42f6:
     call LoadNewBGMIdIntoA
     pop bc
     cp b
-    call nz, Call_000_1ae1
+    call nz, SetBGM
     ld a, [$c88f]
     or a
     ret nz
@@ -1582,7 +1582,7 @@ Call_001_4837:
     ld a, [hl]
     ret
 
-label4845:
+label1_4845:
     ld a, [$ca8d]
     or a
     jr nz, jr_001_4869
@@ -2333,7 +2333,7 @@ jr_001_4bab:
     ld l, $0c
     db $2e
 
-label4bc1:
+label1_4bc1:
     ld hl, $cac1
     ld b, $14
 jr_001_4bc6:
@@ -2444,7 +2444,7 @@ jr_001_4c49:
     rst $10
     ret
 
-label4c58:
+label1_4c58:
     ld a, d
     ld hl, $cb25
     call Call_000_223b
@@ -2666,7 +2666,7 @@ Call_001_4db8:
     pop af
     ret
 
-label4dd3:
+label1_4dd3:
     ld a, [$c88f]
     or a
     jp nz, Jump_001_4139
@@ -4927,7 +4927,7 @@ Call_001_5a66:
     xor a
     ld [$d78f], a
 
-label5a72:
+label1_5a72:
     ld a, [$c850]
     or a
     ret nz
@@ -5686,7 +5686,7 @@ Call_001_5ea9:
     ld hl, $ff90
     res 1, [hl]
     ld a, $4f
-    call Call_000_1ae1
+    call SetBGM
     ld hl, $021a
     ld a, l
     ld [$c917], a
@@ -7386,7 +7386,7 @@ Call_001_67f8:
     ld [$cab5], a
     ret
 
-label683e:
+label1_683e:
     call Call_001_69e1
     ld a, [$ca38]
     ld bc, $001a
@@ -7652,7 +7652,7 @@ Call_001_69ad:
     ld h, h
 
 
-label69c8:
+label1_69c8:
     call Call_001_69e1
     ld a, [$ca38]
     ld bc, $001a

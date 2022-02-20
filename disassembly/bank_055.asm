@@ -2190,7 +2190,7 @@ Call_055_4924:
     ld [wMenu_selection], a
     call Call_055_496c
     ld a, $00
-    call Call_000_1ae1
+    call SetBGM
     ld a, $03
     ld [$c8a1], a
     ld a, $01
@@ -3139,7 +3139,7 @@ Call_055_4f8f:
     adc h
     ld h, a
     ld a, [hl]
-    call Call_000_1ae1
+    call SetBGM
     ret
 
 

@@ -10061,7 +10061,7 @@ jr_052_7754:
 jr_052_775e:
     push bc
     ld a, $02
-    call Call_000_1ae1
+    call SetBGM
     pop bc
     ld a, c
     call PlaySoundEffect

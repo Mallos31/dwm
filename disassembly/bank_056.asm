@@ -1855,7 +1855,7 @@ Call_056_490f:
     ldh [rVBK], a
     call Call_056_4996
     ld a, $00
-    call Call_000_1ae1
+    call SetBGM
     ld a, $0a
     ld [$df08], a
     xor a

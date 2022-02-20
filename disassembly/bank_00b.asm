@@ -1008,6 +1008,7 @@ jr_00b_4513:
 
 
 labelb_451d:
+;check if text box open
     ld a, [wGameState]
     bit 0, a
     jp nz, Jump_00b_4674

@@ -4936,7 +4936,7 @@ jr_050_5d04:
 jr_050_5d0b:
     call Call_050_6aa0
     ld a, $02
-    call Call_000_1ae1
+    call SetBGM
     ld a, [$dd72]
     call PlaySoundEffect
     ret
@@ -7634,7 +7634,7 @@ jr_050_6cc3:
     ld a, $0a
     ld [$d9ec], a
     ld a, $02
-    call Call_000_1ae1
+    call SetBGM
     ld a, $02
     ld [$db4e], a
     ret

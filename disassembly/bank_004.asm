@@ -2203,37 +2203,37 @@ jr_004_5613:
     ld a, c
     rst $00
 
-    dw label5711
-    dw label5740
-    dw label576f
-    dw label5788
-    dw label57a1
-    dw label57eb
-    dw label5819
-    dw label5824
-    dw label5842
-    dw label5843
-    dw label5860
-    dw label5898
-    dw label58d0
-    dw label5968
-    dw label59d2
-    dw label5a02
-    dw label5a6f
-    dw label5ac5
-    dw label5b1b
-    dw label5b49
-    dw label5b79
-    dw label5b8f
-    dw label5bd4
-    dw label5bdb
-    dw label5c14
-    dw label5c6d
-    dw label5c86
-    dw label5ccf
-    dw label5d1a
-    dw label5d4b
-    dw label5d53
+    dw label4_5711
+    dw label4_5740
+    dw label4_576f
+    dw label4_5788
+    dw label4_57a1
+    dw label4_57eb
+    dw label4_5819
+    dw label4_5824
+    dw label4_5842
+    dw label4_5843
+    dw label4_5860
+    dw label4_5898
+    dw label4_58d0
+    dw label4_5968
+    dw label4_59d2
+    dw label4_5a02
+    dw label4_5a6f
+    dw label4_5ac5
+    dw label4_5b1b
+    dw label4_5b49
+    dw label4_5b79
+    dw label4_5b8f
+    dw label4_5bd4
+    dw label4_5bdb
+    dw label4_5c14
+    dw label4_5c6d
+    dw label4_5c86
+    dw label4_5ccf
+    dw label4_5d1a
+    dw label4_5d4b
+    dw label4_5d53
     dw label4_5d5b
     dw label4_5e5e
     dw label4_5e6d
@@ -2247,64 +2247,64 @@ jr_004_5613:
     dw label4_5f9a
     dw label4_5fdb
     dw label4_6002
-    dw $6064
-    dw $6093
-    dw $61e0
-    dw $623a
-    dw $6253
-    dw $62ab
-    dw $62dd
-    dw $6332
-    dw $634f
-    dw $63bb
-    dw $63c6
-    dw $6401
-    dw $643f
-    dw $64a7
-    dw $64c2
-    dw $65ab
-    dw $6618
-    dw $6620
-    dw $6628
-    dw $6632
-    dw $6646
-    dw $669d
-    dw $66bd
-    dw $6723
-    dw $676f
-    dw $67b1
-    dw $67fd
-    dw $6822
-    dw $684d
-    dw $6866
-    dw $687f
-    dw $6898
-    dw $68a1
-    dw $68ba
-    dw $68d7
-    dw $690b
-    dw $6957
-    dw $696c
-    dw $69a9
-    dw $6a61
-    dw $6ace
-    dw $6afa
-    dw $6b3a
-    dw $6b73
-    dw $6ba0
-    dw $6bdf
-    dw $6d56
-    dw $6d84
-    dw $6d93
-    dw $6f64
-    dw $6f89
-    dw $6f9b
-    dw $6ffb
-    dw $7038
-    dw $705b
-    dw $707f
-    dw $70d5
-    dw $71d2
+    dw label4_6064
+    dw label4_6093
+    dw label4_61e0
+    dw label4_623a
+    dw label4_6253
+    dw label4_62ab
+    dw label4_62dd
+    dw label4_6332
+    dw label4_634f
+    dw label4_63bb
+    dw label4_63c6
+    dw label4_6401
+    dw label4_643f
+    dw label4_64a7
+    dw label4_64c2
+    dw label4_65ab
+    dw label4_6618
+    dw label4_6620
+    dw label4_6628
+    dw label4_6632
+    dw label4_6646
+    dw label4_669d
+    dw label4_66bd
+    dw label4_6723
+    dw label4_676f
+    dw label4_67b1
+    dw label4_67fd
+    dw label4_6822
+    dw label4_684d
+    dw label4_6866
+    dw label4_687f
+    dw label4_6898
+    dw label4_68a1
+    dw label4_68ba
+    dw label4_68d7
+    dw label4_690b
+    dw label4_6957
+    dw label4_696c
+    dw label4_69a9
+    dw label4_6a61
+    dw label4_6ace
+    dw label4_6afa
+    dw label4_6b3a
+    dw label4_6b73
+    dw label4_6ba0
+    dw label4_6bdf
+    dw label4_6d56
+    dw label4_6d84
+    dw label4_6d93
+    dw label4_6f64
+    dw label4_6f89
+    dw label4_6f9b
+    dw label4_6ffb
+    dw label4_7038
+    dw label4_705b
+    dw label4_707f
+    dw label4_70d5
+    dw label4_71d2
 
 
 LAB_rom4__56ec:
@@ -2331,7 +2331,7 @@ jr_004_5700:
     call Call_000_0ad9
     ret
 
-label5711:
+label4_5711:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2351,7 +2351,7 @@ label5711:
     call Call_004_71ef
     jp Jump_004_7212
 
-label5740:
+label4_5740:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2371,7 +2371,7 @@ label5740:
     call Call_004_71ef
     jp Jump_004_7212
 
-label576f:
+label4_576f:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2382,7 +2382,7 @@ label576f:
     call Call_000_26a6
     jp Jump_004_55f5
 
-label5788:
+label4_5788:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2393,7 +2393,7 @@ label5788:
     call Call_000_26a0
     jp Jump_004_55f5
 
-label57a1:
+label4_57a1:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2430,7 +2430,7 @@ label57a1:
     ret
 
 
-label57eb:
+label4_57eb:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2453,7 +2453,7 @@ label57eb:
     ret
 
 
-label5819:
+label4_5819:
     ld a, [wGameState]
     bit 0, a
     ret z
@@ -2462,7 +2462,7 @@ label5819:
     inc [hl]
     ret
 
-label5824:
+label4_5824:
     ld a, [wGameState]
     bit 0, a
     ret nz
@@ -2479,10 +2479,10 @@ label5824:
     ld [$c916], a
     ret
 
-label5842:
+label4_5842:
     ret
 
-label5843:
+label4_5843:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2496,7 +2496,7 @@ label5843:
     set 2, [hl]
     ret
 
-label5860:
+label4_5860:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2521,7 +2521,7 @@ label5860:
     set 3, [hl]
     ret
 
-label5898:
+label4_5898:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2546,7 +2546,7 @@ label5898:
     set 3, [hl]
     ret
 
-label58d0:
+label4_58d0:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2638,7 +2638,7 @@ jr_004_5942:
     ld [hl], c
     jp Jump_004_55f5
 
-label5968:
+label4_5968:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2695,7 +2695,7 @@ jr_004_59b9:
     ld [hl], c
     jp Jump_004_55f5
 
-label59d2:
+label4_59d2:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2716,7 +2716,7 @@ label59d2:
     call Call_004_71ef
     jp Jump_004_7212
 
-label5a02:
+label4_5a02:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2764,7 +2764,7 @@ label5a02:
     ld [$c825], a
     ret
 
-label5a6f:
+label4_5a6f:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2815,7 +2815,7 @@ jr_004_5a99:
     set 3, [hl]
     ret
 
-label5ac5:
+label4_5ac5:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2867,7 +2867,7 @@ jr_004_5aef:
     ret
 
                         ; begining of function relating to tresure chests
-label5b1b:                        ; inc unknown counter
+label4_5b1b:                        ; inc unknown counter
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -2891,7 +2891,7 @@ label5b1b:                        ; inc unknown counter
     ld [hl], c          ; load c (chests id bit) into the contents of hl (opened chest bit plane)
     jp Jump_004_55f5
 
-label5b49:
+label4_5b49:
     ld a, [$d8d5]       ; inc unknown counter
     add $01
     ld [$d8d5], a
@@ -2917,7 +2917,7 @@ label5b49:
     ld [hl], b          ; loads b into the contents of hl (unknown)
     jp Jump_004_55f5
 
-label5b79:
+label4_5b79:
     ld a, [$d8d5]       ; inc unknown counter
     add $01
     ld [$d8d5], a
@@ -2928,7 +2928,7 @@ label5b79:
     call Call_004_71ef
     jp Jump_004_7212
 
-label5b8f:
+label4_5b8f:
     ld a, [$d8d5]       ; inc unknown counter
     add $01
     ld [$d8d5], a
@@ -2962,12 +2962,12 @@ label5b8f:
     call Call_004_71ef
     jp Jump_004_7212
 
-label5bd4:
+label4_5bd4:
     call Call_000_2518
     call Call_000_25f1
     ret
 
-label5bdb:
+label4_5bdb:
     ld a, [wMapID]
     cp $2f
     jr nz, jr_004_5c04
@@ -3011,7 +3011,7 @@ jr_004_5c05:
 
     ret
 
-label5c14:
+label4_5c14:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -3069,7 +3069,7 @@ jr_004_5c68:
     rst $10
     ret
 
-label5c6d:
+label4_5c6d:
     ld a, [$d8d7]
     bit 4, a
     jp z, Jump_004_55f5
@@ -3082,7 +3082,7 @@ label5c6d:
     ld [$d8d6], a
     ret
 
-label5c86:
+label4_5c86:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -3123,7 +3123,7 @@ label5c86:
     set 4, [hl]
     jp Jump_004_55f5
 
-label5ccf:
+label4_5ccf:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -3166,7 +3166,7 @@ label5ccf:
     set 4, [hl]
     jp Jump_004_55f5
 
-label5d1a:
+label4_5d1a:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -3195,12 +3195,12 @@ label5d1a:
     set 4, [hl]
     jp Jump_004_55f5
 
-label5d4b:
+label4_5d4b:
     ld hl, $d8d7
     set 5, [hl]
     jp Jump_004_55f5
 
-label5d53:
+label4_5d53:
     ld hl, $d8d7
     res 5, [hl]
     jp Jump_004_55f5
@@ -3722,6 +3722,9 @@ jr_004_604c:
     adc l
     ld h, $f0
     ldh a, [$f0]
+
+
+label4_6064:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -3752,7 +3755,7 @@ jr_004_6087:
     call Call_004_71ef
     jp Jump_004_7212
 
-
+label4_6093:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4030,6 +4033,8 @@ jr_004_6087:
     nop
     call c, $e100
     nop
+
+label4_61e0:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4056,33 +4061,12 @@ jr_004_6087:
     jp Jump_004_55f5
 
 
-    ld bc, $0001
-    ld [bc], a
-    ld [bc], a
-    ld [bc], a
-    ld bc, $0102
-    ld [bc], a
-    ld bc, $0201
-    nop
-    ld bc, $0101
-    nop
-    ld [bc], a
-    ld bc, $0200
-    nop
-    nop
-    nop
-    ld bc, $0002
-    nop
-    ld bc, $0100
-    ld bc, $0101
-    ld [bc], a
-    ld bc, $0102
-    nop
-    ld bc, $0001
-    ld bc, $fa00
-    push de
-    ret c
+    db $01, $01, $00, $02, $02, $02, $01, $02, $01, $02, $01, $01, $02, $00, $01, $01
+    db $01, $00, $02, $01, $00, $02, $00, $00, $00, $01, $02, $00, $00, $01, $00, $01
+    db $01, $01, $01, $02, $01, $02, $01, $00, $01, $01, $00, $01, $00
 
+label4_623a:
+    ld a, [$d8d5]
     add $01
     ld [$d8d5], a
     ld a, [$d8d6]
@@ -4094,7 +4078,7 @@ jr_004_6087:
     inc [hl]
     jp Jump_004_55f5
 
-
+label4_6253:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4137,7 +4121,7 @@ jr_004_6087:
     call Call_004_71ef
     jp Jump_004_7212
 
-
+label4_62ab:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4170,7 +4154,7 @@ jr_004_62cb:
     call Call_004_71ef
     jp Jump_004_7212
 
-
+label4_62dd:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4211,7 +4195,7 @@ jr_004_62cb:
     call Call_004_71ef
     jp Jump_004_7212
 
-
+label4_6332:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4225,7 +4209,7 @@ jr_004_62cb:
     call Call_000_241a
     jp Jump_004_55f5
 
-
+label4_634f:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4288,14 +4272,14 @@ jr_004_63a3:
     call Call_004_71ef
     jp Jump_004_7212
 
-
+label4_63bb:
     ld hl, $0109
     rst $10
     ld hl, $0103
     rst $10
     jp Jump_004_55f5
 
-
+label4_63c6:
     ld a, [$cab4]
     add a
     ld hl, $63ef
@@ -4319,18 +4303,11 @@ jr_004_63a3:
     ret
 
 
-    dec a
-    ld bc, $013e
-    ccf
-    ld bc, $0140
-    ld b, c
-    ld bc, $0142
-    ld b, e
-    ld bc, $0144
-    ld b, h
-    ld bc, $d5fa
-    ret c
+    db $3d, $01, $3e, $01, $3f, $01, $40, $01, $41, $01, $42, $01, $43, $01, $44, $01
+    db $44, $01
 
+label4_6401:
+    ld a, [$d8d5]
     add $01
     ld [$d8d5], a
     ld a, [$d8d6]
@@ -4372,7 +4349,7 @@ jr_004_6433:
     call Call_000_097a
     jp Jump_004_55f5
 
-
+label4_643f:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4432,7 +4409,7 @@ jr_004_648f:
     call Call_004_71ef
     jp Jump_004_7212
 
-
+label4_64a7:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4445,7 +4422,7 @@ jr_004_648f:
     call Call_000_0ad9
     jp Jump_004_55f5
 
-
+label4_64c2:
     ld a, [$ca40]
     ld [$cac0], a
     ld hl, $1604
@@ -4569,7 +4546,7 @@ jr_004_6599:
     ld [de], a
     ret
 
-
+label4_65ab:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4618,16 +4595,19 @@ jr_004_6599:
     ret
 
 
+label4_6618:
     ld hl, $d8d8
     set 0, [hl]
     jp Jump_004_55f5
 
 
+label4_6620:
     ld hl, $d8d8
     set 1, [hl]
     jp Jump_004_55f5
 
 
+label4_6628:
     ld a, $04
     call Call_000_1688
     ld hl, $c88e
@@ -4635,6 +4615,7 @@ jr_004_6599:
     ret
 
 
+label4_6632:
     ld a, $00
     ld hl, $caca
     call Call_000_2229
@@ -4645,6 +4626,7 @@ jr_004_6599:
     jp Jump_004_55f5
 
 
+label4_6646:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4702,6 +4684,7 @@ jr_004_668d:
     jp Jump_004_55f5
 
 
+label4_669d:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4712,10 +4695,11 @@ jr_004_668d:
     ld a, [wCurrPlayingBGM]
     ld [$c8b6], a
     ld a, c
-    call Call_000_1ae1
+    call SetBGM
     jp Jump_004_55f5
 
 
+label4_66bd:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4765,6 +4749,7 @@ jr_004_668d:
     jp Jump_004_55f5
 
 
+label4_6723:
     ld a, [$c8fb]
     ld c, a
     ld a, [$c8fc]
@@ -4804,6 +4789,7 @@ jr_004_668d:
     ret
 
 
+label4_676f:
     ld a, [$c901]
     ldh [$8e], a
     call Call_004_454b
@@ -4842,6 +4828,7 @@ jr_004_668d:
     ret
 
 
+label4_67b1:
     ld hl, $cab9
     ld a, [hl+]
     ld [$ca8d], a
@@ -4882,6 +4869,7 @@ Call_004_67f1:
     ret
 
 
+label4_67fd:
     ld a, [$ddb4]
     ld hl, $ddce
     and [hl]
@@ -4901,6 +4889,7 @@ Call_004_67f1:
     ret
 
 
+label4_6822:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4928,6 +4917,7 @@ Jump_004_6838:
     jp Jump_004_55f5
 
 
+label4_684d:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4940,6 +4930,7 @@ Jump_004_6838:
     jp Jump_004_6838
 
 
+label4_6866:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4952,6 +4943,7 @@ Jump_004_6838:
     jp Jump_004_6838
 
 
+label4_687f:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4964,11 +4956,13 @@ Jump_004_6838:
     jp Jump_004_6838
 
 
+label4_6898:
     ld a, [$c8b6]
-    call Call_000_1ae1
+    call SetBGM
     jp Jump_004_55f5
 
 
+label4_68a1:
     ld a, [wJoypad_current_frame]
     and $f0
     jp nz, Jump_004_55f5
@@ -4982,6 +4976,7 @@ Jump_004_6838:
     ret
 
 
+label4_68ba:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -4996,6 +4991,7 @@ Jump_004_6838:
     ret
 
 
+label4_68d7:
     ld a, [wMapID]
     ld c, a
     ld a, [wInGateworld]
@@ -5025,6 +5021,7 @@ Jump_004_6838:
     jp Jump_004_55f5
 
 
+label4_690b:
     ld a, [$c8fb]
     ld c, a
     ld a, [$c8fc]
@@ -5064,6 +5061,7 @@ Jump_004_6838:
     ret
 
 
+label4_6957:
     ld a, [$c901]
     ldh [$8e], a
     call Call_004_454b
@@ -5075,6 +5073,7 @@ Jump_004_6838:
     jp Jump_004_55f5
 
 
+label4_696c:
     ld b, $00
     ld c, $00
 
@@ -5126,6 +5125,8 @@ jr_004_6991:
 
     rst $10
     rst $38
+
+label4_69a9:
     ld bc, $0000
     ld a, [$ca8e]
     call $6a4e
@@ -5241,6 +5242,7 @@ jr_004_69cd:
     ret
 
 
+label4_6a61:
     ldh a, [$95]
     and $f0
     ld l, a
@@ -5325,6 +5327,7 @@ jr_004_6abc:
     jp Jump_004_55f5
 
 
+label4_6ace:
     ld a, [wRNG1]
     ld b, a
     ld a, $25
@@ -5358,6 +5361,7 @@ jr_004_6aed:
     jp Jump_004_55f5
 
 
+label4_6afa:
     ld hl, wInventory
     ld b, $14
     ld c, $00
@@ -5402,6 +5406,7 @@ jr_004_6b0e:
     jp Jump_004_55f5
 
 
+label4_6b3a:
     ld a, [wCurrGoldLo]
     ld l, a
     ld a, [wCurrGoldMid]
@@ -5435,6 +5440,7 @@ jr_004_6b0e:
     jp Jump_004_55f5
 
 
+label4_6b73:
     ld a, [wRNG1]
     ld b, a
     ld a, $05
@@ -5468,6 +5474,7 @@ jr_004_6b93:
     jp Jump_004_55f5
 
 
+label4_6ba0:
     ld a, [$c93a]
     dec a
     dec a
@@ -5504,7 +5511,7 @@ jr_004_6bb9:
     ld [$c825], a
     ret
 
-
+label4_6bdf:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5723,6 +5730,7 @@ Call_004_6d4a:
     ret
 
 
+label4_6d56:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -5745,6 +5753,7 @@ Call_004_6d4a:
     ret
 
 
+label4_6d84:
     ld hl, wGameState
     set 6, [hl]
     xor a
@@ -5754,6 +5763,7 @@ Call_004_6d4a:
     ret
 
 
+label4_6d93:
     ld a, [$d9cf]
     bit 7, a
     jr nz, jr_004_6d9e
@@ -6035,6 +6045,8 @@ Call_004_6f35:
 
     ld [hl+], a
     inc hl
+
+label4_6f64:
     ld a, [$d9d0]
     ld l, a
     ld h, $08
@@ -6066,6 +6078,7 @@ jr_004_6f82:
     jp Jump_004_55f5
 
 
+label4_6f89:
     ld a, $07
     ld [$d951], a
     xor a
@@ -6075,6 +6088,7 @@ jr_004_6f82:
     jp Jump_004_55f5
 
 
+label4_6f9b:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -6124,6 +6138,7 @@ jr_004_6f82:
     jp Jump_004_7212
 
 
+label4_6ffb:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -6155,6 +6170,7 @@ jr_004_7030:
     jp Jump_004_55f5
 
 
+label4_7038:
     ld a, [$d8d3]
     cp $06
     jr nc, jr_004_7044
@@ -6188,6 +6204,7 @@ jr_004_7056:
     ret
 
 
+label4_705b:
     ld hl, $8da0
     ld b, $10
     ld a, $ff
@@ -6212,6 +6229,7 @@ jr_004_706f:
     ret
 
 
+label4_707f:
     ldh a, [$bb]
     and $f8
     ld l, a
@@ -6280,6 +6298,7 @@ jr_004_70a4:
     ret
 
 
+label4_70d5:
     ld a, [$d8d5]
     add $01
     ld [$d8d5], a
@@ -6435,6 +6454,7 @@ jr_004_71cf:
     jp Jump_004_55f5
 
 
+label4_71d2:
     ld a, [$dd80]
     ld hl, $dd9a
     and [hl]

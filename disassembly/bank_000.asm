@@ -5387,7 +5387,7 @@ jr_000_1acf:
     ret
 
 
-Call_000_1ae1:
+SetBGM:
     ld [wBGM], a
     ret
 
@@ -6727,15 +6727,15 @@ Call_000_219a:
     call Call_000_2184
     jp Jump_000_2158
 
-
+;read a byte from sram and check if it is 0. If yes, return.
 Call_000_21b2:
     ld hl, $a002
     ld a, $0a
-    ld [$0100], a
+    ld [$0100], a ;enable SRAM
     ld a, [hl]
     push af
     ld a, $00
-    ld [$0100], a
+    ld [$0100], a ;disable SRAM
     pop af
     or a
     ret z

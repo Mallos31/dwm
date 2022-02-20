@@ -9221,7 +9221,7 @@ jr_006_6ba7:
 
 
     ld a, $02
-    call Call_000_1ae1
+    call SetBGM
     call Call_000_3331
     ld a, $52
     call PlaySoundEffect

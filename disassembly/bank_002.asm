@@ -3181,7 +3181,7 @@ label4e9f:
     ld hl, $0801
     rst $10
     ld a, $02
-    call Call_000_1ae1
+    call SetBGM
     ld a, [$c88b]
     rst $00
     cp a
@@ -4684,7 +4684,7 @@ jr_002_5aaa:
     ret z
 
     ld a, $02
-    call Call_000_1ae1
+    call SetBGM
     ld hl, $c0fc
     inc [hl]
     ld a, $00

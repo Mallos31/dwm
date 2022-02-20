@@ -11273,7 +11273,7 @@ label13_7370:
 
 jr_013_7381:
     ld a, b
-    call Call_000_1ae1
+    call SetBGM
     xor a
     ld hl, $c905
     ld bc, $0008
@@ -12079,7 +12079,7 @@ Call_013_779f:
 
 jr_013_77b6:
     ld a, $02
-    call Call_000_1ae1
+    call SetBGM
     xor a
     or a
     ret

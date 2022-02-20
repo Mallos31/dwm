@@ -88,7 +88,7 @@ jr_051_4073:
 Jump_051_408b:
 jr_051_408b:
     ld a, b
-    call Call_000_1ae1
+    call SetBGM
     ld a, $07
     ldh [$b5], a
     ld a, $ff
@@ -3896,7 +3896,7 @@ jr_051_55b7:
     ld hl, $c190
     call Call_000_09a4
     ld a, $47
-    call Call_000_1ae1
+    call SetBGM
     ld hl, $0b01
     call Call_000_096d
     ld hl, $1302

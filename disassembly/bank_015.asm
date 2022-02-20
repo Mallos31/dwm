@@ -142,7 +142,7 @@ label15_4009:
     ld [$c8d7], a
     call DrawWhiteScreen
     ld a, $24
-    call Call_000_1ae1
+    call SetBGM
     ld a, $07
     ldh [$b5], a
     ld a, $ff
@@ -220,7 +220,7 @@ Jump_015_413e:
     ld a, $ff
     call FillNBytesWithRegA
     ld a, $24
-    call Call_000_1ae1
+    call SetBGM
     ld a, $07
     ldh [$b5], a
     ld a, $ff
@@ -285,7 +285,7 @@ Jump_015_413e:
     ld [$c8d7], a
     call DrawWhiteScreen
     ld a, $24
-    call Call_000_1ae1
+    call SetBGM
     ld a, $07
     ldh [$b5], a
     ld a, $ff

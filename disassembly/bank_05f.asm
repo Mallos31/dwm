@@ -68,7 +68,7 @@ jr_05f_4067:
     ld a, $fc
     call Call_000_1688
     ld a, $21
-    call Call_000_1ae1
+    call SetBGM
     xor a
     ldh [$b7], a
     xor a
@@ -104,7 +104,7 @@ jr_05f_4067:
     ld a, $fc
     call Call_000_1688
     ld a, $31
-    call Call_000_1ae1
+    call SetBGM
     xor a
     ldh [$b7], a
     xor a
@@ -882,7 +882,7 @@ jr_05f_4469:
     ld hl, $9800
     call Call_05f_4263
     ld a, $06
-    call Call_000_1ae1
+    call SetBGM
     ld a, $01
     ld [$c81e], a
     ld hl, $170b
@@ -1474,7 +1474,7 @@ jr_05f_4997:
 
     ld a, $06
     di
-    call Call_000_1ae1
+    call SetBGM
     ret
 
 
