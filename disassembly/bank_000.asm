@@ -89,8 +89,6 @@ Call_000_004b:
 TimerOverflowInterrupt::
     reti
 
-
-Call_000_0051:
     ld a, [$c002]
     or a
     ret
@@ -263,13 +261,13 @@ HeaderGlobalChecksum::
     db $52, $71
 
 BootMain:
-    cp $11
-    ld a, $00
-    jr nz, jr_000_0157
-    inc a		;make sure a is a non-zero value. This is usually 1 at boot due to the boot rom's code.
+    cp $11    ;check if running on gameboy color
+    ld a, $00 ;
+    jr nz, .write_gb_type
+    inc a
 
-jr_000_0157:
-    ld [$c81d], a
+.write_gb_type:
+    ld [wIsGBC], a
 
 InitGameData:
     ld sp, $dfff
@@ -313,7 +311,7 @@ InitGameData:
     call Call_000_3331
     xor a
     ld [$c8c7], a
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     jr z, jr_000_01c6
 
@@ -725,7 +723,7 @@ jr_000_03e9:
     ld a, [$c842]
     and $03				;check if A and B are being pressed
     cp $03
-    jr jr_000_044d			;@BUG not really a bug, more than likely purposefully changed from jr nz, 044d to jr 044d to disable the debug menu.
+    jr jr_000_044d			;@BUG not really a bug, more than likely purposefully changed to disable the debug menu.
 
     ld a, [wJoypad_current_frame]
     bit 2, a				;checking for the B button the be pressed. If it is not pressed, the code loading the debug menu is skipped.
@@ -849,21 +847,15 @@ Jump_000_0483:
     ld [$c84f], a
     call Call_000_12ee
     ld a, [$c873]
-
-Call_000_04b8:
     cp $ff
     jr z, jr_000_04c7
 
     ld a, $00
     ld [$c866], a
     ld a, [$c873]
-
-Call_000_04c4:
     jp Jump_000_126b
 
 
-Call_000_04c7:
-Jump_000_04c7:
 jr_000_04c7:
     ld hl, $c871
     ld a, [hl+]
@@ -2753,7 +2745,7 @@ Call_000_0d78:
     ret
 
 
-    db $30, $28, $36, $25, $38, $29	;@TEXT "MSGBUF" ;0d8a
+    db $30, $28, $36, $25, $38, $29	;@TEXT "MESBUF" ;0d8a
 
     ldh a, [$f0]
     set 7, [hl]
@@ -3799,7 +3791,7 @@ Call_000_1284:
 
 
 Call_000_1288:
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     push af
     ld hl, $c000
     ld bc, $1e00
@@ -3812,7 +3804,7 @@ Call_000_1296:
     xor a
     call FillNBytesWithRegA
     pop af
-    ld [$c81d], a
+    ld [wIsGBC], a
     ret
 
 
@@ -3821,7 +3813,7 @@ Call_000_12a5:
     ld bc, $0800
     xor a
     call FillNBytesWithRegA
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -4155,7 +4147,7 @@ jr_000_145d:
     dec b
     jr nz, jr_000_145d
 
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     jr z, jr_000_14c7
 
@@ -4196,7 +4188,7 @@ jr_000_148f:
     dec b
     jr nz, jr_000_148f
 
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     jr z, jr_000_14c7
 
@@ -4632,7 +4624,7 @@ jr_000_1671:
 
 Call_000_1688:
     ld b, a
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     jp nz, Jump_000_1734
 
@@ -4851,7 +4843,7 @@ Call_000_17ec:
 
     bit 7, a
     call z, Call_000_1c18
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     jp nz, Jump_000_1964
 
@@ -5361,7 +5353,7 @@ Write_gfx_tile_and_inc_HL:			;called by debug menu. Probably other things too
 
 Call_000_1ac5:
     push af
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     jr nz, jr_000_1ace
 
@@ -5900,22 +5892,21 @@ jr_000_1db6:
 
 
 Call_000_1dbe:
-    ld b, $00		;set b to 0
-    ld h, b		;set h to 0
-    ld l, b		;set l to 0
-    call Call_000_1dc5	;put 1dc5 on the stack and then go to 1dc5
+    ld b, $00
+    ld h, b
+    ld l, b
+    call Call_000_1dc5
 
 Call_000_1dc5:
-    rrca		;rotate a right one and put bit 0 into the carry flag
-    jr nc, jr_000_1dc9	;if bit 0 wasn't 1, skip the next instruction
+    rrca
+    jr nc, jr_000_1dc9
 
-    add hl, bc		;if it was, load bc into hl
-
+    add hl, bc
 jr_000_1dc9:
-    sla c		;double c. Put MSB into carry
-    rl b		;double b. Do nothing with carry
-    rrca		;rotate a right one and put bit 0 into the carry flag
-    jr nc, jr_000_1dd1  ;if bit 0 wasn't 1 skip to the next instruction
+    sla c
+    rl b
+    rrca
+    jr nc, jr_000_1dd1
 
     add hl, bc
 
@@ -7783,14 +7774,14 @@ Call_000_2652:
     jr nz, jr_000_266c
 
     ld a, [wMapID]
-    cp BTLDEMO
+    cp MAP_BTLDEMO
     jr z, jr_000_266a
 
-    cp CSLBG
+    cp MAP_CSLBG
     jr z, jr_000_266a
 
     ld a, [wMapID]
-    cp OLDWELL
+    cp MAP_OLDWELL
     jr nc, jr_000_266c
 
 jr_000_266a:

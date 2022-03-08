@@ -5,16 +5,15 @@
 
 SECTION "ROM Bank $018", ROMX[$4000], BANK[$18]
 
-    jr @+$0d
+    db $18 ;ROM BANK
 
-    ld b, b
-    sbc $42
-    ld a, a
-    ld d, [hl]
-    add [hl]
-    ld d, [hl]
-    adc l
-    ld d, [hl]
+    dw label18_400b
+    dw label18_42de
+    dw Call_018_567f
+    dw label18_5686
+    dw label18_568d
+
+label18_400b:
     xor a
     ld hl, $c8da
     ld bc, $0008
@@ -620,7 +619,7 @@ jr_018_42da:
     ld a, [$c8ba]
     ret
 
-
+label18_42de:
     call Call_018_4dda
     ld a, [$c8d2]
     rst $00
@@ -4129,12 +4128,12 @@ Call_018_567f:
     call Call_000_05b6
     ret
 
-
+label18_5686:
     ld de, $561d
     call Call_000_05f6
     ret
 
-
+label18_568d:
     call Call_018_567f
     call Jump_000_0609
     ret

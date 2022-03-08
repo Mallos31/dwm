@@ -1017,7 +1017,7 @@ Call_051_4627:
 
 
 Call_051_4669:
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -3421,7 +3421,7 @@ jr_051_4d10:
 
 
 Call_051_5339:
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -6849,7 +6849,7 @@ Call_051_69aa:
 
 
 Call_051_69d4:
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -10096,7 +10096,7 @@ Call_051_79c9:
 
 
 Call_051_79cb:
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 

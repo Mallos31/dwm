@@ -856,7 +856,7 @@ jr_024_4359:
     push af
     inc l
     inc hl
-    call nc, Call_000_04b8
+    db $d4, $b8, $04
     ld [hl], $26
     and c
     nop

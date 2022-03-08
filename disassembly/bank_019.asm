@@ -5,11 +5,15 @@
 
 SECTION "ROM Bank $019", ROMX[$4000], BANK[$19]
 
-    add hl, de
-    inc bc
-    ld b, b
+    db $19 ;ROM Bank
+
+    dw label19_4003
+
+label19_4003:
     ld a, [$c905]
     rst $00
+
+
     ld h, h
     ld b, e
     ld de, $7440

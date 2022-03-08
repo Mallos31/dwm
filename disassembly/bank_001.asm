@@ -121,7 +121,7 @@ Call_001_4074:
     jr nz, jr_001_4105
 
     ld a, [wMapID]
-    cp CSLBG
+    cp MAP_CSLBG
     jr nz, jr_001_4105
 
     ld hl, $5605
@@ -325,7 +325,7 @@ Call_001_421c:
     jr nz, jr_001_427d
 
     ld a, [wMapID]
-    cp NEST
+    cp MAP_NEST
     jr z, jr_001_4291
 
 jr_001_427d:
@@ -432,13 +432,13 @@ LoadNewBGMIdIntoA:
     jr nz, jr_001_4358
 
     ld a, [wMapID]
-    cp ITEMSP
+    cp MAP_ITEMSP
     jr c, jr_001_4346
 
-    cp COLISUM
+    cp MAP_COLISUM
     jr z, jr_001_4346
 
-    cp BTLDEMO
+    cp MAP_BTLDEMO
     jr c, jr_001_4358
 
     cp $61 ;maps do not go above 5F. This is unused. w
@@ -2496,13 +2496,18 @@ Call_001_4c89:
 Call_001_4c95:
     xor a
     ld [$c8ab], a
-    ld a, $6e
+
+    ;Makes player's name corrupted as these
+    ;Japanese characters no longer exist.
+    ld a, $6e ;Character Te - テ
     ld [$ca42], a
-    ld a, $86
+    ld a, $86 ;Character Ri - リ
     ld [$ca43], a
-    ld a, $9c
+    ld a, $9c ;Character ー
     ld [$ca44], a
     ld a, $f0
+
+    ;Sets following monsters to first, second, and third monsters in farm.
     ld [$ca45], a
     ld a, $00
     ld [$ca8e], a
@@ -2510,6 +2515,7 @@ Call_001_4c95:
     ld [$ca8f], a
     ld a, $02
     ld [$ca90], a
+
     ld b, $14
     ld c, $00
 
@@ -2528,21 +2534,21 @@ jr_001_4cc0:
     ld [wCurrGoldMid], a
     ld a, $01
     ld [wCurrGoldHi], a
-    ld a, $01
+    ld a, ITEM_HERB
     ld [wInventory], a
-    ld a, $02
+    ld a, ITEM_LOVEWATER
     ld [$ca52], a
-    ld a, $03
+    ld a, ITEM_SAGE_STONE
     ld [$ca53], a
-    ld a, $04
+    ld a, ITEM_WORLD_DEW
     ld [$ca54], a
-    ld a, $05
+    ld a, ITEM_POTION
     ld [$ca55], a
-    ld a, $06
+    ld a, ITEM_ELF_WATER
     ld [$ca56], a
-    ld a, $07
+    ld a, ITEM_ANTIDOTE
     ld [$ca57], a
-    ld a, $08
+    ld a, ITEM_MOON_HERB
     ld [$ca58], a
     ret
 
@@ -3409,7 +3415,7 @@ Call_001_5254:
     ret nz
 
     ld a, [wMapID]
-    cp IN_WELL
+    cp MAP_IN_WELL
     ret nz
 
     ldh a, [$95]
@@ -3907,7 +3913,7 @@ Call_001_54c6:
 
 Call_001_54eb:
     ld a, [wMapID]
-    cp MAZEWOD
+    cp MAP_MAZEWOD
     ret z
 
     cp $61
@@ -3922,22 +3928,22 @@ Call_001_54eb:
     cp $64
     ret z
 
-    cp SLDFLR1
+    cp MAP_SLDFLR1
     ret z
 
-    cp SLDFLR2
+    cp MAP_SLDFLR2
     ret z
 
-    cp SLDFLR3
+    cp MAP_SLDFLR3
     ret z
 
-    cp MAZE1
+    cp MAP_MAZE1
     ret z
 
-    cp MAZE2
+    cp MAP_MAZE2
     ret z
 
-    cp MAZE3
+    cp MAP_MAZE3
     ret z
 
     ret
@@ -4190,10 +4196,10 @@ Call_001_565e:
     jr nz, jr_001_568c
 
     ld a, [wMapID]
-    cp BATTLE1 ;arena entrance
+    cp MAP_BATTLE1 ;arena entrance
     jr z, jr_001_5690
 
-    cp BTLDEMO
+    cp MAP_BTLDEMO
     jr z, jr_001_5690
 
     ld a, [$d92b]

@@ -30,6 +30,7 @@ label4013:
 jr_003_4020:
     ld a, [$c865]
     rst $00
+
     inc l
     ld b, b
     ld c, l
@@ -38,6 +39,8 @@ jr_003_4020:
     ld b, c
     or a
     ld b, c
+
+
     call WaitForSerialTransferEnd		;check for Seral Transfer Start (Link cable)
     ldh a, [rSB]
     ld b, a

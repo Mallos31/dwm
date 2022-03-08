@@ -721,7 +721,7 @@ jr_05f_4469:
     ld a, $01
     ldh [rVBK], a
     ld hl, $9800
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     call nz, Call_000_14cf
     ld a, $00
@@ -754,7 +754,7 @@ jr_05f_4469:
     ld a, $01
     ldh [rVBK], a
     ld hl, $9800
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     call nz, Call_000_14cf
     ld a, $00
@@ -787,7 +787,7 @@ jr_05f_4469:
     ld a, $01
     ldh [rVBK], a
     ld hl, $9800
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     call nz, Call_000_14cf
     ld a, $00
@@ -822,7 +822,7 @@ jr_05f_4469:
     xor a
     ld hl, $9800
     ld bc, $0400
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ld a, $00
     call nz, FillNBytesWithRegA
@@ -856,7 +856,7 @@ jr_05f_4469:
     ld a, $01
     ldh [rVBK], a
     ld hl, $9800
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     call nz, Call_000_14cf
     ld a, $00
@@ -890,7 +890,7 @@ jr_05f_4469:
     ld a, $01
     ldh [rVBK], a
     ld hl, $9800
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     jr nz, jr_05f_460c
 

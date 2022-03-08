@@ -8414,7 +8414,7 @@ Call_006_671f:
     push hl
     call Call_006_6771
     pop hl
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -9976,7 +9976,7 @@ Call_006_7031:
     push hl
     call Call_006_708a
     pop hl
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 

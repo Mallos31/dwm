@@ -5967,7 +5967,7 @@ jr_007_661b:
 
 
 Call_007_6625:
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 

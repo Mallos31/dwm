@@ -1095,7 +1095,7 @@ jr_03a_440d:
     ld hl, sp-$38
     db $fc
     inc a
-    call nz, Call_000_04c4
+    db $c4, $c4, $04
     inc b
     rla
     inc e

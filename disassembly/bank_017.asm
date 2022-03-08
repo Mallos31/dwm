@@ -5,38 +5,26 @@
 
 SECTION "ROM Bank $017", ROMX[$4000], BANK[$17]
 
-    rla
-    dec e
-    ld b, b
-    sbc [hl]
-    ld b, b
-    ret nz
+    db $17 ;ROM BANK
 
-    ld b, c
-    ld [hl], d
-    ld b, d
-    db $10
-    ld b, h
-    ld a, b
-    ld b, h
-    ret nc
+    dw label17_401d
+    dw label17_409e
+    dw label17_41c0
+    dw label17_4272
+    dw label17_4410
+    dw label17_4478
+    dw label17_41d0
+    dw label17_41f2
+    dw label17_46dd
+    dw Jump_017_4102
+    dw label17_4192
+    dw label17_4712
+    dw label17_4733
+    dw label17_4751
 
-    ld b, c
-    ld a, [c]
-    ld b, c
-    db $dd
-    ld b, [hl]
-    ld [bc], a
-    ld b, c
-    sub d
-    ld b, c
-    ld [de], a
-    ld b, a
-    inc sp
-    ld b, a
-    ld d, c
-    ld b, a
-    ld a, [$c81d]
+
+label17_401d:
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -129,6 +117,8 @@ jr_017_4071:
     call Call_017_46a1
     jr jr_017_4102
 
+
+label17_409e:
     ld a, [wInGateworld]
     or a
     jp nz, Jump_017_40da
@@ -206,7 +196,7 @@ jr_017_40e7:
 Call_017_4102:
 Jump_017_4102:
 jr_017_4102:
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -280,8 +270,8 @@ jr_017_4102:
     ld [$c7ce], a
     ret
 
-
-    ld a, [$c81d]
+label17_4192:
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -309,8 +299,8 @@ jr_017_41a5:
     ei
     ret
 
-
-    ld a, [$c81d]
+label17_41c0:
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -320,8 +310,8 @@ jr_017_41a5:
     call Call_017_46bf
     ret
 
-
-    ld a, [$c81d]
+label17_41d0:
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -342,7 +332,9 @@ jr_017_41a5:
     ld b, $01
     call Call_017_46a1
     call Call_017_4102
-    ld a, [$c81d]
+
+label17_41f2:
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -438,8 +430,8 @@ Call_017_4265:
     ld l, a
     ret
 
-
-    ld a, [$c81d]
+label17_4272:
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -692,13 +684,10 @@ Jump_017_440b:
     ret
 
 
-    ld [bc], a
-    inc b
-    nop
-    ld b, $fa
-    ld d, b
-    ret z
+    db $02, $04, $00, $06
 
+label17_4410:
+    ld a, [$c850]
     ld b, a
     bit 7, b
     jr nz, jr_017_442e
@@ -761,7 +750,7 @@ jr_017_4467:
 
     ret
 
-
+label17_4478:
     ld a, [$c850]
     bit 7, a
     jr nz, jr_017_44aa
@@ -1095,7 +1084,7 @@ jr_017_4671:
 
 
 Call_017_46a1:
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -1126,7 +1115,7 @@ jr_017_46b8:
 
 
 Call_017_46bf:
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -1155,8 +1144,8 @@ jr_017_46d6:
 
     ret
 
-
-    ld a, [$c81d]
+label17_46dd:
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -1196,7 +1185,8 @@ jr_017_4706:
     ret
 
 
-    ld a, [$c81d]
+label17_4712:
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -1220,8 +1210,8 @@ jr_017_4706:
     call Call_017_46a1
     ret
 
-
-    ld a, [$c81d]
+label17_4733:
+    ld a, [wIsGBC]
     or a
     ret z
 
@@ -1243,7 +1233,8 @@ jr_017_4706:
     ret
 
 
-    ld a, [$c81d]
+label17_4751:
+    ld a, [wIsGBC]
     or a
     ret z
 

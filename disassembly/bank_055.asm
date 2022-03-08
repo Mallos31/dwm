@@ -3820,7 +3820,7 @@ Call_055_5366:
     ret
 
 
-Call_055_5379:
+Call_055_5379:  ;set name to default Japanese name
     ld a, $6e
     ld [$ca42], a
     ld a, $86
@@ -3829,14 +3829,20 @@ Call_055_5379:
     ld [$ca44], a
     ld a, $f0
     ld [$ca45], a
+
+    ;set number of monsters in party to 3
     ld a, $03
     ld [$ca8d], a
+
+    ;set monsters to defaults
     ld a, $00
     ld [$ca8e], a
     ld a, $01
     ld [$ca8f], a
     ld a, $02
     ld [$ca90], a
+
+
     ld b, $14
     ld c, $00
 
@@ -8485,7 +8491,7 @@ jr_055_6839:
     rst $38
     ldh a, [$e0]
     pop bc
-    jp Jump_000_04c7
+    db $c3, $c7, $04
 
 
     rst $08

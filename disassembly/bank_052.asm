@@ -3229,7 +3229,7 @@ jr_052_5256:
 
 
 Call_052_5257:
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 

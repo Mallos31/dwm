@@ -6524,7 +6524,7 @@ jr_053_6592:
 
 
 Call_053_6593:
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 

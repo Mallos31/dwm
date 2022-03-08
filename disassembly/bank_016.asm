@@ -5,19 +5,19 @@
 
 SECTION "ROM Bank $016", ROMX[$4000], BANK[$16]
     db $16 ;rom bank
-    
-    db $15, $40
-    db $5c, $48
-    db $6e, $45
-    db $a3, $45
-    db $4a, $47
-    db $4e, $5b
-    db $e4, $5f
-    db $b0, $6d
-    db $05, $6f
-    db $33, $70
-        
-    
+
+    dw label16_4015
+    dw label16_485c
+    dw Call_016_456e
+    dw label16_45a3
+    dw label16_474a
+    dw label16_5b4e
+    dw label16_5fe4
+    dw Call_016_6db0
+    dw label16_6f05
+    dw label16_7033
+
+label16_4015:
     ld de, $cac1
     ld b, $14
     ld c, $00
@@ -762,13 +762,9 @@ jr_016_44c7:
     ret
 
 
-    nop
-    ld a, [de]
-    add b
-    sub $fa
-    ld l, h
-    ret z
+    db $00, $1a, $80, $d6
 
+    ld a, [$c86c]
     or a
     ret nz
 
@@ -919,7 +915,7 @@ Call_016_456e:
     ld [$da71], a
     ret
 
-
+label16_45a3:
     ld a, $ff
     ld [$da71], a
     ld a, $ff
@@ -1197,6 +1193,7 @@ jr_016_4749:
     ret
 
 
+label16_474a:
     ld hl, $cb21
     call Call_016_47e0
     xor a
@@ -1389,7 +1386,7 @@ jr_016_4857:
 
     ret
 
-
+label16_485c:
     ld a, [$da6f]
     ld l, a
     ld h, $00
@@ -1709,7 +1706,9 @@ jr_016_4857:
     db $00, $f7, $74, $00, $a4, $00, $f7, $7c, $00, $a4, $00, $f8, $32, $00, $bd, $00
     db $f8, $3a, $00, $bd, $00, $f8, $41, $00, $bd, $00, $f8, $42, $00, $bd, $00, $f8
     db $7f, $00, $c5, $00, $f8, $81, $00, $c5, $00, $ff
-;5b4e
+
+
+label16_5b4e:
     ld a, [wInGateworld]
     or a
     ret z
@@ -2393,6 +2392,7 @@ jr_016_5fe2:
     ret
 
 
+label16_5fe4:
     call Call_016_6e14
     ld a, [wInGateworld]
     or a
@@ -2437,20 +2437,16 @@ jr_016_6002:
     call Call_000_1577
     ld a, [$c8ea]
     bit 7, a
-    jr z, @+$0c
+    jr z, label16_605b
 
     xor a
     ld [$c8ec], a
     ret
 
+    db $00, $00, $00, $01, $02
 
-    nop
-    nop
-    nop
-    ld bc, $cd02
-    ret nc
-
-    ld [de], a
+label16_605b:
+    call GenerateRNG
     ld a, [wRNG1]
     ld b, a
     ld a, $05
@@ -4763,22 +4759,7 @@ Call_016_6ddb:
     ld [hl], a
     ret
 
-
-    inc bc
-    inc b
-    ld b, $0c
-    dec d
-    rla
-    jr @+$1b
-
-    ld a, [de]
-    dec de
-    inc e
-    dec h
-    ld a, [de]
-    dec de
-    inc e
-    dec h
+    db $03, $04, $06, $0c, $15, $17, $18, $19, $1a, $1b, $1c, $25, $1a, $1b, $1c, $25
 
 Call_016_6e14:
     call GenerateRNG
@@ -4812,252 +4793,22 @@ jr_016_6e32:
     ret
 
 
-    db $02
-
-    nop
-    ld c, h
-    inc b
-
-    db $04
-
-    nop
-    or b
-    inc b
-
-    db $06
-
-    nop
-    inc d
-    dec b
-
-    db $08
-
-    nop
-    ld a, b
-    dec b
-
-    db $0a
-
-    nop
-    db $dc
-    dec b
-
-    db $0c
-
-    nop
-    ld b, b
-    db $06
-
-    db $0e
-
-    nop
-    and h
-    db $06
-
-    db $10
-
-    nop
-    db $08
-    rlca
-
-    db $12
-
-    nop
-    ld l, h
-    rlca
-
-    db $14
-
-    nop
-    ret nc
-
-    rlca
-
-    db $16
-
-    nop
-    inc [hl]
-    db $08
-
-    db $18
-
-    nop
-    sbc b
-    db $08
-
-    db $1a
-
-    nop
-    db $fc
-    db $08
-
-    db $1c
-
-    nop
-    ld h, b
-    add hl, bc
-
-    db $1e
-
-    nop
-    db $c4
-    add hl, bc
-
-    db $20
-
-    nop
-    jr z, jr_016_6e87
-
-    db $22
-
-    nop
-    adc h
-    ld a, [bc]
-
-    db $24
-
-    nop
-    ldh a, [$0a]
-
-    db $26
-
-    nop
-
-jr_016_6e87:
-    ld d, h
-    dec bc
-
-    db $28
-
-    nop
-    cp b
-    dec bc
-
-    db $2a
-
-    nop
-    inc e
-    inc c
-
-    db $2c
-
-    nop
-
-    db $80, $0c, $2e
-
-    nop
-
-    db $e4, $0c, $30
-
-    nop
-    ld c, b
-    dec c
-
-    db $32
-
-    nop
-
-    db $ac, $0d, $34
-
-    nop
-    db $10
-    db $0e
-
-    db $36
-
-    nop
-
-    db $74, $0e
-
-    jr c, jr_016_6eab
-
-jr_016_6eab:
-    ret c
-
-    ld c, $3a
-    nop
-    inc a
-    rrca
-    inc a
-    nop
-    and b
-    rrca
-    ld a, $00
-    inc b
-    db $10
-    ld b, b
-    nop
-    ld l, b
-    db $10
-    ld b, d
-    nop
-    call z, Call_016_4410
-    nop
-    jr nc, jr_016_6ed6
-
-    ld b, [hl]
-    nop
-    sub h
-    ld de, $0048
-    ld hl, sp+$11
-    ld c, d
-    nop
-    ld e, h
-    ld [de], a
-    ld c, h
-    nop
-    ret nz
-
-    ld [de], a
-    ld c, [hl]
-
-jr_016_6ed6:
-    nop
-    inc h
-    inc de
-    ld d, b
-    nop
-    adc b
-    inc de
-    ld d, d
-    nop
-    db $ec
-    inc de
-    ld d, h
-    nop
-    ld d, b
-    inc d
-    ld d, [hl]
-    nop
-    or h
-    inc d
-    ld e, b
-    nop
-    jr jr_016_6f02
-
-    ld e, d
-    nop
-    ld a, h
-    dec d
-    ld e, h
-    nop
-    ldh [$15], a
-    ld e, [hl]
-    nop
-    ld b, h
-    ld d, $60
-    nop
-    xor b
-    ld d, $62
-    nop
-    inc c
-    rla
-    rst $38
-
-jr_016_6f02:
-    nop
-    ld [hl], b
-    rla
+    db $02, $00, $4c, $04, $04, $00, $b0, $04, $06, $00, $14, $05, $08, $00, $78, $05
+    db $0a, $00, $dc, $05, $0c, $00, $40, $06, $0e, $00, $a4, $06, $10, $00, $08, $07
+    db $12, $00, $6c, $07, $14, $00, $d0, $07, $16, $00, $34, $08, $18, $00, $98, $08
+    db $1a, $00, $fc, $08, $1c, $00, $60, $09, $1e, $00, $c4, $09, $20, $00, $28, $0a
+    db $22, $00, $8c, $0a, $24, $00, $f0, $0a, $26, $00, $54, $0b, $28, $00, $b8, $0b
+    db $2a, $00, $1c, $0c, $2c, $00, $80, $0c, $2e, $00, $e4, $0c, $30, $00, $48, $0d
+    db $32, $00, $ac, $0d, $34, $00, $10, $0e, $36, $00, $74, $0e, $38, $00, $d8, $0e
+    db $3a, $00, $3c, $0f, $3c, $00, $a0, $0f, $3e, $00, $04, $10, $40, $00, $68, $10
+    db $42, $00, $cc, $10, $44, $00, $30, $11, $46, $00, $94, $11, $48, $00, $f8, $11
+    db $4a, $00, $5c, $12, $4c, $00, $c0, $12, $4e, $00, $24, $13, $50, $00, $88, $13
+    db $52, $00, $ec, $13, $54, $00, $50, $14, $56, $00, $b4, $14, $58, $00, $18, $15
+    db $5a, $00, $7c, $15, $5c, $00, $e0, $15, $5e, $00, $44, $16, $60, $00, $a8, $16
+    db $62, $00, $0c, $17, $ff, $00, $70, $17
+
+
+label16_6f05:
     ld a, [wGameState]
     bit 2, a
     ret nz
@@ -5310,6 +5061,8 @@ jr_016_6fa2:
     ld h, b
     ld [hl], b
     add b
+
+label16_7033:
     ld de, $7896
     ld a, [$c93f]
     cp $02

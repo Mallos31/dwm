@@ -513,7 +513,7 @@ jr_03f_4220:
     jr nz, @+$07
 
     ld [$e720], sp
-    call nz, Call_000_04c7
+    db $c4, $c7, $04
     rra
     jr @+$01
 

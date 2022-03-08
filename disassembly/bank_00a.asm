@@ -14,24 +14,24 @@ label4003:
     rst $00
 
 
-    dw EmptyFunc4027
-    dw EmptyFunc4027
-    dw EmptyFunc4027
-    dw EmptyFunc4027
-    dw EmptyFunc4027
+    dw labela_4027
+    dw labela_4027
+    dw labela_4027
+    dw labela_4027
+    dw labela_4027
     dw label442d
     dw label4bc3
     dw label6095
-    dw EmptyFunc4027
-    dw EmptyFunc4027
-    dw EmptyFunc4027
+    dw labela_4027
+    dw labela_4027
+    dw labela_4027
     dw label6966
-    dw EmptyFunc4027
-    dw EmptyFunc4027
-    dw EmptyFunc4027
-    dw EmptyFunc4027
+    dw labela_4027
+    dw labela_4027
+    dw labela_4027
+    dw labela_4027
 
-EmptyFunc4027:
+labela_4027:
     ret
 
 

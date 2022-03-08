@@ -195,7 +195,7 @@ labelb_40ce:
     rst $10
 
 jr_00b_4134:
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     jr z, jr_00b_41b3
 

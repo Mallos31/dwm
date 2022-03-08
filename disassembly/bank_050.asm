@@ -10936,7 +10936,7 @@ Call_050_7ced:
     ret
 
 
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 

@@ -259,7 +259,7 @@ labelc_4110:
     push bc
     call Call_00c_4171
     pop bc
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     ret z
 

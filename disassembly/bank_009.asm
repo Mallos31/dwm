@@ -1428,57 +1428,57 @@ jr_009_46de:
 
 
 BazaarInventory:
-    db HERB
-    db LOVEWATER
-    db ANTIDOTE
-    db REPELLANT
-    db BEEF_JERKY
-    db PORK_CHOP
-    db WARP_WING
-    db BEAST_TAIL
+    db ITEM_HERB
+    db ITEM_LOVEWATER
+    db ITEM_ANTIDOTE
+    db ITEM_REPELLANT
+    db ITEM_BEEF_JERKY
+    db ITEM_PORK_CHOP
+    db ITEM_WARP_WING
+    db ITEM_BEAST_TAIL
     db $ff
 
 
 StarryNightShopInventory:
-    db POTION
-    db WORLD_DEW
-    db SAGE_STONE
-    db WORLD_LEAF
-    db MAP_HERB
-    db BOOK_MARK
-    db RIB
-    db MIST_STAFF
+    db ITEM_POTION
+    db ITEM_WORLD_DEW
+    db ITEM_SAGE_STONE
+    db ITEM_WORLD_LEAF
+    db ITEM_MAP_HERB
+    db ITEM_BOOK_MARK
+    db ITEM_RIB
+    db ITEM_MIST_STAFF
     db $ff
 
 BookstoreInventory:
-    db QUEST_BK
-    db HORROR_BK
-    db BENICE_BK
-    db CHEATER_BK
-    db SMART_BK
-    db COMEDY_BK
+    db ITEM_QUEST_BK
+    db ITEM_HORROR_BK
+    db ITEM_BENICE_BK
+    db ITEM_CHEATER_BK
+    db ITEM_SMART_BK
+    db ITEM_COMEDY_BK
     db $ff
 
 RareItemShopInventory:
-    db SIRLOIN
-    db SHINY_HARP
-    db WIND_STAFF
-    db LAVA_STAFF
-    db BOLT_STAFF
-    db SNOW_STAFF
-    db FIRE_STAFF
+    db ITEM_SIRLOIN
+    db ITEM_SHINY_HARP
+    db ITEM_WIND_STAFF
+    db ITEM_LAVA_STAFF
+    db ITEM_BOLT_STAFF
+    db ITEM_SNOW_STAFF
+    db ITEM_FIRE_STAFF
     db $ff
 
 
 GateworldShopInventory:
-    db HERB
-    db LOVEWATER
-    db ANTIDOTE
-    db MOON_HERB
-    db AWAKE_SAND
-    db SKY_BELL
-    db LAUREL
-    db WORLD_LEAF
+    db ITEM_HERB
+    db ITEM_LOVEWATER
+    db ITEM_ANTIDOTE
+    db ITEM_MOON_HERB
+    db ITEM_AWAKE_SAND
+    db ITEM_SKY_BELL
+    db ITEM_LAUREL
+    db ITEM_WORLD_LEAF
     db $ff
 
 

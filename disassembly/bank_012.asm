@@ -7052,7 +7052,7 @@ jr_012_6a9f:
 
 jr_012_6b15:
     ld a, [hl]
-    cp TINY_MEDAL
+    cp ITEM_TINY_MEDAL
     jr nz, jr_012_6b1d
 
     ld [hl], $ff

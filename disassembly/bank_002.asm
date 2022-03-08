@@ -3238,12 +3238,12 @@ label4e9f:
     ldh [rVBK], a
     ld de, $3f04
     ld hl, $9800
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     call nz, Call_000_14cf
     ld de, $3f04
     ld hl, $9c00
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     call nz, Call_000_14cf
     ld a, $00
@@ -3301,7 +3301,7 @@ label4e9f:
     ld a, $01
     ldh [rVBK], a
     ld hl, $9800
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     call nz, Call_000_14cf
     ld a, $00
@@ -3359,7 +3359,7 @@ label4e9f:
     ld a, $01
     ldh [rVBK], a
     ld hl, $9800
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     call nz, Call_000_14cf
     ld a, $00
@@ -3417,7 +3417,7 @@ label4e9f:
     ld a, $01
     ldh [rVBK], a
     ld hl, $9800
-    ld a, [$c81d]
+    ld a, [wIsGBC]
     or a
     call nz, Call_000_14cf
     ld a, $00

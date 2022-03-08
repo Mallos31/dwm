@@ -22,8 +22,14 @@ wRamStart::
 wDebug_main_menu_option:: db ;c0a0
 
 
-    ds $7A5
+    ds $77C
 
+;00 = GB
+;01 = GBC
+wIsGBC:: db ;c81d
+
+    ds $28
+    
 wJoypad_current_frame:: db ;c846
 
 ;Current button being pressed

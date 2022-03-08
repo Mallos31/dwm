@@ -12,7 +12,6 @@ ROM0 bank #0:
            $0048 = LCDCInterrupt
            $004b = Call_000_004b
            $0050 = TimerOverflowInterrupt
-           $0051 = Call_000_0051
            $0058 = SerialTransferCompleteInterrupt
            $0060 = JoypadTransitionInterrupt
            $0062 = Call_000_0062
@@ -36,7 +35,7 @@ ROM0 bank #0:
            $014d = HeaderComplementCheck
            $014e = HeaderGlobalChecksum
            $0150 = BootMain
-           $0157 = jr_000_0157
+           $0157 = BootMain.write_gb_type
            $015a = InitGameData
            $01c6 = jr_000_01c6
            $01d2 = jr_000_01d2
@@ -102,11 +101,7 @@ ROM0 bank #0:
            $047a = jr_000_047a
            $047e = Empty_Func_047e
            $0483 = Jump_000_0483
-           $04b8 = Call_000_04b8
-           $04c4 = Call_000_04c4
            $04c7 = jr_000_04c7
-           $04c7 = Jump_000_04c7
-           $04c7 = Call_000_04c7
            $04ce = Call_000_04ce
            $04da = Jump_000_04da
            $04ed = Call_000_04ed
@@ -5105,7 +5100,7 @@ ROMX bank #9:
 ROMX bank #10:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $00a"]
            $4003 = label4003
-           $4027 = EmptyFunc4027
+           $4027 = labela_4027
            $4028 = Call_00a_4028
            $4035 = Call_00a_4035
            $4044 = Call_00a_4044
@@ -8307,6 +8302,7 @@ ROMX bank #21:
 
 ROMX bank #22:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $016"]
+           $4015 = label16_4015
            $401c = jr_016_401c
            $402d = jr_016_402d
            $40b3 = jr_016_40b3
@@ -8347,6 +8343,7 @@ ROMX bank #22:
            $4555 = jr_016_4555
            $4566 = jr_016_4566
            $456e = Call_016_456e
+           $45a3 = label16_45a3
            $45d5 = Call_016_45d5
            $45ff = jr_016_45ff
            $45ff = Call_016_45ff
@@ -8369,6 +8366,7 @@ ROMX bank #22:
            $4728 = jr_016_4728
            $4735 = jr_016_4735
            $4749 = jr_016_4749
+           $474a = label16_474a
            $47b9 = jr_016_47b9
            $47d1 = jr_016_47d1
            $47e0 = Call_016_47e0
@@ -8382,6 +8380,8 @@ ROMX bank #22:
            $4838 = Call_016_4838
            $484e = jr_016_484e
            $4857 = jr_016_4857
+           $485c = label16_485c
+           $5b4e = label16_5b4e
            $5b72 = jr_016_5b72
            $5bbf = jr_016_5bbf
            $5be1 = jr_016_5be1
@@ -8402,7 +8402,9 @@ ROMX bank #22:
            $5fc0 = Call_016_5fc0
            $5fd5 = jr_016_5fd5
            $5fe2 = jr_016_5fe2
+           $5fe4 = label16_5fe4
            $6002 = jr_016_6002
+           $605b = label16_605b
            $60b0 = jr_016_60b0
            $60b9 = jr_016_60b9
            $60d1 = jr_016_60d1
@@ -8513,14 +8515,12 @@ ROMX bank #22:
            $6e14 = Call_016_6e14
            $6e27 = jr_016_6e27
            $6e32 = jr_016_6e32
-           $6e87 = jr_016_6e87
-           $6eab = jr_016_6eab
-           $6ed6 = jr_016_6ed6
-           $6f02 = jr_016_6f02
+           $6f05 = label16_6f05
            $6f39 = jr_016_6f39
            $6f5f = jr_016_6f5f
            $6f62 = jr_016_6f62
            $6fa2 = jr_016_6fa2
+           $7033 = label16_7033
            $7040 = jr_016_7040
            $70b3 = jr_016_70b3
            $70f4 = jr_016_70f4
@@ -8625,25 +8625,34 @@ ROMX bank #22:
 
 ROMX bank #23:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $017"]
+           $401d = label17_401d
            $4064 = Jump_017_4064
            $4071 = jr_017_4071
+           $409e = label17_409e
            $40da = Jump_017_40da
            $40e7 = jr_017_40e7
            $4102 = Jump_017_4102
            $4102 = jr_017_4102
            $4102 = Call_017_4102
+           $4192 = label17_4192
            $41a5 = jr_017_41a5
+           $41c0 = label17_41c0
+           $41d0 = label17_41d0
+           $41f2 = label17_41f2
            $4229 = jr_017_4229
            $423a = jr_017_423a
            $423d = jr_017_423d
            $4265 = Call_017_4265
+           $4272 = label17_4272
            $42ac = Call_017_42ac
            $4341 = Jump_017_4341
            $4376 = Call_017_4376
            $440b = Jump_017_440b
+           $4410 = label17_4410
            $442e = jr_017_442e
            $444c = jr_017_444c
            $4467 = jr_017_4467
+           $4478 = label17_4478
            $448a = jr_017_448a
            $4495 = jr_017_4495
            $44aa = jr_017_44aa
@@ -8668,8 +8677,12 @@ ROMX bank #23:
            $46b8 = jr_017_46b8
            $46bf = Call_017_46bf
            $46d6 = jr_017_46d6
+           $46dd = label17_46dd
            $46f0 = jr_017_46f0
            $4706 = jr_017_4706
+           $4712 = label17_4712
+           $4733 = label17_4733
+           $4751 = label17_4751
            $48c6 = jr_017_48c6
            $4936 = jr_017_4936
            $49a9 = jr_017_49a9
@@ -8742,6 +8755,7 @@ ROMX bank #23:
 
 ROMX bank #24:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $018"]
+           $400b = label18_400b
            $40ca = jr_018_40ca
            $40d0 = jr_018_40d0
            $414a = jr_018_414a
@@ -8794,6 +8808,7 @@ ROMX bank #24:
            $42cf = jr_018_42cf
            $42d1 = Call_018_42d1
            $42da = jr_018_42da
+           $42de = label18_42de
            $42ef = jr_018_42ef
            $42ff = jr_018_42ff
            $4361 = jr_018_4361
@@ -8954,6 +8969,8 @@ ROMX bank #24:
            $55e2 = jr_018_55e2
            $5605 = jr_018_5605
            $567f = Call_018_567f
+           $5686 = label18_5686
+           $568d = label18_568d
            $5694 = TEXT_DeathMore_Intro
            $5889 = TEXT_DeathMore_Rematch
            $5a51 = TEXT_DeathMore_First_form_defeated
@@ -9077,6 +9094,7 @@ ROMX bank #24:
 
 ROMX bank #25:
   SECTION: $4000-$7fff ($4000 bytes) ["ROM Bank $019"]
+           $4003 = label19_4003
            $4015 = jr_019_4015
            $4047 = jr_019_4047
            $4080 = jr_019_4080
@@ -28240,6 +28258,7 @@ WRAM0 bank #0:
   SECTION: $c000-$ca8c ($0a8d bytes) ["WRAM Bank0"]
            $c000 = wRamStart
            $c0a0 = wDebug_main_menu_option
+           $c81d = wIsGBC
            $c846 = wJoypad_current_frame
            $c847 = wJoypad_Current
            $c88a = wGameMode

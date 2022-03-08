@@ -2969,7 +2969,7 @@ label4_5bd4:
 
 label4_5bdb:
     ld a, [wMapID]
-    cp $2f
+    cp MAP_TERRYS
     jr nz, jr_004_5c04
 
     ld a, [$c925]
