@@ -6496,7 +6496,7 @@ jr_05c_5d41:
     add sp, $07
     nop
     add b
-    jp c, Jump_000_04f1
+    db $da, $f1, $04
 
     nop
     jp c, Jump_000_05f9

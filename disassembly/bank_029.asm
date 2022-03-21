@@ -242,7 +242,7 @@ jr_029_40f3:
 
     ld [bc], a
     add hl, bc
-    jp z, Jump_000_030f
+    db $ca, $0f, $03
 
     add hl, bc
     xor b
@@ -7704,7 +7704,7 @@ Jump_029_62f2:
     ld a, [hl]
     ld b, e
     ld b, d
-    jp nz, Jump_000_03c3
+    db $c2, $c3, $03
 
     ld [bc], a
     inc bc
@@ -10933,7 +10933,7 @@ jr_029_71ab:
     db $76
     jr c, jr_029_71a8
 
-    jp Jump_000_02c3
+    db $c3, $c3, $02
 
 
     ld d, d
@@ -11350,8 +11350,7 @@ jr_029_72b5:
     db $e4
     add c
     adc c
-    jp Jump_000_3fc3
-
+    db $c3, $c3, $3f
 
     cp a
     ld h, a

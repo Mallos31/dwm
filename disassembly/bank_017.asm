@@ -9464,7 +9464,7 @@ jr_017_68f0:
     nop
     call $ff4d
     ld l, e
-    call nc, Call_000_0062
+    db $d4, $62, $00
     nop
     jr jr_017_68ff
 

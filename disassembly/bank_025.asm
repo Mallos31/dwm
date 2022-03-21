@@ -742,7 +742,7 @@ Call_025_4343:
     add h
     inc b
     ld [bc], a
-    jp nc, Jump_000_050f
+    db $d2, $0f, $05
 
     ld [bc], a
     and h
@@ -875,7 +875,7 @@ jr_025_43ea:
     add h
     inc b
     ld [bc], a
-    jp nc, Jump_000_050f
+    db $d2, $0f, $05
 
     ld [bc], a
     and h
@@ -890,7 +890,7 @@ jr_025_43ea:
     ld [hl], b
     ld [hl], c
     ld [bc], a
-    jp nc, Jump_000_050f
+    db $d2, $0f, $05
 
     ld [bc], a
     ld [hl+], a
@@ -3574,7 +3574,7 @@ jr_025_501c:
     nop
     cp $00
     db $fc
-    call nc, Call_000_03d4
+    db $d4, $d4, $03
     ei
     rrca
     rrca
@@ -5325,7 +5325,7 @@ jr_025_57a1:
     nop
     cp $00
     db $fc
-    call nc, Call_000_03d4
+    db $d4, $d4, $03
     ei
     rrca
     rrca
@@ -11352,7 +11352,7 @@ jr_025_7218:
     inc [hl]
     ld [de], a
     dec b
-    jp z, Jump_000_0504
+    db $ca, $04, $05
 
     ld h, d
     inc d

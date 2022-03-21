@@ -672,7 +672,8 @@ jr_07b_4225:
     db $fd
     db $e3
     set 3, e
-    jp Jump_000_03bf
+    db $c3, $bf, $03
+
 
 
     rst $38
@@ -883,7 +884,7 @@ jr_07b_43bc:
     sbc d
     ld a, [de]
     ld a, [bc]
-    jp z, Jump_000_02fa
+    db $ca, $fa, $02
 
     cp $00
     rst $38
@@ -2489,7 +2490,8 @@ jr_07b_4af0:
     di
     db $eb
     db $db
-    jp Jump_000_03bf
+    db $c3, $bf, $03
+
 
 
     rst $38
@@ -2924,7 +2926,7 @@ jr_07b_4cc6:
     add d
 
 jr_07b_4ce1:
-    jp nz, Jump_000_0323
+    db $c2, $23, $03
 
     inc bc
     add l

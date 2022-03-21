@@ -6248,7 +6248,7 @@ jr_00c_5a65:
     inc b
     rst $38
     rst $38
-    call c, Call_000_0305
+    db $dc, $05, $03
     rst $38
     ld a, [c]
     nop
@@ -7309,7 +7309,7 @@ jr_00c_60ff:
 
     ld bc, $3900
     ld h, c
-    jp z, Jump_000_0302
+    db $ca, $02, $03
 
     rst $38
     ld a, d

@@ -11182,7 +11182,7 @@ Jump_005_74e6:
     ld a, d
     xor $35
     xor $35
-    call c, Call_000_3edf
+    db $dc, $df, $3e
     and $1f
     di
     rrca

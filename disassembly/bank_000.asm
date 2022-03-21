@@ -110,7 +110,6 @@ JoypadTransitionInterrupt::
 
     di
 
-Call_000_0062:
     push af
     push bc
     push de
@@ -145,9 +144,9 @@ jr_000_0087:
     ldh [rDMA], a
     ld a, $28
 
-jr_000_0094:
+.wait:
     dec a
-    jr nz, jr_000_0094
+    jr nz, .wait
     ret
 
 
@@ -304,7 +303,7 @@ InitGameData:
     ld a, $00
     ld [$4100], a
     ld a, $01
-    ld [$c81c], a
+    ld [wIsSGB], a
     ld a, $ff
     ld [wBGM], a
     ld [wSoundEffect], a
@@ -325,11 +324,11 @@ jr_000_01c6:
     jr c, jr_000_01d2
 
     xor a
-    ld [$c81c], a
+    ld [wIsSGB], a
     jp Jump_000_028b
 
 
-jr_000_01d2:
+jr_000_01d2:      ;all SGB related
     ld bc, $000c
     call Call_000_10cf
     ld a, $14
@@ -416,7 +415,7 @@ Jump_000_025f:
 
     call Call_000_1013
     ld a, $01
-    ld [$c81c], a
+    ld [wIsSGB], a
     ld a, $ff
     ld [$c81b], a
 
@@ -443,12 +442,8 @@ Jump_000_028b:
     ld [$c8a3], a
     ld [$c740], a
     ld [$c741], a
-
-Jump_000_02c3:
     ld [$c8a2], a
     ld [$c8a4], a
-
-Call_000_02c9:
     ld [$c8a5], a
     ldh [$d3], a
     ld [$c8b9], a
@@ -456,8 +451,6 @@ Call_000_02c9:
     ld hl, $c8b1
     ld [hl+], a
     ld [hl+], a
-
-Call_000_02d9:
     ld [hl+], a
     ld [hl], a
 
@@ -466,169 +459,112 @@ jr_000_02db:
     or a
     call z, GenerateRNG
     ld a, [$c88e]
-
-Call_000_02e5:
     or a
     jr z, jr_000_02db
-
-Jump_000_02e8:
     ld a, [$c850]
     or a
-
-Call_000_02ec:
     jr z, jr_000_02f2
 
     bit 7, a
-
-Jump_000_02f0:
     jr z, jr_000_02db
 
 jr_000_02f2:
     di
     ld a, [$c86c]
     or a
-
-Call_000_02f7:
-Jump_000_02f7:
     call nz, Call_000_3331
-
-Jump_000_02fa:
     call Call_000_11de
-
-Call_000_02fd:
     call Call_000_1013
-
-Call_000_0300:
-Jump_000_0300:
     ld a, $00
-
-Jump_000_0302:
     ld [$c774], a
 
-Call_000_0305:
     ld hl, $0800
-
-Call_000_0308:
-Jump_000_0308:
     rst $10
-    call Call_000_1013
 
-Call_000_030c:
+    call Call_000_1013
     jp Jump_000_028b
 
-
 Call_000_030f:
-Jump_000_030f:
     ld a, [wGameMode]
-
-Call_000_0312:
-Jump_000_0312:
     rst $00
 
-Call_000_0313:
-    dec l
-    inc bc
-    ld [hl-], a
-    inc bc
-    scf
-    inc bc
-    inc a
-    inc bc
-    ld b, c
-    inc bc
 
-Call_000_031d:
-    ld b, [hl]
-    inc bc
+;all names were derived from the Japanese debug menu.
+    dw Goto_Title
+    dw Goto_Game
+    dw Goto_Battle
+    dw Goto_EvtDemo   ;plays ending cutscene by default, may have others.
+    dw Goto_Staff
+    dw Goto_Effect    ;attack animation debugger
+    dw Goto_Result
+    dw Goto_Debug
+    dw Goto_ObjTest   ;monster follower sprite viewer
+    dw Goto_No_More   ;Unused tutorial
+    dw Goto_Unnamed1  ;corrupted version of unused tutorial
+    dw Goto_Message_Debug  ;cannot be accessed from Goto Program menu.
+    dw Goto_Unnamed2  ;unknown. screen goes white, game resets if A is pressed.
 
-Jump_000_031f:
-    ld c, e
-    inc bc
-    ld d, b
-    inc bc
-
-Jump_000_0323:
-    ld d, l
-    inc bc
-    ld e, d
-    inc bc
-    ld e, a
-    inc bc
-    ld h, h
-
-Call_000_032a:
-    inc bc
-    ld l, c
-    inc bc
+Goto_Title:
     ld hl, $1500
     rst $10
     ret
 
-
+Goto_Game:
     ld hl, $0100
     rst $10
     ret
 
-
+Goto_Battle:
     ld hl, $5000
     rst $10
     ret
 
-
+Goto_EvtDemo:
     ld hl, $0201
-
-Call_000_033f:
     rst $10
     ret
 
-
+Goto_Staff:
     ld hl, $5f00
     rst $10
-
-Call_000_0345:
     ret
 
-
+Goto_Effect:
     ld hl, $5f08
-
-Call_000_0349:
-Jump_000_0349:
     rst $10
     ret
 
-
+Goto_Result:
     ld hl, $1800
     rst $10
-
-Jump_000_034f:
     ret
 
-
+Goto_Debug:
     ld hl, $550d
     rst $10
     ret
 
-
+Goto_ObjTest:
     ld hl, $5900
     rst $10
     ret
 
-
+Goto_No_More:
     ld hl, $5902
     rst $10
     ret
 
-
+Goto_Unnamed1:
     ld hl, $5904
     rst $10
     ret
 
-
+Goto_Message_Debug:
     ld hl, $5603
     rst $10
     ret
 
-
+Goto_Unnamed2:
     ld hl, $5607
     rst $10
     ret
@@ -662,7 +598,6 @@ Call_000_0382:
     or a
     call z, Call_000_3473
 
-Call_000_039b:
 jr_000_039b:
     ei
     ld a, [$c86c]
@@ -682,30 +617,19 @@ jr_000_03b3:
     call Call_000_046b
     ld a, [$c86c]
     or a
-    jr nz, jr_000_03d9
-
-Jump_000_03bf:
+    jr nz, SoftReset
     ld a, [$c825]
-
-Jump_000_03c2:
     or a
-
-Jump_000_03c3:
     call nz, Call_000_0618
     call Call_000_17ec
     ld a, [$c8a4]
-
-Call_000_03cc:
     add $01
     ld [$c8a4], a
     ld a, [$c8a5]
-
-Call_000_03d4:
     adc $00
     ld [$c8a5], a
 
-Call_000_03d9:
-jr_000_03d9:
+SoftReset:
     ld a, [$c842]			;checks if A B Start and Select are pressed
     and $0f
     cp $0f
@@ -723,26 +647,23 @@ jr_000_03e9:
     ld a, [$c842]
     and $03				;check if A and B are being pressed
     cp $03
-    jr jr_000_044d			;@BUG not really a bug, more than likely purposefully changed to disable the debug menu.
+    jr jr_000_044d			;This jump seems to be here to disable the debug menu.
+                        ;dummying it out makes the debug menu work from anywhere
 
     ld a, [wJoypad_current_frame]
-    bit 2, a				;checking for the B button the be pressed. If it is not pressed, the code loading the debug menu is skipped.
+    bit 2, a
     jr z, jr_000_041f
 
     ld hl, $c8ad
-
-Call_000_0402:
     ld a, [wGameMode]
     ld [hl+], a
-
-Jump_000_0406:
     ld a, [$c88b]
     ld [hl+], a
     ld a, [$c88c]
     ld [hl+], a
     ld a, [$c88d]
     ld [hl], a
-    ld a, $07			;loads 7 into a preparing to load the debug menu
+    ld a, $07
     ld [wGameMode], a
     xor a
     ld [$c88b], a
@@ -817,7 +738,7 @@ jr_000_047a:
     ret
 
 
-Empty_Func_047e:
+Call_000_047e:
     ld a, [$c86c]
     or a
     ret z
@@ -869,8 +790,6 @@ Call_000_04ce:
     ld h, a
     push hl
     ld a, [$c874]
-
-Jump_000_04da:
     add $01
     ld [$c874], a
     ld a, [$c875]
@@ -885,7 +804,6 @@ Call_000_04ed:
     jp Jump_000_126b
 
 
-Jump_000_04f1:
 jr_000_04f1:
     ld a, $00
     ld [$c866], a
@@ -896,40 +814,24 @@ jr_000_04f1:
 Call_000_04fb:
     ld a, [$c88e]
     or a
-
-Jump_000_04ff:
     ret nz
 
-Call_000_0500:
-Jump_000_0500:
     ld a, [$c86c]
     or a
-
-Jump_000_0504:
     jr nz, jr_000_050f
 
-Call_000_0506:
-Jump_000_0506:
     ld a, [$c850]
-
-Call_000_0509:
     or a
-
-Jump_000_050a:
     jr z, jr_000_050f
 
     bit 7, a
     ret z
 
-Call_000_050f:
-Jump_000_050f:
 jr_000_050f:
     ld a, [wGameMode]
 
-Call_000_0512:
     rst $00
 
-Call_000_0513:
     dec l
     dec b
 
@@ -947,28 +849,19 @@ Jump_000_0515:
     dec b
     ld c, e
     dec b
-
-Jump_000_0521:
     ld d, b
-
-Jump_000_0522:
     dec b
     ld d, l
     dec b
     ld e, d
     dec b
     ld e, a
-
-Call_000_0528:
     dec b
-
-Call_000_0529:
     ld h, h
     dec b
-
-Call_000_052b:
     ld l, c
     dec b
+
     ld hl, $1501
     rst $10
     ret
@@ -986,8 +879,6 @@ Call_000_052b:
 
 Jump_000_053c:
     ld hl, $0202
-
-Call_000_053f:
     rst $10
     ret
 
@@ -2733,7 +2624,7 @@ jr_000_0d62:
 
 
 Call_000_0d78:
-    ld a, [$4000]	;rom bank to a
+    ld a, [$4000]
     push af
     ld a, [$c824]	;
     ld [$2100], a
@@ -3317,7 +3208,7 @@ jr_000_1007:
 
 
 Call_000_1013:
-    ld a, [$c81c]
+    ld a, [wIsSGB]
     or a
     ret z
 
@@ -3447,7 +3338,7 @@ Call_000_10c2:
 
 
 Call_000_10cf:
-    ld a, [$c81c]
+    ld a, [wIsSGB]
     or a
     ret z
 
@@ -3473,7 +3364,7 @@ jr_000_10d7:
 
 Call_000_10e5:
     ld [$c774], a
-    ld a, [$c81c]
+    ld a, [wIsSGB]
     or a
     ret z
 
@@ -3524,7 +3415,7 @@ jr_000_111a:
 
 Call_000_113e:
     ld [$c774], a
-    ld a, [$c81c]
+    ld a, [wIsSGB]
     or a
     ret z
 
@@ -3667,7 +3558,7 @@ Call_000_11fb:
     set 7, [hl]
     ld a, [hl]
     ldh [rLCDC], a
-    ld a, [$c81c]
+    ld a, [wIsSGB]
     or a
     ret z
     ld a, $01
@@ -3866,7 +3757,7 @@ GenerateRNG:
 
 
 Call_000_12ee:
-    ld a, [$c81c]
+    ld a, [wIsSGB]
     or a
     jr z, jr_000_1310
     call Call_000_1082
@@ -4628,7 +4519,7 @@ Call_000_1688:
     or a
     jp nz, Jump_000_1734
 
-    ld a, [$c81c]
+    ld a, [wIsSGB]
     or a
     jp z, Jump_000_173f
 
@@ -4847,7 +4738,7 @@ Call_000_17ec:
     or a
     jp nz, Jump_000_1964
 
-    ld a, [$c81c]
+    ld a, [wIsSGB]
     or a
     jp z, Jump_000_1969
 
@@ -5596,7 +5487,7 @@ Call_000_1bd5:
     jr z, jr_000_1c13
 
     ld [$c894], a
-    ld a, [$c81c]
+    ld a, [wIsSGB]
     or a
     jr nz, jr_000_1bf5
 
@@ -7480,13 +7371,11 @@ Call_000_24fc:
 
 Call_000_2500:
 Jump_000_2500:
-    push hl
-    ld a, [hl+]
+    push hl     ;either current goldLo, or Bank Gold Lo
+    ld a, [hl+]  ;load amount of current gold into a, and increment to goldMid
     sub e
     ld e, a
     ld a, [hl+]
-
-Call_000_2505:
     sbc d
     ld d, a
     ld a, [hl]
@@ -7502,13 +7391,8 @@ jr_000_2511:
     ld a, e
     ld [hl+], a
     ld a, d
-
-Call_000_2515:
-Jump_000_2515:
     ld [hl+], a
     ld [hl], c
-
-Jump_000_2517:
     ret
 
 
@@ -13643,8 +13527,6 @@ Jump_000_3ed3:
 
 Call_000_3ede:
     nop
-
-Call_000_3edf:
     nop
     nop
     inc hl
@@ -13661,19 +13543,14 @@ Call_000_3edf:
     jp z, Jump_000_3f77
 
     ld bc, $0710
-
-Jump_000_3efb:
     jp Jump_000_3f77
 
 
-Jump_000_3efe:
 jr_000_3efe:
     ld hl, $c9f5
 
 Call_000_3f01:
     ld a, [hl]
-
-Jump_000_3f02:
     cp $05
     jr c, jr_000_3f18
 
@@ -13682,8 +13559,6 @@ Jump_000_3f02:
     inc l
     ld [hl], $01
     ld a, $08
-
-Call_000_3f10:
     ld [$cd90], a
     ld a, $20
     jp Jump_000_0ba1
@@ -13693,15 +13568,10 @@ jr_000_3f18:
     ld bc, $0c0e
     jp Jump_000_3f77
 
-
     ld h, [hl]
     sbc h
-
-Call_000_3f20:
     ld l, e
     sbc h
-
-Call_000_3f22:
     call Call_000_3f66
     ret nz
 
@@ -13716,21 +13586,15 @@ Call_000_3f22:
 
 
     ld hl, $cb80
-
-Call_000_3f36:
     ld a, [hl]
     sub $01
     ld [hl+], a
     ld a, [hl]
     sbc $00
     ld [hl], a
-
-Call_000_3f3e:
     jr c, jr_000_3f48
 
     ld a, $01
-
-Jump_000_3f42:
     ld bc, $9fcb
     jp Jump_000_0c13
 
@@ -13774,8 +13638,6 @@ Jump_000_3f77:
     ld [$cd90], a
     ld a, c
     ld hl, $55ce
-
-Jump_000_3f7f:
     call $095a
     jp Jump_000_0b98
 
@@ -13816,11 +13678,7 @@ Call_000_3fa3:
     ld a, [hl]
     and $0f
     ld [$ca8d], a
-
-Jump_000_3fc2:
     ld a, [hl+]
-
-Jump_000_3fc3:
     swap a
     and $0f
     ld [$ca86], a
@@ -13842,14 +13700,10 @@ jr_000_3fd9:
     ret z
 
     cp $fe
-
-Call_000_3fdf:
     jr z, jr_000_3fd5
 
     ld [de], a
     ld a, b
-
-Call_000_3fe3:
     call Call_000_1640
     jr jr_000_3fd9
 
@@ -13871,13 +13725,9 @@ Call_000_3fe3:
     rst $38
     rst $38
     rst $38
-
-Jump_000_3ffa:
     rst $38
     rst $38
     rst $38
     rst $38
     rst $38
-
-Jump_000_3fff:
     rst $38

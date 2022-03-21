@@ -11081,7 +11081,7 @@ jr_02c_700b:
     ld c, [hl]
     db $10
     inc b
-    call nc, Call_000_050f
+    db $d4, $0f, $05
     db $10
     ld de, $1312
     inc b

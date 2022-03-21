@@ -5898,7 +5898,7 @@ jr_03a_5ab1:
     rst $38
     push af
     rst $38
-    jp c, Jump_000_04da
+    db $da, $da, $04
 
     ld a, [c]
     ld a, [$3e3e]
@@ -6066,7 +6066,7 @@ jr_03a_5b9f:
     dec h
     rst $38
     push af
-    jp c, Jump_000_04da
+    db $da, $da, $04
 
     ld a, [c]
     ld a, [$3e3e]
@@ -9301,7 +9301,7 @@ jr_03a_6a7c:
     rst $38
     ccf
     rst $38
-    jp nz, Jump_000_3efe
+    db $c2, $fe, $3e
 
     cp $1c
     db $fc

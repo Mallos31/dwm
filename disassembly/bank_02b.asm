@@ -3442,7 +3442,7 @@ jr_02b_4f39:
     ld [bc], a
     inc c
     ld [$0c00], sp
-    call nc, Call_000_030f
+    db $d4, $0f, $03
     inc c
     xor h
     ld [bc], a
@@ -4507,7 +4507,7 @@ jr_02b_5403:
     inc c
     ld b, $16
     inc c
-    call nc, Call_000_030f
+    db $d4, $0f, $03
     inc c
     ld h, $16
     inc c
@@ -4522,7 +4522,7 @@ jr_02b_541e:
     ld c, h
     ld [de], a
     inc c
-    call nc, Call_000_030f
+    db $d4, $0f, $03
     db $10
     ld de, $1312
     inc c
@@ -9320,7 +9320,7 @@ jr_02b_69ac:
     nop
     db $10
     ld a, [bc]
-    jp z, Jump_000_050f
+    db $ca, $0f, $05
 
     ld [hl-], a
     inc sp
@@ -11071,7 +11071,7 @@ jr_02b_710f:
     jr c, @+$3b
 
     nop
-    call z, Call_000_030f
+    db $cc, $0f, $03
     ld [hl], $37
 
 jr_02b_712c:

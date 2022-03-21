@@ -4558,7 +4558,7 @@ jr_03b_5442:
     rrca
     rlca
     nop
-    call z, Call_000_050f
+    db $cc, $0f, $05
     nop
     and h
     inc b

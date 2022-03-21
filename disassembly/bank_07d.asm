@@ -3230,7 +3230,7 @@ jr_07d_4dba:
     rst $38
     xor [hl]
     cp $e4
-    jp nz, Jump_000_0300
+    db $c2, $00, $03
 
     dec c
     rla
@@ -5494,8 +5494,7 @@ jr_07d_578e:
     ld b, e
     sub c
     add c
-    jp Jump_000_3f7f
-
+    db $c3, $7f, $3f
 
     ld [hl], b
     ld a, a
@@ -8651,7 +8650,7 @@ jr_07d_650f:
     nop
     db $10
     adc b
-    call z, Call_000_2505
+    db $cc, $05, $25
     pop hl
     rst $38
     add b

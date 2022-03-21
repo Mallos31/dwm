@@ -426,7 +426,7 @@ jr_061_4156:
 
 
     add d
-    jp Jump_000_03c3
+    db $c3, $c3, $03
 
 
     cp c
@@ -673,7 +673,7 @@ jr_061_4156:
 
 
     add d
-    jp Jump_000_03c3
+    db $c3, $c3, $03
 
 
     cp c
@@ -1709,7 +1709,7 @@ jr_061_4156:
     cp a
     pop bc
     ld [bc], a
-    jp c, Jump_000_03bf
+    db $da, $bf, $03
 
     rst $18
     cp a

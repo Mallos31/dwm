@@ -7643,7 +7643,7 @@ jr_002_6d16:
     sbc $d6
     ld [bc], a
     nop
-    call Call_000_02e5
+    db $cd, $e5, $02
     nop
     call $010d
     nop
@@ -10773,7 +10773,7 @@ Jump_002_7cde:
     jp Jump_002_7e5f
 
 
-    call Call_000_02c9
+    db $cd, $c9, $02
     ld bc, $7e89
     call $06b1
     ret nz
@@ -10791,7 +10791,7 @@ Jump_002_7cde:
     inc b
     ld [hl], c
     rst $38
-    call Call_000_02c9
+    db $cd, $c9, $02
     ld bc, $7d2d
     call $0298
     ld bc, $0018
@@ -10816,7 +10816,7 @@ Jump_002_7d52:
     jp $02be
 
 
-    call Call_000_02c9
+    db $cd, $c9, $02
     ld bc, $7e89
     call $06b1
     ret nz
@@ -10875,7 +10875,7 @@ jr_002_7db6:
     jp $07e2
 
 
-    call Call_000_02c9
+    db $cd, $c9, $02
     rst $10
     ret nz
 

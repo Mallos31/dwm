@@ -9267,7 +9267,7 @@ Call_04b_6a2b:
     ld [hl], c
     adc [hl]
     dec h
-    jp c, Jump_000_04ff
+    db $da, $ff, $04
 
     ei
     ld c, $f5
@@ -9754,7 +9754,7 @@ jr_04b_6c18:
     ld b, l
     ld l, $41
     inc e
-    jp Jump_000_04ff
+    db $c3, $ff, $04
 
 
     ei

@@ -10,7 +10,7 @@ SECTION "ROM Bank $028", ROMX[$4000], BANK[$28]
     ld b, b
     ld h, [hl]
     ld b, e
-    call Call_000_0345
+    db $cd, $45, $03
     ld c, c
     pop af
     ld c, h
@@ -4007,7 +4007,7 @@ jr_028_5153:
     ld sp, $0213
     ld c, b
     ld a, [de]
-    jp Jump_000_02c3
+    db $c3, $c3, $02
 
 
     ld e, b
@@ -4675,7 +4675,7 @@ jr_028_541a:
     ld sp, $0213
     ld c, b
     ld a, [de]
-    jp Jump_000_02c3
+    db $c3, $c3, $02
 
 
     ld e, b

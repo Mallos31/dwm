@@ -5114,7 +5114,7 @@ jr_050_5dc8:
     or a
     jr z, jr_050_5e3e
 
-    call Empty_Func_047e
+    call Call_000_047e
     ld a, [$c850]
     or a
     ret nz

@@ -642,7 +642,7 @@ jr_03f_4245:
     ld b, [hl]
     jr nc, jr_03f_42d4
 
-    call nc, Call_000_0529
+    db $d4, $29, $05
     ld h, l
     inc sp
 
@@ -664,7 +664,7 @@ jr_03f_42d4:
     dec b
 
 jr_03f_42e6:
-    call nc, Call_000_0528
+    db $d4, $28, $05
     and h
     ld [hl], $05
     and [hl]

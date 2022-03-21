@@ -10127,7 +10127,7 @@ jr_032_6c1f:
     ld hl, sp-$0d
     pop af
     rst $00
-    jp Jump_000_031f
+    db $c3, $1f, $03
 
 
     rst $30

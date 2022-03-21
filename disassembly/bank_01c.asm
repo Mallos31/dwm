@@ -6114,7 +6114,7 @@ jr_01c_5882:
     jr nc, jr_01c_582d
 
     inc c
-    jp nz, Jump_000_2517
+    db $c2, $17, $25
 
     ld b, $29
     ld b, $32
@@ -6997,7 +6997,7 @@ jr_01c_5b5a:
     rra
     ld hl, $a004
     ld a, [bc]
-    jp nz, Jump_000_2515
+    db $c2, $15, $25
 
     ld b, $29
     ld [bc], a
@@ -10328,7 +10328,7 @@ jr_01c_6b30:
 
 
     inc d
-    call nz, Call_000_2515
+    db $c4, $15, $25
     ld [bc], a
     inc hl
     ld [bc], a

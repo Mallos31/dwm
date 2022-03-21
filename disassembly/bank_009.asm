@@ -1217,6 +1217,7 @@ Call_009_45e5:
 
     ld a, [$c905]
     rst $00
+
     ld bc, $4c46
     ld b, [hl]
     sub c
@@ -1345,6 +1346,8 @@ jr_009_46de:
     rst $38
     ld a, [wMenu_selection]
     rst $00
+
+
     rlca
     ld b, a
     db $eb
@@ -1364,6 +1367,8 @@ jr_009_46de:
 
     ld a, [$c906]
     rst $00
+
+
     ld hl, $9547
     ld b, a
     sub b
@@ -2650,6 +2655,8 @@ jr_009_4eb4:
 
     ld a, [$c905]
     rst $00
+
+
     dec bc
     ld c, a
     ld d, [hl]

@@ -10583,7 +10583,7 @@ jr_001_763c:
     nop
     cp c
     nop
-    jp Jump_000_0300
+    db $c3, $00, $03
 
 
     inc bc
@@ -11921,7 +11921,7 @@ label7de6:
     jr jr_001_7dbd
 
     xor a
-    call Call_000_052b
+    db $cd, $2b, $05
     xor a
     jp Jump_000_15f4
 
@@ -12072,7 +12072,7 @@ Call_001_7ec4:
     jp nz, Jump_000_3ced
 
     xor a
-    call Call_000_052b
+    db $cd, $2b, $05
     ld a, $0e
     jp Jump_000_15e6
 

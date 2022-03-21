@@ -524,7 +524,7 @@ jr_015_43d5:
 
     ld a, $f4
     call Call_000_1275
-    ld a, [$c81c]
+    ld a, [wIsSGB]
     cp $01
     jr nz, jr_015_4422
 
@@ -910,7 +910,7 @@ jr_015_46aa:
     ret
 
 
-    call Empty_Func_047e
+    call Call_000_047e
     ld a, [$c8d2]
     cp $06
     jr z, jr_015_46cc
@@ -3051,7 +3051,7 @@ jr_015_5455:
     ret
 
 
-    call Empty_Func_047e
+    call Call_000_047e
     ld a, [$c8d2]
     cp $06
     jr z, jr_015_5471
@@ -3072,7 +3072,7 @@ jr_015_5471:
 label15_547c:
     ld a, [$c8d2]
     rst $00
-    
+
     or h
     ld d, h
     rra
@@ -10667,7 +10667,7 @@ jr_015_7a13:
     nop
     call c, $2b23
     rst $30
-    call c, Call_000_3fe3
+    db $dc, $e3, $3f
     ret nz
 
     ei

@@ -5379,7 +5379,7 @@ jr_039_5888:
 
 jr_039_589c:
     db $fc
-    jp c, Jump_000_3ffa
+    db $da, $fa, $3f
 
     rst $28
     dec a
@@ -10319,7 +10319,7 @@ jr_039_6ed2:
     ldh a, [$e8]
     cp b
     db $fc
-    call nz, Call_000_3f3e
+    db $c4, $3e, $3f
     ld c, h
     ld a, a
     ld b, h
@@ -10485,7 +10485,7 @@ jr_039_6f8e:
     push af
     rst $38
     xor $fe
-    jp nz, Jump_000_3efe
+    db $c2, $fe, $3e
 
     ld a, $1f
     rra

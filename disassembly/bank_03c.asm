@@ -1169,7 +1169,7 @@ jr_03c_44d3:
     ld de, $e002
     dec b
     ld [bc], a
-    jp c, Jump_000_030f
+    db $da, $0f, $03
 
     nop
     ld bc, $0202
@@ -2195,7 +2195,7 @@ jr_03c_4bf8:
     ld [hl+], a
     ld [hl+], a
     ld [bc], a
-    jp c, Jump_000_030f
+    db $da, $0f, $03
 
     nop
     ld bc, $0101

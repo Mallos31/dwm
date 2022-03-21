@@ -8034,7 +8034,7 @@ jr_02e_6473:
     db $ed
     db $fd
     ld l, l
-    call z, Call_000_3f36
+    db $cc, $36, $3f
     add b
     ld a, c
     ld [$003f], sp

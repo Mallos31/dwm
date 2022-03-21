@@ -412,7 +412,7 @@ jr_013_4269:
     ld c, h
     dec bc
     inc bc
-    call z, Call_000_0349
+    db $cc, $49, $03
     inc [hl]
     adc h
     inc bc
@@ -425,7 +425,7 @@ jr_013_4269:
     db $e4
     cp h
     inc b
-    call nc, Call_000_0512
+    db $d4, $12, $05
     xor h
     ld l, h
     dec b
@@ -637,11 +637,11 @@ jr_013_4348:
     ld [hl], h
     or c
     ld [bc], a
-    call nz, Call_000_02f7
+    db $c4, $f7, $02
     db $e4
     ld b, l
     inc bc
-    call nc, Call_000_039b
+    db $d4, $9b, $03
     sub h
     ld sp, hl
     inc bc
@@ -1893,7 +1893,7 @@ jr_013_4915:
     inc l
     or c
     inc b
-    call nc, Call_000_0512
+    db $d4, $12, $05
     ld a, h
     ld [hl], h
     dec b

@@ -394,7 +394,7 @@ jr_026_408d:
     ld bc, $8e0a
     nop
     ld a, [bc]
-    call nz, Call_000_0312
+    db $c4, $12, $03
     db $fd
     rst $38
     ld bc, $ff01
@@ -2566,7 +2566,7 @@ jr_026_4b34:
     ld sp, $0213
     ld c, b
     ld a, [de]
-    jp Jump_000_02c3
+    db $c3, $c3, $02
 
 
     ld e, b
@@ -3430,7 +3430,7 @@ jr_026_4ee5:
     ld sp, $0213
     ld c, b
     ld a, [de]
-    jp Jump_000_02c3
+    db $c3, $c3, $02
 
 
     ld e, b
@@ -4285,7 +4285,7 @@ jr_026_5290:
     ld sp, $0213
     ld c, b
     ld a, [de]
-    jp Jump_000_02c3
+    db $c3, $c3, $02
 
 
     ld e, b

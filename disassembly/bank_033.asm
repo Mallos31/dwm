@@ -5976,7 +5976,7 @@ Jump_033_5a2f:
     ldh [rIE], a
     add b
     dec b
-    call nz, Call_000_0513
+    db $c4, $13, $05
     dec de
     rrca
     jr nz, @-$1e
@@ -7686,8 +7686,7 @@ jr_033_61ea:
     rlca
     stop
     ld [bc], a
-    jp Jump_000_3fc2
-
+    db $c3, $c2, $3f
 
     cp $29
 
@@ -9267,7 +9266,7 @@ jr_033_68e2:
     adc a
 
 jr_033_6917:
-    jp Jump_000_034f
+    db $c3, $4f, $03
 
 
     db $fd

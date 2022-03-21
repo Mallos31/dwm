@@ -10878,7 +10878,7 @@ jr_007_7e33:
     nop
     ld a, [hl]
     cp l
-    jp Jump_000_3fff
+    db $c3, $ff, $3f
 
 
     ret nz

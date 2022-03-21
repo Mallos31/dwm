@@ -546,7 +546,7 @@ jr_037_4232:
     ld sp, $0213
     ld c, b
     ld a, [de]
-    jp Jump_000_02c3
+    db $c3, $c3, $02
 
 
     ld e, b
@@ -1539,7 +1539,7 @@ jr_037_4678:
     inc b
     adc $02
     inc b
-    jp nc, Jump_000_030f
+    db $d2, $0f, $03
 
     inc b
     inc h
@@ -2846,7 +2846,7 @@ jr_037_4c12:
     ld sp, $0213
     ld c, b
     ld a, [de]
-    jp Jump_000_02c3
+    db $c3, $c3, $02
 
 
     ld e, b
@@ -3768,7 +3768,7 @@ jr_037_5028:
     inc b
     ld [hl], h
     ld c, $04
-    jp nz, Jump_000_0406
+    db $c2, $06, $04
 
     sub b
     rrca
@@ -4232,7 +4232,7 @@ jr_037_5233:
     nop
     ld bc, $0302
     inc b
-    call z, Call_000_0402
+    db $cc, $02, $04
     inc d
     rrca
     inc bc
@@ -4618,7 +4618,7 @@ jr_037_53f4:
 
     inc b
     nop
-    jp nc, Jump_000_050f
+    db $d2, $0f, $05
 
     nop
     ldh [rDIV], a
@@ -5068,7 +5068,7 @@ jr_037_55d9:
     ld sp, $0213
     ld c, b
     ld a, [de]
-    jp Jump_000_02c3
+    db $c3, $c3, $02
 
 
     ld e, b
@@ -5695,7 +5695,7 @@ jr_037_5853:
     ld b, h
     ld b, l
     nop
-    jp z, Jump_000_030f
+    db $ca, $0f, $03
 
     ld a, $3f
     nop
@@ -6978,7 +6978,7 @@ jr_037_5dd9:
     ld sp, $0213
     ld c, b
     ld a, [de]
-    jp Jump_000_02c3
+    db $c3, $c3, $02
 
 
     ld e, b
@@ -8640,7 +8640,7 @@ jr_037_6515:
 
     inc b
     inc b
-    call nc, Call_000_050f
+    db $d4, $0f, $05
     inc b
     ldh [rDIV], a
     inc b
@@ -9271,7 +9271,7 @@ jr_037_67b9:
     ld sp, $0213
     ld c, b
     ld a, [de]
-    jp Jump_000_02c3
+    db $c3, $c3, $02
 
 
     ld e, b
@@ -11722,7 +11722,7 @@ jr_037_71d4:
     ld sp, $0213
     ld c, b
     ld a, [de]
-    jp Jump_000_02c3
+    db $c3, $c3, $02
 
 
     ld e, b

@@ -20,7 +20,7 @@ SECTION "ROM Bank $008", ROMX[$4000], BANK[$8]
     dw label8_78dd
 
 label8_4015:
-    ld a, [$c81c]
+    ld a, [wIsSGB]
     or a
     ret z
 
@@ -441,7 +441,7 @@ jr_008_413d:
 
 
 label8_41e3:
-    ld a, [$c81c]
+    ld a, [wIsSGB]
     or a
     ret z
 
@@ -485,7 +485,7 @@ jr_008_4208:
 
 
 Call_008_422c:
-    ld a, [$c81c]
+    ld a, [wIsSGB]
     or a
     ret z
 

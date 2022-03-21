@@ -3019,7 +3019,7 @@ Call_035_4d1f:
     rst $28
     ld l, a
     rst $30
-    call c, Call_000_3fdf
+    db $dc, $df, $3f
     ld sp, hl
     ldh [$ce], a
     nop
@@ -4186,7 +4186,7 @@ Call_035_5253:
     ld c, a
     ld a, h
     rst $08
-    jp z, Jump_000_3efb
+    db $ca, $fb, $3e
 
     rst $38
     ld b, $0a
@@ -7730,7 +7730,7 @@ jr_035_621b:
     xor a
     ld [bc], a
     rra
-    jp nz, Jump_000_3fc2
+    db $c2, $c2, $3f
 
     ld a, a
     nop
@@ -8522,7 +8522,7 @@ jr_035_657a:
     db $fd
     add a
     dec b
-    jp z, Jump_000_0504
+    db $ca, $04, $05
 
     ld h, [hl]
     inc de
@@ -12128,7 +12128,7 @@ jr_035_754f:
     db $ec
     rra
     ldh a, [$08]
-    call nz, Call_000_3f10
+    db $c4, $10, $3f
     ldh [$7f], a
     ret nz
 

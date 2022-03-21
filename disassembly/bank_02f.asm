@@ -2495,7 +2495,7 @@ jr_02f_4b21:
     db $fc
     ld [bc], a
     cp $05
-    call nc, Call_000_0500
+    db $d4, $00, $05
     sbc d
     ld [bc], a
     dec b
@@ -2585,7 +2585,7 @@ jr_02f_4b6e:
     ld [hl], h
     xor h
     inc h
-    call c, Call_000_3f22
+    db $dc, $22, $3f
     ld de, $091f
     rrca
     add hl, de
@@ -2917,7 +2917,7 @@ Jump_02f_4d1f:
     inc d
     db $ec
     inc a
-    call nc, Call_000_3f20
+    db $d4, $20, $3f
     ld [bc], a
     ld h, b
     ld [bc], a
@@ -5067,7 +5067,8 @@ jr_02f_5698:
     ccf
     ld [bc], a
     ldh [rP1], a
-    jp nz, Jump_000_03c2
+    db $c2, $c2, $03
+
 
     ld h, d
     rlca
@@ -8817,7 +8818,7 @@ jr_02f_66cb:
     rst $38
     dec a
     db $fd
-    jp nz, Jump_000_02f7
+    db $c2, $f7, $02
 
     cp a
     dec b

@@ -4885,7 +4885,7 @@ jr_03e_5aec:
     ld b, d
     sub c
     ld b, d
-    jp Jump_000_3f42
+    db $c3, $42, $3f
 
 
     ld b, h
@@ -8086,7 +8086,7 @@ jr_03e_66bd:
     ld b, d
     sub c
     ld b, d
-    jp Jump_000_3f42
+    db $c3, $42, $3f
 
 
     ld b, h

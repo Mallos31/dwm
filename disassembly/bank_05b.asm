@@ -6948,7 +6948,7 @@ jr_05b_5dea:
     ldh a, [rNR41]
     nop
     ld a, [bc]
-    call nz, Call_000_3f20
+    db $c4, $20, $3f
     rst $38
     rrca
     rst $38
@@ -8154,7 +8154,7 @@ jr_05b_62f3:
     ld a, [c]
     ld a, [c]
     dec b
-    jp c, Jump_000_0522
+    db $da, $22, $05
 
     db $fc
     nop
@@ -14300,7 +14300,7 @@ jr_05b_7c68:
     ld bc, $ff40
     jr nz, jr_05b_7cf6
 
-    jp c, Jump_000_0521
+    db $da, $21, $05
 
     dec de
     db $10

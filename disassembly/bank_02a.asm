@@ -1374,7 +1374,7 @@ jr_02a_453d:
     ld a, a
     ld b, d
     ld b, e
-    jp nz, Jump_000_02c3
+    db $c2, $c3, $02
 
     inc bc
     dec h
@@ -8025,7 +8025,7 @@ jr_02a_654a:
     ld e, d
     ld e, e
     ld a, [bc]
-    jp z, Jump_000_030f
+    db $ca, $0f, $03
 
     ld e, $1e
     ld e, $39
@@ -10634,7 +10634,8 @@ jr_02a_7329:
     ld a, [hl]
     ld b, e
     ld b, d
-    jp Jump_000_03c2
+    db $c3, $c2, $03
+
 
 
     ld [bc], a

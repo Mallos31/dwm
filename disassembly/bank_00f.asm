@@ -6114,7 +6114,7 @@ jr_00f_5987:
     ld b, $5a
     dec d
     rst $38
-    call Call_000_02d9
+    db $cd, $d9, $02
     nop
     ld c, $5a
     dec c
@@ -6125,7 +6125,7 @@ jr_00f_5987:
     nop
     dec d
     rst $38
-    call Call_000_03d9
+    db $cd, $d9, $03
     nop
     ld d, $5a
     rst $38
@@ -8160,13 +8160,13 @@ jr_00f_6097:
     add $62
     dec d
     rst $38
-    call Call_000_02d9
+    db $cd, $d9, $02
     nop
     ld c, b
     ld h, d
     dec d
     rst $38
-    call Call_000_03d9
+    db $cd, $d9, $03
     nop
     inc h
     ld h, d
@@ -8290,7 +8290,7 @@ jr_00f_6097:
     nop
     ld [de], a
     rst $38
-    call Call_000_03d9
+    db $cd, $d9, $03
     nop
     inc d
     rst $38
@@ -8312,7 +8312,7 @@ jr_00f_6097:
     nop
     ld [de], a
     rst $38
-    call Call_000_02d9
+    db $cd, $d9, $02
     nop
     inc d
     rst $38
@@ -8435,7 +8435,7 @@ jr_00f_6097:
     rst $38
     dec d
     rst $38
-    call Call_000_03d9
+    db $cd, $d9, $03
     nop
     ld a, b
     ld h, e
@@ -8753,13 +8753,13 @@ jr_00f_6474:
     ld l, c
     dec d
     rst $38
-    call Call_000_02d9
+    db $cd, $d9, $02
     nop
     ld a, [de]
     ld h, a
     dec d
     rst $38
-    call Call_000_03d9
+    db $cd, $d9, $03
     nop
     xor $64
     rst $38
@@ -9319,7 +9319,7 @@ jr_00f_6474:
     nop
     ld [de], a
     rst $38
-    call Call_000_03d9
+    db $cd, $d9, $03
     nop
     rlca
     rst $38
@@ -9847,7 +9847,7 @@ jr_00f_68ca:
     nop
     ld [de], a
     rst $38
-    call Call_000_02d9
+    db $cd, $d9, $02
     nop
     inc d
     rst $38
@@ -9977,7 +9977,7 @@ jr_00f_68ca:
     rst $38
     dec d
     rst $38
-    call Call_000_02d9
+    db $cd, $d9, $02
     nop
     ld [hl-], a
     ld l, d
@@ -10091,7 +10091,7 @@ jr_00f_68ca:
     ld [$ff06], sp
     ld [de], a
     rst $38
-    call Call_000_03d9
+    db $cd, $d9, $03
     nop
     dec de
     rst $38

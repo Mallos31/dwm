@@ -480,7 +480,7 @@ jr_038_41f8:
     inc d
     db $ec
     inc a
-    call nc, Call_000_3f20
+    db $d4, $20, $3f
     ld [bc], a
     ld h, b
     ld [bc], a
@@ -12445,7 +12445,7 @@ jr_038_783d:
     db $fc
     ld [bc], a
     cp $05
-    jp c, Jump_000_0500
+    db $da, $00, $05
 
     ld l, b
     nop

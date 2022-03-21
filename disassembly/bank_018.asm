@@ -2436,7 +2436,7 @@ jr_018_4e20:
     ld [hl+], a
     ld a, c
     ld [hl], a
-    ld hl, Call_000_0402
+    ld hl, $0402
     rst $10
     ret
 
@@ -2498,7 +2498,7 @@ jr_018_4e73:
     ld [hl+], a
     ld a, c
     ld [hl], a
-    ld hl, Call_000_0402
+    ld hl, $0402
     rst $10
     ret
 
@@ -2512,7 +2512,7 @@ jr_018_4e7f:
     ld [hl+], a
     ld a, c
     ld [hl], a
-    ld hl, Jump_000_0500
+    ld hl, $0500
     rst $10
     ret
 
@@ -3739,7 +3739,7 @@ Call_018_546b:
 
     cp $e0
     nop
-    ld bc, Jump_000_0302
+    ld bc, $0302
     rst $38
     ret c
 
@@ -3914,7 +3914,7 @@ Call_018_546b:
 
     cp $e0
     nop
-    ld bc, Jump_000_0302
+    ld bc, $0302
     inc b
     dec b
     ld b, $07
@@ -4827,7 +4827,7 @@ TEXT_unk_then_say_it::
     inc b
     add d
     or c
-    ld bc, Call_000_0300
+    ld bc, $0300
     ld [hl], b
     cp l
     nop
@@ -7952,7 +7952,7 @@ jr_018_7c67:
     inc de
     add e
     or c
-    ld bc, Jump_000_0500
+    ld bc, $0500
     ld a, l
     cp l
     nop
